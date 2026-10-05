@@ -72,11 +72,11 @@ Typical tasks:
 
 A useful design target is approximately:
 
-[
+$$
 40\%\ \text{conceptual reasoning}
 +
 60\%\ \text{experimental reasoning}
-]
+$$
 
 This proportion is a design guideline, not a rigid grading requirement.
 
@@ -96,7 +96,7 @@ The project is the transversal component of the course.
 
 Its purpose is to demonstrate that students can move from a problem and data to a justified deep-learning system:
 
-[
+$$
 \text{problem}
 \rightarrow
 \text{data}
@@ -110,7 +110,7 @@ Its purpose is to demonstrate that students can move from a problem and data to 
 \text{evaluation}
 \rightarrow
 \text{application}
-]
+$$
 
 ## Development across the course
 
