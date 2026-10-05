@@ -1,34 +1,22 @@
 # Session 01 notebooks
 
-Two notebooks are planned for this session.
+## Guided practice — 60 minutes
 
-## S01_N01_gradient_descent.ipynb
+[sesion_01_pytorch_60min.ipynb](sesion_01_pytorch_60min.ipynb)
 
-**Goal:** understand optimization before relying on PyTorch autograd.
+Tensors, affine transformations, scalar autograd, parameter updates,
+`TensorDataset`, `DataLoader` and nonlinear classification with an MLP.
+The notebook includes executed examples, loss curves and decision boundaries.
 
-Planned experiments:
+## Exercise — Multiclass MLP with tabular data
 
-1. synthetic regression data;
-2. linear model (\hat y=wx+b);
-3. MSE;
-4. manual gradients;
-5. manual parameter updates;
-6. loss curve;
-7. learning-rate comparison;
-8. full-batch vs mini-batch training.
+[sesion_01_ejercicio_mlp_multiclase_kaggle.ipynb](sesion_01_ejercicio_mlp_multiclase_kaggle.ipynb)
 
-## S01_N02_pytorch_autograd.ipynb
+Kaggle Dry Bean dataset: 16 numerical features and 7 classes.
+Students complete six TODO sections covering preprocessing, data loaders,
+the MLP, loss and optimizer, training and prediction. The evaluation reports
+accuracy, macro F1 and a confusion matrix.
 
-**Goal:** connect the mathematical learning loop with PyTorch.
-
-Planned experiments:
-
-1. scalar autograd;
-2. inspect `.grad`;
-3. computational graph;
-4. minimal MLP;
-5. nonlinear 2D classification;
-6. remove ReLU as an ablation;
-7. compare decision boundaries.
-
-Each experiment should ask students to make a prediction before execution and interpret the resulting visualization afterwards.
+The former names `S01_N01_gradient_descent.ipynb` and
+`S01_N02_pytorch_autograd.ipynb` were planning placeholders.
+The presentation now links to the available notebooks above.

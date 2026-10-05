@@ -59,8 +59,9 @@ Detailed course design: [`course/course_structure.md`](course/course_structure.m
 The first session is already under active development:
 
 - [Marp slide deck](sessions/01_learning/slides/S01_slides.marp.md)
-- [Figure production list](sessions/01_learning/figures/figures.md)
-- [Notebook plan](sessions/01_learning/notebooks/README.md)
+- [Rendering instructions](sessions/01_learning/slides/README.md)
+- [Figure and animation inventory](sessions/01_learning/figures/figures.md)
+- [Guided practice and exercise](sessions/01_learning/notebooks/README.md)
 
 The central mental model is:
 

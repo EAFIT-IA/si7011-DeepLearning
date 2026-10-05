@@ -1,0 +1,25 @@
+# Session 01 slides
+
+[S01_slides.marp.md](S01_slides.marp.md) is the editable Marp source.
+[../figures/figures.md](../figures/figures.md) maps the available assets to the current slide numbers and records pending figures.
+
+## Render
+
+Run from the repository root:
+
+```bash
+npx @marp-team/marp-cli@4.5.1 sessions/01_learning/slides/S01_slides.marp.md --html -o sessions/01_learning/slides/S01_slides.html
+```
+
+Keep the `figures/` directory beside `slides/`. The HTML uses relative paths
+for figures, video posters and MP4 files. The `--html` flag enables the video elements.
+Open the generated HTML in a browser to play the three animations.
+
+For a static PDF:
+
+```bash
+npx @marp-team/marp-cli@4.5.1 sessions/01_learning/slides/S01_slides.marp.md --html --allow-local-files --pdf -o sessions/01_learning/slides/S01_slides.pdf
+```
+
+PDF does not play MP4 files. Animation slides provide static posters and links.
+No generated HTML or PDF is required to edit the source.

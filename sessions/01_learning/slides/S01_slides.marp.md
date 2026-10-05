@@ -47,6 +47,26 @@ style: |
   .center {
     text-align: center;
   }
+  section.media video {
+    display: block;
+    width: 100%;
+    height: 460px;
+    object-fit: contain;
+    background: #ffffff;
+  }
+  section.media p { margin: 8px 0; }
+  section.media a { font-size: 21px; }
+  .print-poster { display: none; }
+  @media print {
+    section.media video { display: none; }
+    section.media .print-poster {
+      display: block;
+      width: 100%;
+      height: 460px;
+      object-fit: contain;
+    }
+  }
+  section.figure { padding: 0; }
   .placeholder {
     border: 2px dashed #a8b1bd;
     border-radius: 12px;
@@ -64,12 +84,12 @@ footer: SI7011 — Deep Learning
 
 <div class="center">
 
-$
+$$
 x \longrightarrow f_\theta(x) \longrightarrow \hat y
 \longrightarrow \mathcal L
 \longrightarrow \nabla_\theta
 \longrightarrow \theta'
-$
+$$
 
 </div>
 
@@ -85,9 +105,9 @@ $
 
 # We observe data
 
-$
+$$
 \mathcal D=\{(x_i,y_i)\}_{i=1}^{N}
-$
+$$
 
 We start from **observed examples**, not from explicit rules.
 
@@ -111,9 +131,9 @@ We start from **observed examples**, not from explicit rules.
 
 # The input
 
-$
+$$
 x
-$
+$$
 
 The information available **before** making a prediction.
 
@@ -122,61 +142,53 @@ The information available **before** making a prediction.
 - sequences
 - signals
 
-<div class="placeholder">
-VISUAL — multiple data modalities converging to \(x\)
-</div>
+<!-- Pending visual: VISUAL — multiple data modalities converging to $x$ -->
 
 ---
 
 # The target
 
-$
+$$
 y
-$
+$$
 
 The value or class we want to predict.
 
-$
+$$
 (x,y)
-$
+$$
 
 The target is used to evaluate the prediction during training.
 
-<div class="placeholder">
-VISUAL — input \(x\) and target \(y\) as an observed pair
-</div>
+<!-- Pending visual: VISUAL — input $x$ and target $y$ as an observed pair -->
 
 ---
 
 # A model
 
-$
+$$
 f_\theta
-$
+$$
 
 A model is a **parameterized function**.
 
-$
+$$
 x \longrightarrow \boxed{f_\theta} \longrightarrow ?
-$
+$$
 
-<div class="placeholder">
-FIGURE S01-F03 — Data → model
-</div>
+<!-- Pending visual: FIGURE S01-F03 — Data → model -->
 
 ---
 
 # Prediction
 
-$
+$$
 \hat y=f_\theta(x)
-$
+$$
 
 Inference means using the **current parameters** to produce an output.
 
-<div class="placeholder">
-VISUAL — \(x \rightarrow f_\theta(x) \rightarrow \hat y\)
-</div>
+<!-- Pending visual: VISUAL — $x \rightarrow f_\theta(x) \rightarrow \hat y$ -->
 
 ---
 
@@ -184,7 +196,7 @@ VISUAL — \(x \rightarrow f_\theta(x) \rightarrow \hat y\)
 
 | Inference | Training |
 |---|---|
-| \(x \rightarrow f_\theta(x)\rightarrow \hat y\) | \((x,y)\rightarrow f_\theta(x)\rightarrow\hat y\rightarrow\mathcal L\rightarrow\theta'\) |
+| $x \rightarrow f_\theta(x)\rightarrow \hat y$ | $(x,y)\rightarrow f_\theta(x)\rightarrow\hat y\rightarrow\mathcal L\rightarrow\theta'$ |
 | parameters are **used** | parameters are **changed** |
 
 ---
@@ -199,57 +211,53 @@ VISUAL — \(x \rightarrow f_\theta(x) \rightarrow \hat y\)
 
 # Is the prediction good?
 
-$
+$$
 y \qquad\qquad \hat y
-$
+$$
 
 How do we transform the quality of a prediction into something we can optimize?
 
-<div class="placeholder">
-VISUAL — target and prediction separated by an explicit error gap
-</div>
+<!-- Pending visual: VISUAL — target and prediction separated by an explicit error gap -->
 
 ---
 
 # Loss
 
-$
+$$
 \mathcal L(y,\hat y)
-$
+$$
 
 For regression, one possibility is:
 
-$
+$$
 \mathcal L=(y-\hat y)^2
-$
+$$
 
 A loss converts the task objective into a **scalar quantity**.
 
-<div class="placeholder">
-VISUAL — prediction and target on a line with squared error
-</div>
+<!-- Pending visual: VISUAL — prediction and target on a line with squared error -->
 
 ---
 
 # Loss depends on the parameters
 
-$
+$$
 \hat y=f_\theta(x)
-$
+$$
 
 therefore,
 
-$
+$$
 \mathcal L(y,\hat y)
 =
 \mathcal L(y,f_\theta(x))
-$
+$$
 
 and we can reason about:
 
-$
+$$
 \mathcal L(\theta)
-$
+$$
 
 ---
 
@@ -265,23 +273,21 @@ $
 
 Suppose:
 
-$
+$$
 \hat y = wx
-$
+$$
 
-Changing \(w\) changes the prediction and therefore changes the loss.
+Changing $w$ changes the prediction and therefore changes the loss.
 
-<div class="placeholder">
-VISUAL — curve \(L(w)\) with current parameter \(w_t\)
-</div>
+<!-- Pending visual: VISUAL — curve $L(w)$ with current parameter $w_t$ -->
 
 ---
 
 # The gradient
 
-$
+$$
 \frac{\partial \mathcal L}{\partial w}
-$
+$$
 
 The gradient gives **local information** about how the loss changes.
 
@@ -297,29 +303,27 @@ The gradient gives **local information** about how the loss changes.
 
 # Gradient descent
 
-$
+$$
 w_{t+1}
 =
 w_t-\eta
 \frac{\partial \mathcal L}{\partial w}
-$
+$$
 
 Two ingredients:
 
 - **direction** from the gradient
 - **step size** from the learning rate
 
-<div class="placeholder">
-VISUAL — one optimization step on \(L(w)\)
-</div>
+<!-- Pending visual: VISUAL — one optimization step on $L(w)$ -->
 
 ---
 
 # Learning rate
 
-$
+$$
 \eta
-$
+$$
 
 What changes if the step is:
 
@@ -327,9 +331,7 @@ What changes if the step is:
 - appropriate?
 - too large?
 
-<div class="placeholder">
-FIGURE S01-F07 — Three learning rates
-</div>
+<!-- Pending visual: FIGURE S01-F07 — Three learning rates -->
 
 ---
 
@@ -343,11 +345,11 @@ FIGURE S01-F07 — Three learning rates
 
 # More than one parameter
 
-$
+$$
 \theta=(w_1,w_2,\ldots,w_p)
-$
+$$
 
-$
+$$
 \nabla_\theta\mathcal L
 =
 \begin{bmatrix}
@@ -355,19 +357,17 @@ $
 \vdots\\
 \partial\mathcal L/\partial w_p
 \end{bmatrix}
-$
+$$
 
-<div class="placeholder">
-FIGURE S01-F08 — Loss surface
-</div>
+<!-- Pending visual: FIGURE S01-F08 — Loss surface -->
 
 ---
 
 # Optimization is a trajectory
 
-$
+$$
 \theta_0,\theta_1,\theta_2,\ldots
-$
+$$
 
 Training moves through the parameter space.
 
@@ -385,13 +385,13 @@ Training moves through the parameter space.
 
 For many observations:
 
-$
+$$
 J(\theta)
 =
 \frac{1}{N}
 \sum_{i=1}^{N}
 \mathcal L(y_i,f_\theta(x_i))
-$
+$$
 
 Optimizing one observation is not the same as learning the dataset.
 
@@ -405,28 +405,7 @@ Three ways to estimate the gradient:
 - one observation
 - a subset
 
-<div class="placeholder">
-FIGURE S01-F10 — Batch / SGD / mini-batch
-</div>
-
----
-
-# Practice A — Gradient descent from scratch
-
-Notebook:
-
-`S01_N01_gradient_descent.ipynb`
-
-Goals:
-
-1. implement \( \hat y=wx+b \)
-2. compute MSE
-3. derive gradients
-4. update \(w,b\)
-5. compare learning rates
-6. compare full batch vs mini-batch
-
-> Predict the behavior **before** running each experiment.
+<!-- Pending visual: FIGURE S01-F10 — Batch / SGD / mini-batch -->
 
 ---
 
@@ -434,27 +413,25 @@ Goals:
 
 Optimization can work perfectly while the model still lacks enough capacity.
 
-<div class="placeholder">
-FIGURE S01-F11 — Linear vs nonlinear structure
-</div>
+<!-- Pending visual: FIGURE S01-F11 — Linear vs nonlinear structure -->
 
 ---
 
 # Stacking linear transformations
 
-$
+$$
 h=W_1x+b_1
-$
+$$
 
-$
+$$
 y=W_2h+b_2
-$
+$$
 
 Therefore:
 
-$
+$$
 y=W_2W_1x+W_2b_1+b_2
-$
+$$
 
 Several linear layers can collapse into a single affine transformation.
 
@@ -462,29 +439,40 @@ Several linear layers can collapse into a single affine transformation.
 
 # Nonlinearity changes the game
 
-$
-h=\sigma(Wx+b)
-$
+$$
+z=Wx+b,\qquad a=\sigma(z)
+$$
 
 A nonlinear activation prevents the composition from collapsing into one linear map.
 
-<div class="placeholder">
-VISUAL — insert a nonlinear transformation between two affine maps
-</div>
+<!-- Pending visual: VISUAL — insert a nonlinear transformation between two affine maps -->
+
+---
+
+<!-- _class: media -->
+
+# Affine maps and nonlinear activations
+
+<video controls preload="none" poster="../figures/s01_transformation_overview.png" aria-label="Affine maps and nonlinear activations">
+  <source src="../figures/E9_EjemploActivaciones.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s01_transformation_overview.png" alt="Static view of Affine maps and nonlinear activations">
+
+[Open animation](../figures/E9_EjemploActivaciones.mp4)
+
+<!-- Compare input coordinates, the affine transformation, tanh and ReLU. Which representations allow a linear separator? -->
 
 ---
 
 # ReLU
 
-$
+$$
 \operatorname{ReLU}(z)=\max(0,z)
-$
+$$
 
 A very simple nonlinear function can become a powerful building block.
 
-<div class="placeholder">
-VISUAL — clean ReLU plot
-</div>
+<!-- Pending visual: VISUAL — clean ReLU plot -->
 
 ---
 
@@ -492,109 +480,7 @@ VISUAL — clean ReLU plot
 
 A single unit produces a simple piecewise-linear transformation.
 
-<div class="placeholder">
-VISUAL — one shifted/scaled ReLU component
-</div>
-
----
-
-# Add another ReLU
-
-Two simple components already create a richer function.
-
-<div class="placeholder">
-FIGURE S01-F12A — Two ReLU components
-</div>
-
----
-
-# Approximation by composition
-
-Adding several nonlinear components increases expressive capacity.
-
-<div class="placeholder">
-FIGURE S01-F12B — Progressive ReLU approximation
-</div>
-
----
-
-# A hidden layer
-
-$
-h=\sigma(W_1x+b_1)
-$
-
-$
-\hat y=W_2h+b_2
-$
-
-A hidden layer learns an **intermediate representation**.
-
-<div class="placeholder">
-VISUAL — hidden units as learned features
-</div>
-
----
-
-# Multilayer perceptron
-
-$
-h_1=\sigma(W_1x+b_1)
-$
-
-$
-h_2=\sigma(W_2h_1+b_2)
-$
-
-$
-\hat y=W_3h_2+b_3
-$
-
-<div class="placeholder">
-FIGURE S01-F13 — MLP as function composition
-</div>
-
----
-
-# Forward pass
-
-$
-x
-\rightarrow
-z_1
-\rightarrow
-h_1
-\rightarrow
-z_2
-\rightarrow
-\hat y
-\rightarrow
-\mathcal L
-$
-
-The forward pass evaluates the composed function.
-
-<div class="placeholder">
-VISUAL — values propagating left → right
-</div>
-
----
-
-# Computational graph
-
-Example:
-
-$
-a=wx
-$
-
-$
-\hat y=a+b
-$
-
-$
-L=(y-\hat y)^2
-$
+<!-- Pending visual: VISUAL — one shifted/scaled ReLU component -->
 
 ---
 
@@ -602,7 +488,94 @@ $
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Computational graph](../figures/s01_f14_computational_graph.svg)
+![bg contain Two shifted and scaled ReLU components and their sum](../figures/s01_f12_two_relu_components.png)
+
+---
+
+<!-- _class: media -->
+
+# Approximation with ReLU components
+
+<video controls preload="none" poster="../figures/s01_f12_two_relu_components.png" aria-label="Approximation with ReLU components">
+  <source src="../figures/E7_AproximacionReLU.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s01_f12_two_relu_components.png" alt="Static view of Approximation with ReLU components">
+
+[Open animation](../figures/E7_AproximacionReLU.mp4)
+
+<!-- As the number of components grows, identify the new breakpoints. This animation changes capacity, without training parameters. -->
+
+---
+
+# A hidden layer
+
+$$
+z_1=W_1x+b_1,\qquad a_1=\sigma(z_1)
+$$
+
+$$
+\hat y=W_2a_1+b_2
+$$
+
+A hidden layer learns an **intermediate representation**.
+
+<!-- Pending visual: VISUAL — hidden units as learned features -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain MLP as a composition of affine maps and activations](../figures/s01_f13_MLP%20Function%20Composition%20Diagram.png)
+
+---
+
+# Forward pass
+
+$$
+x
+\rightarrow
+z_1
+\rightarrow
+a_1
+\rightarrow
+z_2
+\rightarrow
+a_2
+\rightarrow
+\hat y
+\rightarrow
+\mathcal L
+$$
+
+The forward pass evaluates the composed function.
+
+<!-- Pending visual: VISUAL — values propagating left → right -->
+
+---
+
+# Computational graph
+
+Each hidden layer contains an affine map and an activation:
+
+$$
+z_l=W_la_{l-1}+b_l,\qquad a_l=\sigma(z_l),\qquad a_0=x
+$$
+
+For a linear output and squared loss:
+
+$$
+\hat y=W_3a_2+b_3,\qquad L=\frac{1}{2}\lVert\hat y-y\rVert^2
+$$
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Forward pass through linear and nonlinear layers](../figures/s01_f14_computational_graph_forward.png)
 
 ---
 
@@ -610,23 +583,21 @@ $
 
 If:
 
-$
+$$
 L=L(\hat y(a(w)))
-$
+$$
 
 then:
 
-$
+$$
 \frac{\partial L}{\partial w}
 =
 \frac{\partial L}{\partial \hat y}
 \frac{\partial \hat y}{\partial a}
 \frac{\partial a}{\partial w}
-$
+$$
 
-<div class="placeholder">
-VISUAL — equation aligned with computational graph
-</div>
+<!-- Pending visual: VISUAL — equation aligned with computational graph -->
 
 ---
 
@@ -640,7 +611,22 @@ The same graph is traversed in the opposite direction to propagate gradients.
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Forward values and backward gradients](../figures/s01_f15_forward_backward.svg)
+![bg contain Backpropagation through linear and nonlinear layers with local equations](../figures/s01_f15_backward%20gradients%20in%20neural%20network.png)
+
+---
+
+<!-- _class: media -->
+
+# Forward values and backward gradients
+
+<video controls preload="none" poster="../figures/s01_f14_computational_graph_forward.png" aria-label="Forward values and backward gradients">
+  <source src="../figures/E10_GrafoForwardBackward.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s01_f14_computational_graph_forward.png" alt="Static view of Forward values and backward gradients">
+
+[Open animation](../figures/E10_GrafoForwardBackward.mp4)
+
+<!-- Follow the saved values during forward and identify the local chain-rule computation during backward. -->
 
 ---
 
@@ -648,15 +634,13 @@ The same graph is traversed in the opposite direction to propagate gradients.
 
 Each trainable parameter receives:
 
-$
+$$
 \frac{\partial L}{\partial w_i}
-$
+$$
 
 The backward pass produces the information required by the optimizer.
 
-<div class="placeholder">
-VISUAL — parameter nodes annotated with local gradients
-</div>
+<!-- Pending visual: VISUAL — parameter nodes annotated with local gradients -->
 
 ---
 
@@ -664,12 +648,12 @@ VISUAL — parameter nodes annotated with local gradients
 
 | Backpropagation | Optimizer |
 |---|---|
-| computes \(\nabla_\theta L\) | uses \(\nabla_\theta L\) |
+| computes $\nabla_\theta L$ | uses $\nabla_\theta L$ |
 | differentiates the graph | updates the parameters |
 
-$
+$$
 \text{backward} \neq \text{update}
-$
+$$
 
 ---
 
@@ -677,13 +661,13 @@ $
 
 Manual view:
 
-$
+$$
 \text{operations}
 \rightarrow
 \text{local derivatives}
 \rightarrow
 \text{chain rule}
-$
+$$
 
 PyTorch:
 
@@ -719,7 +703,7 @@ optimizer.step()
 
 # The complete learning loop
 
-$
+$$
 x
 \rightarrow
 f_\theta(x)
@@ -731,11 +715,9 @@ f_\theta(x)
 \nabla_\theta \mathcal L
 \rightarrow
 \theta'
-$
+$$
 
-<div class="placeholder">
-FIGURE S01-F01 — Reprise, now fully annotated
-</div>
+<!-- Pending visual: FIGURE S01-F01 — Reprise, now fully annotated -->
 
 ---
 
@@ -745,7 +727,7 @@ The learning loop remains the same.
 
 What changes is:
 
-- \(f_\theta\)
+- $f_\theta$
 - architecture
 - loss
 - optimizer
@@ -766,25 +748,37 @@ What is incorrect in that statement?
 
 ---
 
-# Practice B — PyTorch without magic
+# Guided practice — PyTorch in one hour
 
-Notebook:
+[Open notebook](../notebooks/sesion_01_pytorch_60min.ipynb)
 
-`S01_N02_pytorch_autograd.ipynb`
+- tensors and affine transformations
+- scalar autograd and parameter updates
+- `TensorDataset` and `DataLoader`
+- MLP for nonlinear classification
+- loss curves and decision boundaries
 
-- scalar autograd
-- inspect `.grad`
-- computational graph
-- minimal MLP
-- nonlinear 2D classification
-- ablation: remove ReLU
-- compare decision boundaries
+> Predict the behavior before running each experiment.
+
+---
+
+# Exercise — Multiclass MLP with tabular data
+
+[Open notebook](../notebooks/sesion_01_ejercicio_mlp_multiclase_kaggle.ipynb)
+
+Dry Bean dataset from Kaggle: 16 attributes and 7 classes.
+
+- split and standardize the data
+- create a `DataLoader`
+- implement an MLP and the training loop
+- use `CrossEntropyLoss`
+- evaluate accuracy, macro F1 and the confusion matrix
 
 ---
 
 # Session 01 — Mental model
 
-$
+$$
 \boxed{
 \text{forward}
 \rightarrow
@@ -794,6 +788,6 @@ $
 \rightarrow
 \text{update}
 }
-$
+$$
 
 If this loop is clear, the rest of the course has a common foundation.
