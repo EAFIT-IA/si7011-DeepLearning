@@ -8,8 +8,8 @@ The evaluation strategy follows the conceptual organization of the course rather
 |---|---:|---:|---|
 | **Evaluation Event 1 — Learning & Training** | S01–S02 | **20%** | learning loop, optimization, backpropagation, initialization, regularization, training diagnostics |
 | **Evaluation Event 2 — Architecture & Representation** | S03–S04 | **20%** | inductive bias, CNN/ViT, transfer learning, embeddings, reconstruction and self-supervised learning |
-| **Evaluation Event 3 — Foundation Models & Adaptation** | S05–S06 | **20%** | sequence modeling, attention, Transformers, pretrained/foundation models, adaptation, evaluation and inference |
-| **Integrative Project** | transversal | **40%** | end-to-end formulation, modeling, experimentation, evaluation and deployment |
+| **Evaluation Event 3 — Foundation Models & Adaptation** | S05–S06 | **25%** | sequence modeling, attention, Transformers, pretrained/foundation models, adaptation, evaluation and inference |
+| **Integrative Project** | transversal | **35%** | end-to-end formulation, modeling, experimentation, evaluation and deployment |
 
 ## Design principle
 
@@ -90,7 +90,7 @@ This question connects optimization, architectures, representation learning, fou
 
 ---
 
-# Integrative project — 40%
+# Integrative project — 35%
 
 The project is the transversal component of the course.
 
@@ -155,10 +155,10 @@ A provisional internal structure is:
 |---|---:|
 | Problem and data formulation | 5% |
 | Experimental design | 10% |
-| Results and analysis | 15% |
+| Results and analysis | 10% |
 | Reproducibility / implementation | 5% |
 | Final defense | 5% |
-| **Total** | **40%** |
+| **Total** | **35%** |
 
 These internal weights remain provisional until the project rubric is designed.
 
