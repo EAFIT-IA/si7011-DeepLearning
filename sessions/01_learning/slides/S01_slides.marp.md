@@ -73,9 +73,13 @@ $
 
 </div>
 
-<div class="placeholder">
-FIGURE S01-F01 — Learning loop overview
-</div>
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Supervised learning: data, model and prediction](../figures/s01_f01_supervised_learning_data_to_prediction.png)
 
 ---
 
@@ -87,9 +91,21 @@ $
 
 We start from **observed examples**, not from explicit rules.
 
-<div class="placeholder">
-FIGURE S01-F02 — Dataset as observed pairs
-</div>
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain From data to a learning problem](../figures/s01_f02_from_data_to_learning_problem.png)
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Training, validation and test sets](../figures/s01_f03_dataset_splits.png)
 
 ---
 
@@ -171,9 +187,13 @@ VISUAL — \(x \rightarrow f_\theta(x) \rightarrow \hat y\)
 | \(x \rightarrow f_\theta(x)\rightarrow \hat y\) | \((x,y)\rightarrow f_\theta(x)\rightarrow\hat y\rightarrow\mathcal L\rightarrow\theta'\) |
 | parameters are **used** | parameters are **changed** |
 
-<div class="placeholder">
-FIGURE S01-F04 — Training vs inference
-</div>
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Training versus inference](../figures/s01_f04_Training%20vs.%20Inference%20Pipeline.png)
 
 ---
 
@@ -231,9 +251,13 @@ $
 \mathcal L(\theta)
 $
 
-<div class="placeholder">
-FIGURE S01-F05 — \(\theta \rightarrow \hat y \rightarrow \mathcal L\)
-</div>
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain How parameters determine the loss](../figures/s01_f05_parameter_dependency.svg)
 
 ---
 
@@ -261,9 +285,13 @@ $
 
 The gradient gives **local information** about how the loss changes.
 
-<div class="placeholder">
-FIGURE S01-F06 — Local slope
-</div>
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain The gradient is local information](../figures/s01_f06_local_slope.svg)
 
 ---
 
@@ -305,6 +333,14 @@ FIGURE S01-F07 — Three learning rates
 
 ---
 
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Learning rate scheduling strategies](../figures/s01_f12b_Learning%20Rate%20Scheduling%20Strategies.png)
+
+---
+
 # More than one parameter
 
 $
@@ -335,9 +371,13 @@ $
 
 Training moves through the parameter space.
 
-<div class="placeholder">
-FIGURE S01-F09 — Optimization path
-</div>
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Optimizer trajectories and training loss comparison](../figures/s01_f12_Optimizer%20Trajectories%20and%20Training%20Loss%20Comparison.png)
 
 ---
 
@@ -556,9 +596,13 @@ $
 L=(y-\hat y)^2
 $
 
-<div class="placeholder">
-FIGURE S01-F14 — Computational graph
-</div>
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Computational graph](../figures/s01_f14_computational_graph.svg)
 
 ---
 
@@ -590,9 +634,13 @@ VISUAL — equation aligned with computational graph
 
 The same graph is traversed in the opposite direction to propagate gradients.
 
-<div class="placeholder">
-FIGURE S01-F15 — Forward vs backward graph
-</div>
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Forward values and backward gradients](../figures/s01_f15_forward_backward.svg)
 
 ---
 
@@ -659,9 +707,13 @@ loss.backward()
 optimizer.step()
 ```
 
-<div class="placeholder">
-FIGURE S01-F16 — Math ↔ PyTorch mapping
-</div>
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain From mathematics to PyTorch](../figures/s01_f16_math_pytorch_mapping.svg)
 
 ---
 
