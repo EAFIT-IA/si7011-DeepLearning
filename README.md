@@ -64,7 +64,7 @@ The first session is already under active development:
 
 The central mental model is:
 
-[
+$$
 x
 \rightarrow
 f_\theta(x)
@@ -76,7 +76,7 @@ f_\theta(x)
 \nabla_\theta \mathcal L
 \rightarrow
 \theta'
-]
+$$
 
 ## Evaluation
 
