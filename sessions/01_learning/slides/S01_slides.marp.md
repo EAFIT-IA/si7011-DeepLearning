@@ -192,23 +192,6 @@ Inference means using the **current parameters** to produce an output.
 
 ---
 
-# Training is not inference
-
-| Inference | Training |
-|---|---|
-| $x \rightarrow f_\theta(x)\rightarrow \hat y$ | $(x,y)\rightarrow f_\theta(x)\rightarrow\hat y\rightarrow\mathcal L\rightarrow\theta'$ |
-| parameters are **used** | parameters are **changed** |
-
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-![bg contain Training versus inference](../figures/s01_f04_Training%20vs.%20Inference%20Pipeline.png)
-
----
-
 # Is the prediction good?
 
 $$
@@ -266,6 +249,23 @@ $$
 <!-- _footer: "" -->
 
 ![bg contain How parameters determine the loss](../figures/s01_f05_parameter_dependency.svg)
+
+---
+
+# Training is not inference
+
+| Inference | Training |
+|---|---|
+| $x \rightarrow f_\theta(x)\rightarrow \hat y$ | $(x,y)\rightarrow f_\theta(x)\rightarrow\hat y\rightarrow\mathcal L\rightarrow\theta'$ |
+| parameters are **used** | parameters are **changed** |
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Training versus inference](../figures/s01_f04_Training%20vs.%20Inference%20Pipeline.png)
 
 ---
 

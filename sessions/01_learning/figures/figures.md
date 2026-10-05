@@ -16,8 +16,8 @@ White backgrounds, preserved image proportions and the existing course style app
 | **S01-F01A** | V02 | Data, model and prediction | PNG | [s01_f01_supervised_learning_data_to_prediction.png](s01_f01_supervised_learning_data_to_prediction.png) | Included |
 | **S01-F02** | V04 | From observed data to a learning problem | PNG | [s01_f02_from_data_to_learning_problem.png](s01_f02_from_data_to_learning_problem.png) | Included |
 | **S01-F03A** | V05 | Training, validation and test partitions | PNG | [s01_f03_dataset_splits.png](s01_f03_dataset_splits.png) | Included |
-| **S01-F04** | V11 | Training versus inference | PNG | [s01_f04_Training vs. Inference Pipeline.png](s01_f04_Training%20vs.%20Inference%20Pipeline.png) | Included |
-| **S01-F05** | V15 | Parameter dependency chain | SVG | [s01_f05_parameter_dependency.svg](s01_f05_parameter_dependency.svg) | Included |
+| **S01-F04** | V15 | Training versus inference | PNG | [s01_f04_Training vs. Inference Pipeline.png](s01_f04_Training%20vs.%20Inference%20Pipeline.png) | Included |
+| **S01-F05** | V13 | Parameter dependency chain | SVG | [s01_f05_parameter_dependency.svg](s01_f05_parameter_dependency.svg) | Included |
 | **S01-F06** | V18 | Derivative as local slope | SVG | [s01_f06_local_slope.svg](s01_f06_local_slope.svg) | Included |
 | **S01-F07B** | V21 | Learning-rate schedules | PNG | [s01_f12b_Learning Rate Scheduling Strategies.png](s01_f12b_Learning%20Rate%20Scheduling%20Strategies.png) | Included |
 | **S01-F09** | V24 | Optimizer trajectories and illustrative loss curves | PNG | [s01_f12_Optimizer Trajectories and Training Loss Comparison.png](s01_f12_Optimizer%20Trajectories%20and%20Training%20Loss%20Comparison.png) | Included |
