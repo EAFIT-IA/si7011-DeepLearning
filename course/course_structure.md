@@ -8,7 +8,7 @@
 
 The course is organized around six questions rather than a historical catalog of architectures.
 
-[
+$$
 \text{learn}
 \rightarrow
 \text{train}
@@ -20,7 +20,7 @@ The course is organized around six questions rather than a historical catalog of
 \text{pretrain}
 \rightarrow
 \text{adapt/evaluate/deploy}
-]
+$$
 
 ## S01 — Learning
 ### How does a neural network learn?
@@ -38,12 +38,12 @@ Core topics:
 
 Core mental model:
 
-[
+$$
 x \rightarrow f_\theta(x) \rightarrow \hat y
 \rightarrow \mathcal L
 \rightarrow \nabla_\theta \mathcal L
 \rightarrow \theta'
-]
+$$
 
 ## S02 — Deep Training
 ### Why can we train deep neural networks?
