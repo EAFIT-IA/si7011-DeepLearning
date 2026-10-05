@@ -17,7 +17,7 @@ This course develops a practical and conceptual understanding of **deep learning
 
 The course is organized around six questions:
 
-[
+\[
 \text{learn}
 \rightarrow
 \text{train}
@@ -29,7 +29,7 @@ The course is organized around six questions:
 \text{pretrain}
 \rightarrow
 \text{adapt / evaluate / deploy}
-]
+\]
 
 ## We will learn in this course
 
