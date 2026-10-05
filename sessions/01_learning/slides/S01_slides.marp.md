@@ -701,23 +701,11 @@ optimizer.step()
 
 ---
 
-# The complete learning loop
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-$$
-x
-\rightarrow
-f_\theta(x)
-\rightarrow
-\hat y
-\rightarrow
-\mathcal L
-\rightarrow
-\nabla_\theta \mathcal L
-\rightarrow
-\theta'
-$$
-
-<!-- Pending visual: FIGURE S01-F01 — Reprise, now fully annotated -->
+![bg contain Full learning loop: forward, loss, backward and parameter update](../figures/s01_f01_learning_loop.png)
 
 ---
 

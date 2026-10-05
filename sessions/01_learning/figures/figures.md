@@ -12,6 +12,7 @@ White backgrounds, preserved image proportions and the existing course style app
 
 | ID | Current slide(s) | Purpose | Format | Repository file | Status |
 |---|---|---|---|---|---|
+| **S01-F01** | V49 | Full learning loop: forward, loss, backward and parameter update | SVG / PNG | [SVG](s01_f01_learning_loop.svg), [PNG](s01_f01_learning_loop.png) | Included |
 | **S01-F01A** | V02 | Data, model and prediction | PNG | [s01_f01_supervised_learning_data_to_prediction.png](s01_f01_supervised_learning_data_to_prediction.png) | Included |
 | **S01-F02** | V04 | From observed data to a learning problem | PNG | [s01_f02_from_data_to_learning_problem.png](s01_f02_from_data_to_learning_problem.png) | Included |
 | **S01-F03A** | V05 | Training, validation and test partitions | PNG | [s01_f03_dataset_splits.png](s01_f03_dataset_splits.png) | Included |
@@ -42,7 +43,6 @@ the slide source, without displaying broken links or production labels to studen
 
 | ID | Current slide(s) | Purpose | Planned filename | Status |
 |---|---|---|---|---|
-| **S01-F01** | V49 | Full learning loop | `s01_f01_learning_loop.svg` | TODO |
 | **S01-F03** | V08 | Model as a parameterized function | `s01_f03_data_model.svg` | TODO |
 | **S01-F07** | V20 | Small, suitable and excessive learning rates | `s01_f07_learning_rates.png` | TODO |
 | **S01-F08** | V22 | Loss surface | `s01_f08_loss_surface.png` | TODO |
