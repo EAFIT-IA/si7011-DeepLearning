@@ -80,13 +80,20 @@ f_\theta(x)
 
 ## Evaluation
 
-| Assessment item | Percentage |
-|---|---:|
-| Laboratory I — Basics | 16.25% |
-| Laboratory II — CNNs and Transfer Learning | 16.25% |
-| Laboratory III — RNNs | 16.25% |
-| Laboratory IV — Transformers | 16.25% |
-| **Final Project** | **35%** |
+The course uses **three evaluation events aligned with pairs of sessions** and one transversal integrative project.
+
+| Assessment | Sessions | Weight |
+|---|---:|---:|
+| **Evaluation Event 1 — Learning & Training** | S01–S02 | **20%** |
+| **Evaluation Event 2 — Architecture & Representation** | S03–S04 | **20%** |
+| **Evaluation Event 3 — Foundation Models & Adaptation** | S05–S06 | **20%** |
+| **Integrative Project** | transversal | **40%** |
+
+Each evaluation event is designed **after its corresponding pair of sessions has been completed**, so that the assessment reflects the concepts, experiments and level of depth actually developed in class.
+
+The events emphasize **conceptual and experimental reasoning**, not simply implementation of a particular architecture.
+
+Detailed strategy: [`course/evaluation_strategy.md`](course/evaluation_strategy.md)
 
 ## Repository structure
 
