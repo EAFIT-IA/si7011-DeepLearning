@@ -86,8 +86,8 @@ The course uses **three evaluation events aligned with pairs of sessions** and o
 |---|---:|---:|
 | **Evaluation Event 1 — Learning & Training** | S01–S02 | **20%** |
 | **Evaluation Event 2 — Architecture & Representation** | S03–S04 | **20%** |
-| **Evaluation Event 3 — Foundation Models & Adaptation** | S05–S06 | **20%** |
-| **Integrative Project** | transversal | **40%** |
+| **Evaluation Event 3 — Foundation Models & Adaptation** | S05–S06 | **25%** |
+| **Integrative Project** | transversal | **35%** |
 
 Each evaluation event is designed **after its corresponding pair of sessions has been completed**, so that the assessment reflects the concepts, experiments and level of depth actually developed in class.
 
