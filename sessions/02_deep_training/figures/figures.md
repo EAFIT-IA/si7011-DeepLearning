@@ -20,8 +20,8 @@ The slide deck should use placeholders until figures are produced. Figures shoul
 | **S02-F06** | V13 | Symmetry problem when hidden units share identical initialization | `s02_f06_initialization_symmetry.png` | PNG / SVG | TODO |
 | **S02-F07** | V17 | Naive, Xavier and He initialization compared through activation variance | `s02_f07_initialization_variance.png` | PNG / plot | TODO |
 | **S02-F08** | V22 | SGD and Momentum trajectories in a narrow valley | `s02_f08_sgd_momentum_valley.png` | PNG | TODO |
-| **S02-F09** | V23 | SGD, Momentum and Adam update geometry on the same surface | `s02_f09_optimizer_trajectories.png` | PNG | TODO |
-| **S02-F10** | V24 | Fixed, step, exponential and cosine learning-rate schedules | `s02_f10_learning_rate_schedules.png` | PNG / plot | TODO |
+| **S02-F09** | V23 | Optimizer trajectories on the same ill-conditioned objective | `s02_f09_optimizer_trajectories.svg` | SVG | Included |
+| **S02-F10** | V24 | Learning-rate schedules | `s02_f10_learning_rate_schedules.svg` | SVG | Included |
 | **S02-F11** | V26 | BatchNorm: normalize, then learn scale and shift | `s02_f11_batchnorm_transform.png` | PNG | TODO |
 | **S02-F12** | V27 | BatchNorm behavior in training mode versus evaluation mode | `s02_f12_batchnorm_train_eval.png` | PNG / SVG | TODO |
 | **S02-F13** | V28 | Underfitting, healthy fitting and overfitting in train/validation curves | `s02_f13_train_validation_dynamics.png` | PNG / plot | TODO |
