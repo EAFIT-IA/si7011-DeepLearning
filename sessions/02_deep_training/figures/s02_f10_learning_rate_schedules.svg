@@ -29,7 +29,7 @@
 <!-- axes 1 -->
 <line x1="115" y1="650" x2="480" y2="650" stroke="#334155" stroke-width="2"/>
 <line x1="115" y1="650" x2="115" y2="270" stroke="#334155" stroke-width="2"/>
-<path d="M130 310 H235 V405 H340 V505 H465 V595" fill="none" stroke="#1b70df" stroke-width="6"/>
+<path d="M130 310 H235 V405 H340 V505 H465" fill="none" stroke="#1b70df" stroke-width="6"/>
 <text x="290" y="700" text-anchor="middle" class="s">iteration t</text>
 <text x="82" y="460" transform="rotate(-90 82 460)" text-anchor="middle" class="s">log10(η)</text>
 <text x="290" y="735" text-anchor="middle" class="s">η<tspan baseline-shift="sub" font-size="14">t</tspan> = η<tspan baseline-shift="sub" font-size="14">0</tspan> γ<tspan baseline-shift="super" font-size="14">floor(t/T)</tspan></text>

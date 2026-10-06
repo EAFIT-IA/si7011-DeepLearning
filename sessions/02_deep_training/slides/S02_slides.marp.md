@@ -105,10 +105,7 @@ $$
 
 Now we ask what happens when this loop is applied to **deep compositions**.
 
-<div class="placeholder">
-<strong>S02-F01</strong><br>
-From the single learning loop to a deep trainable system.
-</div>
+<!-- Pending figure: S02-F01 — From the single learning loop to a deep trainable system. -->
 
 ---
 
@@ -130,23 +127,23 @@ What changes is the behavior of the model as depth increases.
 
 # A deep network is a composition
 
-For layer $l$:
+For layer $l=1,\ldots,D$, with $a_0=x$:
 
 $$
-z^{(l)}=W^{(l)}h^{(l-1)}+b^{(l)}
+z_l=W_la_{l-1}+b_l,
+\qquad
+a_l=\phi(z_l)
 $$
 
-$$
-h^{(l)}=\phi(z^{(l)})
-$$
-
-Therefore:
+Therefore, for a network of depth $D$:
 
 $$
 f_\theta(x)
 =
-f^{(L)}\circ f^{(L-1)}\circ \cdots \circ f^{(1)}(x)
+f_D\circ f_{D-1}\circ \cdots \circ f_1(x)
 $$
+
+Same notation as S01: $\phi$ is a generic activation, $L$ is the loss.
 
 ---
 
@@ -171,19 +168,16 @@ A useful deep network should keep information in a usable numerical range.
 $$
 x
 \rightarrow
-h^{(1)}
+a_1
 \rightarrow
-h^{(2)}
+a_2
 \rightarrow
 \cdots
 \rightarrow
-h^{(L)}
+a_D
 $$
 
-<div class="placeholder">
-<strong>S02-F02</strong><br>
-Activation distributions propagating through many layers.
-</div>
+<!-- Pending figure: S02-F02 — Activation distributions propagating through many layers. -->
 
 ---
 
@@ -194,9 +188,9 @@ Suppose we build a 50-layer MLP with random weights.
 What do you expect to happen to:
 
 $$
-\operatorname{mean}(h^{(l)}),
+\operatorname{mean}(a_l),
 \qquad
-\operatorname{std}(h^{(l)})
+\operatorname{std}(a_l)
 $$
 
 as $l$ increases?
@@ -208,38 +202,35 @@ as $l$ increases?
 If layer transformations systematically shrink the signal:
 
 $$
-\operatorname{std}(h^{(l)}) \rightarrow 0
+\operatorname{std}(a_l) \rightarrow 0
 $$
 
 If they systematically amplify it:
 
 $$
-\operatorname{std}(h^{(l)}) \rightarrow \infty
+\operatorname{std}(a_l) \rightarrow \infty
 $$
 
 Both cases make optimization difficult.
 
-<div class="placeholder">
-<strong>S02-F03</strong><br>
-Vanishing, stable and exploding activation scales across depth.
-</div>
+<!-- Pending figure: S02-F03 — Vanishing, stable and exploding activation scales across depth. -->
 
 ---
 
 # Gradients also propagate through depth
 
-Backpropagation traverses the graph in reverse.
-
-For many layers, gradients are repeatedly transformed:
+Backpropagation traverses the graph in reverse. With $\delta_{a_l}=\partial L/\partial a_l$ as in S01:
 
 $$
-\frac{\partial L}{\partial h^{(l)}}
+\delta_{a_l}
 =
-\frac{\partial h^{(l+1)}}{\partial h^{(l)}}
-\frac{\partial L}{\partial h^{(l+1)}}
+\left(\frac{\partial a_{l+1}}{\partial a_l}\right)^{\!\top}
+\delta_{a_{l+1}}
+=
+W_{l+1}^{\top}\left(\delta_{a_{l+1}}\odot\phi'(z_{l+1})\right)
 $$
 
-The chain rule becomes a long product of local effects.
+Across $D$ layers, the chain rule becomes a long **product** of local factors.
 
 ---
 
@@ -251,7 +242,7 @@ If gradients vanish:
 
 $$
 \left\lVert
-\frac{\partial L}{\partial W^{(l)}}
+\nabla_{W_l}J
 \right\rVert
 \approx 0
 $$
@@ -260,23 +251,23 @@ early layers barely learn.
 
 If gradients explode, updates become unstable.
 
-<div class="placeholder">
-<strong>S02-F04</strong><br>
-Gradient norm versus layer depth for vanishing, stable and exploding regimes.
-</div>
+<!-- Pending figure: S02-F04 — Gradient norm versus layer depth for vanishing, stable and exploding regimes. -->
 
 ---
 
 # Activation functions shape gradient flow
 
-Saturating activations can compress gradients.
+Saturating activations can compress gradients:
+
+$$
+\sigma'(z)\le 0.25,
+\qquad
+\tanh'(z)\le 1
+$$
 
 ReLU-like activations can preserve stronger gradient paths, but they also introduce zero-gradient regions.
 
-<div class="placeholder">
-<strong>S02-F05</strong><br>
-Sigmoid, tanh and ReLU: functions and derivative regions.
-</div>
+<!-- Pending figure: S02-F05 — Sigmoid, tanh and ReLU: functions and derivative regions. -->
 
 ---
 
@@ -287,7 +278,7 @@ Training starts before the first update.
 The initial distribution of weights determines the first forward pass and the first backward pass.
 
 $$
-W^{(l)}_{ij}
+(W_l)_{ij}
 \sim
 \text{some distribution}
 $$
@@ -304,29 +295,26 @@ They also receive the same gradient.
 
 So they remain identical.
 
-<div class="placeholder">
-<strong>S02-F06</strong><br>
-Symmetry problem when hidden units share identical initialization.
-</div>
+<!-- Pending figure: S02-F06 — Symmetry problem when hidden units share identical initialization. -->
 
 ---
 
 # Preserve variance across layers
 
-A useful initialization should avoid systematic shrinkage or growth:
+A useful initialization should avoid systematic shrinkage or growth in the forward pass:
 
 $$
-\operatorname{Var}(h^{(l)})
+\operatorname{Var}(a_l)
 \approx
-\operatorname{Var}(h^{(l-1)})
+\operatorname{Var}(a_{l-1})
 $$
 
-and ideally also:
+and ideally also in the backward pass:
 
 $$
-\operatorname{Var}(\nabla h^{(l)})
+\operatorname{Var}(\delta_{a_l})
 \approx
-\operatorname{Var}(\nabla h^{(l+1)})
+\operatorname{Var}(\delta_{a_{l+1}})
 $$
 
 ---
@@ -336,7 +324,7 @@ $$
 For activations such as $\tanh$, Xavier initialization chooses a scale based on layer fan-in and fan-out:
 
 $$
-W_{ij}
+(W_l)_{ij}
 \sim
 \mathcal U
 \left(
@@ -345,7 +333,7 @@ W_{ij}
 \right)
 $$
 
-The goal is to preserve signal scale.
+The goal is to preserve signal scale in both directions.
 
 ---
 
@@ -356,7 +344,7 @@ For ReLU-like activations, approximately half of the units may be inactive.
 A common choice is:
 
 $$
-W_{ij}
+(W_l)_{ij}
 \sim
 \mathcal N
 \left(
@@ -367,10 +355,7 @@ $$
 
 Initialization and activation must be considered together.
 
-<div class="placeholder">
-<strong>S02-F07</strong><br>
-Naive, Xavier and He initialization compared through activation variance.
-</div>
+<!-- Pending figure: S02-F07 — Naive, Xavier and He initialization compared through activation variance. -->
 
 ---
 
@@ -378,15 +363,15 @@ Naive, Xavier and He initialization compared through activation variance.
 
 The goal is not accuracy yet.
 
-The goal is to measure:
+The goal is to measure, layer by layer:
 
 $$
-\mu(h^{(l)}),
+\operatorname{mean}(a_l),
 \qquad
-\sigma(h^{(l)}),
+\operatorname{std}(a_l),
 \qquad
 \left\lVert
-\nabla W^{(l)}
+\nabla_{W_l}J
 \right\rVert
 $$
 
@@ -409,17 +394,14 @@ Now we compare update dynamics.
 
 # SGD is simple but noisy
 
-Mini-batch gradients estimate the dataset gradient.
+Mini-batch gradients estimate the dataset gradient:
 
 $$
 J_{\mathcal B_t}(\theta)
 =
 \frac{1}{|\mathcal B_t|}
-\sum_{i\in\mathcal B_t}L_i(\theta)
-
-$
-
-$
+\sum_{i\in\mathcal B_t}L_i(\theta),
+\qquad
 g_t
 =
 \nabla_\theta J_{\mathcal B_t}(\theta_t)
@@ -444,10 +426,8 @@ v_t
 =
 \beta v_{t-1}
 +
-g_t
-$$
-
-$$
+g_t,
+\qquad
 \theta_{t+1}
 =
 \theta_t-\eta v_t
@@ -455,29 +435,56 @@ $$
 
 It can reduce oscillation and accelerate movement along persistent descent directions.
 
-<div class="placeholder">
-<strong>S02-F08</strong><br>
-SGD and Momentum trajectories in a narrow valley.
-</div>
+<!-- Pending figure: S02-F08 — SGD and Momentum trajectories in a narrow valley. -->
 
 ---
 
-# Adam adapts the update
+# RMSProp rescales each parameter
 
-Adam estimates both first and second moments:
-
-$$
-m_t=\beta_1m_{t-1}+(1-\beta_1)g_t
-$$
+RMSProp keeps a running average of squared gradients:
 
 $$
-v_t=\beta_2v_{t-1}+(1-\beta_2)g_t^2
+s_t=\rho\,s_{t-1}+(1-\rho)\,g_t^2
 $$
 
-Each parameter receives an adaptive step.
+$$
+\theta_{t+1}=\theta_t-\eta\,\frac{g_t}{\sqrt{s_t}+\epsilon}
+$$
+
+Directions with consistently large gradients take smaller steps; flat directions take larger ones.
+
+<span class="small">Operations on $g_t$ and $s_t$ are elementwise.</span>
+
+---
+
+# Adam combines both ideas
+
+First moment (momentum) and second moment (RMSProp):
+
+$$
+m_t=\beta_1m_{t-1}+(1-\beta_1)g_t,
+\qquad
+s_t=\beta_2s_{t-1}+(1-\beta_2)g_t^2
+$$
+
+Bias correction and update:
+
+$$
+\hat m_t=\frac{m_t}{1-\beta_1^t},
+\quad
+\hat s_t=\frac{s_t}{1-\beta_2^t},
+\quad
+\theta_{t+1}=\theta_t-\eta\,\frac{\hat m_t}{\sqrt{\hat s_t}+\epsilon}
+$$
+
+<span class="small">PyTorch defaults: $\beta_1=0.9$, $\beta_2=0.999$, $\epsilon=10^{-8}$.</span>
+
+---
+
+# Comparing optimizers
 
 <div class="center">
-<img src="../figures/s02_f09_optimizer_trajectories.svg" style="width:92%;max-height:330px;object-fit:contain;" alt="Optimizer trajectories on an ill-conditioned objective">
+<img src="../figures/s02_f09_optimizer_trajectories.svg" style="width:96%;max-height:500px;object-fit:contain;" alt="Optimizer trajectories on an ill-conditioned objective">
 </div>
 
 ---
@@ -489,18 +496,34 @@ A fixed learning rate may be too large late in training or too small early in tr
 Schedulers change $\eta$ across time:
 
 $$
-\eta_t = s(t)\eta_0
+\eta_t = s(t)\,\eta_0
 $$
 
-Common patterns:
-
-- step decay;
-- exponential decay;
-- cosine annealing.
+Common patterns: step decay, exponential decay, cosine annealing.
 
 <div class="center">
 <img src="../figures/s02_f10_learning_rate_schedules.svg" style="width:92%;max-height:330px;object-fit:contain;" alt="Learning-rate schedules">
 </div>
+
+---
+
+# Gradient clipping
+
+When a single batch produces a huge gradient, one update can undo many good ones.
+
+Clipping by norm rescales the gradient before the step:
+
+$$
+g_t \leftarrow g_t\cdot\min\!\left(1,\ \frac{c}{\lVert g_t\rVert}\right)
+$$
+
+```python
+loss.backward()
+torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+optimizer.step()
+```
+
+It treats the **symptom** of exploding gradients; initialization and normalization address the cause.
 
 ---
 
@@ -513,7 +536,7 @@ We already standardize inputs:
 $$
 x'
 =
-\frac{x-\mu}{\sigma}
+\frac{x-\operatorname{mean}(x)}{\operatorname{std}(x)}
 $$
 
 Batch Normalization extends this idea to internal activations.
@@ -522,25 +545,24 @@ Batch Normalization extends this idea to internal activations.
 
 # Batch Normalization
 
-For activations in a mini-batch:
+For pre-activations in a mini-batch $\mathcal B$:
 
 $$
 \hat z
 =
 \frac{z-\mu_\mathcal B}
-{\sqrt{\sigma_\mathcal B^2+\epsilon}}
+{\sqrt{s_\mathcal B^2+\epsilon}}
 $$
 
-Then the layer learns scale and shift:
+Then the layer learns a scale $\gamma$ and a shift $\beta$:
 
 $$
-y=\gamma \hat z+\beta
+\operatorname{BN}(z)=\gamma \odot \hat z+\beta
 $$
 
-<div class="placeholder">
-<strong>S02-F11</strong><br>
-BatchNorm: normalize, then learn scale and shift.
-</div>
+<span class="small">$\mu_\mathcal B$, $s_\mathcal B^2$: batch mean and variance. $\gamma$, $\beta$: BN parameters, not the optimizer's $\beta$.</span>
+
+<!-- Pending figure: S02-F11 — BatchNorm: normalize, then learn scale and shift. -->
 
 ---
 
@@ -549,17 +571,19 @@ BatchNorm: normalize, then learn scale and shift.
 During training:
 
 $$
-\mu_\mathcal B,\sigma_\mathcal B^2
+\mu_\mathcal B,\ s_\mathcal B^2
 $$
 
 come from the current mini-batch.
 
 During inference, the model uses running estimates accumulated during training.
 
-<div class="placeholder">
-<strong>S02-F12</strong><br>
-BatchNorm behavior in training mode versus evaluation mode.
-</div>
+```python
+model.train()   # batch statistics
+model.eval()    # running statistics
+```
+
+<!-- Pending figure: S02-F12 — BatchNorm behavior in training mode versus evaluation mode. -->
 
 ---
 
@@ -572,15 +596,12 @@ Training loss alone is not enough.
 We care about performance on unseen data:
 
 $$
-L_\text{train}
+J_\text{train}(\theta)
 \qquad
-L_\text{val}
+J_\text{val}(\theta)
 $$
 
-<div class="placeholder">
-<strong>S02-F13</strong><br>
-Underfitting, healthy fitting and overfitting in train/validation curves.
-</div>
+<!-- Pending figure: S02-F13 — Underfitting, healthy fitting and overfitting in train/validation curves. -->
 
 ---
 
@@ -589,9 +610,9 @@ Underfitting, healthy fitting and overfitting in train/validation curves.
 Weight decay discourages large weights:
 
 $$
-L_\text{total}
+J_\lambda(\theta)
 =
-L_\text{data}
+J(\theta)
 +
 \lambda
 \lVert \theta \rVert_2^2
@@ -599,29 +620,66 @@ $$
 
 It changes the preference among solutions, not the architecture.
 
-<div class="placeholder">
-<strong>S02-F14</strong><br>
-Effect of weight decay on learned functions or weight norms.
-</div>
+<!-- Pending figure: S02-F14 — Effect of weight decay on learned functions or weight norms. -->
+
+---
+
+# Weight decay with Adam: AdamW
+
+With SGD, adding $\lambda\lVert\theta\rVert_2^2$ to the loss and shrinking the weights at each step are equivalent (up to rescaling $\lambda$).
+
+With Adam they are **not**: the penalty gradient is also rescaled by $\sqrt{\hat s_t}$.
+
+AdamW decouples the decay from the adaptive step:
+
+$$
+\theta_{t+1}
+=
+\theta_t
+-\eta\left(\frac{\hat m_t}{\sqrt{\hat s_t}+\epsilon}+\lambda\,\theta_t\right)
+$$
+
+```python
+torch.optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-2)
+```
 
 ---
 
 # Dropout
 
-Dropout randomly masks activations during training:
+During training, each unit is dropped with probability $p$:
 
 $$
-\tilde h = m \odot h,
+r_i \sim \operatorname{Bernoulli}(1-p),
 \qquad
-m_i \sim \operatorname{Bernoulli}(p)
+\tilde a = \frac{r \odot a}{1-p}
 $$
+
+Dividing by $1-p$ keeps the expected activation unchanged, so at inference Dropout does nothing.
 
 The network cannot rely on a single fixed path through hidden units.
 
-<div class="placeholder">
-<strong>S02-F15</strong><br>
-Dropout as stochastic subnetworks during training.
-</div>
+<span class="small">`nn.Dropout(p)`: $p$ is the probability of **dropping** a unit.</span>
+
+<!-- Pending figure: S02-F15 — Dropout as stochastic subnetworks during training. -->
+
+---
+
+# Early stopping
+
+Keep the parameters with the best validation objective:
+
+$$
+\theta^\star=\theta_{t^\star},
+\qquad
+t^\star=\arg\min_t J_\text{val}(\theta_t)
+$$
+
+and stop when $J_\text{val}$ has not improved for a fixed number of epochs (patience).
+
+The number of training steps acts as a regularizer.
+
+<span class="small">The S01 exercise already saved the best validation state this way.</span>
 
 ---
 
@@ -634,10 +692,7 @@ But optimization may become harder.
 The problem is not only capacity.  
 It is also how gradients and representations move through depth.
 
-<div class="placeholder">
-<strong>S02-F16</strong><br>
-Depth degradation: deeper plain networks can be harder to optimize.
-</div>
+<!-- Pending figure: S02-F16 — Depth degradation: deeper plain networks can be harder to optimize. -->
 
 ---
 
@@ -661,10 +716,7 @@ $$
 H(x)=F(x)+x
 $$
 
-<div class="placeholder">
-<strong>S02-F17</strong><br>
-Residual block: transformation path plus identity path.
-</div>
+<!-- Pending figure: S02-F17 — Residual block: transformation path plus identity path. -->
 
 ---
 
@@ -676,22 +728,19 @@ $$
 H(x)=F(x)+x
 $$
 
-then:
+then the Jacobian is:
 
 $$
 \frac{\partial H}{\partial x}
 =
 \frac{\partial F}{\partial x}
 +
-1
+I
 $$
 
-The identity path gives gradients a direct route through the block.
+The identity path gives gradients a direct route through the block, even when $\partial F/\partial x$ is small.
 
-<div class="placeholder">
-<strong>S02-F18</strong><br>
-Gradient flow through the identity path in a residual block.
-</div>
+<!-- Pending figure: S02-F18 — Gradient flow through the identity path in a residual block. -->
 
 ---
 
@@ -701,9 +750,9 @@ When training fails, ask what failed.
 
 | Symptom | What to inspect |
 |---|---|
-| loss diverges | learning rate, gradient norms |
+| loss diverges | learning rate, gradient norms, clipping |
 | loss does not move | initialization, dead activations, gradients |
-| train improves but validation worsens | regularization, data split |
+| train improves but validation worsens | regularization, early stopping, data split |
 | unstable curves | batch size, optimizer, normalization |
 
 ---
@@ -715,21 +764,18 @@ A training run should produce more than accuracy.
 Track:
 
 $$
-L_\text{train},
+J_\text{train},
 \quad
-L_\text{val},
+J_\text{val},
 \quad
-\|\nabla W^{(l)}\|,
+\lVert\nabla_{W_l}J\rVert,
 \quad
-\mu(h^{(l)}),
+\operatorname{mean}(a_l),
 \quad
-\sigma(h^{(l)})
+\operatorname{std}(a_l)
 $$
 
-<div class="placeholder">
-<strong>S02-F19</strong><br>
-Map from symptoms to measurements and training interventions.
-</div>
+<!-- Pending figure: S02-F19 — Map from symptoms to measurements and training interventions. -->
 
 ---
 
@@ -740,10 +786,10 @@ Start from a deep MLP baseline.
 Add one decision at a time:
 
 1. He initialization
-2. Adam or Momentum
+2. Momentum or Adam
 3. BatchNorm
-4. weight decay or Dropout
-5. learning-rate schedule
+4. weight decay (AdamW) or Dropout
+5. learning-rate schedule and early stopping
 
 Explain the curves after each change.
 
@@ -773,10 +819,7 @@ $$
 
 </div>
 
-<div class="placeholder">
-<strong>S02-F20</strong><br>
-Integrated view of mechanisms that make deep training possible.
-</div>
+<!-- Pending figure: S02-F20 — Integrated view of mechanisms that make deep training possible. -->
 
 ---
 
