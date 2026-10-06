@@ -60,6 +60,25 @@ style: |
   .placeholder strong {
     color: #153b63;
   }
+  section.media video {
+    display: block;
+    width: 100%;
+    height: 460px;
+    object-fit: contain;
+    background: #ffffff;
+  }
+  section.media p { margin: 8px 0; }
+  section.media a { font-size: 21px; }
+  .print-poster { display: none; }
+  @media print {
+    section.media video { display: none; }
+    section.media .print-poster {
+      display: block;
+      width: 100%;
+      height: 460px;
+      object-fit: contain;
+    }
+  }
   .twocol {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -213,7 +232,6 @@ $$
 
 Both cases make optimization difficult.
 
-<!-- Pending figure: S02-F03 — Vanishing, stable and exploding activation scales across depth. -->
 
 ---
 
@@ -251,7 +269,21 @@ early layers barely learn.
 
 If gradients explode, updates become unstable.
 
-<!-- Pending figure: S02-F04 — Gradient norm versus layer depth for vanishing, stable and exploding regimes. -->
+
+---
+
+<!-- _class: media -->
+
+# Signal propagation through depth
+
+<video controls preload="none" poster="../figures/s02_a01_signal_propagation_poster.png" aria-label="Signal propagation through depth">
+  <source src="../figures/s02_a01_signal_propagation.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s02_a01_signal_propagation_poster.png" alt="Static view of Signal propagation through depth">
+
+[Open animation](../figures/s02_a01_signal_propagation.mp4)
+
+<!-- Answers the prediction slide. c = 1 is He initialization, formalized a few slides later. Forward: std(a_l); backward: std(delta_{a_l}). -->
 
 ---
 
@@ -435,7 +467,21 @@ $$
 
 It can reduce oscillation and accelerate movement along persistent descent directions.
 
-<!-- Pending figure: S02-F08 — SGD and Momentum trajectories in a narrow valley. -->
+
+---
+
+<!-- _class: media -->
+
+# Momentum in a narrow valley
+
+<video controls preload="none" poster="../figures/s02_a02_momentum_valley_poster.png" aria-label="Momentum in a narrow valley">
+  <source src="../figures/s02_a02_momentum_valley.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s02_a02_momentum_valley_poster.png" alt="Static view of Momentum in a narrow valley">
+
+[Open animation](../figures/s02_a02_momentum_valley.mp4)
+
+<!-- Ask first where SGD will go. Real trajectories on J = 1/2 (u^2 + 20 v^2): SGD eta = 0.09; Momentum eta = 0.04, beta = 0.7. -->
 
 ---
 
@@ -740,7 +786,21 @@ $$
 
 The identity path gives gradients a direct route through the block, even when $\partial F/\partial x$ is small.
 
-<!-- Pending figure: S02-F18 — Gradient flow through the identity path in a residual block. -->
+
+---
+
+<!-- _class: media -->
+
+# Residual blocks: a direct path for gradients
+
+<video controls preload="none" poster="../figures/s02_a03_residual_gradient_path_poster.png" aria-label="Residual blocks: a direct path for gradients">
+  <source src="../figures/s02_a03_residual_gradient_path.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s02_a03_residual_gradient_path_poster.png" alt="Static view of Residual blocks: a direct path for gradients">
+
+[Open animation](../figures/s02_a03_residual_gradient_path.mp4)
+
+<!-- Same random weights in both networks; only the skip connection changes. -->
 
 ---
 
