@@ -12,7 +12,7 @@ White backgrounds, preserved image proportions and the existing course style app
 
 | ID | Current slide(s) | Purpose | Format | Repository file | Status |
 |---|---|---|---|---|---|
-| **S01-F01** | V54 | Full learning loop: forward, loss, backward and parameter update | SVG / PNG | [SVG](s01_f01_learning_loop.svg), [PNG](s01_f01_learning_loop.png) | Included |
+| **S01-F01** | V51 | Full learning loop: forward, loss, backward and parameter update | SVG | [s01_f01_learning_loop.svg](s01_f01_learning_loop.svg) | Included |
 | **S01-F01A** | V02 | Data, model and prediction | PNG | [s01_f01_supervised_learning_data_to_prediction.png](s01_f01_supervised_learning_data_to_prediction.png) | Included |
 | **S01-F02** | V04 | From observed data to a learning problem | PNG | [s01_f02_from_data_to_learning_problem.png](s01_f02_from_data_to_learning_problem.png) | Included |
 | **S01-F04** | V20 | Training versus inference | SVG | [s01_f04_training_vs_inference.svg](s01_f04_training_vs_inference.svg) | Included |
