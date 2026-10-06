@@ -86,7 +86,7 @@ footer: SI7011 — Deep Learning
 
 $$
 x \longrightarrow f_\theta(x) \longrightarrow \hat y
-\longrightarrow \mathcal L
+\longrightarrow L
 \longrightarrow \nabla_\theta
 \longrightarrow \theta'
 $$
@@ -119,15 +119,7 @@ We start from **observed examples**, not from explicit rules.
 
 ![bg contain From data to a learning problem](../figures/s01_f02_from_data_to_learning_problem.png)
 
----
 
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-![bg contain Training, validation and test sets](../figures/s01_f03a_dataset_splits.svg)
-
----
 
 # The input
 
@@ -158,7 +150,7 @@ $$
 (x,y)
 $$
 
-The target is used to evaluate the prediction during training.
+The target is combined with the prediction to compute the loss during training.
 
 <!-- Pending visual: VISUAL — input $x$ and target $y$ as an observed pair -->
 
@@ -207,13 +199,13 @@ How do we transform the quality of a prediction into something we can optimize?
 # Loss
 
 $$
-\mathcal L(y,\hat y)
+L(y,\hat y)
 $$
 
 For regression, one possibility is:
 
 $$
-\mathcal L=(y-\hat y)^2
+L=(y-\hat y)^2
 $$
 
 A loss converts the task objective into a **scalar quantity**.
@@ -231,15 +223,15 @@ $$
 therefore,
 
 $$
-\mathcal L(y,\hat y)
+L(y,\hat y)
 =
-\mathcal L(y,f_\theta(x))
+L(y,f_\theta(x))
 $$
 
 and we can reason about:
 
 $$
-\mathcal L(\theta)
+L(\theta)
 $$
 
 ---
@@ -296,7 +288,7 @@ $$
 
 | Inference | Training |
 |---|---|
-| $x \rightarrow f_\theta(x)\rightarrow \hat y$ | $(x,y)\rightarrow f_\theta(x)\rightarrow\hat y\rightarrow\mathcal L\rightarrow\theta'$ |
+| $x \rightarrow f_\theta(x)\rightarrow \hat y$ | $(x,y)\rightarrow f_\theta(x)\rightarrow\hat y\rightarrowL\rightarrow\theta'$ |
 | parameters are **used** | parameters are **changed** |
 
 ---
@@ -326,7 +318,7 @@ Changing $w$ changes the prediction and therefore changes the loss.
 # The gradient
 
 $$
-\frac{\partial \mathcal L}{\partial w}
+\frac{\partial L}{\partial w}
 $$
 
 The gradient gives **local information** about how the loss changes.
@@ -347,7 +339,7 @@ $$
 w_{t+1}
 =
 w_t-\eta
-\frac{\partial \mathcal L}{\partial w}
+\frac{\partial L}{\partial w}
 $$
 
 Two ingredients:
@@ -375,14 +367,6 @@ What changes if the step is:
 
 ---
 
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-![bg contain Learning rate scheduling strategies](../figures/s01_f07b_learning_rate_schedules.svg)
-
----
-
 # More than one parameter
 
 $$
@@ -390,12 +374,12 @@ $$
 $$
 
 $$
-\nabla_\theta\mathcal L
+\nabla_\theta L
 =
 \begin{bmatrix}
-\partial\mathcal L/\partial w_1\\
+\partial L/\partial w_1\\
 \vdots\\
-\partial\mathcal L/\partial w_p
+\partial L/\partial w_p
 \end{bmatrix}
 $$
 
@@ -403,49 +387,61 @@ $$
 
 ---
 
-# Optimization is a trajectory
+# From example loss to dataset objective
+
+For one observation:
 
 $$
-\theta_0,\theta_1,\theta_2,\ldots
+L_i(\theta)=L\!\left(y_i,f_\theta(x_i)\right)
 $$
 
-Training moves through the parameter space.
-
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-![bg contain Optimizer trajectories and training loss comparison](../figures/s01_f09_optimizer_trajectories.svg)
-
----
-
-# Dataset loss
-
-For many observations:
+For the full dataset:
 
 $$
 J(\theta)
 =
 \frac{1}{N}
 \sum_{i=1}^{N}
-\mathcal L(y_i,f_\theta(x_i))
+L_i(\theta)
 $$
 
-Optimizing one observation is not the same as learning the dataset.
+**Convention:** $L$ is a per-example loss; $J$ is the dataset objective.
 
 ---
 
 # Batch, SGD and mini-batch
 
-Three ways to estimate the gradient:
+For a subset $\mathcal B$:
 
-- all observations
-- one observation
-- a subset
+$$
+J_{\mathcal B}(\theta)
+=
+\frac{1}{|\mathcal B|}
+\sum_{i\in\mathcal B}
+L_i(\theta)
+$$
+
+- **batch:** $\mathcal B=\mathcal D$
+- **SGD:** $|\mathcal B|=1$
+- **mini-batch:** $1<|\mathcal B|<N$
+
+The update uses $g_t=\nabla_\theta J_{\mathcal B_t}(\theta_t)$.
 
 <!-- Pending visual: FIGURE S01-F10 — Batch / SGD / mini-batch -->
+
+---
+
+# Optimization is a trajectory
+
+$$
+\theta_{t+1}=\theta_t-\eta g_t
+$$
+
+$$
+\theta_0,\theta_1,\theta_2,\ldots
+$$
+
+Training moves through parameter space using successive gradient estimates.
 
 ---
 
@@ -480,7 +476,7 @@ Several linear layers can collapse into a single affine transformation.
 # Nonlinearity changes the game
 
 $$
-z=Wx+b,\qquad a=\sigma(z)
+z=Wx+b,\qquad a=\phi(z)
 $$
 
 A nonlinear activation prevents the composition from collapsing into one linear map.
@@ -550,7 +546,7 @@ A single unit produces a simple piecewise-linear transformation.
 # A hidden layer
 
 $$
-z_1=W_1x+b_1,\qquad a_1=\sigma(z_1)
+z_1=W_1x+b_1,\qquad a_1=\phi(z_1)
 $$
 
 $$
@@ -586,7 +582,7 @@ a_2
 \rightarrow
 \hat y
 \rightarrow
-\mathcal L
+L
 $$
 
 The forward pass evaluates the composed function.
@@ -600,7 +596,7 @@ The forward pass evaluates the composed function.
 Each hidden layer contains an affine map and an activation:
 
 $$
-z_l=W_la_{l-1}+b_l,\qquad a_l=\sigma(z_l),\qquad a_0=x
+z_l=W_la_{l-1}+b_l,\qquad a_l=\phi(z_l),\qquad a_0=x
 $$
 
 For a linear output and squared loss:
@@ -653,22 +649,7 @@ The same graph is traversed in the opposite direction to propagate gradients.
 
 ![bg contain Backpropagation through linear and nonlinear layers with local equations](../figures/s01_f15_backward%20gradients%20in%20neural%20network.png)
 
----
 
-<!-- _class: media -->
-
-# Forward values and backward gradients
-
-<video controls preload="none" poster="../figures/s01_f14_computational_graph_forward.png" aria-label="Forward values and backward gradients">
-  <source src="../figures/E10_GrafoForwardBackward.mp4" type="video/mp4">
-</video>
-<img class="print-poster" src="../figures/s01_f14_computational_graph_forward.png" alt="Static view of Forward values and backward gradients">
-
-[Open animation](../figures/E10_GrafoForwardBackward.mp4)
-
-<!-- Follow the saved values during forward and identify the local chain-rule computation during backward. -->
-
----
 
 # Gradients for every parameter
 
