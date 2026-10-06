@@ -15,7 +15,6 @@ White backgrounds, preserved image proportions and the existing course style app
 | **S01-F01** | V54 | Full learning loop: forward, loss, backward and parameter update | SVG / PNG | [SVG](s01_f01_learning_loop.svg), [PNG](s01_f01_learning_loop.png) | Included |
 | **S01-F01A** | V02 | Data, model and prediction | PNG | [s01_f01_supervised_learning_data_to_prediction.png](s01_f01_supervised_learning_data_to_prediction.png) | Included |
 | **S01-F02** | V04 | From observed data to a learning problem | PNG | [s01_f02_from_data_to_learning_problem.png](s01_f02_from_data_to_learning_problem.png) | Included |
-| **S01-F03A** | V05 | Training, validation and test partitions with disjoint examples | SVG | [s01_f03a_dataset_splits.svg](s01_f03a_dataset_splits.svg) | Included |
 | **S01-F04** | V20 | Training versus inference | SVG | [s01_f04_training_vs_inference.svg](s01_f04_training_vs_inference.svg) | Included |
 | **S01-F05** | V13 | Parameter dependency chain | SVG | [s01_f05_parameter_dependency.svg](s01_f05_parameter_dependency.svg) | Included |
 | **S01-F05A** | V14 | Binary classification: one logit, sigmoid and BCE | SVG | [s01_f05a_binary_logits_sigmoid_bce.svg](s01_f05a_binary_logits_sigmoid_bce.svg) | Included |
@@ -24,21 +23,17 @@ White backgrounds, preserved image proportions and the existing course style app
 | **S01-F05D** | V17 | Cross-entropy intuition: confidence and confident errors | SVG | [s01_f05d_cross_entropy_confidence.svg](s01_f05d_cross_entropy_confidence.svg) | Included |
 | **S01-F05E** | V18 | PyTorch inputs for MSELoss, BCEWithLogitsLoss and CrossEntropyLoss | SVG | [s01_f05e_pytorch_loss_expectations.svg](s01_f05e_pytorch_loss_expectations.svg) | Included |
 | **S01-F06** | V23 | Derivative as local slope | SVG | [s01_f06_local_slope.svg](s01_f06_local_slope.svg) | Included |
-| **S01-F07B** | V26 | Learning-rate schedules on a log scale | SVG | [s01_f07b_learning_rate_schedules.svg](s01_f07b_learning_rate_schedules.svg) | Included |
-| **S01-F09** | V29 | Optimizer trajectories on an ill-conditioned loss surface | SVG | [s01_f09_optimizer_trajectories.svg](s01_f09_optimizer_trajectories.svg) | Included |
 | **S01-F12A** | V38, V39 | Two shifted and scaled ReLU components and their sum | PNG | [s01_f12_two_relu_components.png](s01_f12_two_relu_components.png) | Included |
 | **S01-F12B** | V39 | Progressive approximation by sums of ReLU components | MP4 / Manim | [E7_AproximacionReLU.mp4](E7_AproximacionReLU.mp4) | Included |
-| **S01-F13** | V41 | MLP as function composition | PNG | [s01_f13_MLP Function Composition Diagram.png](s01_f13_MLP%20Function%20Composition%20Diagram.png) | Included |
+| **S01-F13** | V37 | MLP as a composition of affine maps and generic activation $\phi$ | SVG | [s01_f13_mlp_composition.svg](s01_f13_mlp_composition.svg) | Included |
 | **S01-F13A** | V35 | Input, affine map, tanh and ReLU representations | MP4 / Manim | [E9_EjemploActivaciones.mp4](E9_EjemploActivaciones.mp4) | Included |
 | **S01-F13A-P** | V35 | Static view of the activation example | PNG | [s01_transformation_overview.png](s01_transformation_overview.png) | Poster / static fallback |
-| **S01-F14** | V44, V48 | Forward through linear and nonlinear layers | PNG | [s01_f14_computational_graph_forward.png](s01_f14_computational_graph_forward.png) | Included |
-| **S01-F15** | V47 | Backward through linear and nonlinear layers with equations | PNG | [s01_f15_backward gradients in neural network.png](s01_f15_backward%20gradients%20in%20neural%20network.png) | Included |
-| **S01-F15B** | V48 | Animated forward and backward through the MLP | MP4 / Manim | [E10_GrafoForwardBackward.mp4](E10_GrafoForwardBackward.mp4) | Included |
+| **S01-F14** | V40 | Forward values through affine and nonlinear layers | SVG | [s01_f14_computational_graph_forward.svg](s01_f14_computational_graph_forward.svg) | Included |
+| **S01-F15** | V43 | Backward signals $\delta$ and parameter gradients $\nabla L$ | SVG | [s01_f15_backward_gradients.svg](s01_f15_backward_gradients.svg) | Included |
+| **S01-F15B** | — | E10 source normalized to $\phi$, $\delta$ and $\nabla L$; rendered MP4 must be regenerated | Manim source | [escena_grafo.py](escena_grafo.py) | Needs rerender |
 | **S01-F16** | V53 | Mathematics and the PyTorch training loop | SVG | [s01_f16_math_pytorch_mapping.svg](s01_f16_math_pytorch_mapping.svg) | Included |
 
-F07B and F09 now use dedicated filenames that match their production IDs.
-The previous optimization PNGs with filenames beginning in `s01_f12` were superseded and removed.
-F12A uses the previously created `s01_f12_two_relu_components.png`.
+Learning-rate schedules and optimizer comparisons moved to S02. F12A uses `s01_f12_two_relu_components.png`.
 F12B uses the rendered Manim scene `E7_AproximacionReLU.mp4`.
 
 ## Pending production
