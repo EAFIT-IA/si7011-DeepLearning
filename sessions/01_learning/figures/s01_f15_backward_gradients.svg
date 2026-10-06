@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><rect width="1600" height="900" fill="#fff"/><style>
+.title{font:700 46px Arial,Helvetica,sans-serif;fill:#153b63}
+.h{font:700 28px Arial,Helvetica,sans-serif;fill:#172033}
+.t{font:23px Arial,Helvetica,sans-serif;fill:#172033}
+.s{font:20px Arial,Helvetica,sans-serif;fill:#4b596b}
+.m{font:italic 30px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#172033}
+.arrow{stroke:#455468;stroke-width:4;fill:none;marker-end:url(#a)}
+.back{stroke:#d9631e;stroke-width:4;fill:none;marker-end:url(#b)}
+</style>
+<defs>
+<marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#455468"/></marker>
+<marker id="b" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#d9631e"/></marker>
+</defs><text x="800" y="70" text-anchor="middle" class="title">Backward pass: signals and parameter gradients</text>
+<text x="800" y="120" text-anchor="middle" class="s">δ denotes an intermediate backward signal; ∇ denotes a gradient with respect to a trainable parameter.</text>
+<rect x="1250" y="185" width="250" height="100" rx="18" fill="#fdeee3" stroke="#d9631e" stroke-width="2"/><text x="1375" y="245" text-anchor="middle" class="m">L(y, ŷ)</text>
+<path d="M1270 350 H1030" class="back"/><text x="1150" y="335" text-anchor="middle" class="m">δa₂ = W₃ᵀ δŷ</text>
+<path d="M1010 445 H750" class="back"/><text x="880" y="430" text-anchor="middle" class="m">δz₂ = δa₂ ⊙ φ'(z₂)</text>
+<path d="M730 540 H470" class="back"/><text x="600" y="525" text-anchor="middle" class="m">δa₁ = W₂ᵀ δz₂</text>
+<path d="M450 635 H190" class="back"/><text x="320" y="620" text-anchor="middle" class="m">δz₁ = δa₁ ⊙ φ'(z₁)</text>
+<rect x="700" y="690" width="760" height="135" rx="20" fill="#fff6eb"/><text x="740" y="735" class="h">Parameter gradients</text>
+<text x="740" y="785" class="t">∇W₃ L = δŷ a₂ᵀ</text><text x="985" y="785" class="t">∇W₂ L = δz₂ a₁ᵀ</text><text x="1240" y="785" class="t">∇W₁ L = δz₁ xᵀ</text>
+</svg>

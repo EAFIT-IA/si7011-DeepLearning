@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><rect width="1600" height="900" fill="#fff"/><style>
+.title{font:700 46px Arial,Helvetica,sans-serif;fill:#153b63}
+.h{font:700 28px Arial,Helvetica,sans-serif;fill:#172033}
+.t{font:23px Arial,Helvetica,sans-serif;fill:#172033}
+.s{font:20px Arial,Helvetica,sans-serif;fill:#4b596b}
+.m{font:italic 30px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#172033}
+.arrow{stroke:#455468;stroke-width:4;fill:none;marker-end:url(#a)}
+.back{stroke:#d9631e;stroke-width:4;fill:none;marker-end:url(#b)}
+</style>
+<defs>
+<marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#455468"/></marker>
+<marker id="b" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#d9631e"/></marker>
+</defs><text x="800" y="70" text-anchor="middle" class="title">MLP as a composition of affine maps and activations</text>
+<text x="800" y="120" text-anchor="middle" class="s">φ denotes a generic nonlinear activation; σ is reserved for sigmoid.</text>
+<rect x="70" y="330" width="120" height="100" rx="18" fill="#d9eaff" stroke="#4285f4" stroke-width="2"/><text x="130" y="392" text-anchor="middle" class="m">x</text>
+<path d="M190 380 H300" class="arrow"/>
+<rect x="310" y="300" width="250" height="160" rx="18" fill="#e4eefc" stroke="#7aa6dc" stroke-width="2"/><text x="435" y="345" text-anchor="middle" class="h">Affine map</text><text x="435" y="405" text-anchor="middle" class="m">z₁ = W₁x + b₁</text>
+<path d="M560 380 H650" class="arrow"/>
+<rect x="660" y="300" width="210" height="160" rx="18" fill="#e3f5ea" stroke="#83c9a0" stroke-width="2"/><text x="765" y="345" text-anchor="middle" class="h">Activation</text><text x="765" y="405" text-anchor="middle" class="m">a₁ = φ(z₁)</text>
+<path d="M870 380 H960" class="arrow"/>
+<rect x="970" y="300" width="250" height="160" rx="18" fill="#e4eefc" stroke="#7aa6dc" stroke-width="2"/><text x="1095" y="345" text-anchor="middle" class="h">Affine map</text><text x="1095" y="405" text-anchor="middle" class="m">z₂ = W₂a₁ + b₂</text>
+<path d="M1220 380 H1310" class="arrow"/>
+<rect x="1320" y="300" width="210" height="160" rx="18" fill="#e3f5ea" stroke="#83c9a0" stroke-width="2"/><text x="1425" y="345" text-anchor="middle" class="h">Activation</text><text x="1425" y="405" text-anchor="middle" class="m">a₂ = φ(z₂)</text>
+<rect x="430" y="590" width="740" height="115" rx="20" fill="#f3efff"/><text x="800" y="640" text-anchor="middle" class="h">Without φ, stacked affine maps collapse into one affine map.</text>
+</svg>

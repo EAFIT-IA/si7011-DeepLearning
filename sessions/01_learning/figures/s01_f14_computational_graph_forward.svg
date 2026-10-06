@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><rect width="1600" height="900" fill="#fff"/><style>
+.title{font:700 46px Arial,Helvetica,sans-serif;fill:#153b63}
+.h{font:700 28px Arial,Helvetica,sans-serif;fill:#172033}
+.t{font:23px Arial,Helvetica,sans-serif;fill:#172033}
+.s{font:20px Arial,Helvetica,sans-serif;fill:#4b596b}
+.m{font:italic 30px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#172033}
+.arrow{stroke:#455468;stroke-width:4;fill:none;marker-end:url(#a)}
+.back{stroke:#d9631e;stroke-width:4;fill:none;marker-end:url(#b)}
+</style>
+<defs>
+<marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#455468"/></marker>
+<marker id="b" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#d9631e"/></marker>
+</defs><text x="800" y="70" text-anchor="middle" class="title">Forward pass through affine and nonlinear layers</text>
+<text x="800" y="120" text-anchor="middle" class="s">Forward computes values left to right and stores intermediate values for backward.</text>
+<rect x="70" y="325" width="110" height="100" rx="16" fill="#d9eaff" stroke="#4285f4"/><text x="125" y="388" text-anchor="middle" class="m">x</text>
+<path d="M180 375 H285" class="arrow"/>
+<rect x="295" y="300" width="185" height="150" rx="18" fill="#e4eefc" stroke="#7aa6dc"/><text x="388" y="345" text-anchor="middle" class="h">Affine 1</text><text x="388" y="405" text-anchor="middle" class="m">z₁</text>
+<path d="M480 375 H575" class="arrow"/>
+<rect x="585" y="300" width="160" height="150" rx="18" fill="#e3f5ea" stroke="#83c9a0"/><text x="665" y="345" text-anchor="middle" class="h">φ</text><text x="665" y="405" text-anchor="middle" class="m">a₁</text>
+<path d="M745 375 H840" class="arrow"/>
+<rect x="850" y="300" width="185" height="150" rx="18" fill="#e4eefc" stroke="#7aa6dc"/><text x="943" y="345" text-anchor="middle" class="h">Affine 2</text><text x="943" y="405" text-anchor="middle" class="m">z₂</text>
+<path d="M1035 375 H1130" class="arrow"/>
+<rect x="1140" y="300" width="160" height="150" rx="18" fill="#e3f5ea" stroke="#83c9a0"/><text x="1220" y="345" text-anchor="middle" class="h">φ</text><text x="1220" y="405" text-anchor="middle" class="m">a₂</text>
+<path d="M1300 375 H1390" class="arrow"/>
+<rect x="1400" y="300" width="140" height="150" rx="18" fill="#fff6eb" stroke="#d38b33"/><text x="1470" y="345" text-anchor="middle" class="h">Output</text><text x="1470" y="405" text-anchor="middle" class="m">ŷ</text>
+<text x="388" y="510" text-anchor="middle" class="s">z₁ = W₁x + b₁</text><text x="665" y="510" text-anchor="middle" class="s">a₁ = φ(z₁)</text><text x="943" y="510" text-anchor="middle" class="s">z₂ = W₂a₁ + b₂</text><text x="1220" y="510" text-anchor="middle" class="s">a₂ = φ(z₂)</text>
+<rect x="500" y="630" width="600" height="110" rx="20" fill="#eef6f7"/><text x="800" y="678" text-anchor="middle" class="h">Saved for backward</text><text x="800" y="718" text-anchor="middle" class="t">x, z₁, a₁, z₂, a₂ and ŷ</text>
+</svg>
