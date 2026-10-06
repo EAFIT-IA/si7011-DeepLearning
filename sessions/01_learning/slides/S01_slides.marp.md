@@ -492,11 +492,11 @@ Training moves through parameter space using successive gradient estimates.
 
 ---
 
-# What can a linear model represent?
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-Optimization can work perfectly while the model still lacks enough capacity.
-
-<!-- Pending visual: FIGURE S01-F11 — Linear vs nonlinear structure -->
+![bg contain Linear versus nonlinear model capacity](../figures/s01_f11_linear_vs_nonlinear.svg)
 
 ---
 

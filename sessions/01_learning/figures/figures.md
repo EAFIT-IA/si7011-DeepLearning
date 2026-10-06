@@ -53,7 +53,7 @@ the slide source, without displaying broken links or production labels to studen
 |---|---|---|---|---|
 | **S01-F03** | V07 | Model as a parameterized function | JPG | [s01_f03_data_model.jpg](s01_f03_data_model.jpg) | Included |
 | **S01-F10** | V32 | Batch, SGD and mini-batch gradient estimation | JPG | [s01_f10_batch_strategies.jpg](s01_f10_batch_strategies.jpg) | Included |
-| **S01-F11** | V34 | Linear and nonlinear model capacity | `s01_f11_linear_vs_nonlinear.png` | TODO |
+| **S01-F11** | V34 | Linear versus nonlinear model capacity on the same non-linearly separable data | SVG | [s01_f11_linear_vs_nonlinear.svg](s01_f11_linear_vs_nonlinear.svg) | Included |
 
 ## Animation sources
 
