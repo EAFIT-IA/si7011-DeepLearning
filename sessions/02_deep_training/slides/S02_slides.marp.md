@@ -86,6 +86,7 @@ style: |
     align-items: start;
   }
 footer: SI7011 — Deep Learning
+
 ---
 
 # Why can we train deep neural networks?
@@ -105,6 +106,18 @@ $$
 $$
 
 </div>
+
+---
+
+# Roadmap
+
+1. Signal propagation — how scale moves through depth
+2. Initialization — choosing the starting scale
+3. Optimization — how gradients become steps
+4. Normalization and regularization — stable scales and generalization
+5. Residual learning and diagnostics — direct paths and debugging
+
+Each part answers one reason why deep networks are hard to train, and one tool that fixes it.
 
 ---
 
@@ -232,7 +245,6 @@ $$
 
 Both cases make optimization difficult.
 
-
 ---
 
 # Gradients also propagate through depth
@@ -269,22 +281,6 @@ early layers barely learn.
 
 If gradients explode, updates become unstable.
 
-
----
-
-<!-- _class: media -->
-
-# Signal propagation through depth
-
-<video controls preload="none" poster="../figures/s02_a01_signal_propagation_poster.png" aria-label="Signal propagation through depth">
-  <source src="../figures/s02_a01_signal_propagation.mp4" type="video/mp4">
-</video>
-<img class="print-poster" src="../figures/s02_a01_signal_propagation_poster.png" alt="Static view of Signal propagation through depth">
-
-[Open animation](../figures/s02_a01_signal_propagation.mp4)
-
-<!-- Answers the prediction slide. c = 1 is He initialization, formalized a few slides later. Forward: std(a_l); backward: std(delta_{a_l}). -->
-
 ---
 
 # Activation functions shape gradient flow
@@ -300,6 +296,36 @@ $$
 ReLU-like activations can preserve stronger gradient paths, but they also introduce zero-gradient regions.
 
 <!-- Pending figure: S02-F05 — Sigmoid, tanh and ReLU: functions and derivative regions. -->
+
+---
+
+# Dead ReLUs and ReLU variants
+
+For ReLU, $\phi'(z)=0$ when $z<0$. A unit with $z<0$ for **every** input outputs 0 and receives no gradient: it is **dead** and never recovers.
+
+Typical causes: a large update that pushes its bias far below zero, or a learning rate that is too large.
+
+$$
+\text{Leaky ReLU: }\ \phi(z)=\max(\alpha z,\,z),\ \ \alpha\approx 0.01
+\qquad
+\text{GELU: }\ \phi(z)=z\,\Phi(z)
+$$
+
+<span class="small">$\Phi$: standard normal CDF. GELU is the default activation in Transformers (S05).</span>
+
+<!-- Pending figure: S02-F21 — ReLU, Leaky ReLU and GELU with their derivatives; dead region highlighted. -->
+
+---
+
+# Part 2 · Initialization
+
+1. Signal propagation — how scale moves through depth
+2. **Initialization** — choosing the starting scale
+3. Optimization — how gradients become steps
+4. Normalization and regularization — stable scales and generalization
+5. Residual learning and diagnostics — direct paths and debugging
+
+> Part 1: each layer multiplies the forward and the backward signal by a similar factor; depth turns that factor into a power.
 
 ---
 
@@ -351,6 +377,23 @@ $$
 
 ---
 
+# Where the initialization scale comes from
+
+For one unit, with independent zero-mean weights:
+
+$$
+z_{l,i}=\sum_{j=1}^{n_\text{in}}(W_l)_{ij}\,a_{l-1,j}
+\quad\Rightarrow\quad
+\operatorname{Var}(z_l)=n_\text{in}\,\operatorname{Var}(W_l)\,\mathbb E\!\left[a_{l-1}^2\right]
+$$
+
+- tanh near 0 behaves like the identity: $\mathbb E[a^2]\approx\operatorname{Var}(z)$, so keep $n_\text{in}\operatorname{Var}(W)=1$
+- ReLU zeroes half of a symmetric input: $\mathbb E[a^2]=\tfrac12\operatorname{Var}(z)$, so keep $n_\text{in}\operatorname{Var}(W)=2$
+
+The backward pass gives the same condition with $n_\text{out}$. Each layer multiplies the variance by a constant; over $D$ layers that constant is raised to the power $D$.
+
+---
+
 # Xavier / Glorot initialization
 
 For activations such as $\tanh$, Xavier initialization chooses a scale based on layer fan-in and fan-out:
@@ -365,15 +408,15 @@ $$
 \right)
 $$
 
-The goal is to preserve signal scale in both directions.
+This is $\operatorname{Var}(W)=\dfrac{2}{n_\text{in}+n_\text{out}}$: the average of the forward and backward conditions.
+
+<span class="small">$\mathcal U(-r,r)$ has variance $r^2/3$.</span>
 
 ---
 
 # He / Kaiming initialization
 
-For ReLU-like activations, approximately half of the units may be inactive.
-
-A common choice is:
+For ReLU, the condition $n_\text{in}\operatorname{Var}(W)=2$ gives:
 
 $$
 (W_l)_{ij}
@@ -388,6 +431,21 @@ $$
 Initialization and activation must be considered together.
 
 <!-- Pending figure: S02-F07 — Naive, Xavier and He initialization compared through activation variance. -->
+
+---
+
+<!-- _class: media -->
+
+# Signal propagation through depth
+
+<video controls preload="none" poster="../figures/s02_a01_signal_propagation_poster.png" aria-label="Signal propagation through depth">
+  <source src="../figures/s02_a01_signal_propagation.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s02_a01_signal_propagation_poster.png" alt="Static view of Signal propagation through depth">
+
+[Open animation](../figures/s02_a01_signal_propagation.mp4)
+
+<!-- Confirms the variance argument: with W ~ N(0, c*2/n_in), each ReLU layer multiplies the variance by c; c = 1 is He. Also answers the prediction slide. Forward: std(a_l); backward: std(delta_{a_l}). -->
 
 ---
 
@@ -413,14 +471,15 @@ for different depths, activations and initializations.
 
 ---
 
-# Optimization dynamics
+# Part 3 · Optimization
 
-A stable initialization helps.
+1. Signal propagation — how scale moves through depth
+2. Initialization — choosing the starting scale
+3. **Optimization** — how gradients become steps
+4. Normalization and regularization — stable scales and generalization
+5. Residual learning and diagnostics — direct paths and debugging
 
-But training still depends on how the optimizer moves through parameter space.
-
-S01 introduced the learning loop.  
-Now we compare update dynamics.
+> Part 2: choose Var(W) so that each layer keeps the variance; He for ReLU, Xavier for tanh.
 
 ---
 
@@ -449,6 +508,24 @@ Noise can help exploration, but it can also slow progress.
 
 ---
 
+# Batch size controls the noise
+
+With examples sampled independently, the mini-batch gradient is unbiased:
+
+$$
+\mathbb E[g_t]=\nabla_\theta J(\theta_t),
+\qquad
+\operatorname{Cov}(g_t)\approx\frac{1}{|\mathcal B|}\operatorname{Cov}_i\!\left(\nabla_\theta L_i(\theta_t)\right)
+$$
+
+- the noise standard deviation falls like $1/\sqrt{|\mathcal B|}$: four times the batch, half the noise
+- a larger batch costs more per step but allows a larger $\eta$ (usually with warmup)
+- returns diminish: past some size, more examples per step barely help
+
+<!-- Pending figure: S02-F22 — Gradient-estimate spread versus batch size around the full-batch gradient. -->
+
+---
+
 # Momentum accumulates direction
 
 Momentum keeps a velocity vector:
@@ -466,7 +543,6 @@ g_t,
 $$
 
 It can reduce oscillation and accelerate movement along persistent descent directions.
-
 
 ---
 
@@ -545,7 +621,7 @@ $$
 \eta_t = s(t)\,\eta_0
 $$
 
-Common patterns: step decay, exponential decay, cosine annealing.
+Common patterns: step decay, exponential decay, cosine annealing, usually after a short **warmup**: $\eta_t=\eta_0\,t/T_w$ for $t<T_w$.
 
 <div class="center">
 <img src="../figures/s02_f10_learning_rate_schedules.svg" style="width:92%;max-height:330px;object-fit:contain;" alt="Learning-rate schedules">
@@ -570,6 +646,18 @@ optimizer.step()
 ```
 
 It treats the **symptom** of exploding gradients; initialization and normalization address the cause.
+
+---
+
+# Part 4 · Normalization and regularization
+
+1. Signal propagation — how scale moves through depth
+2. Initialization — choosing the starting scale
+3. Optimization — how gradients become steps
+4. **Normalization and regularization** — stable scales and generalization
+5. Residual learning and diagnostics — direct paths and debugging
+
+> Part 3: the optimizer decides how gradients become steps: momentum, per-parameter scaling, schedules and clipping.
 
 ---
 
@@ -630,6 +718,54 @@ model.eval()    # running statistics
 ```
 
 <!-- Pending figure: S02-F12 — BatchNorm behavior in training mode versus evaluation mode. -->
+
+---
+
+# Why does BatchNorm help?
+
+The original motivation was to reduce "internal covariate shift" (Ioffe & Szegedy, 2015). Later experiments questioned that explanation (Santurkar et al., 2018).
+
+A more accepted view:
+
+- it keeps pre-activation scales stable across layers and updates;
+- it makes the loss smoother, so larger learning rates stay stable;
+- batch statistics add noise, which acts as a mild regularizer.
+
+Costs: it depends on the batch size and behaves differently in training and inference.
+
+---
+
+# Layer Normalization
+
+BatchNorm normalizes each feature **across the batch**. LayerNorm normalizes each example **across its features**:
+
+$$
+\mu_i=\frac1d\sum_{k=1}^{d}z_{ik},
+\qquad
+s_i^2=\frac1d\sum_{k=1}^{d}(z_{ik}-\mu_i)^2,
+\qquad
+\operatorname{LN}(z_i)=\gamma\odot\frac{z_i-\mu_i}{\sqrt{s_i^2+\epsilon}}+\beta
+$$
+
+- the same computation in training and inference;
+- works with batch size 1 and with sequences of different lengths;
+- the standard choice in Transformers (S05).
+
+<!-- Pending figure: S02-F23 — BatchNorm versus LayerNorm: which axis of the (batch × features) tensor is normalized. -->
+
+---
+
+# Capacity and the generalization gap
+
+$$
+\text{gap}=J_\text{val}(\theta)-J_\text{train}(\theta)
+$$
+
+- too little capacity: both objectives stay high (underfitting);
+- enough capacity: both are low and the gap is small;
+- large networks can drive $J_\text{train}\to0$ even with random labels (Zhang et al., 2017): then the gap is what matters.
+
+Regularization limits the **effective** capacity, the functions training actually reaches, without changing the architecture.
 
 ---
 
@@ -729,14 +865,41 @@ The number of training steps acts as a regularizer.
 
 ---
 
+# Data augmentation
+
+Train on transformed inputs that keep the label:
+
+$$
+J_\text{aug}(\theta)=\frac1N\sum_{i=1}^{N}\mathbb E_{T\sim\mathcal T}\Big[L\big(y_i,\,f_\theta(T(x_i))\big)\Big]
+$$
+
+- images: crops, flips, color changes; signals: noise, shifts, scaling;
+- $T$ must not change the label: a rotated "6" may become a "9";
+- it encodes invariances we know in advance. Central in S03 (vision) and S04 (self-supervised learning).
+
+<!-- Pending figure: S02-F24 — One image and several label-preserving augmentations. -->
+
+---
+
+# Part 5 · Residual learning and diagnostics
+
+1. Signal propagation — how scale moves through depth
+2. Initialization — choosing the starting scale
+3. Optimization — how gradients become steps
+4. Normalization and regularization — stable scales and generalization
+5. **Residual learning and diagnostics** — direct paths and debugging
+
+> Part 4: normalization keeps internal scales stable; regularization narrows the train/validation gap.
+
+---
+
 # Deeper is not automatically better
 
-A deeper model can represent at least as much as a shallow model in principle.
+A deeper plain network can represent at least as much as a shallower one: the extra layers could learn the identity.
 
-But optimization may become harder.
+Yet a 56-layer plain network reaches a **higher training error** than a 20-layer one (He et al., 2016).
 
-The problem is not only capacity.  
-It is also how gradients and representations move through depth.
+Higher *training* error is not overfitting: it is an **optimization** problem.
 
 <!-- Pending figure: S02-F16 — Depth degradation: deeper plain networks can be harder to optimize. -->
 
@@ -785,7 +948,6 @@ I
 $$
 
 The identity path gives gradients a direct route through the block, even when $\partial F/\partial x$ is small.
-
 
 ---
 
@@ -839,11 +1001,22 @@ $$
 
 ---
 
+# Sanity checks before training
+
+Cheap tests that catch most bugs before a long run:
+
+1. **Initial loss.** With $C$ balanced classes and near-uniform predictions, cross-entropy starts near $\ln C$ ($\approx 2.30$ for $C=10$).
+2. **Overfit one batch.** A correct model and loop drive the loss on one small batch close to 0.
+3. **Gradient norms.** Finite and non-zero in every layer after the first backward.
+4. **Modes.** `model.train()` while training, `model.eval()` for validation (BatchNorm, Dropout).
+
+---
+
 # Practice B — Build a robust training recipe
 
 Start from a deep MLP baseline.
 
-Add one decision at a time:
+Run the sanity checks first. Then add one decision at a time:
 
 1. He initialization
 2. Momentum or Adam

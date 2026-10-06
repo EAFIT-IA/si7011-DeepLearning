@@ -8,30 +8,40 @@ Session 02 focuses on the question:
 
 Pending figures are HTML comments in the slide source (`<!-- Pending figure: ... -->`), so nothing unfinished is shown to students. Figures should keep white backgrounds, academic visual style, preserved proportions and filenames without spaces.
 
+## Deck structure
+
+56 slides in five parts, each opened by a divider slide that recaps the previous part:
+1. Signal propagation (V03–V13) · 2. Initialization (V14–V22, Practice A) · 3. Optimization (V23–V32) ·
+4. Normalization and regularization (V33–V45) · 5. Residual learning and diagnostics (V46–V54, Practice B).
+
 ## Planned figures
 
 | ID | Current slide(s) | Purpose | Planned filename | Recommended format | Status |
 |---|---:|---|---|---|---|
-| **S02-F01** | V02 | From the single learning loop to a deep trainable system | `s02_f01_learning_to_deep_training.png` | PNG | TODO |
-| **S02-F02** | V06 | Activation distributions propagating through many layers | `s02_f02_signal_propagation.png` | PNG | TODO |
-| **S02-F03** | V11 | Vanishing, stable and exploding activation scales across depth | `s02_f03_activation_scale_depth.png` | PNG / plot | Covered by S02-A01 |
-| **S02-F04** | V11 | Gradient norm versus layer depth for vanishing, stable and exploding regimes | `s02_f04_gradient_norm_depth.png` | PNG / plot | Covered by S02-A01 |
+| **S02-F01** | V03 | From the single learning loop to a deep trainable system | `s02_f01_learning_to_deep_training.png` | PNG | TODO |
+| **S02-F02** | V07 | Activation distributions propagating through many layers | `s02_f02_signal_propagation.png` | PNG | TODO |
+| **S02-F03** | V21 | Vanishing, stable and exploding activation scales across depth | `s02_f03_activation_scale_depth.png` | PNG / plot | Covered by S02-A01 |
+| **S02-F04** | V21 | Gradient norm versus layer depth for vanishing, stable and exploding regimes | `s02_f04_gradient_norm_depth.png` | PNG / plot | Covered by S02-A01 |
 | **S02-F05** | V12 | Sigmoid, tanh and ReLU: functions and derivative regions | `s02_f05_activation_derivatives.png` | PNG | TODO |
-| **S02-F06** | V14 | Symmetry problem when hidden units share identical initialization | `s02_f06_initialization_symmetry.png` | PNG / SVG | TODO |
-| **S02-F07** | V17 | Naive, Xavier and He initialization compared through activation variance | `s02_f07_initialization_variance.png` | PNG / plot | TODO |
-| **S02-F08** | V22 | SGD and Momentum trajectories in a narrow valley | `s02_f08_sgd_momentum_valley.png` | PNG | Covered by S02-A02 |
-| **S02-F09** | V25 | Optimizer trajectories on the same ill-conditioned objective | `s02_f09_optimizer_trajectories.svg` | SVG | Included |
-| **S02-F10** | V26 | Learning-rate schedules | `s02_f10_learning_rate_schedules.svg` | SVG | Included |
-| **S02-F11** | V29 | BatchNorm: normalize, then learn scale and shift | `s02_f11_batchnorm_transform.png` | PNG | TODO |
-| **S02-F12** | V30 | BatchNorm behavior in training mode versus evaluation mode | `s02_f12_batchnorm_train_eval.png` | PNG / SVG | TODO |
-| **S02-F13** | V31 | Underfitting, healthy fitting and overfitting in train/validation curves | `s02_f13_train_validation_dynamics.png` | PNG / plot | TODO |
-| **S02-F14** | V32 | Effect of weight decay on learned functions or weight norms | `s02_f14_weight_decay_effect.png` | PNG | TODO |
-| **S02-F15** | V34 | Dropout as stochastic subnetworks during training | `s02_f15_dropout_subnetworks.png` | PNG | TODO |
-| **S02-F16** | V36 | Depth degradation: deeper plain networks can be harder to optimize | `s02_f16_depth_degradation.png` | PNG / plot | TODO |
-| **S02-F17** | V37 | Residual block: transformation path plus identity path | `s02_f17_residual_block.png` | PNG | TODO |
-| **S02-F18** | V39 | Gradient flow through the identity path in a residual block | `s02_f18_residual_gradient_path.png` | PNG | Covered by S02-A03 |
-| **S02-F19** | V41 | Map from symptoms to measurements and training interventions | `s02_f19_training_diagnostics_map.png` | PNG | TODO |
-| **S02-F20** | V43 | Integrated view of mechanisms that make deep training possible | `s02_f20_deep_training_summary.png` | PNG | TODO |
+| **S02-F06** | V16 | Symmetry problem when hidden units share identical initialization | `s02_f06_initialization_symmetry.png` | PNG / SVG | TODO |
+| **S02-F07** | V20 | Naive, Xavier and He initialization compared through activation variance | `s02_f07_initialization_variance.png` | PNG / plot | TODO |
+| **S02-F08** | V27 | SGD and Momentum trajectories in a narrow valley | `s02_f08_sgd_momentum_valley.png` | PNG | Covered by S02-A02 |
+| **S02-F09** | V30 | Optimizer trajectories on the same ill-conditioned objective | `s02_f09_optimizer_trajectories.svg` | SVG | Included |
+| **S02-F10** | V31 | Learning-rate schedules | `s02_f10_learning_rate_schedules.svg` | SVG | Included |
+| **S02-F11** | V35 | BatchNorm: normalize, then learn scale and shift | `s02_f11_batchnorm_transform.png` | PNG | TODO |
+| **S02-F12** | V36 | BatchNorm behavior in training mode versus evaluation mode | `s02_f12_batchnorm_train_eval.png` | PNG / SVG | TODO |
+| **S02-F13** | V40 | Underfitting, healthy fitting and overfitting in train/validation curves | `s02_f13_train_validation_dynamics.png` | PNG / plot | TODO |
+| **S02-F14** | V41 | Effect of weight decay on learned functions or weight norms | `s02_f14_weight_decay_effect.png` | PNG | TODO |
+| **S02-F15** | V43 | Dropout as stochastic subnetworks during training | `s02_f15_dropout_subnetworks.png` | PNG | TODO |
+| **S02-F16** | V47 | Depth degradation: deeper plain networks can be harder to optimize | `s02_f16_depth_degradation.png` | PNG / plot | TODO |
+| **S02-F17** | V48 | Residual block: transformation path plus identity path | `s02_f17_residual_block.png` | PNG | TODO |
+| **S02-F18** | V50 | Gradient flow through the identity path in a residual block | `s02_f18_residual_gradient_path.png` | PNG | Covered by S02-A03 |
+| **S02-F19** | V52 | Map from symptoms to measurements and training interventions | `s02_f19_training_diagnostics_map.png` | PNG | TODO |
+| **S02-F20** | V55 | Integrated view of mechanisms that make deep training possible | `s02_f20_deep_training_summary.png` | PNG | TODO |
+| **S02-F21** | V13 | ReLU, Leaky ReLU and GELU with derivatives; dead region highlighted | `s02_f21_relu_variants.svg` | SVG / plot | TODO |
+| **S02-F22** | V25 | Gradient-estimate spread versus batch size around the full-batch gradient | `s02_f22_batch_size_noise.svg` | SVG / plot | TODO |
+| **S02-F23** | V38 | BatchNorm versus LayerNorm: normalized axis of the (batch × features) tensor | `s02_f23_batchnorm_vs_layernorm.svg` | SVG | TODO |
+| **S02-F24** | V45 | One image and several label-preserving augmentations | `s02_f24_data_augmentation.png` | PNG | TODO |
 
 ## Recommended animations
 
@@ -39,9 +49,9 @@ Only animate concepts where motion changes understanding.
 
 | ID | Related figure | Concept | Planned rendered file | Status |
 |---|---|---|---|---|
-| **S02-A01** | S02-F02 / S02-F03 | Activations shrink, explode or stabilize layer by layer | `s02_a01_signal_propagation.mp4` | Included (V11) |
-| **S02-A02** | S02-F08 | SGD oscillates in a narrow valley while Momentum accumulates useful direction | `s02_a02_momentum_valley.mp4` | Included (V22) |
-| **S02-A03** | S02-F17 / S02-F18 | Residual block forward path and direct gradient route | `s02_a03_residual_gradient_path.mp4` | Included (V39) |
+| **S02-A01** | S02-F02 / S02-F03 | Activations shrink, explode or stabilize layer by layer | `s02_a01_signal_propagation.mp4` | Included (V21) |
+| **S02-A02** | S02-F08 | SGD oscillates in a narrow valley while Momentum accumulates useful direction | `s02_a02_momentum_valley.mp4` | Included (V27) |
+| **S02-A03** | S02-F17 / S02-F18 | Residual block forward path and direct gradient route | `s02_a03_residual_gradient_path.mp4` | Included (V50) |
 
 ## Animation sources
 
