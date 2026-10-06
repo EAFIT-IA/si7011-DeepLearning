@@ -192,7 +192,6 @@ $$
 
 How do we transform the quality of a prediction into something we can optimize?
 
-<!-- Pending visual: VISUAL — target and prediction separated by an explicit error gap -->
 
 ---
 
@@ -210,7 +209,6 @@ $$
 
 A loss converts the task objective into a **scalar quantity**.
 
-<!-- Pending visual: VISUAL — prediction and target on a line with squared error -->
 
 ---
 
@@ -236,6 +234,21 @@ $$
 
 ---
 
+<!-- _class: media -->
+
+# Parameters, residuals and loss
+
+<video controls preload="none" poster="../figures/s01_e1_poster.png" aria-label="Parameters, residuals and loss">
+  <source src="../figures/E1_ParametrosPerdida.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s01_e1_poster.png" alt="Static view of Parameters, residuals and loss">
+
+[Open animation](../figures/E1_ParametrosPerdida.mp4)
+
+<!-- Predict before each step: how w and b move the line, why residuals are vertical, and how the MSE changes. J(w, b) is the dataset average, formalized later. -->
+
+---
+
 <!-- _class: figure -->
 <!-- _paginate: false -->
 <!-- _footer: "" -->
@@ -257,6 +270,21 @@ $$
 <!-- _footer: "" -->
 
 ![bg contain Binary cross-entropy loss curves](../figures/s01_f05b_binary_cross_entropy_curves.svg)
+
+---
+
+<!-- _class: media -->
+
+# From score to probability to loss
+
+<video controls preload="none" poster="../figures/s01_e2_poster.png" aria-label="From score to probability to loss">
+  <source src="../figures/E2_PuntajeProbabilidad.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s01_e2_poster.png" alt="Static view of From score to probability to loss">
+
+[Open animation](../figures/E2_PuntajeProbabilidad.mp4)
+
+<!-- Ask whether z is a probability, then what happens to the loss for a confident error and when the true label flips. -->
 
 ---
 
@@ -311,7 +339,6 @@ $$
 
 Changing $w$ changes the prediction and therefore changes the loss.
 
-<!-- Pending visual: VISUAL — curve $L(w)$ with current parameter $w_t$ -->
 
 ---
 
@@ -347,7 +374,21 @@ Two ingredients:
 - **direction** from the gradient
 - **step size** from the learning rate
 
-<!-- Pending visual: VISUAL — one optimization step on $L(w)$ -->
+
+---
+
+<!-- _class: media -->
+
+# Derivative, gradient and update
+
+<video controls preload="none" poster="../figures/s01_e3_poster.png" aria-label="Derivative, gradient and update">
+  <source src="../figures/E3_DescensoGradiente.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s01_e3_poster.png" alt="Static view of Derivative, gradient and update">
+
+[Open animation](../figures/E3_DescensoGradiente.mp4)
+
+<!-- Exact steps on L(w) = (w-3)^2 with eta = 0.1: 1 -> 1.4 -> 1.72. The last part previews the gradient in two parameters on the level curves of J(w, b). -->
 
 ---
 
@@ -363,7 +404,21 @@ What changes if the step is:
 - appropriate?
 - too large?
 
-<!-- Pending visual: FIGURE S01-F07 — Three learning rates -->
+
+---
+
+<!-- _class: media -->
+
+# Comparing learning rates
+
+<video controls preload="none" poster="../figures/s01_e4_poster.png" aria-label="Comparing learning rates">
+  <source src="../figures/E4_TasaAprendizaje.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s01_e4_poster.png" alt="Static view of Comparing learning rates">
+
+[Open animation](../figures/E4_TasaAprendizaje.mp4)
+
+<!-- Same parabola and same w_0: eta = 0.05, 0.4 and 1.1. Ask students to predict each behavior first. -->
 
 ---
 
@@ -383,7 +438,6 @@ $$
 \end{bmatrix}
 $$
 
-<!-- Pending visual: FIGURE S01-F08 — Loss surface -->
 
 ---
 
@@ -406,6 +460,21 @@ L_i(\theta)
 $$
 
 **Convention:** $L$ is a per-example loss; $J$ is the dataset objective.
+
+---
+
+<!-- _class: media -->
+
+# Each parameter is a knob
+
+<video controls preload="none" poster="../figures/s01_e11_poster.png" aria-label="Each parameter is a knob">
+  <source src="../figures/E11_PerillasGradiente.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s01_e11_poster.png" alt="Static view of Each parameter is a knob">
+
+[Open animation](../figures/E11_PerillasGradiente.mp4)
+
+<!-- Each component of the gradient tells one knob which way to turn. Real gradient descent with eta = 0.2 on J. -->
 
 ---
 
@@ -481,7 +550,21 @@ $$
 
 A nonlinear activation prevents the composition from collapsing into one linear map.
 
-<!-- Pending visual: VISUAL — insert a nonlinear transformation between two affine maps -->
+
+---
+
+<!-- _class: media -->
+
+# Why we need an activation
+
+<video controls preload="none" poster="../figures/s01_e5_poster.png" aria-label="Why we need an activation">
+  <source src="../figures/E5_Activacion.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s01_e5_poster.png" alt="Static view of Why we need an activation">
+
+[Open animation](../figures/E5_Activacion.mp4)
+
+<!-- First the weighted sum of lines collapses to another line; then ReLU adds breakpoints at x = -b_1j / w_1j. -->
 
 ---
 
@@ -508,7 +591,6 @@ $$
 
 A very simple nonlinear function can become a powerful building block.
 
-<!-- Pending visual: VISUAL — clean ReLU plot -->
 
 ---
 
@@ -555,7 +637,21 @@ $$
 
 A hidden layer learns an **intermediate representation**.
 
-<!-- Pending visual: VISUAL — hidden units as learned features -->
+
+---
+
+<!-- _class: media -->
+
+# Hidden representation and decision boundary
+
+<video controls preload="none" poster="../figures/s01_e6_poster.png" aria-label="Hidden representation and decision boundary">
+  <source src="../figures/E6_TransformacionEspacio.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s01_e6_poster.png" alt="Static view of Hidden representation and decision boundary">
+
+[Open animation](../figures/E6_TransformacionEspacio.mp4)
+
+<!-- Trained 2-2-1 MLP: affine map, ReLU fold, one line in a_1, and the V-shaped boundary back in x. -->
 
 ---
 
@@ -564,6 +660,21 @@ A hidden layer learns an **intermediate representation**.
 <!-- _footer: "" -->
 
 ![bg contain MLP as a composition of affine maps and activations](../figures/s01_f13_mlp_composition.svg)
+
+---
+
+<!-- _class: media -->
+
+# Each layer transforms the space
+
+<video controls preload="none" poster="../figures/s01_e8_poster.png" aria-label="Each layer transforms the space">
+  <source src="../figures/E8_CapasTransformanEspacio.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s01_e8_poster.png" alt="Static view of Each layer transforms the space">
+
+[Open animation](../figures/E8_CapasTransformanEspacio.mp4)
+
+<!-- Trained 2-2-2-2-1 tanh MLP on two moons. Each layer bends the space until one line separates the classes. -->
 
 ---
 
