@@ -119,7 +119,7 @@ We start from **observed examples**, not from explicit rules.
 
 ![bg contain From data to a learning problem](../figures/s01_f02_from_data_to_learning_problem.png)
 
-
+---
 
 # The input
 
@@ -288,7 +288,7 @@ $$
 
 | Inference | Training |
 |---|---|
-| $x \rightarrow f_\theta(x)\rightarrow \hat y$ | $(x,y)\rightarrow f_\theta(x)\rightarrow\hat y\rightarrowL\rightarrow\theta'$ |
+| $x \rightarrow f_\theta(x)\rightarrow \hat y$ | $(x,y)\rightarrow f_\theta(x)\rightarrow\hat y\rightarrow L\rightarrow\theta'$ |
 | parameters are **used** | parameters are **changed** |
 
 ---
