@@ -7,7 +7,7 @@ Grafo computacional de una MLP con dos capas ocultas: forward y backward.
 Forward: un pulso recorre el grafo, cada bloque se ilumina y quedan guardados
 z₁, a₁, z₂, a₂ (los rótulos de las flechas).
 Backward: un pulso naranja regresa desde 𝓛. En cada bloque aparece su regla
-local (notación adjunta v̄ = ∂𝓛/∂v) y se iluminan los valores del forward que
+local (notación δ_v = ∂L/∂v) y se iluminan los valores del forward que
 la regla reutiliza.
 
 Render:
@@ -87,7 +87,7 @@ class E10_GrafoForwardBackward(EscenaBase):
             return Bloque(T("No lineal", font_size=25, weight=BOLD), 1.8, VE_FILL, VE_BORDE)
 
         L1, N1, L2, N2, L3 = lineal(), nolineal(), lineal(), nolineal(), lineal()
-        perdida = Bloque(M(r"\mathcal{L}(\hat y, y)", font_size=32), 1.45, NA_FILL, NARANJA)
+        perdida = Bloque(M(r"L(\hat y, y)", font_size=32), 1.45, NA_FILL, NARANJA)
         rx = M("x", font_size=46)
         cadena = [L1, N1, L2, N2, L3, perdida]
 
@@ -124,8 +124,8 @@ class E10_GrafoForwardBackward(EscenaBase):
                         llave([L3], "Salida"), llave([perdida], "Pérdida"))
 
         # ecuaciones forward bajo cada bloque
-        fwd_tex = [r"z_1 = W_1 x + b_1", r"a_1 = \sigma(z_1)", r"z_2 = W_2 a_1 + b_2",
-                   r"a_2 = \sigma(z_2)", r"\hat y = W_3 a_2 + b_3"]
+        fwd_tex = [r"z_1 = W_1 x + b_1", r"a_1 = \phi(z_1)", r"z_2 = W_2 a_1 + b_2",
+                   r"a_2 = \phi(z_2)", r"\hat y = W_3 a_2 + b_3"]
         fwd_sub = ["Transformación afín", "Activación", "Transformación afín",
                    "Activación", "Salida lineal"]
         ecs_f = VGroup()
@@ -179,7 +179,7 @@ class E10_GrafoForwardBackward(EscenaBase):
         # =============================================================
         titulo_b = T("Backward: regla de la cadena, de derecha a izquierda", font_size=30, weight=BOLD,
                      color=NARANJA).to_corner(UL, buff=0.35)
-        leyenda = M(r"\bar v \equiv \partial \mathcal{L} / \partial v",
+        leyenda = M(r"\delta_v \equiv \partial L / \partial v",
                     font_size=32, color=GRIS_TXT).to_corner(UR, buff=0.4)
 
         # atenuar el forward un poco: sigue visible porque se reutiliza
@@ -193,7 +193,7 @@ class E10_GrafoForwardBackward(EscenaBase):
         dy = DOWN * 0.24
         b_fl = VGroup()
         b_rot = VGroup()
-        nombres_b = [r"\bar z_1", r"\bar a_1", r"\bar z_2", r"\bar a_2", r"\bar{\hat y}"]
+        nombres_b = [r"\delta_{z_1}", r"\delta_{a_1}", r"\delta_{z_2}", r"\delta_{a_2}", r"\delta_{\hat y}"]
         for a, b, nm in zip(cadena[:-1], cadena[1:], nombres_b):
             fl = Arrow(b.get_left() + dy, a.get_right() + dy, buff=0.0, color=NARANJA, stroke_width=3,
                        max_tip_length_to_length_ratio=0.25)
@@ -203,16 +203,16 @@ class E10_GrafoForwardBackward(EscenaBase):
         # reglas locales (fila A: gradiente hacia la entrada; fila B: parámetros)
         Y_A, Y_B = -0.95, -2.05
         reglas_A = {
-            5: r"\bar{\hat y} = \frac{\partial \ell}{\partial \hat y}",
-            4: r"\bar a_2 = W_3^{\top} \bar{\hat y}",
-            3: r"\bar z_2 = \bar a_2 \odot \sigma'(z_2)",
-            2: r"\bar a_1 = W_2^{\top} \bar z_2",
-            1: r"\bar z_1 = \bar a_1 \odot \sigma'(z_1)",
+            5: r"\delta_{\hat y} = \frac{\partial L}{\partial \hat y}",
+            4: r"\delta_{a_2} = W_3^{\top} \delta_{\hat y}",
+            3: r"\delta_{z_2} = \delta_{a_2} \odot \phi'(z_2)",
+            2: r"\delta_{a_1} = W_2^{\top} \delta_{z_2}",
+            1: r"\delta_{z_1} = \delta_{a_1} \odot \phi'(z_1)",
         }
         reglas_B = {
-            4: (r"\bar W_3 = \bar{\hat y}\, a_2^{\top}", r"\bar b_3 = \bar{\hat y}"),
-            2: (r"\bar W_2 = \bar z_2\, a_1^{\top}", r"\bar b_2 = \bar z_2"),
-            0: (r"\bar W_1 = \bar z_1\, x^{\top}", r"\bar b_1 = \bar z_1"),
+            4: (r"\nabla_{W_3}L = \delta_{\hat y}\,a_2^{\top}", r"\nabla_{b_3}L = \delta_{\hat y}"),
+            2: (r"\nabla_{W_2}L = \delta_{z_2}\,a_1^{\top}", r"\nabla_{b_2}L = \delta_{z_2}"),
+            0: (r"\nabla_{W_1}L = \delta_{z_1}\,x^{\top}", r"\nabla_{b_1}L = \delta_{z_1}"),
         }
         # qué valor del forward reutiliza cada bloque
         usa = {4: [rotulos[3]], 3: [rotulos[1 + 1]], 2: [rotulos[1]], 1: [rotulos[0]], 0: [r_x]}
