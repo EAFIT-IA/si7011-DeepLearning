@@ -741,7 +741,7 @@ optimizer.step()
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Full learning loop: forward, loss, backward and parameter update](../figures/s01_f01_learning_loop.png)
+![bg contain Full learning loop: forward, loss, backward and parameter update](../figures/s01_f01_learning_loop.svg)
 
 ---
 
