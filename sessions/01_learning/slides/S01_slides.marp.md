@@ -154,25 +154,11 @@ The target is combined with the prediction to compute the loss during training.
 
 ---
 
-# A model
-
-$$
-f_\theta
-$$
-
-A model is a **parameterized function**.
-
-$$
-x \longrightarrow \boxed{f_\theta} \longrightarrow \hat y
-$$
-
----
-
 <!-- _class: figure -->
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Model as a parameterized function](../figures/s01_f03_data_model.svg)
+![bg contain Model as a parameterized function](../figures/s01_f03_data_model.png)
 
 ---
 
@@ -505,7 +491,7 @@ The update uses $g_t=\nabla_\theta J_{\mathcal B_t}(\theta_t)$.
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Batch, SGD and mini-batch gradient descent](../figures/s01_f10_batch_strategies.svg)
+![bg contain Batch, SGD and mini-batch gradient descent](../figures/s01_f10_batch_strategies.png)
 
 ---
 
@@ -527,7 +513,7 @@ Training moves through parameter space using successive gradient estimates.
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Linear versus nonlinear model capacity](../figures/s01_f11_linear_vs_nonlinear.svg)
+![bg contain Linear versus nonlinear model capacity](../figures/s01_f11_linear_vs_nonlinear.png)
 
 ---
 
