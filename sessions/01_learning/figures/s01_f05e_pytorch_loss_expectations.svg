@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
 <rect width="1600" height="900" fill="#ffffff"/>
+
 <style>
 .title{font:700 52px Arial,Helvetica,sans-serif;fill:#102354}
 .h{font:700 30px Arial,Helvetica,sans-serif;fill:#172033}
 .t{font:24px Arial,Helvetica,sans-serif;fill:#172033}
 .s{font:20px Arial,Helvetica,sans-serif;fill:#445064}
-.m{font:italic 30px Georgia,'Times New Roman',serif;fill:#101820}
-.mm{font:italic 36px Georgia,'Times New Roman',serif;fill:#101820}
+.m{font:italic 30px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#101820}
+.mm{font:italic 36px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#101820}
 .code{font:25px 'Courier New',monospace;fill:#2255cc}
 .arrow{stroke:#172033;stroke-width:4;fill:none;marker-end:url(#arr)}
 .sep{stroke:#cbd5df;stroke-width:2}
@@ -14,43 +15,46 @@
 <defs><marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#172033"/></marker></defs>
 <text x="800" y="70" text-anchor="middle" class="title">What the loss function expects in PyTorch</text>
 <text x="70" y="130" class="h">Task</text>
-<text x="360" y="130" class="h">Model output</text>
-<text x="650" y="130" class="h">Target</text>
-<text x="900" y="130" class="h">Loss in PyTorch</text>
-<text x="1280" y="130" class="h">Example shapes</text>
+<text x="425" y="130" class="h">Model output</text>
+<text x="720" y="130" class="h">Target</text>
+<text x="980" y="130" class="h">Loss in PyTorch</text>
+<text x="1315" y="130" class="h">Shapes</text>
 
 <rect x="40" y="160" width="1520" height="175" rx="22" fill="#edf6ff"/>
 <text x="70" y="220" class="h">Regression</text>
-<text x="360" y="240" class="m">prediction: real value</text>
-<text x="650" y="240" class="m">target: real value</text>
-<text x="900" y="240" class="code">nn.MSELoss</text>
-<rect x="1260" y="190" width="270" height="115" rx="16" fill="#ffffff" stroke="#b8d2f3"/>
-<text x="1280" y="230" class="s">output: (B,) or (B,1)</text>
-<text x="1280" y="270" class="s">target: same shape, float</text>
+<text x="425" y="240" class="m">ŷ ∈ R</text>
+<text x="720" y="240" class="m">y ∈ R</text>
+<text x="980" y="240" class="code">nn.MSELoss</text>
+<rect x="1295" y="190" width="235" height="115" rx="16" fill="#ffffff" stroke="#b8d2f3"/>
+<text x="1315" y="230" class="s">output: (B,) or (B,1)</text>
+<text x="1315" y="270" class="s">target: same shape</text>
+<text x="1315" y="295" class="s">dtype: float</text>
 
 <rect x="40" y="360" width="1520" height="205" rx="22" fill="#f2fbef"/>
-<text x="70" y="420" class="h">Binary classification</text>
-<text x="360" y="440" class="m">one logit z</text>
-<text x="360" y="485" class="s">optional: p = sigmoid(z)</text>
-<text x="650" y="440" class="m">y = 0 or 1</text>
-<text x="900" y="440" class="code">nn.BCEWithLogitsLoss</text>
-<text x="900" y="485" class="s">expects logits, not probabilities</text>
-<rect x="1260" y="395" width="270" height="135" rx="16" fill="#ffffff" stroke="#c9e6bf"/>
-<text x="1280" y="435" class="s">logits: (B,) or (B,1)</text>
-<text x="1280" y="475" class="s">target: same shape</text>
-<text x="1280" y="505" class="s">dtype: float</text>
+<text x="70" y="420" class="h">Binary</text>
+<text x="70" y="455" class="h">classification</text>
+<text x="425" y="430" class="m">z ∈ R</text>
+<text x="425" y="475" class="s">p̂ = σ(z)</text>
+<text x="720" y="440" class="m">y ∈ {0,1}</text>
+<text x="980" y="440" class="code">nn.BCEWithLogitsLoss</text>
+<text x="980" y="485" class="s">expects logits, not probabilities</text>
+<rect x="1295" y="395" width="235" height="135" rx="16" fill="#ffffff" stroke="#c9e6bf"/>
+<text x="1315" y="435" class="s">logits: (B,) or (B,1)</text>
+<text x="1315" y="475" class="s">target: same shape</text>
+<text x="1315" y="505" class="s">dtype: float</text>
 
 <rect x="40" y="590" width="1520" height="205" rx="22" fill="#f3efff"/>
-<text x="70" y="650" class="h">Multiclass classification</text>
-<text x="360" y="670" class="m">C logits</text>
-<text x="360" y="715" class="s">optional: p = softmax(z)</text>
-<text x="650" y="670" class="m">class index 0...(C-1)</text>
-<text x="900" y="670" class="code">nn.CrossEntropyLoss</text>
-<text x="900" y="715" class="s">expects logits and class indices</text>
-<rect x="1260" y="625" width="270" height="135" rx="16" fill="#ffffff" stroke="#d5c4f3"/>
-<text x="1280" y="665" class="s">logits: (B,C)</text>
-<text x="1280" y="705" class="s">target: (B,)</text>
-<text x="1280" y="735" class="s">dtype: long</text>
+<text x="70" y="650" class="h">Multiclass</text>
+<text x="70" y="685" class="h">classification</text>
+<text x="425" y="655" class="m">z ∈ R<tspan baseline-shift="super" font-size="18">C</tspan></text>
+<text x="425" y="710" class="s">p = softmax(z)</text>
+<text x="720" y="670" class="m">y ∈ {0,...,C-1}</text>
+<text x="980" y="670" class="code">nn.CrossEntropyLoss</text>
+<text x="980" y="715" class="s">expects logits and class indices</text>
+<rect x="1295" y="625" width="235" height="135" rx="16" fill="#ffffff" stroke="#d5c4f3"/>
+<text x="1315" y="665" class="s">logits: (B,C)</text>
+<text x="1315" y="705" class="s">target: (B,)</text>
+<text x="1315" y="735" class="s">dtype: long</text>
 
-<text x="800" y="855" text-anchor="middle" class="h">Interpret with sigmoid/softmax; train these losses with raw logits.</text>
+<text x="800" y="855" text-anchor="middle" class="h">Use sigmoid/softmax to interpret predictions; train with raw logits.</text>
 </svg>

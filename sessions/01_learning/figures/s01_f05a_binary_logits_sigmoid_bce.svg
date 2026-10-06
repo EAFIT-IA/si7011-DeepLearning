@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
 <rect width="1600" height="900" fill="#ffffff"/>
+
 <style>
 .title{font:700 52px Arial,Helvetica,sans-serif;fill:#102354}
 .h{font:700 30px Arial,Helvetica,sans-serif;fill:#172033}
 .t{font:24px Arial,Helvetica,sans-serif;fill:#172033}
 .s{font:20px Arial,Helvetica,sans-serif;fill:#445064}
-.m{font:italic 30px Georgia,'Times New Roman',serif;fill:#101820}
-.mm{font:italic 36px Georgia,'Times New Roman',serif;fill:#101820}
+.m{font:italic 30px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#101820}
+.mm{font:italic 36px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#101820}
 .code{font:25px 'Courier New',monospace;fill:#2255cc}
 .arrow{stroke:#172033;stroke-width:4;fill:none;marker-end:url(#arr)}
 .sep{stroke:#cbd5df;stroke-width:2}
@@ -21,31 +22,31 @@
 <path d="M305 255 H410" class="arrow"/>
 <rect x="420" y="175" width="275" height="160" rx="18" fill="#e8f6df" stroke="#65a844" stroke-width="2"/>
 <text x="558" y="220" text-anchor="middle" class="h">Model</text>
-<text x="558" y="278" text-anchor="middle" class="mm">f_theta(x)</text>
+<text x="558" y="278" text-anchor="middle" class="mm">f<tspan baseline-shift="sub" font-size="22">θ</tspan>(x)</text>
 
 <path d="M695 255 H810" class="arrow"/>
 <rect x="720" y="355" width="225" height="60" rx="14" fill="#e6efff"/>
 <text x="833" y="380" text-anchor="middle" class="s">logit z</text>
-<text x="833" y="405" text-anchor="middle" class="s">real-valued score</text>
+<text x="833" y="405" text-anchor="middle" class="s">z ∈ R</text>
 
 <rect x="835" y="175" width="245" height="160" rx="18" fill="#efe2ff" stroke="#8e5de7" stroke-width="2"/>
 <text x="958" y="220" text-anchor="middle" class="h">Sigmoid</text>
-<text x="958" y="278" text-anchor="middle" class="mm">sigma(z)</text>
+<text x="958" y="278" text-anchor="middle" class="mm">σ(z)</text>
 
 <path d="M1080 255 H1195" class="arrow"/>
 <rect x="1205" y="175" width="300" height="160" rx="18" fill="#d9eaff" stroke="#4285f4" stroke-width="2"/>
 <text x="1355" y="220" text-anchor="middle" class="h">Predicted probability</text>
-<text x="1355" y="278" text-anchor="middle" class="mm">p in [0,1]</text>
+<text x="1355" y="278" text-anchor="middle" class="mm">p̂ ∈ [0,1]</text>
 
 <rect x="50" y="465" width="1500" height="245" rx="24" fill="#f2fbef"/>
 <text x="85" y="515" class="h">Binary cross-entropy</text>
-<text x="250" y="600" text-anchor="middle" class="m">z = f_theta(x)</text>
+<text x="250" y="600" text-anchor="middle" class="m">z = f<tspan baseline-shift="sub" font-size="20">θ</tspan>(x)</text>
 <line x1="470" y1="535" x2="470" y2="675" class="sep"/>
-<text x="740" y="585" text-anchor="middle" class="m">p = 1 / (1 + exp(-z))</text>
+<text x="740" y="585" text-anchor="middle" class="m">p̂ = σ(z) = 1 / (1 + e<tspan baseline-shift="super" font-size="20">-z</tspan>)</text>
 <line x1="1010" y1="535" x2="1010" y2="675" class="sep"/>
-<text x="1265" y="575" text-anchor="middle" class="m">L = -[ y log(p)</text>
-<text x="1265" y="615" text-anchor="middle" class="m">+ (1-y) log(1-p) ]</text>
-<text x="1265" y="660" text-anchor="middle" class="s">target y is 0 or 1</text>
+<text x="1265" y="575" text-anchor="middle" class="m">L = -[ y log(p̂)</text>
+<text x="1265" y="615" text-anchor="middle" class="m">+ (1-y) log(1-p̂) ]</text>
+<text x="1265" y="660" text-anchor="middle" class="s">y ∈ {0,1}</text>
 
 <rect x="50" y="750" width="1500" height="105" rx="22" fill="#f3efff"/>
 <text x="85" y="805" class="h">PyTorch</text>
