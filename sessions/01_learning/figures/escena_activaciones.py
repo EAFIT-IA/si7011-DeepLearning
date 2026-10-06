@@ -155,7 +155,7 @@ class E9_EjemploActivaciones(EscenaBase):
         def titulo(m, panel):
             return m.next_to(panel.c2p(np.mean(panel.xlim), panel.ylim[1]), UP, buff=0.32)
 
-        t1 = titulo(Text("Espacio de entrada", font=FUENTE, weight=BOLD, color=NAVY, font_size=21), p1)
+        t1 = titulo(Text("Input space", font=FUENTE, weight=BOLD, color=NAVY, font_size=21), p1)
         t2 = titulo(MathTex(r"z = Wx + b", color=NAVY, font_size=38), p2)
         t3 = titulo(MathTex(r"a = \tanh(z)", color=NAVY, font_size=38), p3)
         t4 = titulo(MathTex(r"a = \mathrm{ReLU}(z)", color=NAVY, font_size=38), p4)

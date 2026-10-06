@@ -30,7 +30,7 @@ White backgrounds, preserved image proportions and the existing course style app
 | **S01-F13A-P** | V35 | Static view of the activation example | PNG | [s01_transformation_overview.png](s01_transformation_overview.png) | Poster / static fallback |
 | **S01-F14** | V40 | Forward values through affine and nonlinear layers | SVG | [s01_f14_computational_graph_forward.svg](s01_f14_computational_graph_forward.svg) | Included |
 | **S01-F15** | V43 | Backward signals $\delta$ and parameter gradients $\nabla L$ | SVG | [s01_f15_backward_gradients.svg](s01_f15_backward_gradients.svg) | Included |
-| **S01-F15B** | — | E10 source normalized to $\phi$, $\delta$ and $\nabla L$; rendered MP4 must be regenerated | Manim source | [escena_grafo.py](escena_grafo.py) | Needs rerender |
+| **S01-F15B** | V44 | Animated forward values and backward signals ($\phi$, $\delta$, $\nabla L$) | MP4 / Manim | [E10_GrafoForwardBackward.mp4](E10_GrafoForwardBackward.mp4) | Included |
 | **S01-F16** | V53 | Mathematics and the PyTorch training loop | SVG | [s01_f16_math_pytorch_mapping.svg](s01_f16_math_pytorch_mapping.svg) | Included |
 
 Learning-rate schedules and optimizer comparisons moved to S02. F12A uses `s01_f12_two_relu_components.png`.

@@ -649,7 +649,22 @@ The same graph is traversed in the opposite direction to propagate gradients.
 
 ![bg contain Backpropagation through linear and nonlinear layers with local equations](../figures/s01_f15_backward_gradients.svg)
 
+---
 
+<!-- _class: media -->
+
+# Forward values and backward signals
+
+<video controls preload="none" poster="../figures/s01_f14_computational_graph_forward.svg" aria-label="Forward values and backward signals">
+  <source src="../figures/E10_GrafoForwardBackward.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s01_f14_computational_graph_forward.svg" alt="Static view of Forward values and backward signals">
+
+[Open animation](../figures/E10_GrafoForwardBackward.mp4)
+
+<!-- Follow the stored values during forward. During backward, identify each local rule: δ for intermediate signals, ∇L for parameter gradients. -->
+
+---
 
 # Gradients for every parameter
 

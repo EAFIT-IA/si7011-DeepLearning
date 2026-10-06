@@ -107,15 +107,15 @@ class E7_AproximacionReLU(EscenaBase):
             return VGroup(linea, Text(texto, font_size=24)).arrange(RIGHT, buff=0.2)
 
         leyenda = VGroup(
-            item(AZUL, "función objetivo"),
-            item(VERDE, "suma de ReLU"),
+            item(AZUL, "target function"),
+            item(VERDE, "sum of ReLUs"),
         ).arrange(DOWN, aligned_edge=LEFT, buff=0.15)
         # zona vacía abajo a la derecha (la curva está cerca de 0 para x > 1.5)
         leyenda.move_to(ejes.c2p(2.0, -1.45))
 
         # contador
         k_val = ValueTracker(1)
-        contador_rot = Text("componentes ReLU:", font_size=28)
+        contador_rot = Text("ReLU components:", font_size=28)
         contador_num = Integer(1, font_size=44, color=VERDE)
         contador = VGroup(contador_rot, contador_num).arrange(RIGHT, buff=0.25)
         contador.to_corner(UR, buff=0.4)
@@ -134,7 +134,7 @@ class E7_AproximacionReLU(EscenaBase):
         # =============================================================
         # Escena 1 · curva objetivo y aproximación inicial
         # =============================================================
-        t1 = titulo("1 · Curva objetivo y aproximación inicial")
+        t1 = titulo("1 · Target curve and initial approximation")
         self.play(FadeIn(t1), Create(ejes), FadeIn(rot_x), run_time=1.2)
         self.play(Create(objetivo), run_time=1.8)
 
@@ -143,7 +143,7 @@ class E7_AproximacionReLU(EscenaBase):
         marcas.add(marca(nodos(K)[0], GRIS))
         self.play(Create(aprox), FadeIn(marcas), run_time=1.5)
         self.play(FadeIn(leyenda), FadeIn(contador))
-        nota = Text("Una sola componente: una recta. No hay curvatura.",
+        nota = Text("One component: a straight line. No curvature.",
                     font_size=26, color=GRIS).to_edge(DOWN, buff=0.3)
         self.play(FadeIn(nota))
         self.pausa(2.0)
@@ -151,10 +151,10 @@ class E7_AproximacionReLU(EscenaBase):
         # =============================================================
         # Escena 2 · añadir componentes ReLU: 2, 4, 8
         # =============================================================
-        t2 = titulo("2 · Añadir componentes ReLU")
+        t2 = titulo("2 · Adding ReLU components")
         self.play(FadeOut(t1), FadeIn(t2), FadeOut(nota))
 
-        nota2 = Text("Cada componente nueva agrega un cambio de pendiente.",
+        nota2 = Text("Each new component adds one change of slope.",
                      font_size=26, color=GRIS).to_edge(DOWN, buff=0.3)
         self.play(FadeIn(nota2))
 
@@ -211,7 +211,7 @@ class E7_AproximacionReLU(EscenaBase):
         # =============================================================
         # Escena 3 · aproximación final (16)
         # =============================================================
-        t3 = titulo("3 · Aproximación final")
+        t3 = titulo("3 · Final approximation")
         self.play(FadeOut(t2), FadeIn(t3), FadeOut(nota2))
         agregar(16, tiempo=2.5)
         self.wait(3.0)  # mantener la imagen
@@ -228,7 +228,7 @@ class E7_AproximacionReLU(EscenaBase):
         self.play(FadeIn(caja), Write(formula), run_time=2.0)
         self.pausa(2.0)
 
-        cierre = Text("La suma de funciones simples puede aproximar una función más compleja.",
+        cierre = Text("A sum of simple functions can approximate a more complex function.",
                       font_size=28, color=TINTA).to_edge(DOWN, buff=0.3)
         self.play(FadeIn(cierre, shift=UP * 0.2))
         self.wait(3.0)

@@ -81,10 +81,10 @@ class E10_GrafoForwardBackward(EscenaBase):
     def construct(self):
         # ----- bloques
         def lineal():
-            return Bloque(T("Lineal", font_size=25, weight=BOLD), 1.5, AZ_FILL, AZ_BORDE)
+            return Bloque(T("Affine", font_size=25, weight=BOLD), 1.5, AZ_FILL, AZ_BORDE)
 
         def nolineal():
-            return Bloque(T("No lineal", font_size=25, weight=BOLD), 1.8, VE_FILL, VE_BORDE)
+            return Bloque(M(r"\phi", font_size=40), 1.8, VE_FILL, VE_BORDE)
 
         L1, N1, L2, N2, L3 = lineal(), nolineal(), lineal(), nolineal(), lineal()
         perdida = Bloque(M(r"L(\hat y, y)", font_size=32), 1.45, NA_FILL, NARANJA)
@@ -120,21 +120,21 @@ class E10_GrafoForwardBackward(EscenaBase):
             br.next_to(g, UP, buff=0.18)
             return VGroup(br, T(texto, font_size=25, weight=BOLD).next_to(br, UP, buff=0.12))
 
-        llaves = VGroup(llave([L1, N1], "Capa oculta 1"), llave([L2, N2], "Capa oculta 2"),
-                        llave([L3], "Salida"), llave([perdida], "Pérdida"))
+        llaves = VGroup(llave([L1, N1], "Hidden layer 1"), llave([L2, N2], "Hidden layer 2"),
+                        llave([L3], "Output"), llave([perdida], "Loss"))
 
         # ecuaciones forward bajo cada bloque
         fwd_tex = [r"z_1 = W_1 x + b_1", r"a_1 = \phi(z_1)", r"z_2 = W_2 a_1 + b_2",
                    r"a_2 = \phi(z_2)", r"\hat y = W_3 a_2 + b_3"]
-        fwd_sub = ["Transformación afín", "Activación", "Transformación afín",
-                   "Activación", "Salida lineal"]
+        fwd_sub = ["Affine map", "Activation", "Affine map",
+                   "Activation", "Linear output"]
         ecs_f = VGroup()
         for b, tx, sb in zip(cadena, fwd_tex, fwd_sub):
             e = M(tx, font_size=31)
             s = T(sb, font_size=17, color=GRIS_TXT)
             ecs_f.add(VGroup(e, s).arrange(DOWN, buff=0.14).next_to(b, DOWN, buff=0.38))
 
-        titulo = T("Forward: calcular y guardar", font_size=30, weight=BOLD).to_corner(UL, buff=0.35)
+        titulo = T("Forward: compute and store", font_size=30, weight=BOLD).to_corner(UL, buff=0.35)
 
         # =============================================================
         # Estructura
@@ -167,7 +167,7 @@ class E10_GrafoForwardBackward(EscenaBase):
                           run_time=0.6, rate_func=linear)
         self.play(FadeOut(pulso), Indicate(perdida, color=NARANJA, scale_factor=1.06))
 
-        nota = T("Se guardan  x, z₁, a₁, z₂, a₂, ŷ  para el backward.", font_size=22, color=GRIS_TXT)
+        nota = T("Stored for backward:  x, z₁, a₁, z₂, a₂, ŷ", font_size=22, color=GRIS_TXT)
         nota.to_edge(DOWN, buff=0.45)
         self.play(FadeIn(nota),
                   LaggedStart(*[Indicate(r, color=AZ_BORDE, scale_factor=1.15) for r in [r_x, *rotulos]],
@@ -177,7 +177,7 @@ class E10_GrafoForwardBackward(EscenaBase):
         # =============================================================
         # Backward
         # =============================================================
-        titulo_b = T("Backward: regla de la cadena, de derecha a izquierda", font_size=30, weight=BOLD,
+        titulo_b = T("Backward: chain rule, right to left", font_size=30, weight=BOLD,
                      color=NARANJA).to_corner(UL, buff=0.35)
         leyenda = M(r"\delta_v \equiv \partial L / \partial v",
                     font_size=32, color=GRIS_TXT).to_corner(UR, buff=0.4)
@@ -252,8 +252,8 @@ class E10_GrafoForwardBackward(EscenaBase):
             self.pausa(0.7)
 
         self.play(FadeOut(pulso))
-        cierre = T("El forward guarda los valores; el backward los reutiliza "
-                   "para obtener todos los gradientes.", font_size=22, color=NAVY)
+        cierre = T("Forward stores the values; backward reuses them "
+                   "to obtain every parameter gradient.", font_size=22, color=NAVY)
         cierre.to_edge(DOWN, buff=0.4)
         self.play(FadeIn(cierre, shift=UP * 0.1),
                   LaggedStart(*[Indicate(c, color=NARANJA, scale_factor=1.05) for c in cajas_param[::-1]],
