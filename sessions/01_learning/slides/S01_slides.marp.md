@@ -134,7 +134,6 @@ The information available **before** making a prediction.
 - sequences
 - signals
 
-<!-- Pending visual: VISUAL — multiple data modalities converging to $x$ -->
 
 ---
 
@@ -152,7 +151,20 @@ $$
 
 The target is combined with the prediction to compute the loss during training.
 
-<!-- Pending visual: VISUAL — input $x$ and target $y$ as an observed pair -->
+
+---
+
+# A model
+
+$$
+f_\theta
+$$
+
+A model is a **parameterized function**.
+
+$$
+x \longrightarrow \boxed{f_\theta} \longrightarrow \hat y
+$$
 
 ---
 
@@ -160,7 +172,7 @@ The target is combined with the prediction to compute the loss during training.
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Model as a parameterized function](../figures/s01_f03_data_model.jpg)
+![bg contain Model as a parameterized function](../figures/s01_f03_data_model.svg)
 
 ---
 
@@ -172,7 +184,6 @@ $$
 
 Inference means using the **current parameters** to produce an output.
 
-<!-- Pending visual: VISUAL — $x \rightarrow f_\theta(x) \rightarrow \hat y$ -->
 
 ---
 
@@ -470,11 +481,31 @@ $$
 
 ---
 
+# Batch, SGD and mini-batch
+
+For a subset $\mathcal B$ of the data:
+
+$$
+J_{\mathcal B}(\theta)
+=
+\frac{1}{|\mathcal B|}
+\sum_{i\in\mathcal B}
+L_i(\theta)
+$$
+
+- **batch:** $\mathcal B=\mathcal D$
+- **SGD:** $|\mathcal B|=1$
+- **mini-batch:** $1<|\mathcal B|<N$
+
+The update uses $g_t=\nabla_\theta J_{\mathcal B_t}(\theta_t)$.
+
+---
+
 <!-- _class: figure -->
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Batch, SGD and mini-batch gradient descent](../figures/s01_f10_batch_strategies.jpg)
+![bg contain Batch, SGD and mini-batch gradient descent](../figures/s01_f10_batch_strategies.svg)
 
 ---
 
@@ -576,7 +607,6 @@ A very simple nonlinear function can become a powerful building block.
 
 A single unit produces a simple piecewise-linear transformation.
 
-<!-- Pending visual: VISUAL — one shifted/scaled ReLU component -->
 
 ---
 
@@ -676,7 +706,6 @@ $$
 
 The forward pass evaluates the composed function.
 
-<!-- Pending visual: VISUAL — values propagating left → right -->
 
 ---
 
@@ -722,7 +751,6 @@ $$
 \frac{\partial a}{\partial w}
 $$
 
-<!-- Pending visual: VISUAL — equation aligned with computational graph -->
 
 ---
 
@@ -765,7 +793,6 @@ $$
 
 The backward pass produces the information required by the optimizer.
 
-<!-- Pending visual: VISUAL — parameter nodes annotated with local gradients -->
 
 ---
 
