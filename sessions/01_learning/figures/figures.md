@@ -12,24 +12,29 @@ White backgrounds, preserved image proportions and the existing course style app
 
 | ID | Current slide(s) | Purpose | Format | Repository file | Status |
 |---|---|---|---|---|---|
-| **S01-F01** | V49 | Full learning loop: forward, loss, backward and parameter update | SVG / PNG | [SVG](s01_f01_learning_loop.svg), [PNG](s01_f01_learning_loop.png) | Included |
+| **S01-F01** | V54 | Full learning loop: forward, loss, backward and parameter update | SVG / PNG | [SVG](s01_f01_learning_loop.svg), [PNG](s01_f01_learning_loop.png) | Included |
 | **S01-F01A** | V02 | Data, model and prediction | PNG | [s01_f01_supervised_learning_data_to_prediction.png](s01_f01_supervised_learning_data_to_prediction.png) | Included |
 | **S01-F02** | V04 | From observed data to a learning problem | PNG | [s01_f02_from_data_to_learning_problem.png](s01_f02_from_data_to_learning_problem.png) | Included |
 | **S01-F03A** | V05 | Training, validation and test partitions | PNG | [s01_f03_dataset_splits.png](s01_f03_dataset_splits.png) | Included |
-| **S01-F04** | V15 | Training versus inference | PNG | [s01_f04_Training vs. Inference Pipeline.png](s01_f04_Training%20vs.%20Inference%20Pipeline.png) | Included |
+| **S01-F04** | V20 | Training versus inference | PNG | [s01_f04_Training vs. Inference Pipeline.png](s01_f04_Training%20vs.%20Inference%20Pipeline.png) | Included |
 | **S01-F05** | V13 | Parameter dependency chain | SVG | [s01_f05_parameter_dependency.svg](s01_f05_parameter_dependency.svg) | Included |
-| **S01-F06** | V18 | Derivative as local slope | SVG | [s01_f06_local_slope.svg](s01_f06_local_slope.svg) | Included |
-| **S01-F07B** | V21 | Learning-rate schedules | PNG | [s01_f12b_Learning Rate Scheduling Strategies.png](s01_f12b_Learning%20Rate%20Scheduling%20Strategies.png) | Included |
-| **S01-F09** | V24 | Optimizer trajectories and illustrative loss curves | PNG | [s01_f12_Optimizer Trajectories and Training Loss Comparison.png](s01_f12_Optimizer%20Trajectories%20and%20Training%20Loss%20Comparison.png) | Included |
-| **S01-F12A** | V33, V34 | Two shifted and scaled ReLU components and their sum | PNG | [s01_f12_two_relu_components.png](s01_f12_two_relu_components.png) | Included |
-| **S01-F12B** | V34 | Progressive approximation by sums of ReLU components | MP4 / Manim | [E7_AproximacionReLU.mp4](E7_AproximacionReLU.mp4) | Included |
-| **S01-F13** | V36 | MLP as function composition | PNG | [s01_f13_MLP Function Composition Diagram.png](s01_f13_MLP%20Function%20Composition%20Diagram.png) | Included |
-| **S01-F13A** | V30 | Input, affine map, tanh and ReLU representations | MP4 / Manim | [E9_EjemploActivaciones.mp4](E9_EjemploActivaciones.mp4) | Included |
-| **S01-F13A-P** | V30 | Static view of the activation example | PNG | [s01_transformation_overview.png](s01_transformation_overview.png) | Poster / static fallback |
-| **S01-F14** | V39, V43 | Forward through linear and nonlinear layers | PNG | [s01_f14_computational_graph_forward.png](s01_f14_computational_graph_forward.png) | Included |
-| **S01-F15** | V42 | Backward through linear and nonlinear layers with equations | PNG | [s01_f15_backward gradients in neural network.png](s01_f15_backward%20gradients%20in%20neural%20network.png) | Included |
-| **S01-F15B** | V43 | Animated forward and backward through the MLP | MP4 / Manim | [E10_GrafoForwardBackward.mp4](E10_GrafoForwardBackward.mp4) | Included |
-| **S01-F16** | V48 | Mathematics and the PyTorch training loop | SVG | [s01_f16_math_pytorch_mapping.svg](s01_f16_math_pytorch_mapping.svg) | Included |
+| **S01-F05A** | V14 | Binary classification: one logit, sigmoid and BCE | JPG | [s01_f05a_binary_logits_sigmoid_bce.jpg](s01_f05a_binary_logits_sigmoid_bce.jpg) | Included |
+| **S01-F05B** | V15 | Typical binary cross-entropy loss curves for y=1 and y=0 | JPG | [s01_f05b_binary_cross_entropy_curves.jpg](s01_f05b_binary_cross_entropy_curves.jpg) | Included |
+| **S01-F05C** | V16 | Multiclass classification: C logits, softmax and cross-entropy | JPG | [s01_f05c_multiclass_logits_softmax_cross_entropy.jpg](s01_f05c_multiclass_logits_softmax_cross_entropy.jpg) | Included |
+| **S01-F05D** | V17 | Cross-entropy intuition: confidence and confident errors | JPG | [s01_f05d_cross_entropy_confidence.jpg](s01_f05d_cross_entropy_confidence.jpg) | Included |
+| **S01-F05E** | V18 | PyTorch inputs for MSELoss, BCEWithLogitsLoss and CrossEntropyLoss | JPG | [s01_f05e_pytorch_loss_expectations.jpg](s01_f05e_pytorch_loss_expectations.jpg) | Included |
+| **S01-F06** | V23 | Derivative as local slope | SVG | [s01_f06_local_slope.svg](s01_f06_local_slope.svg) | Included |
+| **S01-F07B** | V26 | Learning-rate schedules | PNG | [s01_f12b_Learning Rate Scheduling Strategies.png](s01_f12b_Learning%20Rate%20Scheduling%20Strategies.png) | Included |
+| **S01-F09** | V29 | Optimizer trajectories and illustrative loss curves | PNG | [s01_f12_Optimizer Trajectories and Training Loss Comparison.png](s01_f12_Optimizer%20Trajectories%20and%20Training%20Loss%20Comparison.png) | Included |
+| **S01-F12A** | V38, V39 | Two shifted and scaled ReLU components and their sum | PNG | [s01_f12_two_relu_components.png](s01_f12_two_relu_components.png) | Included |
+| **S01-F12B** | V39 | Progressive approximation by sums of ReLU components | MP4 / Manim | [E7_AproximacionReLU.mp4](E7_AproximacionReLU.mp4) | Included |
+| **S01-F13** | V41 | MLP as function composition | PNG | [s01_f13_MLP Function Composition Diagram.png](s01_f13_MLP%20Function%20Composition%20Diagram.png) | Included |
+| **S01-F13A** | V35 | Input, affine map, tanh and ReLU representations | MP4 / Manim | [E9_EjemploActivaciones.mp4](E9_EjemploActivaciones.mp4) | Included |
+| **S01-F13A-P** | V35 | Static view of the activation example | PNG | [s01_transformation_overview.png](s01_transformation_overview.png) | Poster / static fallback |
+| **S01-F14** | V44, V48 | Forward through linear and nonlinear layers | PNG | [s01_f14_computational_graph_forward.png](s01_f14_computational_graph_forward.png) | Included |
+| **S01-F15** | V47 | Backward through linear and nonlinear layers with equations | PNG | [s01_f15_backward gradients in neural network.png](s01_f15_backward%20gradients%20in%20neural%20network.png) | Included |
+| **S01-F15B** | V48 | Animated forward and backward through the MLP | MP4 / Manim | [E10_GrafoForwardBackward.mp4](E10_GrafoForwardBackward.mp4) | Included |
+| **S01-F16** | V53 | Mathematics and the PyTorch training loop | SVG | [s01_f16_math_pytorch_mapping.svg](s01_f16_math_pytorch_mapping.svg) | Included |
 
 The two optimization images retain their existing filenames beginning with `s01_f12`.
 They belong to F07B and F09, respectively. They do not represent ReLU components.
@@ -44,10 +49,10 @@ the slide source, without displaying broken links or production labels to studen
 | ID | Current slide(s) | Purpose | Planned filename | Status |
 |---|---|---|---|---|
 | **S01-F03** | V08 | Model as a parameterized function | `s01_f03_data_model.svg` | TODO |
-| **S01-F07** | V20 | Small, suitable and excessive learning rates | `s01_f07_learning_rates.png` | TODO |
-| **S01-F08** | V22 | Loss surface | `s01_f08_loss_surface.png` | TODO |
-| **S01-F10** | V26 | Batch strategies | `s01_f10_batch_strategies.svg` | TODO |
-| **S01-F11** | V27 | Linear and nonlinear model capacity | `s01_f11_linear_vs_nonlinear.png` | TODO |
+| **S01-F07** | V25 | Small, suitable and excessive learning rates | `s01_f07_learning_rates.png` | TODO |
+| **S01-F08** | V27 | Loss surface | `s01_f08_loss_surface.png` | TODO |
+| **S01-F10** | V31 | Batch strategies | `s01_f10_batch_strategies.svg` | TODO |
+| **S01-F11** | V32 | Linear and nonlinear model capacity | `s01_f11_linear_vs_nonlinear.png` | TODO |
 
 ## Previous versions
 
