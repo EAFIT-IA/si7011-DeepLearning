@@ -24,9 +24,9 @@
 <text x="558" y="278" text-anchor="middle" class="mm">f_theta(x)</text>
 
 <path d="M695 255 H810" class="arrow"/>
-<rect x="730" y="315" width="255" height="70" rx="14" fill="#e6efff"/>
-<text x="858" y="343" text-anchor="middle" class="s">logit z</text>
-<text x="858" y="372" text-anchor="middle" class="s">real-valued score</text>
+<rect x="720" y="355" width="225" height="60" rx="14" fill="#e6efff"/>
+<text x="833" y="380" text-anchor="middle" class="s">logit z</text>
+<text x="833" y="405" text-anchor="middle" class="s">real-valued score</text>
 
 <rect x="835" y="175" width="245" height="160" rx="18" fill="#efe2ff" stroke="#8e5de7" stroke-width="2"/>
 <text x="958" y="220" text-anchor="middle" class="h">Sigmoid</text>
