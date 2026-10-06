@@ -18,11 +18,11 @@ White backgrounds, preserved image proportions and the existing course style app
 | **S01-F03A** | V05 | Training, validation and test partitions | PNG | [s01_f03_dataset_splits.png](s01_f03_dataset_splits.png) | Included |
 | **S01-F04** | V20 | Training versus inference | PNG | [s01_f04_Training vs. Inference Pipeline.png](s01_f04_Training%20vs.%20Inference%20Pipeline.png) | Included |
 | **S01-F05** | V13 | Parameter dependency chain | SVG | [s01_f05_parameter_dependency.svg](s01_f05_parameter_dependency.svg) | Included |
-| **S01-F05A** | V14 | Binary classification: one logit, sigmoid and BCE | JPG | [s01_f05a_binary_logits_sigmoid_bce.jpg](s01_f05a_binary_logits_sigmoid_bce.jpg) | Included |
-| **S01-F05B** | V15 | Typical binary cross-entropy loss curves for y=1 and y=0 | JPG | [s01_f05b_binary_cross_entropy_curves.jpg](s01_f05b_binary_cross_entropy_curves.jpg) | Included |
-| **S01-F05C** | V16 | Multiclass classification: C logits, softmax and cross-entropy | JPG | [s01_f05c_multiclass_logits_softmax_cross_entropy.jpg](s01_f05c_multiclass_logits_softmax_cross_entropy.jpg) | Included |
-| **S01-F05D** | V17 | Cross-entropy intuition: confidence and confident errors | JPG | [s01_f05d_cross_entropy_confidence.jpg](s01_f05d_cross_entropy_confidence.jpg) | Included |
-| **S01-F05E** | V18 | PyTorch inputs for MSELoss, BCEWithLogitsLoss and CrossEntropyLoss | JPG | [s01_f05e_pytorch_loss_expectations.jpg](s01_f05e_pytorch_loss_expectations.jpg) | Included |
+| **S01-F05A** | V14 | Binary classification: one logit, sigmoid and BCE | SVG | [s01_f05a_binary_logits_sigmoid_bce.svg](s01_f05a_binary_logits_sigmoid_bce.svg) | Included |
+| **S01-F05B** | V15 | Typical binary cross-entropy loss curves for y=1 and y=0 | SVG | [s01_f05b_binary_cross_entropy_curves.svg](s01_f05b_binary_cross_entropy_curves.svg) | Included |
+| **S01-F05C** | V16 | Multiclass classification: C logits, softmax and cross-entropy | SVG | [s01_f05c_multiclass_logits_softmax_cross_entropy.svg](s01_f05c_multiclass_logits_softmax_cross_entropy.svg) | Included |
+| **S01-F05D** | V17 | Cross-entropy intuition: confidence and confident errors | SVG | [s01_f05d_cross_entropy_confidence.svg](s01_f05d_cross_entropy_confidence.svg) | Included |
+| **S01-F05E** | V18 | PyTorch inputs for MSELoss, BCEWithLogitsLoss and CrossEntropyLoss | SVG | [s01_f05e_pytorch_loss_expectations.svg](s01_f05e_pytorch_loss_expectations.svg) | Included |
 | **S01-F06** | V23 | Derivative as local slope | SVG | [s01_f06_local_slope.svg](s01_f06_local_slope.svg) | Included |
 | **S01-F07B** | V26 | Learning-rate schedules | PNG | [s01_f12b_Learning Rate Scheduling Strategies.png](s01_f12b_Learning%20Rate%20Scheduling%20Strategies.png) | Included |
 | **S01-F09** | V29 | Optimizer trajectories and illustrative loss curves | PNG | [s01_f12_Optimizer Trajectories and Training Loss Comparison.png](s01_f12_Optimizer%20Trajectories%20and%20Training%20Loss%20Comparison.png) | Included |
