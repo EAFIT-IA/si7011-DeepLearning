@@ -40,8 +40,8 @@ Core mental model:
 
 $$
 x \rightarrow f_\theta(x) \rightarrow \hat y
-\rightarrow \mathcal L
-\rightarrow \nabla_\theta \mathcal L
+\rightarrow L
+\rightarrow \nabla_\theta L
 \rightarrow \theta'
 $$
 
