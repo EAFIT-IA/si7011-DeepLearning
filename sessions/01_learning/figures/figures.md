@@ -51,8 +51,8 @@ the slide source, without displaying broken links or production labels to studen
 
 | ID | Current slide(s) | Purpose | Planned filename | Status |
 |---|---|---|---|---|
-| **S01-F03** | V07 | Model as a parameterized function | `s01_f03_data_model.svg` | TODO |
-| **S01-F10** | V32 | Batch strategies | `s01_f10_batch_strategies.svg` | TODO |
+| **S01-F03** | V07 | Model as a parameterized function | JPG | [s01_f03_data_model.jpg](s01_f03_data_model.jpg) | Included |
+| **S01-F10** | V32 | Batch, SGD and mini-batch gradient estimation | JPG | [s01_f10_batch_strategies.jpg](s01_f10_batch_strategies.jpg) | Included |
 | **S01-F11** | V34 | Linear and nonlinear model capacity | `s01_f11_linear_vs_nonlinear.png` | TODO |
 
 ## Animation sources

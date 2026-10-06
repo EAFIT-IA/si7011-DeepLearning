@@ -156,19 +156,11 @@ The target is combined with the prediction to compute the loss during training.
 
 ---
 
-# A model
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-$$
-f_\theta
-$$
-
-A model is a **parameterized function**.
-
-$$
-x \longrightarrow \boxed{f_\theta} \longrightarrow ?
-$$
-
-<!-- Pending visual: FIGURE S01-F03 — Data → model -->
+![bg contain Model as a parameterized function](../figures/s01_f03_data_model.jpg)
 
 ---
 
@@ -478,25 +470,11 @@ $$
 
 ---
 
-# Batch, SGD and mini-batch
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-For a subset $\mathcal B$:
-
-$$
-J_{\mathcal B}(\theta)
-=
-\frac{1}{|\mathcal B|}
-\sum_{i\in\mathcal B}
-L_i(\theta)
-$$
-
-- **batch:** $\mathcal B=\mathcal D$
-- **SGD:** $|\mathcal B|=1$
-- **mini-batch:** $1<|\mathcal B|<N$
-
-The update uses $g_t=\nabla_\theta J_{\mathcal B_t}(\theta_t)$.
-
-<!-- Pending visual: FIGURE S01-F10 — Batch / SGD / mini-batch -->
+![bg contain Batch, SGD and mini-batch gradient descent](../figures/s01_f10_batch_strategies.jpg)
 
 ---
 
