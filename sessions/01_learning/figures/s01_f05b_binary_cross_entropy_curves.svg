@@ -1,43 +1,41 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-  <rect width="1600" height="900" fill="#ffffff"/>
-  <style>
-    .title{font:700 52px Arial,Helvetica,sans-serif;fill:#102354}
-    .h{font:700 32px Arial,Helvetica,sans-serif;fill:#172033}
-    .t{font:26px Arial,Helvetica,sans-serif;fill:#172033}
-    .s{font:22px Arial,Helvetica,sans-serif;fill:#445064}
-    .m{font:italic 32px Georgia,'Times New Roman',serif;fill:#101820}
-    .mm{font:italic 38px Georgia,'Times New Roman',serif;fill:#101820}
-    .code{font:26px 'Courier New',monospace;fill:#2255cc}
-    .box{stroke-width:2;rx:18;ry:18}
-    .arrow{stroke:#172033;stroke-width:4;fill:none;marker-end:url(#arr)}
-  </style>
-  <defs><marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#172033"/></marker></defs>
-  <text x="800" y="70" text-anchor="middle" class="title">Binary cross-entropy: the typical loss curves</text>
-  
-  <rect x="40" y="105" width="745" height="720" rx="24" fill="#eef6ff"/>
-  <rect x="815" y="105" width="745" height="720" rx="24" fill="#f1fbef"/>
-  <text x="412" y="160" text-anchor="middle" class="h">True label y = 1</text>
-  <text x="1188" y="160" text-anchor="middle" class="h">True label y = 0</text>
-  <text x="412" y="215" text-anchor="middle" class="m">ℓ(p,1) = −log(p)</text>
-  <text x="1188" y="215" text-anchor="middle" class="m">ℓ(p,0) = −log(1−p)</text>
+<rect width="1600" height="900" fill="#ffffff"/>
+<style>
+.title{font:700 52px Arial,Helvetica,sans-serif;fill:#102354}
+.h{font:700 30px Arial,Helvetica,sans-serif;fill:#172033}
+.t{font:24px Arial,Helvetica,sans-serif;fill:#172033}
+.s{font:20px Arial,Helvetica,sans-serif;fill:#445064}
+.m{font:italic 30px Georgia,'Times New Roman',serif;fill:#101820}
+.mm{font:italic 36px Georgia,'Times New Roman',serif;fill:#101820}
+.code{font:25px 'Courier New',monospace;fill:#2255cc}
+.arrow{stroke:#172033;stroke-width:4;fill:none;marker-end:url(#arr)}
+.sep{stroke:#cbd5df;stroke-width:2}
+</style>
+<defs><marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#172033"/></marker></defs>
+<text x="800" y="70" text-anchor="middle" class="title">Binary cross-entropy: the typical loss curves</text>
+<rect x="40" y="105" width="745" height="720" rx="24" fill="#eef6ff"/>
+<rect x="815" y="105" width="745" height="720" rx="24" fill="#f1fbef"/>
 
-  <line x1="140" y1="730" x2="740" y2="730" stroke="#172033" stroke-width="3"/>
-  <line x1="140" y1="730" x2="140" y2="300" stroke="#172033" stroke-width="3"/>
-  <path d="M146.0,334.0 L152.5,397.3 L159.1,433.4 L165.6,458.7 L172.1,478.3 L178.7,494.2 L185.2,507.6 L191.7,519.2 L198.3,529.5 L204.8,538.6 L211.3,546.9 L217.9,554.4 L224.4,561.3 L230.9,567.7 L237.5,573.7 L244.0,579.3 L250.5,584.5 L257.1,589.5 L263.6,594.1 L270.1,598.6 L276.7,602.8 L283.2,606.8 L289.7,610.6 L296.3,614.3 L302.8,617.8 L309.3,621.2 L315.9,624.5 L322.4,627.6 L328.9,630.6 L335.5,633.5 L342.0,636.4 L348.5,639.1 L355.1,641.8 L361.6,644.3 L368.1,646.8 L374.7,649.3 L381.2,651.6 L387.7,653.9 L394.3,656.2 L400.8,658.3 L407.3,660.5 L413.9,662.6 L420.4,664.6 L426.9,666.6 L433.5,668.5 L440.0,670.4 L446.5,672.2 L453.1,674.1 L459.6,675.8 L466.1,677.6 L472.7,679.3 L479.2,681.0 L485.7,682.6 L492.3,684.2 L498.8,685.8 L505.3,687.3 L511.9,688.9 L518.4,690.4 L524.9,691.8 L531.5,693.3 L538.0,694.7 L544.5,696.1 L551.1,697.5 L557.6,698.8 L564.1,700.2 L570.7,701.5 L577.2,702.8 L583.7,704.1 L590.3,705.3 L596.8,706.5 L603.3,707.8 L609.9,709.0 L616.4,710.2 L622.9,711.3 L629.5,712.5 L636.0,713.6 L642.5,714.8 L649.1,715.9 L655.6,717.0 L662.1,718.0 L668.7,719.1 L675.2,720.2 L681.7,721.2 L688.3,722.2 L694.8,723.3 L701.3,724.3 L707.9,725.3 L714.4,726.3 L720.9,727.2 L727.5,728.2 L734.0,729.1" stroke="#1b70df" stroke-width="6" fill="none"/>
-  <text x="440" y="785" text-anchor="middle" class="t">predicted probability p̂</text>
-  <text x="90" y="505" transform="rotate(-90 90 505)" text-anchor="middle" class="t">loss</text>
-  <text x="180" y="355" class="s">p̂ → 0 ⇒ loss → ∞</text>
-  <text x="490" y="680" class="s">p̂ → 1 ⇒ loss → 0</text>
+<text x="412" y="160" text-anchor="middle" class="h">True label y = 1</text>
+<text x="412" y="210" text-anchor="middle" class="m">L(p,1) = -log(p)</text>
+<line x1="140" y1="730" x2="735" y2="730" stroke="#172033" stroke-width="3"/>
+<line x1="140" y1="730" x2="140" y2="300" stroke="#172033" stroke-width="3"/>
+<path d="M145.9,334.0 L151.8,392.7 L157.6,427.3 L163.4,451.9 L169.3,471.0 L175.1,486.6 L180.9,499.8 L186.8,511.3 L192.6,521.4 L198.4,530.4 L204.3,538.6 L210.1,546.1 L215.9,552.9 L221.8,559.3 L227.6,565.2 L233.4,570.8 L239.2,576.0 L245.1,580.9 L250.9,585.5 L256.7,589.9 L262.6,594.1 L268.4,598.1 L274.2,601.9 L280.1,605.6 L285.9,609.1 L291.7,612.5 L297.6,615.7 L303.4,618.9 L309.2,621.9 L315.0,624.8 L320.9,627.6 L326.7,630.3 L332.5,633.0 L338.4,635.5 L344.2,638.0 L350.0,640.4 L355.9,642.8 L361.7,645.1 L367.5,647.3 L373.4,649.5 L379.2,651.6 L385.0,653.7 L390.9,655.7 L396.7,657.7 L402.5,659.6 L408.3,661.5 L414.2,663.4 L420.0,665.2 L425.8,667.0 L431.7,668.7 L437.5,670.4 L443.3,672.1 L449.2,673.7 L455.0,675.3 L460.8,676.9 L466.7,678.4 L472.5,680.0 L478.3,681.4 L484.1,682.9 L490.0,684.4 L495.8,685.8 L501.6,687.2 L507.5,688.6 L513.3,689.9 L519.1,691.2 L525.0,692.6 L530.8,693.8 L536.6,695.1 L542.5,696.4 L548.3,697.6 L554.1,698.8 L560.0,700.0 L565.8,701.2 L571.6,702.4 L577.4,703.5 L583.3,704.7 L589.1,705.8 L594.9,706.9 L600.8,708.0 L606.6,709.1 L612.4,710.2 L618.3,711.2 L624.1,712.3 L629.9,713.3 L635.8,714.3 L641.6,715.3 L647.4,716.3 L653.2,717.3 L659.1,718.3 L664.9,719.2 L670.7,720.2 L676.6,721.1 L682.4,722.0 L688.2,723.0 L694.1,723.9 L699.9,724.8 L705.7,725.7 L711.6,726.5 L717.4,727.4 L723.2,728.3 L729.0,729.1" stroke="#1b70df" stroke-width="6" fill="none"/>
+<text x="435" y="785" text-anchor="middle" class="t">predicted probability p</text>
+<text x="90" y="505" transform="rotate(-90 90 505)" text-anchor="middle" class="t">loss</text>
+<text x="180" y="350" class="s">p near 0: very large loss</text>
+<text x="465" y="680" class="s">p near 1: loss near 0</text>
 
-  <line x1="915" y1="730" x2="1515" y2="730" stroke="#172033" stroke-width="3"/>
-  <line x1="915" y1="730" x2="915" y2="300" stroke="#172033" stroke-width="3"/>
-  <path d="M921.0,729.1 L927.5,728.2 L934.1,727.2 L940.6,726.3 L947.1,725.3 L953.7,724.3 L960.2,723.3 L966.7,722.2 L973.3,721.2 L979.8,720.2 L986.3,719.1 L992.9,718.0 L999.4,717.0 L1005.9,715.9 L1012.5,714.8 L1019.0,713.6 L1025.5,712.5 L1032.1,711.3 L1038.6,710.2 L1045.1,709.0 L1051.7,707.8 L1058.2,706.5 L1064.7,705.3 L1071.3,704.1 L1077.8,702.8 L1084.3,701.5 L1090.9,700.2 L1097.4,698.8 L1103.9,697.5 L1110.5,696.1 L1117.0,694.7 L1123.5,693.3 L1130.1,691.8 L1136.6,690.4 L1143.1,688.9 L1149.7,687.3 L1156.2,685.8 L1162.7,684.2 L1169.3,682.6 L1175.8,681.0 L1182.3,679.3 L1188.9,677.6 L1195.4,675.8 L1201.9,674.1 L1208.5,672.2 L1215.0,670.4 L1221.5,668.5 L1228.1,666.6 L1234.6,664.6 L1241.1,662.6 L1247.7,660.5 L1254.2,658.3 L1260.7,656.2 L1267.3,653.9 L1273.8,651.6 L1280.3,649.3 L1286.9,646.8 L1293.4,644.3 L1299.9,641.8 L1306.5,639.1 L1313.0,636.4 L1319.5,633.5 L1326.1,630.6 L1332.6,627.6 L1339.1,624.5 L1345.7,621.2 L1352.2,617.8 L1358.7,614.3 L1365.3,610.6 L1371.8,606.8 L1378.3,602.8 L1384.9,598.6 L1391.4,594.1 L1397.9,589.5 L1404.5,584.5 L1411.0,579.3 L1417.5,573.7 L1424.1,567.7 L1430.6,561.3 L1437.1,554.4 L1443.7,546.9 L1450.2,538.6 L1456.7,529.5 L1463.3,519.2 L1469.8,507.6 L1476.3,494.2 L1482.9,478.3 L1489.4,458.7 L1495.9,433.4 L1502.5,397.3 L1509.0,334.0" stroke="#ed3b32" stroke-width="6" fill="none"/>
-  <text x="1215" y="785" text-anchor="middle" class="t">predicted probability p̂</text>
-  <text x="865" y="505" transform="rotate(-90 865 505)" text-anchor="middle" class="t">loss</text>
-  <text x="970" y="680" class="s">p̂ → 0 ⇒ loss → 0</text>
-  <text x="1250" y="355" class="s">p̂ → 1 ⇒ loss → ∞</text>
+<text x="1188" y="160" text-anchor="middle" class="h">True label y = 0</text>
+<text x="1188" y="210" text-anchor="middle" class="m">L(p,0) = -log(1-p)</text>
+<line x1="915" y1="730" x2="1510" y2="730" stroke="#172033" stroke-width="3"/>
+<line x1="915" y1="730" x2="915" y2="300" stroke="#172033" stroke-width="3"/>
+<path d="M921.0,729.1 L926.8,728.3 L932.6,727.4 L938.4,726.5 L944.3,725.7 L950.1,724.8 L955.9,723.9 L961.8,723.0 L967.6,722.0 L973.4,721.1 L979.3,720.2 L985.1,719.2 L990.9,718.3 L996.8,717.3 L1002.6,716.3 L1008.4,715.3 L1014.2,714.3 L1020.1,713.3 L1025.9,712.3 L1031.7,711.2 L1037.6,710.2 L1043.4,709.1 L1049.2,708.0 L1055.1,706.9 L1060.9,705.8 L1066.7,704.7 L1072.6,703.5 L1078.4,702.4 L1084.2,701.2 L1090.0,700.0 L1095.9,698.8 L1101.7,697.6 L1107.5,696.4 L1113.4,695.1 L1119.2,693.8 L1125.0,692.6 L1130.9,691.2 L1136.7,689.9 L1142.5,688.6 L1148.4,687.2 L1154.2,685.8 L1160.0,684.4 L1165.9,682.9 L1171.7,681.4 L1177.5,680.0 L1183.3,678.4 L1189.2,676.9 L1195.0,675.3 L1200.8,673.7 L1206.7,672.1 L1212.5,670.4 L1218.3,668.7 L1224.2,667.0 L1230.0,665.2 L1235.8,663.4 L1241.7,661.5 L1247.5,659.6 L1253.3,657.7 L1259.1,655.7 L1265.0,653.7 L1270.8,651.6 L1276.6,649.5 L1282.5,647.3 L1288.3,645.1 L1294.1,642.8 L1300.0,640.4 L1305.8,638.0 L1311.6,635.5 L1317.5,633.0 L1323.3,630.3 L1329.1,627.6 L1335.0,624.8 L1340.8,621.9 L1346.6,618.9 L1352.4,615.7 L1358.3,612.5 L1364.1,609.1 L1369.9,605.6 L1375.8,601.9 L1381.6,598.1 L1387.4,594.1 L1393.3,589.9 L1399.1,585.5 L1404.9,580.9 L1410.8,576.0 L1416.6,570.8 L1422.4,565.2 L1428.2,559.3 L1434.1,552.9 L1439.9,546.1 L1445.7,538.6 L1451.6,530.4 L1457.4,521.4 L1463.2,511.3 L1469.1,499.8 L1474.9,486.6 L1480.7,471.0 L1486.6,451.9 L1492.4,427.3 L1498.2,392.7 L1504.0,334.0" stroke="#ed3b32" stroke-width="6" fill="none"/>
+<text x="1212" y="785" text-anchor="middle" class="t">predicted probability p</text>
+<text x="865" y="505" transform="rotate(-90 865 505)" text-anchor="middle" class="t">loss</text>
+<text x="955" y="680" class="s">p near 0: loss near 0</text>
+<text x="1220" y="350" class="s">p near 1: very large loss</text>
 
-  <rect x="360" y="835" width="880" height="50" rx="18" fill="#f3efff"/>
-  <text x="800" y="870" text-anchor="middle" class="h">Confident wrong predictions receive a very large penalty.</text>
-
+<rect x="360" y="835" width="880" height="50" rx="18" fill="#f3efff"/>
+<text x="800" y="870" text-anchor="middle" class="h">Confident wrong predictions receive a very large penalty.</text>
 </svg>
