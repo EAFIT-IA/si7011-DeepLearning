@@ -1,1 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><rect width="100%" height="100%" fill="white"/><style>.t{font-family:Arial,Helvetica,sans-serif;fill:#172033}.title{font-size:44px;font-weight:700;fill:#153b63}.lbl{font-size:30px}.small{font-size:24px}.math{font-family:"Times New Roman",serif;font-size:34px;font-style:italic;fill:#172033}.accent{fill:#eef6f7;stroke:#146c72;stroke-width:3;rx:16}.back{stroke:#146c72;stroke-width:4;fill:none;marker-end:url(#arrow2)}</style><defs><marker id="arrow2" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#146c72"/></marker></defs><text x="70" y="75" class="t title">S01-F06 — The gradient is local information</text><text x="70" y="125" class="t small">At the current parameter value, the slope tells us how the loss changes nearby.</text><line x1="180" y1="720" x2="1420" y2="720" stroke="#334155" stroke-width="3"/><line x1="180" y1="720" x2="180" y2="190" stroke="#334155" stroke-width="3"/><path d="M220 250 C420 650,700 770,920 610 C1110 470,1210 300,1370 230" fill="none" stroke="#334155" stroke-width="5"/><circle cx="760" cy="685" r="10" fill="#172033"/><text x="735" y="755" class="math">wₜ</text><text x="95" y="230" class="math">L(w)</text><text x="1375" y="755" class="math">w</text><line x1="610" y1="745" x2="910" y2="625" stroke="#146c72" stroke-width="5"/><text x="910" y="590" class="t lbl">tangent</text><text x="930" y="640" class="math">∂L/∂w |₍wₜ₎</text><path d="M760 685 L650 730" class="back"/><text x="430" y="700" class="t small">negative gradient direction</text><rect x="980" y="420" width="410" height="150" class="accent"/><text x="1185" y="475" text-anchor="middle" class="t lbl">Gradient ≠ minimum</text><text x="1185" y="525" text-anchor="middle" class="t small">It only describes the local slope</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<rect width="1600" height="900" fill="#ffffff"/>
+<style>
+.title{font:700 48px Arial,Helvetica,sans-serif;fill:#153b63}
+.h{font:700 30px Arial,Helvetica,sans-serif;fill:#172033}
+.t{font:25px Arial,Helvetica,sans-serif;fill:#172033}
+.s{font:21px Arial,Helvetica,sans-serif;fill:#4b596b}
+.m{font:italic 30px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#172033}
+.mm{font:italic 36px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#172033}
+.code{font:24px 'Courier New',monospace;fill:#2255cc}
+.arrow{stroke:#334155;stroke-width:4;fill:none;marker-end:url(#arr)}
+.dash{stroke:#8895a7;stroke-width:2;stroke-dasharray:8 8}
+</style>
+<defs>
+<marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#334155"/></marker>
+<marker id="tealarr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#146c72"/></marker>
+</defs>
+<text x="800" y="70" text-anchor="middle" class="title">The derivative is local information</text>
+<text x="800" y="118" text-anchor="middle" class="s">At the current parameter value, the local slope tells us how the loss changes nearby.</text>
+<line x1="175" y1="735" x2="1430" y2="735" stroke="#334155" stroke-width="3"/>
+<line x1="175" y1="735" x2="175" y2="175" stroke="#334155" stroke-width="3"/>
+<text x="1405" y="780" class="m">w</text>
+<text x="85" y="215" class="m">L(w)</text>
+
+<!-- convex loss with minimum near 980; current point clearly left of minimum -->
+<path d="M230 220 C430 400,620 555,820 650 C920 698,1010 710,1100 675 C1210 635,1300 520,1380 330" fill="none" stroke="#334155" stroke-width="5"/>
+<circle cx="620" cy="555" r="11" fill="#172033"/>
+<line x1="430" y1="415" x2="815" y2="700" stroke="#146c72" stroke-width="5"/>
+<text x="420" y="380" class="h" fill="#146c72">tangent at w<tspan baseline-shift="sub" font-size="18">t</tspan></text>
+<text x="455" y="455" class="m">dL/dw &lt; 0</text>
+
+<line x1="620" y1="735" x2="620" y2="570" stroke="#8895a7" stroke-width="2" stroke-dasharray="7 7"/>
+<text x="595" y="785" class="m">w<tspan baseline-shift="sub" font-size="20">t</tspan></text>
+
+<!-- horizontal parameter-space direction -->
+<line x1="620" y1="825" x2="820" y2="825" stroke="#146c72" stroke-width="5" marker-end="url(#tealarr)"/>
+<text x="720" y="865" text-anchor="middle" class="s">negative-gradient direction in parameter space</text>
+
+<rect x="980" y="210" width="430" height="150" rx="20" fill="#eef6f7" stroke="#146c72" stroke-width="2"/>
+<text x="1195" y="265" text-anchor="middle" class="h">Local, not global</text>
+<text x="1195" y="310" text-anchor="middle" class="t">The derivative does not tell us</text>
+<text x="1195" y="345" text-anchor="middle" class="t">where the minimum is.</text>
+</svg>

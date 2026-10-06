@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<rect width="1600" height="900" fill="#ffffff"/>
+<style>
+.title{font:700 48px Arial,Helvetica,sans-serif;fill:#153b63}
+.h{font:700 30px Arial,Helvetica,sans-serif;fill:#172033}
+.t{font:25px Arial,Helvetica,sans-serif;fill:#172033}
+.s{font:21px Arial,Helvetica,sans-serif;fill:#4b596b}
+.m{font:italic 30px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#172033}
+.mm{font:italic 36px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#172033}
+.code{font:24px 'Courier New',monospace;fill:#2255cc}
+.arrow{stroke:#334155;stroke-width:4;fill:none;marker-end:url(#arr)}
+.dash{stroke:#8895a7;stroke-width:2;stroke-dasharray:8 8}
+</style>
+<defs>
+<marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#334155"/></marker>
+<marker id="tealarr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#146c72"/></marker>
+</defs>
+<text x="800" y="70" text-anchor="middle" class="title">Training, validation and test sets</text>
+<text x="800" y="118" text-anchor="middle" class="s">One dataset, three disjoint subsets with different roles</text>
+
+<rect x="95" y="180" width="1410" height="155" rx="22" fill="#f8fafc" stroke="#9aa8b8" stroke-width="2"/>
+<text x="135" y="225" class="h">Observed dataset D</text>
+<g font-family="Arial" font-size="22" text-anchor="middle">
+<rect x="218" y="250" width="64" height="54" rx="12" fill="#cfe2ff" stroke="#6b7d91"/><text x="250" y="284" fill="#172033">1</text><rect x="318" y="250" width="64" height="54" rx="12" fill="#dff2d8" stroke="#6b7d91"/><text x="350" y="284" fill="#172033">2</text><rect x="418" y="250" width="64" height="54" rx="12" fill="#ffe6cc" stroke="#6b7d91"/><text x="450" y="284" fill="#172033">3</text><rect x="518" y="250" width="64" height="54" rx="12" fill="#eadcff" stroke="#6b7d91"/><text x="550" y="284" fill="#172033">4</text><rect x="618" y="250" width="64" height="54" rx="12" fill="#cfe2ff" stroke="#6b7d91"/><text x="650" y="284" fill="#172033">5</text><rect x="718" y="250" width="64" height="54" rx="12" fill="#dff2d8" stroke="#6b7d91"/><text x="750" y="284" fill="#172033">6</text><rect x="818" y="250" width="64" height="54" rx="12" fill="#ffe6cc" stroke="#6b7d91"/><text x="850" y="284" fill="#172033">7</text><rect x="918" y="250" width="64" height="54" rx="12" fill="#eadcff" stroke="#6b7d91"/><text x="950" y="284" fill="#172033">8</text><rect x="1018" y="250" width="64" height="54" rx="12" fill="#cfe2ff" stroke="#6b7d91"/><text x="1050" y="284" fill="#172033">9</text><rect x="1118" y="250" width="64" height="54" rx="12" fill="#dff2d8" stroke="#6b7d91"/><text x="1150" y="284" fill="#172033">10</text><rect x="1218" y="250" width="64" height="54" rx="12" fill="#ffe6cc" stroke="#6b7d91"/><text x="1250" y="284" fill="#172033">11</text><rect x="1318" y="250" width="64" height="54" rx="12" fill="#eadcff" stroke="#6b7d91"/><text x="1350" y="284" fill="#172033">12</text>
+</g>
+
+<path d="M520 335 C470 390,360 405,330 455" class="arrow"/>
+<path d="M800 335 L800 455" class="arrow"/>
+<path d="M1080 335 C1130 390,1240 405,1270 455" class="arrow"/>
+
+<rect x="70" y="470" width="470" height="285" rx="24" fill="#edf6ff" stroke="#4285f4" stroke-width="2"/>
+<text x="305" y="520" text-anchor="middle" class="h">Training set</text>
+<text x="305" y="555" text-anchor="middle" class="s">fit model parameters</text>
+<g font-family="Arial" font-size="22" text-anchor="middle">
+<rect x="115" y="582" width="60" height="50" rx="10" fill="#d7e9ff" stroke="#4285f4"/><text x="145" y="617" fill="#172033">1</text><rect x="220" y="582" width="60" height="50" rx="10" fill="#d7e9ff" stroke="#4285f4"/><text x="250" y="617" fill="#172033">2</text><rect x="325" y="582" width="60" height="50" rx="10" fill="#d7e9ff" stroke="#4285f4"/><text x="355" y="617" fill="#172033">3</text><rect x="430" y="582" width="60" height="50" rx="10" fill="#d7e9ff" stroke="#4285f4"/><text x="460" y="617" fill="#172033">4</text><rect x="115" y="667" width="60" height="50" rx="10" fill="#d7e9ff" stroke="#4285f4"/><text x="145" y="702" fill="#172033">5</text><rect x="220" y="667" width="60" height="50" rx="10" fill="#d7e9ff" stroke="#4285f4"/><text x="250" y="702" fill="#172033">6</text><rect x="325" y="667" width="60" height="50" rx="10" fill="#d7e9ff" stroke="#4285f4"/><text x="355" y="702" fill="#172033">7</text>
+</g>
+
+<rect x="565" y="470" width="470" height="285" rx="24" fill="#f2fbef" stroke="#65a844" stroke-width="2"/>
+<text x="800" y="520" text-anchor="middle" class="h">Validation set</text>
+<text x="800" y="555" text-anchor="middle" class="s">choose hyperparameters / checkpoints</text>
+<g font-family="Arial" font-size="22" text-anchor="middle">
+<rect x="715" y="597" width="60" height="50" rx="10" fill="#e1f5dd" stroke="#65a844"/><text x="745" y="632" fill="#172033">8</text><rect x="825" y="597" width="60" height="50" rx="10" fill="#e1f5dd" stroke="#65a844"/><text x="855" y="632" fill="#172033">9</text>
+</g>
+
+<rect x="1060" y="470" width="470" height="285" rx="24" fill="#fff6eb" stroke="#d38b33" stroke-width="2"/>
+<text x="1295" y="520" text-anchor="middle" class="h">Test set</text>
+<text x="1295" y="555" text-anchor="middle" class="s">estimate final performance once</text>
+<g font-family="Arial" font-size="22" text-anchor="middle">
+<rect x="1155" y="597" width="60" height="50" rx="10" fill="#ffead4" stroke="#d38b33"/><text x="1185" y="632" fill="#172033">10</text><rect x="1260" y="597" width="60" height="50" rx="10" fill="#ffead4" stroke="#d38b33"/><text x="1290" y="632" fill="#172033">11</text><rect x="1365" y="597" width="60" height="50" rx="10" fill="#ffead4" stroke="#d38b33"/><text x="1395" y="632" fill="#172033">12</text>
+</g>
+
+<rect x="480" y="790" width="640" height="70" rx="18" fill="#f3efff"/>
+<text x="800" y="834" text-anchor="middle" class="h">No example appears in more than one split.</text>
+</svg>

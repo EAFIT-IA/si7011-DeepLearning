@@ -125,7 +125,7 @@ We start from **observed examples**, not from explicit rules.
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Training, validation and test sets](../figures/s01_f03_dataset_splits.png)
+![bg contain Training, validation and test sets](../figures/s01_f03a_dataset_splits.svg)
 
 ---
 
@@ -305,7 +305,7 @@ $$
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Training versus inference](../figures/s01_f04_Training%20vs.%20Inference%20Pipeline.png)
+![bg contain Training versus inference](../figures/s01_f04_training_vs_inference.svg)
 
 ---
 
@@ -379,7 +379,7 @@ What changes if the step is:
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Learning rate scheduling strategies](../figures/s01_f12b_Learning%20Rate%20Scheduling%20Strategies.png)
+![bg contain Learning rate scheduling strategies](../figures/s01_f07b_learning_rate_schedules.svg)
 
 ---
 
@@ -417,7 +417,7 @@ Training moves through the parameter space.
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Optimizer trajectories and training loss comparison](../figures/s01_f12_Optimizer%20Trajectories%20and%20Training%20Loss%20Comparison.png)
+![bg contain Optimizer trajectories and training loss comparison](../figures/s01_f09_optimizer_trajectories.svg)
 
 ---
 

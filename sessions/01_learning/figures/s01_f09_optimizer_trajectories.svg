@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<rect width="1600" height="900" fill="#ffffff"/>
+<style>
+.title{font:700 48px Arial,Helvetica,sans-serif;fill:#153b63}
+.h{font:700 30px Arial,Helvetica,sans-serif;fill:#172033}
+.t{font:25px Arial,Helvetica,sans-serif;fill:#172033}
+.s{font:21px Arial,Helvetica,sans-serif;fill:#4b596b}
+.m{font:italic 30px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#172033}
+.mm{font:italic 36px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#172033}
+.code{font:24px 'Courier New',monospace;fill:#2255cc}
+.arrow{stroke:#334155;stroke-width:4;fill:none;marker-end:url(#arr)}
+.dash{stroke:#8895a7;stroke-width:2;stroke-dasharray:8 8}
+</style>
+<defs>
+<marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#334155"/></marker>
+<marker id="tealarr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#146c72"/></marker>
+</defs>
+<text x="800" y="70" text-anchor="middle" class="title">Optimizer trajectories on an ill-conditioned loss surface</text>
+<text x="800" y="115" text-anchor="middle" class="s">Same elongated quadratic valley in every panel; paths are schematic and illustrate update behavior.</text>
+
+<rect x="55" y="155" width="320" height="625" rx="22" fill="#f8fafc" stroke="#b4c0cc"/><text x="215" y="205" text-anchor="middle" class="h">SGD</text><rect x="445" y="155" width="320" height="625" rx="22" fill="#f8fafc" stroke="#b4c0cc"/><text x="605" y="205" text-anchor="middle" class="h">Momentum</text><rect x="835" y="155" width="320" height="625" rx="22" fill="#f8fafc" stroke="#b4c0cc"/><text x="995" y="205" text-anchor="middle" class="h">RMSProp</text><rect x="1225" y="155" width="320" height="625" rx="22" fill="#f8fafc" stroke="#b4c0cc"/><text x="1385" y="205" text-anchor="middle" class="h">Adam</text>
+
+<!-- function to draw elongated contours approximated by ellipses -->
+<ellipse cx="215" cy="495" transform="rotate(-42 215 495)" rx="215" ry="81.7" fill="none" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="215" cy="495" transform="rotate(-42 215 495)" rx="185" ry="70.3" fill="none" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="215" cy="495" transform="rotate(-42 215 495)" rx="155" ry="58.9" fill="none" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="215" cy="495" transform="rotate(-42 215 495)" rx="125" ry="47.5" fill="none" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="215" cy="495" transform="rotate(-42 215 495)" rx="95" ry="36.1" fill="none" stroke="#9ec5fe" stroke-width="2"/>
+<ellipse cx="605" cy="495" transform="rotate(-42 605 495)" rx="215" ry="81.7" fill="none" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="605" cy="495" transform="rotate(-42 605 495)" rx="185" ry="70.3" fill="none" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="605" cy="495" transform="rotate(-42 605 495)" rx="155" ry="58.9" fill="none" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="605" cy="495" transform="rotate(-42 605 495)" rx="125" ry="47.5" fill="none" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="605" cy="495" transform="rotate(-42 605 495)" rx="95" ry="36.1" fill="none" stroke="#9ec5fe" stroke-width="2"/>
+<ellipse cx="995" cy="495" transform="rotate(-42 995 495)" rx="215" ry="81.7" fill="none" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="995" cy="495" transform="rotate(-42 995 495)" rx="185" ry="70.3" fill="none" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="995" cy="495" transform="rotate(-42 995 495)" rx="155" ry="58.9" fill="none" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="995" cy="495" transform="rotate(-42 995 495)" rx="125" ry="47.5" fill="none" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="995" cy="495" transform="rotate(-42 995 495)" rx="95" ry="36.1" fill="none" stroke="#9ec5fe" stroke-width="2"/>
+<ellipse cx="1385" cy="495" transform="rotate(-42 1385 495)" rx="215" ry="81.7" fill="none" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="1385" cy="495" transform="rotate(-42 1385 495)" rx="185" ry="70.3" fill="none" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="1385" cy="495" transform="rotate(-42 1385 495)" rx="155" ry="58.9" fill="none" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="1385" cy="495" transform="rotate(-42 1385 495)" rx="125" ry="47.5" fill="none" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="1385" cy="495" transform="rotate(-42 1385 495)" rx="95" ry="36.1" fill="none" stroke="#9ec5fe" stroke-width="2"/>
+
+<!-- rotate contour groups conceptually via diagonal valley axis line -->
+<line x1="85" y1="650" x2="345" y2="340" stroke="#c3ccd6" stroke-width="2"/>
+<line x1="475" y1="650" x2="735" y2="340" stroke="#c3ccd6" stroke-width="2"/>
+<line x1="865" y1="650" x2="1125" y2="340" stroke="#c3ccd6" stroke-width="2"/>
+<line x1="1255" y1="650" x2="1515" y2="340" stroke="#c3ccd6" stroke-width="2"/>
+
+<!-- SGD zigzag -->
+<polyline points="105,345 330,620 135,400 300,585 165,438 270,555 190,465 245,525 215,495" fill="none" stroke="#1b70df" stroke-width="5"/>
+<circle cx="105" cy="345" r="7" fill="#1b70df"/><circle cx="215" cy="495" r="8" fill="#172033"/>
+<text x="215" y="735" text-anchor="middle" class="s">oscillates across the steep direction</text>
+
+<!-- Momentum smoother overshoot -->
+<polyline points="495,345 690,605 560,445 650,545 590,475 625,520 605,495" fill="none" stroke="#ed7d31" stroke-width="5"/>
+<circle cx="495" cy="345" r="7" fill="#ed7d31"/><circle cx="605" cy="495" r="8" fill="#172033"/>
+<text x="605" y="735" text-anchor="middle" class="s">accumulates velocity along the valley</text>
+
+<!-- RMSProp coordinate-normalized -->
+<polyline points="885,345 930,390 960,425 980,455 990,478 995,495" fill="none" stroke="#6f42c1" stroke-width="5"/>
+<circle cx="885" cy="345" r="7" fill="#6f42c1"/><circle cx="995" cy="495" r="8" fill="#172033"/>
+<text x="995" y="735" text-anchor="middle" class="s">rescales steps using recent squared gradients</text>
+
+<!-- Adam smooth adaptive + momentum -->
+<polyline points="1275,345 1325,390 1360,430 1380,462 1386,485 1385,495" fill="none" stroke="#2a9d8f" stroke-width="5"/>
+<circle cx="1275" cy="345" r="7" fill="#2a9d8f"/><circle cx="1385" cy="495" r="8" fill="#172033"/>
+<text x="1385" y="735" text-anchor="middle" class="s">combines momentum and adaptive scaling</text>
+</svg>
