@@ -256,7 +256,7 @@ $$
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Binary classification: logits, sigmoid and binary cross-entropy](../figures/s01_f05a_binary_logits_sigmoid_bce.jpg)
+![bg contain Binary classification: logits, sigmoid and binary cross-entropy](../figures/s01_f05a_binary_logits_sigmoid_bce.svg)
 
 ---
 
@@ -264,7 +264,7 @@ $$
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Binary cross-entropy loss curves](../figures/s01_f05b_binary_cross_entropy_curves.jpg)
+![bg contain Binary cross-entropy loss curves](../figures/s01_f05b_binary_cross_entropy_curves.svg)
 
 ---
 
@@ -272,7 +272,7 @@ $$
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Multiclass classification: logits, softmax and cross-entropy](../figures/s01_f05c_multiclass_logits_softmax_cross_entropy.jpg)
+![bg contain Multiclass classification: logits, softmax and cross-entropy](../figures/s01_f05c_multiclass_logits_softmax_cross_entropy.svg)
 
 ---
 
@@ -280,7 +280,7 @@ $$
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Cross-entropy intuition: confidence matters](../figures/s01_f05d_cross_entropy_confidence.jpg)
+![bg contain Cross-entropy intuition: confidence matters](../figures/s01_f05d_cross_entropy_confidence.svg)
 
 ---
 
@@ -288,7 +288,7 @@ $$
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain What the loss function expects in PyTorch](../figures/s01_f05e_pytorch_loss_expectations.jpg)
+![bg contain What the loss function expects in PyTorch](../figures/s01_f05e_pytorch_loss_expectations.svg)
 
 ---
 
