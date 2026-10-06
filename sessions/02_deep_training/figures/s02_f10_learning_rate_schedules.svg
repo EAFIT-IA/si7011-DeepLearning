@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<rect width="1600" height="900" fill="#ffffff"/>
+<style>
+.title{font:700 48px Arial,Helvetica,sans-serif;fill:#153b63}
+.h{font:700 30px Arial,Helvetica,sans-serif;fill:#172033}
+.t{font:25px Arial,Helvetica,sans-serif;fill:#172033}
+.s{font:21px Arial,Helvetica,sans-serif;fill:#4b596b}
+.m{font:italic 30px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#172033}
+.mm{font:italic 36px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#172033}
+.code{font:24px 'Courier New',monospace;fill:#2255cc}
+.arrow{stroke:#334155;stroke-width:4;fill:none;marker-end:url(#arr)}
+.dash{stroke:#8895a7;stroke-width:2;stroke-dasharray:8 8}
+</style>
+<defs>
+<marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#334155"/></marker>
+<marker id="tealarr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#146c72"/></marker>
+</defs>
+<text x="800" y="70" text-anchor="middle" class="title">Learning-rate scheduling strategies</text>
+<text x="800" y="115" text-anchor="middle" class="s">All panels use the same vertical scale: log10(learning rate).</text>
+
+<!-- panel frames -->
+<rect x="55" y="160" width="470" height="615" rx="22" fill="#f8fafc" stroke="#b4c0cc"/>
+<rect x="565" y="160" width="470" height="615" rx="22" fill="#f8fafc" stroke="#b4c0cc"/>
+<rect x="1075" y="160" width="470" height="615" rx="22" fill="#f8fafc" stroke="#b4c0cc"/>
+<text x="290" y="210" text-anchor="middle" class="h">Step decay</text>
+<text x="800" y="210" text-anchor="middle" class="h">Exponential decay</text>
+<text x="1310" y="210" text-anchor="middle" class="h">Cosine with restarts</text>
+
+<!-- axes 1 -->
+<line x1="115" y1="650" x2="480" y2="650" stroke="#334155" stroke-width="2"/>
+<line x1="115" y1="650" x2="115" y2="270" stroke="#334155" stroke-width="2"/>
+<path d="M130 310 H235 V405 H340 V505 H465 V595" fill="none" stroke="#1b70df" stroke-width="6"/>
+<text x="290" y="700" text-anchor="middle" class="s">iteration t</text>
+<text x="82" y="460" transform="rotate(-90 82 460)" text-anchor="middle" class="s">log10(η)</text>
+<text x="290" y="735" text-anchor="middle" class="s">η<tspan baseline-shift="sub" font-size="14">t</tspan> = η<tspan baseline-shift="sub" font-size="14">0</tspan> γ<tspan baseline-shift="super" font-size="14">floor(t/T)</tspan></text>
+
+<!-- axes 2 -->
+<line x1="625" y1="650" x2="990" y2="650" stroke="#334155" stroke-width="2"/>
+<line x1="625" y1="650" x2="625" y2="270" stroke="#334155" stroke-width="2"/>
+<line x1="650" y1="315" x2="965" y2="600" stroke="#ed7d31" stroke-width="6"/>
+<text x="800" y="700" text-anchor="middle" class="s">iteration t</text>
+<text x="592" y="460" transform="rotate(-90 592 460)" text-anchor="middle" class="s">log10(η)</text>
+<text x="800" y="735" text-anchor="middle" class="s">η<tspan baseline-shift="sub" font-size="14">t</tspan> = η<tspan baseline-shift="sub" font-size="14">0</tspan> exp(-k t)</text>
+
+<!-- axes 3 -->
+<line x1="1135" y1="650" x2="1500" y2="650" stroke="#334155" stroke-width="2"/>
+<line x1="1135" y1="650" x2="1135" y2="270" stroke="#334155" stroke-width="2"/>
+<path d="M1150 310 C1190 320,1240 390,1260 590 M1260 310 C1300 320,1350 390,1370 590 M1370 310 C1410 320,1460 390,1480 590" fill="none" stroke="#6f42c1" stroke-width="6"/>
+<line x1="1260" y1="590" x2="1260" y2="310" stroke="#6f42c1" stroke-width="3" stroke-dasharray="7 7"/>
+<line x1="1370" y1="590" x2="1370" y2="310" stroke="#6f42c1" stroke-width="3" stroke-dasharray="7 7"/>
+<text x="1310" y="700" text-anchor="middle" class="s">iteration t</text>
+<text x="1102" y="460" transform="rotate(-90 1102 460)" text-anchor="middle" class="s">log10(η)</text>
+<text x="1310" y="730" text-anchor="middle" class="s">τ = (t mod T) / T</text>
+<text x="1310" y="758" text-anchor="middle" class="s">η<tspan baseline-shift="sub" font-size="14">t</tspan> = η<tspan baseline-shift="sub" font-size="14">min</tspan> + 1/2(η<tspan baseline-shift="sub" font-size="14">max</tspan>-η<tspan baseline-shift="sub" font-size="14">min</tspan>)(1+cos(π τ))</text>
+
+<rect x="430" y="810" width="740" height="55" rx="16" fill="#eef6f7"/>
+<text x="800" y="846" text-anchor="middle" class="t">On a log scale, exponential decay is a straight line.</text>
+</svg>
