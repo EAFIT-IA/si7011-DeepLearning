@@ -233,10 +233,10 @@ Backpropagation traverses the graph in reverse.
 For many layers, gradients are repeatedly transformed:
 
 $$
-\frac{\partial \mathcal L}{\partial h^{(l)}}
+\frac{\partial L}{\partial h^{(l)}}
 =
 \frac{\partial h^{(l+1)}}{\partial h^{(l)}}
-\frac{\partial \mathcal L}{\partial h^{(l+1)}}
+\frac{\partial L}{\partial h^{(l+1)}}
 $$
 
 The chain rule becomes a long product of local effects.
@@ -251,7 +251,7 @@ If gradients vanish:
 
 $$
 \left\lVert
-\frac{\partial \mathcal L}{\partial W^{(l)}}
+\frac{\partial L}{\partial W^{(l)}}
 \right\rVert
 \approx 0
 $$
@@ -412,10 +412,17 @@ Now we compare update dynamics.
 Mini-batch gradients estimate the dataset gradient.
 
 $$
+J_{\mathcal B_t}(\theta)
+=
+\frac{1}{|\mathcal B_t|}
+\sum_{i\in\mathcal B_t}L_i(\theta)
+
+$
+
+$
 g_t
 =
-\nabla_\theta
-\mathcal L_{\mathcal B_t}(\theta_t)
+\nabla_\theta J_{\mathcal B_t}(\theta_t)
 $$
 
 $$
@@ -469,9 +476,8 @@ $$
 
 Each parameter receives an adaptive step.
 
-<div class="placeholder">
-<strong>S02-F09</strong><br>
-SGD, Momentum and Adam update geometry on the same surface.
+<div class="center">
+<img src="../figures/s02_f09_optimizer_trajectories.svg" style="width:92%;max-height:330px;object-fit:contain;" alt="Optimizer trajectories on an ill-conditioned objective">
 </div>
 
 ---
@@ -492,9 +498,8 @@ Common patterns:
 - exponential decay;
 - cosine annealing.
 
-<div class="placeholder">
-<strong>S02-F10</strong><br>
-Fixed, step, exponential and cosine learning-rate schedules.
+<div class="center">
+<img src="../figures/s02_f10_learning_rate_schedules.svg" style="width:92%;max-height:330px;object-fit:contain;" alt="Learning-rate schedules">
 </div>
 
 ---
@@ -567,9 +572,9 @@ Training loss alone is not enough.
 We care about performance on unseen data:
 
 $$
-\mathcal L_\text{train}
+L_\text{train}
 \qquad
-\mathcal L_\text{val}
+L_\text{val}
 $$
 
 <div class="placeholder">
@@ -584,9 +589,9 @@ Underfitting, healthy fitting and overfitting in train/validation curves.
 Weight decay discourages large weights:
 
 $$
-\mathcal L_\text{total}
+L_\text{total}
 =
-\mathcal L_\text{data}
+L_\text{data}
 +
 \lambda
 \lVert \theta \rVert_2^2
@@ -710,9 +715,9 @@ A training run should produce more than accuracy.
 Track:
 
 $$
-\mathcal L_\text{train},
+L_\text{train},
 \quad
-\mathcal L_\text{val},
+L_\text{val},
 \quad
 \|\nabla W^{(l)}\|,
 \quad
