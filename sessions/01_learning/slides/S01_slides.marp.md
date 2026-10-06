@@ -563,7 +563,7 @@ A hidden layer learns an **intermediate representation**.
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain MLP as a composition of affine maps and activations](../figures/s01_f13_MLP%20Function%20Composition%20Diagram.png)
+![bg contain MLP as a composition of affine maps and activations](../figures/s01_f13_mlp_composition.svg)
 
 ---
 
@@ -611,7 +611,7 @@ $$
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Forward pass through linear and nonlinear layers](../figures/s01_f14_computational_graph_forward.png)
+![bg contain Forward pass through linear and nonlinear layers](../figures/s01_f14_computational_graph_forward.svg)
 
 ---
 
@@ -647,7 +647,7 @@ The same graph is traversed in the opposite direction to propagate gradients.
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Backpropagation through linear and nonlinear layers with local equations](../figures/s01_f15_backward%20gradients%20in%20neural%20network.png)
+![bg contain Backpropagation through linear and nonlinear layers with local equations](../figures/s01_f15_backward_gradients.svg)
 
 
 
