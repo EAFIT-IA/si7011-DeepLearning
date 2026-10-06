@@ -87,7 +87,7 @@ footer: SI7011 — Deep Learning
 $$
 x \longrightarrow f_\theta(x) \longrightarrow \hat y
 \longrightarrow L
-\longrightarrow \nabla_\theta
+\longrightarrow \nabla_\theta L
 \longrightarrow \theta'
 $$
 
@@ -460,13 +460,13 @@ h=W_1x+b_1
 $$
 
 $$
-y=W_2h+b_2
+\hat y=W_2h+b_2
 $$
 
 Therefore:
 
 $$
-y=W_2W_1x+W_2b_1+b_2
+\hat y=W_2W_1x+W_2b_1+b_2
 $$
 
 Several linear layers can collapse into a single affine transformation.
@@ -684,7 +684,7 @@ The backward pass produces the information required by the optimizer.
 
 | Backpropagation | Optimizer |
 |---|---|
-| computes $\nabla_\theta L$ | uses $\nabla_\theta L$ |
+| computes $\nabla_\theta J_{\mathcal B}$ | uses $\nabla_\theta J_{\mathcal B}$ |
 | differentiates the graph | updates the parameters |
 
 $$

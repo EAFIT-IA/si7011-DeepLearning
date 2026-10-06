@@ -27,7 +27,7 @@
 <path d="M695 255 H810" class="arrow"/>
 <rect x="720" y="355" width="225" height="60" rx="14" fill="#e6efff"/>
 <text x="833" y="380" text-anchor="middle" class="s">logit z</text>
-<text x="833" y="405" text-anchor="middle" class="s">z ∈ R</text>
+<text x="833" y="405" text-anchor="middle" class="s">z ∈ <tspan font-style="normal" font-weight="bold">R</tspan></text>
 
 <rect x="835" y="175" width="245" height="160" rx="18" fill="#efe2ff" stroke="#8e5de7" stroke-width="2"/>
 <text x="958" y="220" text-anchor="middle" class="h">Sigmoid</text>

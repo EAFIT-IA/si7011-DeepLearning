@@ -22,8 +22,8 @@
 
 <rect x="40" y="160" width="1520" height="175" rx="22" fill="#edf6ff"/>
 <text x="70" y="220" class="h">Regression</text>
-<text x="425" y="240" class="m">ŷ ∈ R</text>
-<text x="720" y="240" class="m">y ∈ R</text>
+<text x="425" y="240" class="m">ŷ ∈ <tspan font-style="normal" font-weight="bold">R</tspan></text>
+<text x="720" y="240" class="m">y ∈ <tspan font-style="normal" font-weight="bold">R</tspan></text>
 <text x="980" y="240" class="code">nn.MSELoss</text>
 <rect x="1295" y="190" width="235" height="115" rx="16" fill="#ffffff" stroke="#b8d2f3"/>
 <text x="1315" y="230" class="s">output: (B,) or (B,1)</text>
@@ -33,7 +33,7 @@
 <rect x="40" y="360" width="1520" height="205" rx="22" fill="#f2fbef"/>
 <text x="70" y="420" class="h">Binary</text>
 <text x="70" y="455" class="h">classification</text>
-<text x="425" y="430" class="m">z ∈ R</text>
+<text x="425" y="430" class="m">z ∈ <tspan font-style="normal" font-weight="bold">R</tspan></text>
 <text x="425" y="475" class="s">p̂ = σ(z)</text>
 <text x="720" y="440" class="m">y ∈ {0,1}</text>
 <text x="980" y="440" class="code">nn.BCEWithLogitsLoss</text>
@@ -46,7 +46,7 @@
 <rect x="40" y="590" width="1520" height="205" rx="22" fill="#f3efff"/>
 <text x="70" y="650" class="h">Multiclass</text>
 <text x="70" y="685" class="h">classification</text>
-<text x="425" y="655" class="m">z ∈ R<tspan baseline-shift="super" font-size="18">C</tspan></text>
+<text x="425" y="655" class="m">z ∈ <tspan font-style="normal" font-weight="bold">R</tspan><tspan baseline-shift="super" font-size="18">C</tspan></text>
 <text x="425" y="710" class="s">p = softmax(z)</text>
 <text x="720" y="670" class="m">y ∈ {0,...,C-1}</text>
 <text x="980" y="670" class="code">nn.CrossEntropyLoss</text>

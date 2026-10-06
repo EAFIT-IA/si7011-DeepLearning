@@ -27,7 +27,7 @@
 <path d="M645 255 H735" class="arrow"/>
 <rect x="745" y="155" width="210" height="200" rx="18" fill="#eef3ff" stroke="#77a6ff" stroke-width="2"/>
 <text x="850" y="195" text-anchor="middle" class="h">C logits</text>
-<text x="850" y="238" text-anchor="middle" class="s">z ∈ R<tspan baseline-shift="super" font-size="14">C</tspan></text>
+<text x="850" y="238" text-anchor="middle" class="s">z ∈ <tspan font-style="normal" font-weight="bold">R</tspan><tspan baseline-shift="super" font-size="14">C</tspan></text>
 <text x="850" y="275" text-anchor="middle" class="m">z<tspan baseline-shift="sub" font-size="20">1</tspan>, ... , z<tspan baseline-shift="sub" font-size="20">c</tspan></text>
 
 <path d="M955 255 H1040" class="arrow"/>
