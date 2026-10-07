@@ -30,7 +30,7 @@ Slide numbers refer to the current `../slides/S02_slides.marp.md`.
 | S02-F23 | BatchNorm versus LayerNorm: which axis is normalized | done |
 | S02-F24 | Label-preserving data augmentation | done |
 | S02-F01 | Correction: typo and logo fixed; script 𝒥 remains (optional regeneration) | done |
-| S02-F02 | Correction: std(x) label and consistent numbers | **pending** |
+| S02-F02 | Correction: std(x) label and consistent numbers | done |
 | S02-F04 | Correction: backward direction and notation | **pending** |
 | S02-F07 | Correction: Xavier variance, tanh vs ReLU | **pending** |
 
@@ -323,7 +323,7 @@ Keep the current two-panel layout (left: "Single learning loop (shallow model)" 
 
 **Check:** no "Updsle"; no script J; no logo.
 
-## S02-F02 · Signal propagation through depth — correction (slide 10)
+## S02-F02 · Signal propagation through depth — correction (done)
 
 File: `s02_f02_signal_propagation.png`
 
