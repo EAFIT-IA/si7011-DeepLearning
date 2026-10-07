@@ -518,6 +518,8 @@ Initialization and activation must be considered together.
 
 # Practice A — Inspect a deep MLP
 
+[Open notebook](../notebooks/sesion_02_practica_a_senal_profundidad.ipynb)
+
 The goal is not accuracy yet.
 
 The goal is to measure, layer by layer:
@@ -1122,6 +1124,8 @@ Cheap tests that catch most bugs before a long run:
 ---
 
 # Practice B — Build a robust training recipe
+
+[Open notebook](../notebooks/sesion_02_practica_b_receta_mlflow.ipynb) · Forest Covertype (581k rows, 7 classes) · every run logged to **MLflow**
 
 Start from a deep MLP baseline.
 
