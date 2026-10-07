@@ -37,7 +37,7 @@ Pending figures are HTML comments in the slide source (`<!-- Pending figure: ...
 | **S02-F19** | V71 | Map from symptoms to measurements and training interventions | `s02_f19_training_diagnostics_map.png` | PNG | Included |
 | **S02-F20** | V75 | Integrated view of mechanisms that make deep training possible | `s02_f20_deep_training_summary.png` | PNG | Included |
 | **S02-F21** | V20 | ReLU, Leaky ReLU and GELU with derivatives; dead region highlighted | `s02_f21_relu_variants.png` | PNG | Included |
-| **S02-F22** | V35 | Gradient-estimate spread versus batch size around the full-batch gradient | `s02_f22_batch_size_noise.png` | PNG | Included |
+| **S02-F22** | V35 | Gradient-estimate spread versus batch size around the full-batch gradient | `s02_f22_batch_size_noise.png` | PNG (matplotlib, `make_s02_f22_batch_size_noise.py`) | Included |
 | **S02-F23** | V51 | BatchNorm versus LayerNorm: normalized axis of the (batch × features) tensor | `s02_f23_batchnorm_vs_layernorm.png` | PNG | Included |
 | **S02-F24** | V61 | One image and several label-preserving augmentations | `s02_f24_data_augmentation.png` | PNG | TODO |
 | **S02-F25** | V07 | Deep MLP forward pass with example activations and softmax output | `s02_f25_deep_mlp_forward.png` | PNG | Included — notation differs from deck |
