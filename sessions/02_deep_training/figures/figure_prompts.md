@@ -26,7 +26,7 @@ Slide numbers refer to the current `../slides/S02_slides.marp.md`.
 | S02-F17 | Residual block | done |
 | S02-F19 | Training diagnostics map | done |
 | S02-F20 | Why deep training works: integrated view | done |
-| S02-F22 | Mini-batch gradient noise versus batch size | **pending** |
+| S02-F22 | Mini-batch gradient noise versus batch size | done |
 | S02-F23 | BatchNorm versus LayerNorm: which axis is normalized | done |
 | S02-F24 | Label-preserving data augmentation | **pending** |
 
@@ -245,7 +245,7 @@ Do not print the numbers 1–6; they only fix the order.
 
 ---
 
-## S02-F22 · Mini-batch gradient noise versus batch size (slide 34)
+## S02-F22 · Mini-batch gradient noise versus batch size (done)
 
 File: `s02_f22_batch_size_noise.png`
 
@@ -283,7 +283,7 @@ Both grids exactly the same size and position height; only the highlighted direc
 
 ---
 
-## S02-F24 · Label-preserving data augmentation (slide 60)
+## S02-F24 · Label-preserving data augmentation (slide 61)
 
 File: `s02_f24_data_augmentation.png`
 

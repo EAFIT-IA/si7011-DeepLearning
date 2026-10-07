@@ -591,7 +591,14 @@ $$
 - a larger batch costs more per step but allows a larger $\eta$ (usually with warmup)
 - returns diminish: past some size, more examples per step barely help
 
-<!-- Pending figure: S02-F22 — Gradient-estimate spread versus batch size around the full-batch gradient. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Mini-batch gradients scatter around the full-batch gradient; the spread halves each time the batch grows 4x](../figures/s02_f22_batch_size_noise.png)
 
 ---
 
