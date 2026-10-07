@@ -406,7 +406,14 @@ They also receive the same gradient.
 
 So they remain identical.
 
-<!-- Pending figure: S02-F06 — Symmetry problem when hidden units share identical initialization. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Identical versus random initialization: the symmetry problem](../figures/s02_f06_initialization_symmetry.png)
 
 ---
 
