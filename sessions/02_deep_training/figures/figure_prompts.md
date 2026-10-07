@@ -31,7 +31,7 @@ Slide numbers refer to the current `../slides/S02_slides.marp.md`.
 | S02-F24 | Label-preserving data augmentation | done |
 | S02-F01 | Correction: typo and logo fixed; script 𝒥 remains (optional regeneration) | done |
 | S02-F02 | Correction: std(x) label and consistent numbers | done |
-| S02-F04 | Correction: backward direction and notation | **pending** |
+| S02-F04 | Correction: backward direction and notation | done |
 | S02-F07 | Correction: Xavier variance, tanh vs ReLU | **pending** |
 
 ## Common style block (prepend to every prompt)
@@ -337,7 +337,7 @@ Keep the current layout: top band with the network and $a_l=\mathrm{ReLU}(W_l a_
 
 **Check:** the He row shows the same number (0.82) in all four layers; the input column says std(x).
 
-## S02-F04 · Gradient norm through depth — correction (slide 16)
+## S02-F04 · Gradient norm through depth — correction (done)
 
 File: `s02_f04_gradient_norm_depth.png`
 
