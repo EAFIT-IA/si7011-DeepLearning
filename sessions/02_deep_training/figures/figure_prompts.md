@@ -21,7 +21,7 @@ Slide numbers refer to the current `../slides/S02_slides.marp.md`.
 | S02-F12 | BatchNorm in training versus evaluation mode | done |
 | S02-F13 | Underfitting, healthy fit, overfitting | done |
 | S02-F14 | Effect of weight decay | done |
-| S02-F15 | Dropout as stochastic subnetworks | **regenerate** |
+| S02-F15 | Dropout as stochastic subnetworks | done |
 | S02-F16 | Depth degradation in plain networks | **regenerate** |
 | S02-F17 | Residual block | done |
 | S02-F19 | Training diagnostics map | done |
@@ -145,9 +145,8 @@ Small formula at the bottom left: $J_\lambda(\theta) = J(\theta) + \lambda \lVer
 
 ---
 
-## S02-F15 · Dropout as stochastic subnetworks (slide 56)
+## S02-F15 · Dropout as stochastic subnetworks (done)
 
-> **Regenerate — issues in the previous version:** bottom banner text is clipped at both edges and the right column header "inference (`model.eval()`)" is cut at the right edge. Keep all text at least 60 px inside the canvas; shorten the banner or wrap it in two lines.
 
 File: `s02_f15_dropout_subnetworks.png`
 
@@ -165,8 +164,10 @@ Formulas under the divider:
 
 ---
 
-## S02-F16 · Depth degradation in plain networks (slide 60)
+## S02-F16 · Depth degradation in plain networks (slide 61)
 
+> **Regenerate — keep this concept.** A later attempt replaced it with "loss versus depth, plain vs residual" curves: do not do that (it anticipates the residual slides, its data look measured and the rising validation loss reads as overfitting). Draw exactly the two panels below, error versus iterations, 20-layer vs 56-layer plain.
+>
 > **Regenerate — issues in the previous version:** bottom banner text is clipped at both edges; the legend is split across the two panels. Shorten the banner (e.g. "Deeper plain nets could learn identity layers, but gradient descent does not find that solution."), keep it inside the canvas, and use one shared legend centered above or below both panels.
 
 File: `s02_f16_depth_degradation.png`
@@ -220,7 +221,7 @@ Above the map, a thin gray strip: "Before a long run: initial loss ≈ ln C · o
 
 ---
 
-## S02-F20 · Why deep training works: integrated view (slide 70)
+## S02-F20 · Why deep training works: integrated view (slide 71)
 
 > **Regenerate — issues in the previous version:** callout texts overflow their boxes and overlap each other (activations / normalization, optimizer / regularization); numbering is out of order; leader lines cross the network and each other. Use a cleaner layout: the network in a single band, five numbered callouts 1–5 in reading order, each box wide enough for its text, and short non-crossing leader lines. Use distinct numbers for normalization and regularization (or one box "4 normalization & regularization").
 

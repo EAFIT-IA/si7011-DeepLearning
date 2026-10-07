@@ -940,7 +940,14 @@ The network cannot rely on a single fixed path through hidden units.
 
 <span class="small">`nn.Dropout(p)`: $p$ is the probability of **dropping** a unit.</span>
 
-<!-- Pending figure: S02-F15 — Dropout as stochastic subnetworks during training. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Dropout: a new random mask each training step; full network at inference](../figures/s02_f15_dropout_subnetworks.png)
 
 ---
 
