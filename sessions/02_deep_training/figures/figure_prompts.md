@@ -25,7 +25,7 @@ Slide numbers refer to the current `../slides/S02_slides.marp.md`.
 | S02-F16 | Depth degradation in plain networks | done |
 | S02-F17 | Residual block | done |
 | S02-F19 | Training diagnostics map | done |
-| S02-F20 | Why deep training works: integrated view | **regenerate** |
+| S02-F20 | Why deep training works: integrated view | done |
 
 ## Common style block (prepend to every prompt)
 
@@ -217,9 +217,8 @@ Above the map, a thin gray strip: "Before a long run: initial loss ≈ ln C · o
 
 ---
 
-## S02-F20 · Why deep training works: integrated view (slide 72)
+## S02-F20 · Why deep training works: integrated view (done)
 
-> **Regenerate — issues in the previous version:** callout texts overflowed their boxes and overlapped; part numbers were out of order; leader lines crossed the network and each other. This version uses **no numbers** and a fixed six-box layout.
 
 File: `s02_f20_deep_training_summary.png`
 

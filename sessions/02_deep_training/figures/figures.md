@@ -10,7 +10,7 @@ Pending figures are HTML comments in the slide source (`<!-- Pending figure: ...
 
 ## Deck structure
 
-73 slides in five parts, each opened by a divider slide that recaps the previous part.
+74 slides in five parts, each opened by a divider slide that recaps the previous part.
 
 ## Planned figures
 
@@ -35,7 +35,7 @@ Pending figures are HTML comments in the slide source (`<!-- Pending figure: ...
 | **S02-F17** | V64 | Residual block: transformation path plus identity path | `s02_f17_residual_block.png` | PNG | Included |
 | **S02-F18** | V66 | Gradient flow through the identity path in a residual block | `s02_f18_residual_gradient_path.png` | PNG | Covered by S02-A03 |
 | **S02-F19** | V69 | Map from symptoms to measurements and training interventions | `s02_f19_training_diagnostics_map.png` | PNG | Included |
-| **S02-F20** | V72 | Integrated view of mechanisms that make deep training possible | `s02_f20_deep_training_summary.png` | PNG | TODO |
+| **S02-F20** | V73 | Integrated view of mechanisms that make deep training possible | `s02_f20_deep_training_summary.png` | PNG | Included |
 | **S02-F21** | V20 | ReLU, Leaky ReLU and GELU with derivatives; dead region highlighted | `s02_f21_relu_variants.png` | PNG | Included |
 | **S02-F22** | V34 | Gradient-estimate spread versus batch size around the full-batch gradient | `s02_f22_batch_size_noise.svg` | SVG / plot | Deferred — not in current production backlog |
 | **S02-F23** | V49 | BatchNorm versus LayerNorm: normalized axis of the (batch × features) tensor | `s02_f23_batchnorm_vs_layernorm.svg` | SVG | Deferred — not in current production backlog |
@@ -53,7 +53,7 @@ Pending figures are HTML comments in the slide source (`<!-- Pending figure: ...
 
 The 12 figures still to produce are:
 
-**S02-F20.**
+None. All backlog figures are integrated.
 
 F22–F24 remain documented in the deck but are outside the current figure-production backlog.
 

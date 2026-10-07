@@ -1179,7 +1179,14 @@ $$
 
 </div>
 
-<!-- Pending figure: S02-F20 — Integrated view of mechanisms that make deep training possible. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Where each mechanism acts in a deep network: initialization, activations, residual paths, normalization, optimizer, regularization](../figures/s02_f20_deep_training_summary.png)
 
 ---
 
