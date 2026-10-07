@@ -26,6 +26,9 @@ Slide numbers refer to the current `../slides/S02_slides.marp.md`.
 | S02-F17 | Residual block | done |
 | S02-F19 | Training diagnostics map | done |
 | S02-F20 | Why deep training works: integrated view | done |
+| S02-F22 | Mini-batch gradient noise versus batch size | **pending** |
+| S02-F23 | BatchNorm versus LayerNorm: which axis is normalized | **pending** |
+| S02-F24 | Label-preserving data augmentation | **pending** |
 
 ## Common style block (prepend to every prompt)
 
@@ -239,3 +242,60 @@ Below the network, left to right:
 Do not print the numbers 1–6; they only fix the order.
 
 **Bottom banner (inside the canvas, max two lines):** "No single trick makes deep networks trainable: each mechanism fixes one way the signal or the optimization can fail."
+
+---
+
+## S02-F22 · Mini-batch gradient noise versus batch size (slide 34)
+
+File: `s02_f22_batch_size_noise.png`
+
+Three square panels side by side, same scale, each a 2-D parameter-space view. Panel headers: "$|\mathcal B| = 4$", "$|\mathcal B| = 16$", "$|\mathcal B| = 64$".
+
+In every panel:
+- a thick **navy arrow** from a common origin dot, labeled $\nabla_\theta J$ ("full-batch gradient"; write the words only in the first panel), identical in all three panels;
+- about 40 thin semi-transparent **blue arrows** from the same origin: mini-batch gradients $g_t$, scattered around the navy arrow;
+- a dashed **orange ellipse** around the arrow tips, centered on the tip of the navy arrow.
+
+The spread halves from one panel to the next: the ellipse in panel 2 is **half** the size of panel 1, and panel 3 is half of panel 2 (each panel has 4× the batch). The center of the cloud always stays on the navy arrow tip (unbiased).
+
+Under each panel a small label: panel 1 "std ∝ 1/√4 = 0.50", panel 2 "std ∝ 1/√16 = 0.25", panel 3 "std ∝ 1/√64 = 0.125".
+
+**Bottom banner:** "Same expected direction, less noise: 4× the batch halves the standard deviation, at 4× the cost per step."
+
+**Check:** ellipse sizes in ratio 1 : 1/2 : 1/4; navy arrow identical in the three panels; no σ symbol anywhere.
+
+---
+
+## S02-F23 · BatchNorm versus LayerNorm: which axis is normalized (slide 49)
+
+File: `s02_f23_batchnorm_vs_layernorm.png`
+
+Two identical grids side by side, each 6 rows × 8 columns of small square cells representing the pre-activation matrix $Z$ of a mini-batch. In both grids: rows labeled on the left "example $i$" with a vertical arrow and the word "batch"; columns labeled on top "feature $k$" with a horizontal arrow and the word "features"; light gray cell fill.
+
+1. **Left grid, header "BatchNorm":** one full **column** highlighted in blue (all 6 cells), with a blue bracket along it labeled "$\mu_k,\ s_k^2$ over the batch". Small caption under the grid: "one mean and variance per **feature** · depends on the batch · running averages at inference".
+2. **Right grid, header "LayerNorm":** one full **row** highlighted in teal (all 8 cells), with a teal bracket along it labeled "$\mu_i,\ s_i^2$ over the features". Small caption under the grid: "one mean and variance per **example** · same in training and inference · works with batch size 1".
+
+Both grids exactly the same size and position height; only the highlighted direction differs.
+
+**Bottom banner:** "Same formula $\gamma\odot\hat z+\beta$; BatchNorm averages down a column, LayerNorm across a row."
+
+**Check:** BatchNorm = vertical (column, across examples); LayerNorm = horizontal (row, across features). Do not swap them.
+
+---
+
+## S02-F24 · Label-preserving data augmentation (slide 59)
+
+File: `s02_f24_data_augmentation.png`
+
+Top row: one original image on the left, a simple flat illustration of a **cat** sitting (not a photo, no real brand or character), labeled "original $x_i$ · label: cat". An arrow labeled "$T\sim\mathcal T$" fans out to five transformed versions of the same cat, each with a small caption and the same label "cat":
+1. "random crop" (zoomed-in, partly cropped),
+2. "horizontal flip" (mirrored),
+3. "color jitter" (shifted hue and brightness),
+4. "small rotation" (about 15°),
+5. "noise" (light grain).
+
+Bottom row, a separate small panel with a light red border, header "the transformation must not change the label": a handwritten-style digit **"6"** → arrow "rotate 180°" → a digit that now reads **"9"**, with a red ✗ and the caption "label changed: not a valid augmentation for digits".
+
+**Bottom banner:** "Augmentation encodes invariances we know in advance: every $T(x_i)$ keeps the label $y_i$."
+
+**Check:** all five augmented cats are clearly the same cat and keep the label "cat"; the 6 → 9 example is marked invalid.
