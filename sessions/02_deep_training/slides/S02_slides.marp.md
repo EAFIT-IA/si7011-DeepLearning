@@ -834,7 +834,14 @@ $$
 - works with batch size 1 and with sequences of different lengths;
 - the standard choice in Transformers (S05).
 
-<!-- Pending figure: S02-F23 — BatchNorm versus LayerNorm: which axis of the (batch × features) tensor is normalized. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain BatchNorm normalizes a column across the batch; LayerNorm normalizes a row across features](../figures/s02_f23_batchnorm_vs_layernorm.png)
 
 ---
 

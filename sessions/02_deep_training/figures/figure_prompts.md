@@ -27,7 +27,7 @@ Slide numbers refer to the current `../slides/S02_slides.marp.md`.
 | S02-F19 | Training diagnostics map | done |
 | S02-F20 | Why deep training works: integrated view | done |
 | S02-F22 | Mini-batch gradient noise versus batch size | **pending** |
-| S02-F23 | BatchNorm versus LayerNorm: which axis is normalized | **pending** |
+| S02-F23 | BatchNorm versus LayerNorm: which axis is normalized | done |
 | S02-F24 | Label-preserving data augmentation | **pending** |
 
 ## Common style block (prepend to every prompt)
@@ -266,7 +266,7 @@ Under each panel a small label: panel 1 "std ∝ 1/√4 = 0.50", panel 2 "std �
 
 ---
 
-## S02-F23 · BatchNorm versus LayerNorm: which axis is normalized (slide 49)
+## S02-F23 · BatchNorm versus LayerNorm: which axis is normalized (done)
 
 File: `s02_f23_batchnorm_vs_layernorm.png`
 
@@ -283,7 +283,7 @@ Both grids exactly the same size and position height; only the highlighted direc
 
 ---
 
-## S02-F24 · Label-preserving data augmentation (slide 59)
+## S02-F24 · Label-preserving data augmentation (slide 60)
 
 File: `s02_f24_data_augmentation.png`
 
