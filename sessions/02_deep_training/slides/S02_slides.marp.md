@@ -225,7 +225,14 @@ a_2
 a_D
 $$
 
-<!-- Pending figure: S02-F02 — Activation distributions propagating through many layers. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Activation distributions through 30 ReLU layers for three initialization scales](../figures/s02_f02_signal_propagation.png)
 
 ---
 
