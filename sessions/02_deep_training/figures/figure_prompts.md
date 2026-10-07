@@ -29,6 +29,10 @@ Slide numbers refer to the current `../slides/S02_slides.marp.md`.
 | S02-F22 | Mini-batch gradient noise versus batch size | done |
 | S02-F23 | BatchNorm versus LayerNorm: which axis is normalized | done |
 | S02-F24 | Label-preserving data augmentation | done |
+| S02-F01 | Correction: typo, plain J, no logo | **pending** |
+| S02-F02 | Correction: std(x) label and consistent numbers | **pending** |
+| S02-F04 | Correction: backward direction and notation | **pending** |
+| S02-F07 | Correction: Xavier variance, tanh vs ReLU | **pending** |
 
 ## Common style block (prepend to every prompt)
 
@@ -299,3 +303,67 @@ Bottom row, a separate small panel with a light red border, header "the transfor
 **Bottom banner:** "Augmentation encodes invariances we know in advance: every $T(x_i)$ keeps the label $y_i$."
 
 **Check:** all five augmented cats are clearly the same cat and keep the label "cat"; the 6 → 9 example is marked invalid.
+
+---
+
+# Corrections to figures already in the deck
+
+These four figures are in the deck but contain content errors. Regenerate each one **keeping its layout**, and change only what is listed. Same file name, PNG, 1672 × 941.
+
+## S02-F01 · From the learning loop to deep training — correction (slide 4)
+
+File: `s02_f01_learning_to_deep_training.png`
+
+Keep the current two-panel layout (left: "Single learning loop (shallow model)" cycle; right: "Same loop, deep trainable system" with the deep network, the four-step strip and the three bottom boxes), the code box and the bottom banner. Fix:
+
+1. Typo: the purple box in the right panel must read **"Update"**, not "Updsle".
+2. Objective symbol: use a plain italic **$J$** everywhere (boxes "Loss $J$", "$J(\hat y, y)$", "$\nabla_\theta J$", "$\theta \leftarrow \theta - \eta\nabla_\theta J$"), never a script $\mathcal J$.
+3. Replace the PyTorch flame logo with the plain word "PyTorch" in navy text (no logos).
+4. In the code box keep exactly: `optimizer.zero_grad()`, `y_hat = model(x)`, `J = loss_fn(y_hat, y)`, `J.backward()`, `optimizer.step()`.
+
+**Check:** no "Updsle"; no script J; no logo.
+
+## S02-F02 · Signal propagation through depth — correction (slide 10)
+
+File: `s02_f02_signal_propagation.png`
+
+Keep the current layout: top band with the network and $a_l=\mathrm{ReLU}(W_l a_{l-1})$, $(W_l)_{ij}\sim\mathcal N(0,\,c\cdot 2/n_\text{in})$; a 3 × 5 grid of histograms (rows $c=0.5$, $c=1$ (He), $c=2$; columns input $x$, layer 1, layer 5, layer 10, layer 30); right-side labels; bottom banner. Fix the numbers so they follow $\operatorname{std}(a_l)\approx 0.82\,c^{l/2}$:
+
+1. Input column: label every input histogram **"std(x) = 1.0"** (not std($a_l$)).
+2. Row $c=0.5$: layer 1 "std($a_l$) = 0.58", layer 5 "0.15", layer 10 "0.026", layer 30 "2.5 · 10⁻⁵". x-axis ranges: [0, 2], [0, 0.5], [0, 0.1], [0, 10⁻⁴].
+3. Row $c=1$ (He): **all four layers "std($a_l$) = 0.82"**, identical histograms, x-axis [0, 3] in every panel (scale preserved).
+4. Row $c=2$: layer 1 "1.2", layer 5 "4.7", layer 10 "26", layer 30 "2.7 · 10⁴". x-axis ranges: [0, 4], [0, 15], [0, 80], [0, 10⁵].
+5. ReLU histograms: a tall bar at 0 (half the units are exactly 0) and a decaying right tail; input histograms stay Gaussian on [−3, 3].
+
+**Check:** the He row shows the same number (0.82) in all four layers; the input column says std(x).
+
+## S02-F04 · Gradient norm through depth — correction (slide 16)
+
+File: `s02_f04_gradient_norm_depth.png`
+
+Keep the three-panel layout ("Vanishing gradients", "Stable gradients", "Exploding gradients"), the small network sketch with a red arrow "backward signal (backpropagation)" pointing **from output to input**, and the bottom banner. Fix the notation and the direction:
+
+1. Layer labels under each network: $l = 0$ (input), 1, 2, …, $D-1$, $D$ (output). Use **$D$** for depth, never $L$.
+2. Tag under each sketch: "$\lVert\partial a_l/\partial a_{l-1}\rVert < 1$ on average", "$\approx 1$", "$> 1$". Do not use $J^{(l)}$ (J is the objective in this course).
+3. Plot y-axis label: **"$\lVert\delta_{a_l}\rVert$"** (backward signal at layer $l$), log scale 10⁻⁸ to 10²; x-axis "layer $l$" from 0 to 30 with **$D = 30$ at the right end**.
+4. The backward signal starts at the output ($l=D=30$) with norm ≈ 1, then travels left:
+   - **Vanishing:** curve ≈ 10⁰ at $l=30$ and **decreases toward the left**, reaching ≈ 10⁻⁸ at $l=0$.
+   - **Stable:** flat ≈ 10⁰ across all layers.
+   - **Exploding:** curve ≈ 10⁰ at $l=30$ and **increases toward the left**, reaching ≈ 10² at $l=0$.
+5. Add a small gray arrow under each x-axis pointing left: "backward direction".
+
+**Check:** in every panel the norm is ≈ 1 at the right end ($l=D$); vanishing is smallest at $l=0$, exploding is largest at $l=0$. No $h^{(l)}$, no $L$ for depth.
+
+## S02-F07 · Initialization compared through variance — correction (slide 29)
+
+File: `s02_f07_initialization_variance.png`
+
+Keep the three-column layout (header box, small network sketch, four small histograms "layer 0, 1, 10, 50", activation-variance plot, gradient-variance plot; x-axis "layer $l$" 0–50, log y-axis). Fix:
+
+1. **Column 1 header:** "Small initialization · ReLU", formula $W\sim\mathcal N(0,\,0.01^2)$, small gray note "$n_\text{in}=256$: variance × 0.013 per layer". Both curves fall by about two orders of magnitude **per layer** and hit the bottom of the plot (10⁻¹²) by layer 6; the histograms collapse to a spike at 0 from layer 1 on.
+2. **Column 2 header:** "Xavier (Glorot) · tanh", formula $W\sim\mathcal N\!\left(0,\,\dfrac{2}{n_\text{in}+n_\text{out}}\right)$. Curves approximately flat near 10⁰ (slight decay allowed). Histograms: bounded in (−1, 1), symmetric (tanh outputs).
+3. **Column 3 header:** "He (Kaiming) · ReLU", formula $W\sim\mathcal N\!\left(0,\,\dfrac{2}{n_\text{in}}\right)$. Curves flat near 10⁰. Histograms: ReLU shape, tall bar at 0 and a right tail, same width at layers 1, 10, 50.
+4. Y-axis ticks: 10⁻¹², 10⁻⁸, 10⁻⁴, 10⁰ on all plots (no repeated tick labels such as two "10⁻²").
+5. Small gray banner under the columns: "Match the initialization to the activation: Xavier for tanh, He for ReLU."
+
+**Check:** Xavier formula is $2/(n_\text{in}+n_\text{out})$ and its column says tanh; He column says ReLU; small-init curves collapse within a few layers.
