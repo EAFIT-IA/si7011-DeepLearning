@@ -1,7 +1,31 @@
 # S02 — Image-generator prompts for pending figures
 
-Prompts for the ten figures still pending in Session 02. Paste the **common style block** first, then the figure's prompt.
-Slide numbers refer to the current `S02_slides.marp.md`.
+## Instructions for the image-generation agent
+
+1. Work on **one figure at a time**, in the order of the status table below. Only generate figures marked **pending**.
+2. For each figure, build the full prompt as: **common style block** + the figure's section.
+3. Deliver one image per figure: **PNG, 16:9, 1672 × 941 px**, named exactly as the `File:` line of its section.
+   Do not deliver JPG (earlier JPGs arrived truncated).
+4. Before delivering, check the image against the **review checklist** and the figure's own "Check" line.
+   If any label, number or symbol differs from the prompt, regenerate.
+5. Do not edit the slides or `figures.md`; the course maintainer integrates each image after review.
+
+Slide numbers refer to the current `../slides/S02_slides.marp.md`.
+
+## Status
+
+| Figure | Concept | Status |
+|---|---|---|
+| S02-F06 | Symmetry problem with identical initialization | done |
+| S02-F11 | BatchNorm: normalize, then learn scale and shift | **pending** |
+| S02-F12 | BatchNorm in training versus evaluation mode | **pending** |
+| S02-F13 | Underfitting, healthy fit, overfitting | **pending** |
+| S02-F14 | Effect of weight decay | **pending** |
+| S02-F15 | Dropout as stochastic subnetworks | **pending** |
+| S02-F16 | Depth degradation in plain networks | **pending** |
+| S02-F17 | Residual block | **pending** |
+| S02-F19 | Training diagnostics map | **pending** |
+| S02-F20 | Why deep training works: integrated view | **pending** |
 
 ## Common style block (prepend to every prompt)
 
@@ -11,7 +35,7 @@ Slide numbers refer to the current `S02_slides.marp.md`.
 >
 > Palette: blue #1f6fb4, teal #167d78, orange #d9631e, red #c0392b, gray #8a94a3, navy text #14213d.
 
-## Checklist for every returned image
+## Review checklist (every image)
 
 - Opens correctly and is 16:9 (PNG preferred; avoid JPG).
 - No title inside the image; no production codes such as "S02-F11".
@@ -20,7 +44,7 @@ Slide numbers refer to the current `S02_slides.marp.md`.
 
 ---
 
-## S02-F06 · Symmetry problem with identical initialization (slide 23)
+## S02-F06 · Symmetry problem with identical initialization (done, slide 24)
 
 File: `s02_f06_initialization_symmetry.png`
 
@@ -42,27 +66,37 @@ A small looping arrow beside the rows with the text "every step: the two units s
 
 ---
 
-## S02-F11 · BatchNorm: normalize, then learn scale and shift (slide 43)
+## S02-F11 · BatchNorm: normalize, then learn scale and shift (slide 44)
 
 File: `s02_f11_batchnorm_transform.png`
 
-Three panels left to right, connected by large arrows. Each panel shows **three small histograms stacked vertically**, one per feature $k = 1, 2, 3$, computed over a mini-batch $\mathcal B$ of 64 examples. Feature colors: blue, teal, orange, consistent across panels.
+Three panels left to right, connected by two large arrows. Each panel shows **three small histograms stacked vertically**, one per feature: "feature 1" in blue (#1f6fb4), "feature 2" in teal (#167d78), "feature 3" in orange (#d9631e). Same colors and same vertical order in all three panels. Each histogram represents the values of that feature across one mini-batch of 64 examples.
 
-**Panel 1, "pre-activations $z$ in the batch":** the three histograms have very different centers and widths (feature 1 centered at 5 with width ≈ 2; feature 2 at −1 with width ≈ 0.3; feature 3 at 0.5 with width ≈ 6). Each histogram has a thin vertical line at its mean labeled $\mu_{\mathcal B,k}$.
+**Panel 1, header "pre-activations $z$ in the batch":** the three histograms have very different centers and widths, all on a shared x-axis from −10 to 10:
+- feature 1: centered at 5, medium width (std ≈ 2)
+- feature 2: centered at −1, very narrow (std ≈ 0.3)
+- feature 3: centered at 0.5, very wide (std ≈ 6)
+
+Each histogram has a thin vertical dashed line at its mean, labeled $\mu_{\mathcal B,1}$, $\mu_{\mathcal B,2}$, $\mu_{\mathcal B,3}$.
 
 **Arrow 1 label:** $\hat z = \dfrac{z - \mu_{\mathcal B}}{\sqrt{s_{\mathcal B}^2 + \epsilon}}$
 
-**Panel 2, "normalized $\hat z$":** all three histograms now identical in position and width: centered at 0, std 1, on a shared x-axis from −3 to 3. Small text: "mean 0, variance 1 for every feature".
+**Panel 2, header "normalized $\hat z$":** all three histograms identical in position and width: centered at 0, std 1, on a shared x-axis from −3 to 3. Small gray text below: "mean 0 and variance 1 for every feature".
 
 **Arrow 2 label:** $\mathrm{BN}(z) = \gamma \odot \hat z + \beta$
 
-**Panel 3, "learned scale and shift":** each feature shifted and scaled differently again by its own learned parameters, with small labels: feature 1 "$\gamma_1 = 1.5,\ \beta_1 = 0.5$", feature 2 "$\gamma_2 = 0.7,\ \beta_2 = -0.3$", feature 3 "$\gamma_3 = 1.0,\ \beta_3 = 1.2$".
+**Panel 3, header "learned scale $\gamma$ and shift $\beta$":** each histogram shifted and stretched differently again, on a shared x-axis from −3 to 5, with a small label beside each:
+- feature 1: "$\gamma_1 = 1.5,\ \beta_1 = 0.5$" (centered at 0.5, wider)
+- feature 2: "$\gamma_2 = 0.7,\ \beta_2 = -0.3$" (centered at −0.3, narrower)
+- feature 3: "$\gamma_3 = 1.0,\ \beta_3 = 1.2$" (centered at 1.2, same width as in panel 2)
 
-**Bottom banner:** "Statistics are computed per feature across the batch. $\gamma$ and $\beta$ let the network recover any scale it needs."
+**Bottom banner:** "Statistics are computed per feature, across the batch. The learned $\gamma$ and $\beta$ let the network recover any scale and offset it needs."
+
+**Check:** in panel 2 the three histograms are identical (same center, same width); the square root covers only $s_{\mathcal B}^2 + \epsilon$.
 
 ---
 
-## S02-F12 · BatchNorm in training versus evaluation mode (slide 44)
+## S02-F12 · BatchNorm in training versus evaluation mode (slide 45)
 
 File: `s02_f12_batchnorm_train_eval.png`
 
@@ -79,7 +113,7 @@ Under the panel: "the output for $x$ depends on the other examples in the batch"
 
 ---
 
-## S02-F13 · Underfitting, healthy fit, overfitting (slide 48)
+## S02-F13 · Underfitting, healthy fit, overfitting (slide 49)
 
 File: `s02_f13_train_validation_dynamics.png`
 
@@ -93,7 +127,7 @@ Three plots side by side, each with x-axis "epoch" (0 to 100) and y-axis "object
 
 ---
 
-## S02-F14 · Effect of weight decay (slide 49)
+## S02-F14 · Effect of weight decay (slide 50)
 
 File: `s02_f14_weight_decay_effect.png`
 
@@ -111,7 +145,7 @@ Small formula at the bottom left: $J_\lambda(\theta) = J(\theta) + \lambda \lVer
 
 ---
 
-## S02-F15 · Dropout as stochastic subnetworks (slide 51)
+## S02-F15 · Dropout as stochastic subnetworks (slide 52)
 
 File: `s02_f15_dropout_subnetworks.png`
 
@@ -129,7 +163,7 @@ Formulas under the divider:
 
 ---
 
-## S02-F16 · Depth degradation in plain networks (slide 55)
+## S02-F16 · Depth degradation in plain networks (slide 56)
 
 File: `s02_f16_depth_degradation.png`
 
@@ -146,7 +180,7 @@ Small gray footnote at the bottom right: "Schematic after He et al., 2016 (CIFAR
 
 ---
 
-## S02-F17 · Residual block (slide 56)
+## S02-F17 · Residual block (slide 57)
 
 File: `s02_f17_residual_block.png`
 
@@ -164,7 +198,7 @@ Bottom-left note, small gray: "requires $F(a_{l-1})$ and $a_{l-1}$ to have the s
 
 ---
 
-## S02-F19 · Training diagnostics map (slide 60)
+## S02-F19 · Training diagnostics map (slide 61)
 
 File: `s02_f19_training_diagnostics_map.png`
 
@@ -182,7 +216,7 @@ Above the map, a thin gray strip: "Before a long run: initial loss ≈ ln C · o
 
 ---
 
-## S02-F20 · Why deep training works: integrated view (slide 63)
+## S02-F20 · Why deep training works: integrated view (slide 64)
 
 File: `s02_f20_deep_training_summary.png`
 
