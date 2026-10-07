@@ -223,21 +223,24 @@ Above the map, a thin gray strip: "Before a long run: initial loss ≈ ln C · o
 
 ## S02-F20 · Why deep training works: integrated view (slide 71)
 
-> **Regenerate — issues in the previous version:** callout texts overflow their boxes and overlap each other (activations / normalization, optimizer / regularization); numbering is out of order; leader lines cross the network and each other. Use a cleaner layout: the network in a single band, five numbered callouts 1–5 in reading order, each box wide enough for its text, and short non-crossing leader lines. Use distinct numbers for normalization and regularization (or one box "4 normalization & regularization").
+> **Regenerate — issues in the previous version:** callout texts overflowed their boxes and overlapped; part numbers were out of order; leader lines crossed the network and each other. This version uses **no numbers** and a fixed six-box layout.
 
 File: `s02_f20_deep_training_summary.png`
 
-**Center:** one horizontal deep network drawn as a sequence of 6 layer blocks from $x$ to $\hat y$, with a residual skip arc over two of the blocks, a small "Norm" sub-box inside each block, and a loss box $J$ at the right end.
+**Center band (vertical middle of the canvas):** a horizontal deep network: $x$ → 6 identical layer blocks (rounded rectangles, each with three small circles and a small "Norm" sub-box at its bottom; the third block shows a $\phi$ symbol in its middle circle) → $\hat y$ → a loss box labeled $J$. Thin arrows between blocks. One orange residual skip arc **above** blocks 4 and 5, from the input of block 4 to the output of block 5. One purple curved arrow **below** the network from $J$ back to block 1, labeled "update".
 
-Around the network, six labeled callouts with thin leader lines pointing to **where each mechanism acts**:
+**Six callout boxes**, each 400 px wide, title in bold plus at most two short lines, text fully inside the box. One straight, short leader line per box; no line crosses another line or the network.
 
-1. **"initialization"** (blue tag) → points at the weights at the start, with the small formula $\mathrm{Var}(W) = 2/n_\text{in}$ — "start at a stable scale"
-2. **"activations"** (green tag) → points at a $\phi$ inside a block — "keep gradients alive (ReLU, GELU)"
-3. **"normalization"** (teal tag) → points at a "Norm" sub-box — "keep internal scales stable (BatchNorm, LayerNorm)"
-4. **"residual paths"** (orange tag) → points at the skip arc — "a direct route for gradients"
-5. **"optimizer"** (purple tag) → points at an update arrow drawn under the network from $J$ back to the weights — "turn gradients into good steps (Momentum, Adam, schedules)"
-6. **"regularization"** (gray tag) → points at the loss box $J$ — "narrow the train/validation gap (weight decay, Dropout, augmentation, early stopping)"
+Above the network, left to right:
+1. **initialization** (blue tag) — "start at a stable scale · $\mathrm{Var}(W)=2/n_\text{in}$" → points at block 1
+2. **activations** (green tag) — "keep gradients alive · ReLU, GELU" → points at the $\phi$ in block 3
+3. **residual paths** (orange tag) — "a direct route for gradients" → points at the skip arc
 
-Small numbers 1–5 next to the tags matching the deck parts: Part 1 signal propagation next to activations; Part 2 next to initialization; Part 3 next to optimizer; Part 4 next to normalization and regularization; Part 5 next to residual paths.
+Below the network, left to right:
+4. **normalization** (teal tag) — "stable internal scales · BatchNorm, LayerNorm" → points at the "Norm" sub-box of block 2
+5. **optimizer** (purple tag) — "gradients into good steps · Momentum, Adam, schedules" → points at the purple "update" arrow
+6. **regularization** (gray tag) — "narrow the train/validation gap · weight decay, Dropout, early stopping" → points at the $J$ box
 
-**Bottom banner:** "No single trick makes deep networks trainable: each mechanism fixes one way the signal or the optimization can fail."
+Do not print the numbers 1–6; they only fix the order.
+
+**Bottom banner (inside the canvas, max two lines):** "No single trick makes deep networks trainable: each mechanism fixes one way the signal or the optimization can fail."
