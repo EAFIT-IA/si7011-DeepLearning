@@ -995,7 +995,14 @@ $$
 - $T$ must not change the label: a rotated "6" may become a "9";
 - it encodes invariances we know in advance. Central in S03 (vision) and S04 (self-supervised learning).
 
-<!-- Pending figure: S02-F24 — One image and several label-preserving augmentations. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain One image and five label-preserving augmentations; rotating a 6 by 180 degrees changes its label](../figures/s02_f24_data_augmentation.png)
 
 ---
 

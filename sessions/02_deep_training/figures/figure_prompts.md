@@ -28,7 +28,7 @@ Slide numbers refer to the current `../slides/S02_slides.marp.md`.
 | S02-F20 | Why deep training works: integrated view | done |
 | S02-F22 | Mini-batch gradient noise versus batch size | done |
 | S02-F23 | BatchNorm versus LayerNorm: which axis is normalized | done |
-| S02-F24 | Label-preserving data augmentation | **pending** |
+| S02-F24 | Label-preserving data augmentation | done |
 
 ## Common style block (prepend to every prompt)
 
@@ -283,7 +283,7 @@ Both grids exactly the same size and position height; only the highlighted direc
 
 ---
 
-## S02-F24 · Label-preserving data augmentation (slide 61)
+## S02-F24 · Label-preserving data augmentation (done)
 
 File: `s02_f24_data_augmentation.png`
 

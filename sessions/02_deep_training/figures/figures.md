@@ -10,7 +10,7 @@ Pending figures are HTML comments in the slide source (`<!-- Pending figure: ...
 
 ## Deck structure
 
-76 slides in five parts, each opened by a divider slide that recaps the previous part.
+77 slides in five parts, each opened by a divider slide that recaps the previous part.
 
 ## Planned figures
 
@@ -31,15 +31,15 @@ Pending figures are HTML comments in the slide source (`<!-- Pending figure: ...
 | **S02-F13** | V54 | Underfitting, healthy fitting and overfitting in train/validation curves | `s02_f13_train_validation_dynamics.png` | PNG / plot | Included |
 | **S02-F14** | V56 | Effect of weight decay on learned functions or weight norms | `s02_f14_weight_decay_effect.png` | PNG | Included |
 | **S02-F15** | V59 | Dropout as stochastic subnetworks during training | `s02_f15_dropout_subnetworks.png` | PNG | Included |
-| **S02-F16** | V64 | Depth degradation: deeper plain networks can be harder to optimize | `s02_f16_depth_degradation.png` | PNG / plot | Included |
-| **S02-F17** | V66 | Residual block: transformation path plus identity path | `s02_f17_residual_block.png` | PNG | Included |
-| **S02-F18** | V68 | Gradient flow through the identity path in a residual block | `s02_f18_residual_gradient_path.png` | PNG | Covered by S02-A03 |
-| **S02-F19** | V71 | Map from symptoms to measurements and training interventions | `s02_f19_training_diagnostics_map.png` | PNG | Included |
-| **S02-F20** | V75 | Integrated view of mechanisms that make deep training possible | `s02_f20_deep_training_summary.png` | PNG | Included |
+| **S02-F16** | V65 | Depth degradation: deeper plain networks can be harder to optimize | `s02_f16_depth_degradation.png` | PNG / plot | Included |
+| **S02-F17** | V67 | Residual block: transformation path plus identity path | `s02_f17_residual_block.png` | PNG | Included |
+| **S02-F18** | V69 | Gradient flow through the identity path in a residual block | `s02_f18_residual_gradient_path.png` | PNG | Covered by S02-A03 |
+| **S02-F19** | V72 | Map from symptoms to measurements and training interventions | `s02_f19_training_diagnostics_map.png` | PNG | Included |
+| **S02-F20** | V76 | Integrated view of mechanisms that make deep training possible | `s02_f20_deep_training_summary.png` | PNG | Included |
 | **S02-F21** | V20 | ReLU, Leaky ReLU and GELU with derivatives; dead region highlighted | `s02_f21_relu_variants.png` | PNG | Included |
 | **S02-F22** | V35 | Gradient-estimate spread versus batch size around the full-batch gradient | `s02_f22_batch_size_noise.png` | PNG (matplotlib, `make_s02_f22_batch_size_noise.py`) | Included |
 | **S02-F23** | V51 | BatchNorm versus LayerNorm: normalized axis of the (batch × features) tensor | `s02_f23_batchnorm_vs_layernorm.png` | PNG | Included |
-| **S02-F24** | V61 | One image and several label-preserving augmentations | `s02_f24_data_augmentation.png` | PNG | TODO |
+| **S02-F24** | V62 | One image and several label-preserving augmentations | `s02_f24_data_augmentation.png` | PNG | Included |
 | **S02-F25** | V07 | Deep MLP forward pass with example activations and softmax output | `s02_f25_deep_mlp_forward.png` | PNG | Included — notation differs from deck |
 | **S02-F26** | V14 | Backward pass as a product of layer Jacobians | `s02_f26_backprop_jacobians.png` | PNG | Included — notation differs; Jacobian product needs transposes |
 
@@ -53,7 +53,7 @@ Pending figures are HTML comments in the slide source (`<!-- Pending figure: ...
 
 Figures still to produce:
 
-**S02-F24.**
+None. All S02 figures are integrated.
 
 ## Recommended animations
 
@@ -63,7 +63,7 @@ Only animate concepts where motion changes understanding.
 |---|---|---|---|---|
 | **S02-A01** | S02-F02 / S02-F03 | Activations shrink, explode or stabilize layer by layer | `s02_a01_signal_propagation.mp4` | Included (V30) |
 | **S02-A02** | S02-F08 | SGD oscillates in a narrow valley while Momentum accumulates useful direction | `s02_a02_momentum_valley.mp4` | Included (V37) |
-| **S02-A03** | S02-F17 / S02-F18 | Residual block forward path and direct gradient route | `s02_a03_residual_gradient_path.mp4` | Included (V68) |
+| **S02-A03** | S02-F17 / S02-F18 | Residual block forward path and direct gradient route | `s02_a03_residual_gradient_path.mp4` | Included (V69) |
 
 ## Animation sources
 
