@@ -345,7 +345,7 @@ The gradient gives **local information** about how the loss changes.
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain The gradient is local information](../figures/s01_f06_local_slope.svg)
+![bg contain The gradient is local information](../figures/s01_f06_local_slope.png)
 
 ---
 
