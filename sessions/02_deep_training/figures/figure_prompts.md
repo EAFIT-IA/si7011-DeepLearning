@@ -18,14 +18,14 @@ Slide numbers refer to the current `../slides/S02_slides.marp.md`.
 |---|---|---|
 | S02-F06 | Symmetry problem with identical initialization | done |
 | S02-F11 | BatchNorm: normalize, then learn scale and shift | done |
-| S02-F12 | BatchNorm in training versus evaluation mode | **pending** |
-| S02-F13 | Underfitting, healthy fit, overfitting | **pending** |
-| S02-F14 | Effect of weight decay | **pending** |
-| S02-F15 | Dropout as stochastic subnetworks | **pending** |
-| S02-F16 | Depth degradation in plain networks | **pending** |
-| S02-F17 | Residual block | **pending** |
-| S02-F19 | Training diagnostics map | **pending** |
-| S02-F20 | Why deep training works: integrated view | **pending** |
+| S02-F12 | BatchNorm in training versus evaluation mode | done |
+| S02-F13 | Underfitting, healthy fit, overfitting | done |
+| S02-F14 | Effect of weight decay | done |
+| S02-F15 | Dropout as stochastic subnetworks | **regenerate** |
+| S02-F16 | Depth degradation in plain networks | **regenerate** |
+| S02-F17 | Residual block | done |
+| S02-F19 | Training diagnostics map | done |
+| S02-F20 | Why deep training works: integrated view | **regenerate** |
 
 ## Common style block (prepend to every prompt)
 
@@ -96,7 +96,7 @@ Each histogram has a thin vertical dashed line at its mean, labeled $\mu_{\mathc
 
 ---
 
-## S02-F12 · BatchNorm in training versus evaluation mode (slide 46)
+## S02-F12 · BatchNorm in training versus evaluation mode (done)
 
 File: `s02_f12_batchnorm_train_eval.png`
 
@@ -113,7 +113,7 @@ Under the panel: "the output for $x$ depends on the other examples in the batch"
 
 ---
 
-## S02-F13 · Underfitting, healthy fit, overfitting (slide 50)
+## S02-F13 · Underfitting, healthy fit, overfitting (done)
 
 File: `s02_f13_train_validation_dynamics.png`
 
@@ -127,7 +127,7 @@ Three plots side by side, each with x-axis "epoch" (0 to 100) and y-axis "object
 
 ---
 
-## S02-F14 · Effect of weight decay (slide 51)
+## S02-F14 · Effect of weight decay (done)
 
 File: `s02_f14_weight_decay_effect.png`
 
@@ -145,7 +145,9 @@ Small formula at the bottom left: $J_\lambda(\theta) = J(\theta) + \lambda \lVer
 
 ---
 
-## S02-F15 · Dropout as stochastic subnetworks (slide 53)
+## S02-F15 · Dropout as stochastic subnetworks (slide 56)
+
+> **Regenerate — issues in the previous version:** bottom banner text is clipped at both edges and the right column header "inference (`model.eval()`)" is cut at the right edge. Keep all text at least 60 px inside the canvas; shorten the banner or wrap it in two lines.
 
 File: `s02_f15_dropout_subnetworks.png`
 
@@ -163,7 +165,9 @@ Formulas under the divider:
 
 ---
 
-## S02-F16 · Depth degradation in plain networks (slide 57)
+## S02-F16 · Depth degradation in plain networks (slide 60)
+
+> **Regenerate — issues in the previous version:** bottom banner text is clipped at both edges; the legend is split across the two panels. Shorten the banner (e.g. "Deeper plain nets could learn identity layers, but gradient descent does not find that solution."), keep it inside the canvas, and use one shared legend centered above or below both panels.
 
 File: `s02_f16_depth_degradation.png`
 
@@ -180,7 +184,7 @@ Small gray footnote at the bottom right: "Schematic after He et al., 2016 (CIFAR
 
 ---
 
-## S02-F17 · Residual block (slide 58)
+## S02-F17 · Residual block (done)
 
 File: `s02_f17_residual_block.png`
 
@@ -198,7 +202,7 @@ Bottom-left note, small gray: "requires $F(a_{l-1})$ and $a_{l-1}$ to have the s
 
 ---
 
-## S02-F19 · Training diagnostics map (slide 62)
+## S02-F19 · Training diagnostics map (done)
 
 File: `s02_f19_training_diagnostics_map.png`
 
@@ -216,7 +220,9 @@ Above the map, a thin gray strip: "Before a long run: initial loss ≈ ln C · o
 
 ---
 
-## S02-F20 · Why deep training works: integrated view (slide 65)
+## S02-F20 · Why deep training works: integrated view (slide 70)
+
+> **Regenerate — issues in the previous version:** callout texts overflow their boxes and overlap each other (activations / normalization, optimizer / regularization); numbering is out of order; leader lines cross the network and each other. Use a cleaner layout: the network in a single band, five numbered callouts 1–5 in reading order, each box wide enough for its text, and short non-crossing leader lines. Use distinct numbers for normalization and regularization (or one box "4 normalization & regularization").
 
 File: `s02_f20_deep_training_summary.png`
 

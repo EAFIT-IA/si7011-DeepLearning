@@ -791,7 +791,14 @@ model.train()   # batch statistics
 model.eval()    # running statistics
 ```
 
-<!-- Pending figure: S02-F12 — BatchNorm behavior in training mode versus evaluation mode. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain BatchNorm in training versus evaluation mode](../figures/s02_f12_batchnorm_train_eval.png)
 
 ---
 
@@ -857,7 +864,14 @@ J_\text{train}(\theta)
 J_\text{val}(\theta)
 $$
 
-<!-- Pending figure: S02-F13 — Underfitting, healthy fitting and overfitting in train/validation curves. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Training and validation objectives over epochs, with and without regularization](../figures/s02_f13_train_validation_dynamics.png)
 
 ---
 
@@ -876,7 +890,14 @@ $$
 
 It changes the preference among solutions, not the architecture.
 
-<!-- Pending figure: S02-F14 — Effect of weight decay on learned functions or weight norms. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Effect of weight decay on weight magnitudes](../figures/s02_f14_weight_decay_effect.png)
 
 ---
 
@@ -999,7 +1020,14 @@ $$
 H(x)=F(x)+x
 $$
 
-<!-- Pending figure: S02-F17 — Residual block: transformation path plus identity path. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Residual block: identity skip connection plus F](../figures/s02_f17_residual_block.png)
 
 ---
 
@@ -1071,7 +1099,14 @@ J_\text{val},
 \operatorname{std}(a_l)
 $$
 
-<!-- Pending figure: S02-F19 — Map from symptoms to measurements and training interventions. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Training diagnostics map: symptom, what to measure, what to try](../figures/s02_f19_training_diagnostics_map.png)
 
 ---
 
