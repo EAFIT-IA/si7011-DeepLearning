@@ -22,7 +22,7 @@ White backgrounds, preserved image proportions and the existing course style app
 | **S01-F05C** | V17 | Multiclass classification: C logits, softmax and cross-entropy | SVG | [s01_f05c_multiclass_logits_softmax_cross_entropy.svg](s01_f05c_multiclass_logits_softmax_cross_entropy.svg) | Included |
 | **S01-F05D** | V18 | Cross-entropy intuition: confidence and confident errors | SVG | [s01_f05d_cross_entropy_confidence.svg](s01_f05d_cross_entropy_confidence.svg) | Included |
 | **S01-F05E** | V19 | PyTorch inputs for MSELoss, BCEWithLogitsLoss and CrossEntropyLoss | SVG | [s01_f05e_pytorch_loss_expectations.svg](s01_f05e_pytorch_loss_expectations.svg) | Included |
-| **S01-F06** | V24 | Derivative as local slope | SVG | [s01_f06_local_slope.png](s01_f06_local_slope.svg) | Included |
+| **S01-F06** | V24 | Derivative as local slope | PNG (matplotlib, `make_s01_f06_local_slope.py`) | [s01_f06_local_slope.png](s01_f06_local_slope.png) | Included |
 | **S01-F12A** | V42, V43 | Two shifted and scaled ReLU components and their sum | PNG | [s01_f12_two_relu_components.png](s01_f12_two_relu_components.png) | Included |
 | **S01-F12B** | V43 | Progressive approximation by sums of ReLU components | MP4 / Manim | [E7_AproximacionReLU.mp4](E7_AproximacionReLU.mp4) | Included |
 | **S01-F13** | V46 | MLP as a composition of affine maps and generic activation $\phi$ | SVG | [s01_f13_mlp_composition.svg](s01_f13_mlp_composition.svg) | Included |
