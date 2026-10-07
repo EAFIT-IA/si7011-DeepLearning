@@ -79,6 +79,7 @@ style: |
       object-fit: contain;
     }
   }
+  section.figure { padding: 0; }
   .twocol {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -179,6 +180,14 @@ Same notation as S01: $\phi$ is a generic activation, $L$ is the loss.
 
 ---
 
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain A deep MLP as a composition of layers](../figures/s02_f25_deep_mlp_forward.png)
+
+---
+
 # Depth changes the training problem
 
 Each layer transforms:
@@ -264,6 +273,14 @@ Across $D$ layers, the chain rule becomes a long **product** of local factors.
 
 ---
 
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Backward pass as a product of layer Jacobians](../figures/s02_f26_backprop_jacobians.png)
+
+---
+
 # Vanishing and exploding gradients
 
 The optimizer updates parameters using gradients.
@@ -283,6 +300,14 @@ If gradients explode, updates become unstable.
 
 ---
 
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Vanishing, stable and exploding gradients](../figures/s02_f04_gradient_norm_depth.png)
+
+---
+
 # Activation functions shape gradient flow
 
 Saturating activations can compress gradients:
@@ -295,7 +320,14 @@ $$
 
 ReLU-like activations can preserve stronger gradient paths, but they also introduce zero-gradient regions.
 
-<!-- Pending figure: S02-F05 — Sigmoid, tanh and ReLU: functions and derivative regions. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Sigmoid, tanh and ReLU with their derivatives](../figures/s02_f05_activation_derivatives.png)
 
 ---
 
@@ -313,7 +345,14 @@ $$
 
 <span class="small">$\Phi$: standard normal CDF. GELU is the default activation in Transformers (S05).</span>
 
-<!-- Pending figure: S02-F21 — ReLU, Leaky ReLU and GELU with their derivatives; dead region highlighted. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Activation functions: sigmoid, tanh, ReLU, Leaky ReLU, GELU, Swish](../figures/s02_f21_relu_variants.png)
 
 ---
 
@@ -430,7 +469,14 @@ $$
 
 Initialization and activation must be considered together.
 
-<!-- Pending figure: S02-F07 — Naive, Xavier and He initialization compared through activation variance. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Small, Xavier and He initialization: activation and gradient variance](../figures/s02_f07_initialization_variance.png)
 
 ---
 
