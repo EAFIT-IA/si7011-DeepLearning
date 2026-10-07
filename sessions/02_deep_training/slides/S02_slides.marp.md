@@ -1005,7 +1005,14 @@ Yet a 56-layer plain network reaches a **higher training error** than a 20-layer
 
 Higher *training* error is not overfitting: it is an **optimization** problem.
 
-<!-- Pending figure: S02-F16 — Depth degradation: deeper plain networks can be harder to optimize. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Training and test error of 20-layer versus 56-layer plain networks](../figures/s02_f16_depth_degradation.png)
 
 ---
 

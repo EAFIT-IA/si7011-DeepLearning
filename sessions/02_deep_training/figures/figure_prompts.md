@@ -22,7 +22,7 @@ Slide numbers refer to the current `../slides/S02_slides.marp.md`.
 | S02-F13 | Underfitting, healthy fit, overfitting | done |
 | S02-F14 | Effect of weight decay | done |
 | S02-F15 | Dropout as stochastic subnetworks | done |
-| S02-F16 | Depth degradation in plain networks | **regenerate** |
+| S02-F16 | Depth degradation in plain networks | done |
 | S02-F17 | Residual block | done |
 | S02-F19 | Training diagnostics map | done |
 | S02-F20 | Why deep training works: integrated view | **regenerate** |
@@ -164,11 +164,7 @@ Formulas under the divider:
 
 ---
 
-## S02-F16 · Depth degradation in plain networks (slide 61)
-
-> **Regenerate — keep this concept.** A later attempt replaced it with "loss versus depth, plain vs residual" curves: do not do that (it anticipates the residual slides, its data look measured and the rising validation loss reads as overfitting). Draw exactly the two panels below, error versus iterations, 20-layer vs 56-layer plain.
->
-> **Regenerate — issues in the previous version:** bottom banner text is clipped at both edges; the legend is split across the two panels. Shorten the banner (e.g. "Deeper plain nets could learn identity layers, but gradient descent does not find that solution."), keep it inside the canvas, and use one shared legend centered above or below both panels.
+## S02-F16 · Depth degradation in plain networks (done)
 
 File: `s02_f16_depth_degradation.png`
 
@@ -221,7 +217,7 @@ Above the map, a thin gray strip: "Before a long run: initial loss ≈ ln C · o
 
 ---
 
-## S02-F20 · Why deep training works: integrated view (slide 71)
+## S02-F20 · Why deep training works: integrated view (slide 72)
 
 > **Regenerate — issues in the previous version:** callout texts overflowed their boxes and overlapped; part numbers were out of order; leader lines crossed the network and each other. This version uses **no numbers** and a fixed six-box layout.
 
