@@ -22,7 +22,7 @@ Pending figures are HTML comments in the slide source (`<!-- Pending figure: ...
 | **S02-F04** | V16 | Gradient norm versus layer depth for vanishing, stable and exploding regimes | `s02_f04_gradient_norm_depth.png` | PNG | Included |
 | **S02-F05** | V18 | Sigmoid, tanh and ReLU: functions and derivative regions | `s02_f05_activation_derivatives.png` | PNG | Included |
 | **S02-F06** | V24 | Symmetry problem when hidden units share identical initialization | `s02_f06_initialization_symmetry.png` | PNG / SVG | Included |
-| **S02-F07** | V29 | Naive, Xavier and He initialization compared through activation variance | `s02_f07_initialization_variance.png` | PNG | Included — needs correction to deck Xavier variance |
+| **S02-F07** | V29 | Naive, Xavier and He initialization compared through activation variance | `s02_f07_initialization_variance.png` | PNG | Included |
 | **S02-F08** | V37 | SGD and Momentum trajectories in a narrow valley | `s02_f08_sgd_momentum_valley.png` | PNG | Covered by S02-A02 |
 | **S02-F09** | V40 | Optimizer trajectories on the same ill-conditioned objective | `s02_f09_optimizer_trajectories.svg` | SVG | Included |
 | **S02-F10** | V41 | Learning-rate schedules | `s02_f10_learning_rate_schedules.svg` | SVG | Included |
@@ -45,7 +45,6 @@ Pending figures are HTML comments in the slide source (`<!-- Pending figure: ...
 
 ## Review notes
 
-- **S02-F07:** the Xavier panel currently labels $W\\sim\\mathcal N(0,1/n_\\text{in})$, while the deck derives $\\operatorname{Var}(W)=2/(n_\\text{in}+n_\\text{out})$. The shown stable behavior is also inconsistent with a ReLU network, where Xavier would halve the variance approximately layer by layer. The small-initialization activation axis repeats $10^{-2}$.
 - **S02-F25 / S02-F26:** these use superscript notation ($a^{(l)}$, $h^{(l)}$, $\\mathcal L$) and $L$ for depth, while the deck uses $a_l$, $D$ and $J$. F26's Jacobian product also requires transposes under the column-vector convention used in the deck.
 
 ### Current production backlog

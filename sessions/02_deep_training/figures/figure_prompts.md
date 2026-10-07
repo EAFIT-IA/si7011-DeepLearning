@@ -32,7 +32,7 @@ Slide numbers refer to the current `../slides/S02_slides.marp.md`.
 | S02-F01 | Correction: typo and logo fixed; script 𝒥 remains (optional regeneration) | done |
 | S02-F02 | Correction: std(x) label and consistent numbers | done |
 | S02-F04 | Correction: backward direction and notation | done |
-| S02-F07 | Correction: Xavier variance, tanh vs ReLU | **pending** |
+| S02-F07 | Correction: Xavier variance, tanh vs ReLU | done |
 
 ## Common style block (prepend to every prompt)
 
@@ -354,7 +354,7 @@ Keep the three-panel layout ("Vanishing gradients", "Stable gradients", "Explodi
 
 **Check:** in every panel the norm is ≈ 1 at the right end ($l=D$); vanishing is smallest at $l=0$, exploding is largest at $l=0$. No $h^{(l)}$, no $L$ for depth.
 
-## S02-F07 · Initialization compared through variance — correction (slide 29)
+## S02-F07 · Initialization compared through variance — correction (done)
 
 File: `s02_f07_initialization_variance.png`
 
