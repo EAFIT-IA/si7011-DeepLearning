@@ -51,7 +51,7 @@ Pending figures are HTML comments in the slide source (`<!-- Pending figure: ...
 
 ### Current production backlog
 
-The 12 figures still to produce are:
+Figures still to produce:
 
 None. All backlog figures are integrated.
 
