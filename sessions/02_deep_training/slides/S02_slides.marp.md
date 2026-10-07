@@ -138,7 +138,14 @@ $$
 
 Now we ask what happens when this loop is applied to **deep compositions**.
 
-<!-- Pending figure: S02-F01 — From the single learning loop to a deep trainable system. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain The same learning loop applied to a deep trainable system](../figures/s02_f01_learning_to_deep_training.png)
 
 ---
 
