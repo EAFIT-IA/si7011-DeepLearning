@@ -10,7 +10,7 @@ Pending figures are HTML comments in the slide source (`<!-- Pending figure: ...
 
 ## Deck structure
 
-65 slides in five parts, each opened by a divider slide that recaps the previous part.
+66 slides in five parts, each opened by a divider slide that recaps the previous part.
 
 ## Planned figures
 
@@ -26,20 +26,20 @@ Pending figures are HTML comments in the slide source (`<!-- Pending figure: ...
 | **S02-F08** | V36 | SGD and Momentum trajectories in a narrow valley | `s02_f08_sgd_momentum_valley.png` | PNG | Covered by S02-A02 |
 | **S02-F09** | V39 | Optimizer trajectories on the same ill-conditioned objective | `s02_f09_optimizer_trajectories.svg` | SVG | Included |
 | **S02-F10** | V40 | Learning-rate schedules | `s02_f10_learning_rate_schedules.svg` | SVG | Included |
-| **S02-F11** | V44 | BatchNorm: normalize, then learn scale and shift | `s02_f11_batchnorm_transform.png` | PNG | TODO |
-| **S02-F12** | V45 | BatchNorm behavior in training mode versus evaluation mode | `s02_f12_batchnorm_train_eval.png` | PNG / SVG | TODO |
-| **S02-F13** | V49 | Underfitting, healthy fitting and overfitting in train/validation curves | `s02_f13_train_validation_dynamics.png` | PNG / plot | TODO |
-| **S02-F14** | V50 | Effect of weight decay on learned functions or weight norms | `s02_f14_weight_decay_effect.png` | PNG | TODO |
-| **S02-F15** | V52 | Dropout as stochastic subnetworks during training | `s02_f15_dropout_subnetworks.png` | PNG | TODO |
-| **S02-F16** | V56 | Depth degradation: deeper plain networks can be harder to optimize | `s02_f16_depth_degradation.png` | PNG / plot | TODO |
-| **S02-F17** | V57 | Residual block: transformation path plus identity path | `s02_f17_residual_block.png` | PNG | TODO |
-| **S02-F18** | V59 | Gradient flow through the identity path in a residual block | `s02_f18_residual_gradient_path.png` | PNG | Covered by S02-A03 |
-| **S02-F19** | V61 | Map from symptoms to measurements and training interventions | `s02_f19_training_diagnostics_map.png` | PNG | TODO |
-| **S02-F20** | V64 | Integrated view of mechanisms that make deep training possible | `s02_f20_deep_training_summary.png` | PNG | TODO |
+| **S02-F11** | V45 | BatchNorm: normalize, then learn scale and shift | `s02_f11_batchnorm_transform.png` | PNG | Included |
+| **S02-F12** | V46 | BatchNorm behavior in training mode versus evaluation mode | `s02_f12_batchnorm_train_eval.png` | PNG / SVG | TODO |
+| **S02-F13** | V50 | Underfitting, healthy fitting and overfitting in train/validation curves | `s02_f13_train_validation_dynamics.png` | PNG / plot | TODO |
+| **S02-F14** | V51 | Effect of weight decay on learned functions or weight norms | `s02_f14_weight_decay_effect.png` | PNG | TODO |
+| **S02-F15** | V53 | Dropout as stochastic subnetworks during training | `s02_f15_dropout_subnetworks.png` | PNG | TODO |
+| **S02-F16** | V57 | Depth degradation: deeper plain networks can be harder to optimize | `s02_f16_depth_degradation.png` | PNG / plot | TODO |
+| **S02-F17** | V58 | Residual block: transformation path plus identity path | `s02_f17_residual_block.png` | PNG | TODO |
+| **S02-F18** | V60 | Gradient flow through the identity path in a residual block | `s02_f18_residual_gradient_path.png` | PNG | Covered by S02-A03 |
+| **S02-F19** | V62 | Map from symptoms to measurements and training interventions | `s02_f19_training_diagnostics_map.png` | PNG | TODO |
+| **S02-F20** | V65 | Integrated view of mechanisms that make deep training possible | `s02_f20_deep_training_summary.png` | PNG | TODO |
 | **S02-F21** | V20 | ReLU, Leaky ReLU and GELU with derivatives; dead region highlighted | `s02_f21_relu_variants.png` | PNG | Included |
 | **S02-F22** | V34 | Gradient-estimate spread versus batch size around the full-batch gradient | `s02_f22_batch_size_noise.svg` | SVG / plot | Deferred — not in current production backlog |
-| **S02-F23** | V47 | BatchNorm versus LayerNorm: normalized axis of the (batch × features) tensor | `s02_f23_batchnorm_vs_layernorm.svg` | SVG | Deferred — not in current production backlog |
-| **S02-F24** | V54 | One image and several label-preserving augmentations | `s02_f24_data_augmentation.png` | PNG | Deferred — not in current production backlog |
+| **S02-F23** | V48 | BatchNorm versus LayerNorm: normalized axis of the (batch × features) tensor | `s02_f23_batchnorm_vs_layernorm.svg` | SVG | Deferred — not in current production backlog |
+| **S02-F24** | V55 | One image and several label-preserving augmentations | `s02_f24_data_augmentation.png` | PNG | Deferred — not in current production backlog |
 | **S02-F25** | V07 | Deep MLP forward pass with example activations and softmax output | `s02_f25_deep_mlp_forward.png` | PNG | Included — notation differs from deck |
 | **S02-F26** | V14 | Backward pass as a product of layer Jacobians | `s02_f26_backprop_jacobians.png` | PNG | Included — notation differs; Jacobian product needs transposes |
 
@@ -53,7 +53,7 @@ Pending figures are HTML comments in the slide source (`<!-- Pending figure: ...
 
 The 12 figures still to produce are:
 
-**S02-F11, S02-F12, S02-F13, S02-F14, S02-F15, S02-F16, S02-F17, S02-F19, S02-F20.**
+**S02-F12, S02-F13, S02-F14, S02-F15, S02-F16, S02-F17, S02-F19, S02-F20.**
 
 F22–F24 remain documented in the deck but are outside the current figure-production backlog.
 
@@ -65,7 +65,7 @@ Only animate concepts where motion changes understanding.
 |---|---|---|---|---|
 | **S02-A01** | S02-F02 / S02-F03 | Activations shrink, explode or stabilize layer by layer | `s02_a01_signal_propagation.mp4` | Included (V30) |
 | **S02-A02** | S02-F08 | SGD oscillates in a narrow valley while Momentum accumulates useful direction | `s02_a02_momentum_valley.mp4` | Included (V36) |
-| **S02-A03** | S02-F17 / S02-F18 | Residual block forward path and direct gradient route | `s02_a03_residual_gradient_path.mp4` | Included (V59) |
+| **S02-A03** | S02-F17 / S02-F18 | Residual block forward path and direct gradient route | `s02_a03_residual_gradient_path.mp4` | Included (V60) |
 
 ## Animation sources
 

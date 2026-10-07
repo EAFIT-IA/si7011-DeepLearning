@@ -763,7 +763,14 @@ $$
 
 <span class="small">$\mu_\mathcal B$, $s_\mathcal B^2$: batch mean and variance. $\gamma$, $\beta$: BN parameters, not the optimizer's $\beta$.</span>
 
-<!-- Pending figure: S02-F11 — BatchNorm: normalize, then learn scale and shift. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain BatchNorm: normalize per feature, then learn scale and shift](../figures/s02_f11_batchnorm_transform.png)
 
 ---
 

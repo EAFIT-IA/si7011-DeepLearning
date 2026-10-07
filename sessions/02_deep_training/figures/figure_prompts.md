@@ -17,7 +17,7 @@ Slide numbers refer to the current `../slides/S02_slides.marp.md`.
 | Figure | Concept | Status |
 |---|---|---|
 | S02-F06 | Symmetry problem with identical initialization | done |
-| S02-F11 | BatchNorm: normalize, then learn scale and shift | **pending** |
+| S02-F11 | BatchNorm: normalize, then learn scale and shift | done |
 | S02-F12 | BatchNorm in training versus evaluation mode | **pending** |
 | S02-F13 | Underfitting, healthy fit, overfitting | **pending** |
 | S02-F14 | Effect of weight decay | **pending** |
@@ -66,7 +66,7 @@ A small looping arrow beside the rows with the text "every step: the two units s
 
 ---
 
-## S02-F11 · BatchNorm: normalize, then learn scale and shift (slide 44)
+## S02-F11 · BatchNorm: normalize, then learn scale and shift (done)
 
 File: `s02_f11_batchnorm_transform.png`
 
@@ -96,7 +96,7 @@ Each histogram has a thin vertical dashed line at its mean, labeled $\mu_{\mathc
 
 ---
 
-## S02-F12 · BatchNorm in training versus evaluation mode (slide 45)
+## S02-F12 · BatchNorm in training versus evaluation mode (slide 46)
 
 File: `s02_f12_batchnorm_train_eval.png`
 
@@ -113,7 +113,7 @@ Under the panel: "the output for $x$ depends on the other examples in the batch"
 
 ---
 
-## S02-F13 · Underfitting, healthy fit, overfitting (slide 49)
+## S02-F13 · Underfitting, healthy fit, overfitting (slide 50)
 
 File: `s02_f13_train_validation_dynamics.png`
 
@@ -127,7 +127,7 @@ Three plots side by side, each with x-axis "epoch" (0 to 100) and y-axis "object
 
 ---
 
-## S02-F14 · Effect of weight decay (slide 50)
+## S02-F14 · Effect of weight decay (slide 51)
 
 File: `s02_f14_weight_decay_effect.png`
 
@@ -145,7 +145,7 @@ Small formula at the bottom left: $J_\lambda(\theta) = J(\theta) + \lambda \lVer
 
 ---
 
-## S02-F15 · Dropout as stochastic subnetworks (slide 52)
+## S02-F15 · Dropout as stochastic subnetworks (slide 53)
 
 File: `s02_f15_dropout_subnetworks.png`
 
@@ -163,7 +163,7 @@ Formulas under the divider:
 
 ---
 
-## S02-F16 · Depth degradation in plain networks (slide 56)
+## S02-F16 · Depth degradation in plain networks (slide 57)
 
 File: `s02_f16_depth_degradation.png`
 
@@ -180,7 +180,7 @@ Small gray footnote at the bottom right: "Schematic after He et al., 2016 (CIFAR
 
 ---
 
-## S02-F17 · Residual block (slide 57)
+## S02-F17 · Residual block (slide 58)
 
 File: `s02_f17_residual_block.png`
 
@@ -198,7 +198,7 @@ Bottom-left note, small gray: "requires $F(a_{l-1})$ and $a_{l-1}$ to have the s
 
 ---
 
-## S02-F19 · Training diagnostics map (slide 61)
+## S02-F19 · Training diagnostics map (slide 62)
 
 File: `s02_f19_training_diagnostics_map.png`
 
@@ -216,7 +216,7 @@ Above the map, a thin gray strip: "Before a long run: initial loss ≈ ln C · o
 
 ---
 
-## S02-F20 · Why deep training works: integrated view (slide 64)
+## S02-F20 · Why deep training works: integrated view (slide 65)
 
 File: `s02_f20_deep_training_summary.png`
 
