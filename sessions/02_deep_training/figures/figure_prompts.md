@@ -29,7 +29,7 @@ Slide numbers refer to the current `../slides/S02_slides.marp.md`.
 | S02-F22 | Mini-batch gradient noise versus batch size | done |
 | S02-F23 | BatchNorm versus LayerNorm: which axis is normalized | done |
 | S02-F24 | Label-preserving data augmentation | done |
-| S02-F01 | Correction: typo, plain J, no logo | **pending** |
+| S02-F01 | Correction: typo and logo fixed; script 𝒥 remains (optional regeneration) | done |
 | S02-F02 | Correction: std(x) label and consistent numbers | **pending** |
 | S02-F04 | Correction: backward direction and notation | **pending** |
 | S02-F07 | Correction: Xavier variance, tanh vs ReLU | **pending** |
@@ -310,7 +310,7 @@ Bottom row, a separate small panel with a light red border, header "the transfor
 
 These four figures are in the deck but contain content errors. Regenerate each one **keeping its layout**, and change only what is listed. Same file name, PNG, 1672 × 941.
 
-## S02-F01 · From the learning loop to deep training — correction (slide 4)
+## S02-F01 · From the learning loop to deep training — correction (done; only the script 𝒥 → J change remains, optional)
 
 File: `s02_f01_learning_to_deep_training.png`
 
