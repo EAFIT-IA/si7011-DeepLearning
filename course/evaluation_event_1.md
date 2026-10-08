@@ -25,7 +25,7 @@ Cada pareja recibe un notebook que entrena un MLP sobre `digits` (scikit-learn, 
 La receta tiene **exactamente dos fallas**: una de **código** y una de **configuración**. Cada pareja recibe una combinación distinta.
 
 Para cada falla registran: síntoma → medición → hipótesis → **predicción** → experimento que cambia una sola cosa (en MLflow) → resultado → conclusión.
-Después corrigen ambas fallas, entrenan la receta final y evalúan en prueba **una sola vez**.
+Después corrigen ambas fallas, entrenan la receta final, evalúan en prueba **una sola vez** y completan un despliegue mínimo: la receta se recarga desde MLflow y predice sobre imágenes crudas.
 
 **Entrega:** un `.zip` con el notebook ejecutado y `mlflow.db` (con `mlruns/`).
 
@@ -33,9 +33,10 @@ Después corrigen ambas fallas, entrenan la receta final y evalúan en prueba **
 |---|---:|
 | Diagnóstico de la falla de código | 20 % |
 | Diagnóstico de la falla de configuración | 20 % |
-| Evidencia: mediciones y corridas comparables en MLflow | 30 % |
+| Evidencia: mediciones y corridas comparables en MLflow | 25 % |
 | Predicciones escritas antes de cada experimento | 10 % |
 | Receta final (validación ≥ 95 %) y uso correcto de prueba | 10 % |
+| Despliegue: recarga desde MLflow y predicción sobre datos crudos | 5 % |
 | Dos preguntas finales, respondidas con sus corridas | 10 % |
 
 Encontrar la falla leyendo el código no basta: la nota depende de la evidencia.
