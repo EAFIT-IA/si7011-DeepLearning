@@ -1160,6 +1160,8 @@ Cheap tests that catch most bugs before a long run:
 
 # Practice B — Build a robust training recipe
 
+Worked example first: [recipe + MLflow, end to end](../notebooks/sesion_02_ejemplo_receta_mlflow.ipynb)
+
 [Open notebook](../notebooks/sesion_02_practica_b_receta_mlflow.ipynb) · Forest Covertype (581k rows, 7 classes) · every run logged to **MLflow**
 
 Start from a deep MLP baseline.
