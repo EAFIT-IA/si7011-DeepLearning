@@ -518,15 +518,13 @@ Initialization and activation must be considered together.
 
 # Practice A — Inspect a deep MLP
 
-[Open notebook](../notebooks/sesion_02_practica_a_senal_profundidad.ipynb)
+[Notebook 1 · Signal and initialization](../notebooks/sesion_02_1_senal_inicializacion.ipynb) · worked, one change per cell
 
 The goal is not accuracy yet.
 
 The goal is to measure, layer by layer:
 
 $$
-\operatorname{mean}(a_l),
-\qquad
 \operatorname{std}(a_l),
 \qquad
 \left\lVert
@@ -534,7 +532,7 @@ $$
 \right\rVert
 $$
 
-for different depths, activations and initializations.
+for different activations and initializations, and then check whether that prediction holds after 5 epochs.
 
 > Can we detect a bad training setup before many epochs?
 
@@ -1160,27 +1158,19 @@ Cheap tests that catch most bugs before a long run:
 
 # Practice B — Build a robust training recipe
 
-Worked example first: [recipe + MLflow, end to end](../notebooks/sesion_02_ejemplo_receta_mlflow.ipynb)
+Worked notebooks first, on Fashion-MNIST, one change per cell:
 
-[Open notebook](../notebooks/sesion_02_practica_b_receta_mlflow.ipynb) · Forest Covertype (581k rows, 7 classes) · every run logged to **MLflow**
+- [2 · Optimization](../notebooks/sesion_02_2_optimizacion.ipynb): η, momentum, Adam, batch size, warmup + cosine, clipping
+- [3 · Normalization and regularization](../notebooks/sesion_02_3_normalizacion_regularizacion.ipynb): weight decay, Dropout, early stopping, BatchNorm
+- [4 · Residuals and diagnostics](../notebooks/sesion_02_4_residual_diagnosticos.ipynb): residual blocks, pre-norm, overfit one batch
 
-Start from a deep MLP baseline.
-
-Run the sanity checks first. Then add one decision at a time:
-
-1. He initialization
-2. Momentum or Adam
-3. BatchNorm
-4. weight decay (AdamW) or Dropout
-5. learning-rate schedule and early stopping
-
-Explain the curves after each change.
+Then the [integrating exercise](../notebooks/sesion_02_6_integrador_covertype.ipynb) · Forest Covertype (581k rows, 7 classes) · every run logged to **MLflow**: combine the pieces, explain the curves, deploy from the artifact.
 
 ---
 
 # Practice C — Hyperparameter search
 
-[Open notebook](../notebooks/sesion_02_busqueda_hiperparametros.ipynb) · Optuna + MLflow
+[Notebook 5 · Optuna + MLflow](../notebooks/sesion_02_5_optuna_mlflow.ipynb) · worked, on Fashion-MNIST
 
 $$
 \lambda^\star=\arg\min_{\lambda}\;J_\text{val}\big(\theta^\star(\lambda)\big)

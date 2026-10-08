@@ -1,96 +1,40 @@
 # Session 02 notebooks
 
-## New structure (in progress)
+Five worked notebooks and one integrating exercise. The worked notebooks follow the format of Chollet's
+*Deep Learning with Python* (ch. 5): the theory stays in the slides, **each cell changes one thing**, and the
+curves are overlaid. All five use the same data (Fashion-MNIST as 784-dimensional vectors: 10,000 training,
+10,000 validation, official test set), the same training loop and plain PyTorch with explicit `nn.Sequential`
+models. Each runs in about one minute on CPU, is executed in the repository, and ends with a short
+*Tu turno* list of experiments (about 10 minutes).
 
-One notebook per part of the slides. Every notebook is fully worked and executed, uses Fashion-MNIST as
-784-dimensional vectors, and changes **one thing per cell** before overlaying the curves (format taken from
-Chollet's *Deep Learning with Python*, ch. 5). The theory stays in the slides. Each notebook ends with a short
-*Tu turno* list of experiments (about 10 min). Covertype + MLflow becomes the integrating exercise.
+| # | Notebook | Slides | What changes, one cell at a time |
+|---|---|---|---|
+| 1 | [Signal and initialization](sesion_02_1_senal_inicializacion.ipynb) | Parts 1–2, Practice A | 20-layer MLP: PyTorch default, N(0, 0.01²), N(0, 1), Xavier, He; tanh vs ReLU; per-layer std and gradient via hooks; initial loss vs ln C; 5 training epochs confirm the prediction |
+| 2 | [Optimization](sesion_02_2_optimizacion.ipynb) | Part 3 | SGD with η = 0.001 / 0.05 / 1.0 (nan); momentum and the effective step η/(1−β); Adam; batch size 32 / 128 / 512 and scaling η; warmup + cosine (val acc 0.83 → 0.875); gradient norm and clipping rescue η = 0.3 |
+| 3 | [Normalization and regularization](sesion_02_3_normalizacion_regularizacion.ipynb) | Part 4 | Baseline overfits (val loss 0.39 → 0.52); AdamW weight decay (‖W‖ halved); Dropout; early stopping; BatchNorm takes a 20-layer MLP from ln 10 to 84 %; BatchNorm in `train()` vs `eval()` |
+| 4 | [Residuals and diagnostics](sesion_02_4_residual_diagnosticos.ipynb) | Part 5 | Plain depth 4 / 20 / 50 (degradation in training loss); residual block (50 layers train); first-layer gradient 10⁻²⁰ vs 3.7; pre-norm LayerNorm at η = 10⁻²; overfit one batch catches a double-softmax bug that the ln C check misses |
+| 5 | [Optuna + MLflow](sesion_02_5_optuna_mlflow.ipynb) | Practice C | MLflow basics (params, per-epoch metrics, `search_runs`); log-scale search space; objective with median pruning; TPE study with nested runs (20 trials, ~40 s); importance plots; retrain the best and test once |
+| 6 | [Integrating exercise · Covertype](sesion_02_6_integrador_covertype.ipynb) | Practice B | Student work, 60–75 min, **4 TODOs**, each pointing to the notebook where the piece was shown |
 
-| # | Notebook | Status |
-|---|---|---|
-| 1 | Signal and initialization (from Practice A) | pending |
-| 2 | Optimization: SGD, momentum, Adam, batch size, schedule, clipping | pending |
-| 3 | [Normalization and regularization](sesion_02_3_normalizacion_regularizacion.ipynb) | **pilot** |
-| 4 | Residual connections, LayerNorm and diagnostics | pending |
-| — | Integrating exercise: Covertype + MLflow | pending (from Practice B) |
+## Integrating exercise (student work)
 
-**3 · Normalization and regularization** (about 1 minute on CPU). Baseline MLP 784–512–512–10 trained on 10,000
-examples overfits (validation loss 0.39 at epoch 6 → 0.52 at epoch 20). One change at a time: AdamW with
-weight decay 1.0 (final validation loss 0.41, ‖W‖ halved), Dropout 0.5 (0.40), early stopping with
-`patience = 3` (restores epoch 6). A 20-layer MLP with SGD stays at ln 10 ≈ 2.303, and with BatchNorm it reaches 84%.
-It also shows BatchNorm in `train()` versus `eval()` (batch of one, running statistics) and evaluates the test set once.
+Forest Covertype (UCI / Kaggle `uciml/forest-cover-type-dataset`): 581,012 rows, 54 features, 7 imbalanced
+classes. It follows the data → training → deployment pipeline with an artifact per stage:
 
-## Practice A — Inspect a deep MLP · in class, 30 min
+- **Data (provided):** contract validated on load, data card. **TODO 1:** stratified 60/20/20 split and scaling of the 10 numeric columns fitted on training only.
+- **Training:** the loop with scheduler, clipping, gradient norm, early stopping and MLflow logging is provided, as is the baseline run. **TODO 2:** `my_model()` (He, BatchNorm, Dropout, optionally residual), checked against ln C and overfit-one-batch. **TODO 3:** `my_opt()` (AdamW + warmup + cosine), checked by plotting the schedule. A third run changes one thing, with a written prediction.
+- **Deployment:** runs compared with `search_runs` and `get_metric_history`, the chosen run evaluated on test once from its MLflow artifact. **TODO 4:** `predict_raw` on raw rows, checked for consistency and contract rejection.
 
-[sesion_02_practica_a_senal_profundidad.ipynb](sesion_02_practica_a_senal_profundidad.ipynb)
-
-Executed demo, CPU only, no downloads (about 1.5 minutes).
-Forward hooks measure `mean(a_l)`, `std(a_l)`, `std(δ_{a_l})` and `‖∇_{W_l}J‖` layer by layer
-for {sigmoid, tanh, ReLU} × {PyTorch default, N(0, 0.01²), N(0, 1), Xavier, He}.
-It also reproduces the A01 variance sweep (`c · 2/n_in`) against the theory line, shows dead ReLUs,
-checks the initial loss against ln C, and ends with a short training run showing that the
-inspection predicts which initializations will train. Questions A1–A7.
-
-## Worked example — training recipe and MLflow · in class, 20 min
-
-[sesion_02_ejemplo_receta_mlflow.ipynb](sesion_02_ejemplo_receta_mlflow.ipynb)
-
-Fully implemented and executed, on synthetic tabular data (`make_classification`: 30,000 rows, 40 features with
-very different scales, 5 classes; no downloads, about 1.5 minutes on CPU). It shows every piece Practice B asks
-students to build: data contract and data card, split and scaler fitted on training, configurable MLP (He,
-BatchNorm, Dropout), AdamW, warmup + cosine, gradient-norm measurement and clipping, early stopping, MLflow
-logging with a deployable `best.pt` (weights + scaler + contract), comparison with `search_runs`, and `predict_raw`
-from the MLflow artifact on raw rows. A deep plain baseline stays at ln 5 while the full recipe reaches a
-validation macro F1 of about 0.94.
-
-## Practice B — A robust training recipe with MLflow · student work, 90 min
-
-[sesion_02_practica_b_receta_mlflow.ipynb](sesion_02_practica_b_receta_mlflow.ipynb)
-
-Forest Covertype (UCI / Kaggle `uciml/forest-cover-type-dataset`): 581,012 rows, 54 features,
-7 imbalanced classes. Plain PyTorch with one `cfg` dict per run. Eight TODOs:
-data split and scaling, initialization, configurable MLP (BatchNorm/Dropout), optimizer
-(SGD/Adam/AdamW), warmup + cosine schedule, training step with gradient-norm measurement and clipping,
-and the experiment ladder R0–R5 (baseline → He → AdamW → BatchNorm → weight decay + Dropout →
-schedule + clipping + early stopping).
-
-It follows the data → training → deployment pipeline with an artifact per stage.
-**Data:** a contract (54 columns, 10 numeric, 44 binary indicators) validated on load and a
-data card logged with every run. **Training:** every run is logged to MLflow (local
-`sqlite:///mlflow.db` + `mlruns/`): parameters, per-epoch metrics, learning rate, gradient norm,
-initial-loss checks and a `best.pt` artifact that carries the weights **and** the scaler statistics
-and data contract. **Deployment (section 11, TODO 8):** `predict_raw` loads the chosen run from MLflow
-and predicts on raw rows; checks cover consistency with the test predictions, contract rejection,
-batch inference from a CSV with per-row and per-batch latency, and export with `torch.export` (`.pt2`).
-Serving behind an API is left for a later session.
-Runs are compared in the notebook with `mlflow.search_runs` and `get_metric_history`;
-the MLflow UI is optional (Colab cell provided; on Kaggle download `mlflow.db` and `mlruns/`).
-The test set is evaluated once, for the recipe chosen on validation.
-
-With the default `TRAIN_SIZE = 100_000`, the six runs take about 13 minutes on CPU and a few
-minutes on a GPU. The instructor solution is kept outside the repository.
-
-## Hyperparameter search with Optuna and MLflow · 60 min
-
-[sesion_02_busqueda_hiperparametros.ipynb](sesion_02_busqueda_hiperparametros.ipynb)
-
-Same Covertype pipeline as Practice B (contract, 60/20/20 split, scaler fitted on training; 30,000 training
-examples so the search fits in class). A logged baseline, then an Optuna study (TPE sampler, median pruner)
-over learning rate and weight decay (log scale), Dropout, depth, width, batch size and normalization.
-Two TODOs: the search space and the pruning callback. In MLflow, the study is a parent run and every trial
-a nested child run with its parameters, per-epoch curves and state (`COMPLETE` / `PRUNED`); the parent stores
-the best parameters and the optimization-history, importance and slice plots. Students compare trials with
-MLflow's *Parallel Coordinates Plot*, retrain the best configuration, evaluate on test once and log a deployable
-artifact (weights + scaler + contract) compatible with Practice B's `predict_raw`.
+With `TRAIN_SIZE = 50_000`, the three runs take about a minute on CPU. The instructor solution is kept outside the repository.
 
 ## Open online
 <!-- open-in-badges -->
 
 | Notebook | |
 |---|---|
+| `sesion_02_1_senal_inicializacion.ipynb` | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_1_senal_inicializacion.ipynb) [![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_1_senal_inicializacion.ipynb) [![Abrir en Lightning Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)](https://lightning.ai/new?repo_url=https%3A%2F%2Fgithub.com%2FEAFIT-IA%2Fsi7011-DeepLearning%2Fblob%2Fmain%2Fsessions%2F02_deep_training%2Fnotebooks%2Fsesion_02_1_senal_inicializacion.ipynb) |
+| `sesion_02_2_optimizacion.ipynb` | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_2_optimizacion.ipynb) [![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_2_optimizacion.ipynb) [![Abrir en Lightning Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)](https://lightning.ai/new?repo_url=https%3A%2F%2Fgithub.com%2FEAFIT-IA%2Fsi7011-DeepLearning%2Fblob%2Fmain%2Fsessions%2F02_deep_training%2Fnotebooks%2Fsesion_02_2_optimizacion.ipynb) |
 | `sesion_02_3_normalizacion_regularizacion.ipynb` | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_3_normalizacion_regularizacion.ipynb) [![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_3_normalizacion_regularizacion.ipynb) [![Abrir en Lightning Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)](https://lightning.ai/new?repo_url=https%3A%2F%2Fgithub.com%2FEAFIT-IA%2Fsi7011-DeepLearning%2Fblob%2Fmain%2Fsessions%2F02_deep_training%2Fnotebooks%2Fsesion_02_3_normalizacion_regularizacion.ipynb) |
-| `sesion_02_busqueda_hiperparametros.ipynb` | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_busqueda_hiperparametros.ipynb) [![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_busqueda_hiperparametros.ipynb) [![Abrir en Lightning Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)](https://lightning.ai/new?repo_url=https%3A%2F%2Fgithub.com%2FEAFIT-IA%2Fsi7011-DeepLearning%2Fblob%2Fmain%2Fsessions%2F02_deep_training%2Fnotebooks%2Fsesion_02_busqueda_hiperparametros.ipynb) |
-| `sesion_02_ejemplo_receta_mlflow.ipynb` | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_ejemplo_receta_mlflow.ipynb) [![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_ejemplo_receta_mlflow.ipynb) [![Abrir en Lightning Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)](https://lightning.ai/new?repo_url=https%3A%2F%2Fgithub.com%2FEAFIT-IA%2Fsi7011-DeepLearning%2Fblob%2Fmain%2Fsessions%2F02_deep_training%2Fnotebooks%2Fsesion_02_ejemplo_receta_mlflow.ipynb) |
-| `sesion_02_practica_a_senal_profundidad.ipynb` | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_practica_a_senal_profundidad.ipynb) [![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_practica_a_senal_profundidad.ipynb) [![Abrir en Lightning Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)](https://lightning.ai/new?repo_url=https%3A%2F%2Fgithub.com%2FEAFIT-IA%2Fsi7011-DeepLearning%2Fblob%2Fmain%2Fsessions%2F02_deep_training%2Fnotebooks%2Fsesion_02_practica_a_senal_profundidad.ipynb) |
-| `sesion_02_practica_b_receta_mlflow.ipynb` | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_practica_b_receta_mlflow.ipynb) [![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_practica_b_receta_mlflow.ipynb) [![Abrir en Lightning Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)](https://lightning.ai/new?repo_url=https%3A%2F%2Fgithub.com%2FEAFIT-IA%2Fsi7011-DeepLearning%2Fblob%2Fmain%2Fsessions%2F02_deep_training%2Fnotebooks%2Fsesion_02_practica_b_receta_mlflow.ipynb) |
+| `sesion_02_4_residual_diagnosticos.ipynb` | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_4_residual_diagnosticos.ipynb) [![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_4_residual_diagnosticos.ipynb) [![Abrir en Lightning Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)](https://lightning.ai/new?repo_url=https%3A%2F%2Fgithub.com%2FEAFIT-IA%2Fsi7011-DeepLearning%2Fblob%2Fmain%2Fsessions%2F02_deep_training%2Fnotebooks%2Fsesion_02_4_residual_diagnosticos.ipynb) |
+| `sesion_02_5_optuna_mlflow.ipynb` | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_5_optuna_mlflow.ipynb) [![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_5_optuna_mlflow.ipynb) [![Abrir en Lightning Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)](https://lightning.ai/new?repo_url=https%3A%2F%2Fgithub.com%2FEAFIT-IA%2Fsi7011-DeepLearning%2Fblob%2Fmain%2Fsessions%2F02_deep_training%2Fnotebooks%2Fsesion_02_5_optuna_mlflow.ipynb) |
+| `sesion_02_6_integrador_covertype.ipynb` | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_6_integrador_covertype.ipynb) [![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_6_integrador_covertype.ipynb) [![Abrir en Lightning Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)](https://lightning.ai/new?repo_url=https%3A%2F%2Fgithub.com%2FEAFIT-IA%2Fsi7011-DeepLearning%2Fblob%2Fmain%2Fsessions%2F02_deep_training%2Fnotebooks%2Fsesion_02_6_integrador_covertype.ipynb) |
