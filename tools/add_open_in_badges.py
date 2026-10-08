@@ -6,6 +6,12 @@ import glob, sys, urllib.parse, nbformat as nbf
 REPO = 'EAFIT-IA/si7011-DeepLearning'
 MARK = '<!-- open-in-badges -->'
 
+# Published Kaggle notebooks (students click "Copy & Edit"). Others import from GitHub.
+KAGGLE = {
+    'sessions/01_learning/notebooks/sesion_01_pytorch_60min.ipynb':
+        'https://www.kaggle.com/code/juanmartinezv4399/si7011-sesion-01-pytorch-60min-ipynb',
+}
+
 
 def badges(path):
     blob = f'https://github.com/{REPO}/blob/main/{path}'
@@ -13,7 +19,7 @@ def badges(path):
             f"[![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)]"
             f"(https://colab.research.google.com/github/{REPO}/blob/main/{path}) "
             f"[![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)]"
-            f"(https://kaggle.com/kernels/welcome?src={blob}) "
+            f"({KAGGLE.get(path, 'https://kaggle.com/kernels/welcome?src=' + blob)}) "
             f"[![Abrir en Lightning Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)]"
             f"(https://lightning.ai/new?repo_url={urllib.parse.quote(blob, safe='')})")
 
