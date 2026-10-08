@@ -56,9 +56,7 @@ Detailed course design: [`course/course_structure.md`](course/course_structure.m
 
 ## Session 01 — Learning
 
-The first session is already under active development:
-
-- [Marp slide deck](sessions/01_learning/slides/S01_slides.marp.md)
+- [Slides (PDF)](sessions/01_learning/slides/S01_slides.pdf) · [Marp source](sessions/01_learning/slides/S01_slides.marp.md)
 - [Rendering instructions](sessions/01_learning/slides/README.md)
 - [Figure and animation inventory](sessions/01_learning/figures/figures.md)
 - [Guided practice and exercise](sessions/01_learning/notebooks/README.md)
@@ -72,12 +70,25 @@ f_\theta(x)
 \rightarrow
 \hat y
 \rightarrow
-\mathcal L
+L
 \rightarrow
-\nabla_\theta \mathcal L
+\nabla_\theta L
 \rightarrow
 \theta'
 $$
+
+
+## Session 02 — Deep Training
+
+- [Slides (PDF)](sessions/02_deep_training/slides/S02_slides.pdf) · [Marp source](sessions/02_deep_training/slides/S02_slides.marp.md)
+- [Figure and animation inventory](sessions/02_deep_training/figures/figures.md)
+- [Practice A and Practice B notebooks](sessions/02_deep_training/notebooks/README.md)
+
+Why can deep networks be trained? Signal propagation, initialization, optimizers, normalization and regularization, residual learning and training diagnostics. Both practices follow the data → training → deployment pipeline, with runs tracked in MLflow.
+
+## Evaluation
+
+- [Evaluation strategy](course/evaluation_strategy.md) · [Evaluation Event 1 (S01–S02)](course/evaluation_event_1.md)
 
 ## Evaluation
 
