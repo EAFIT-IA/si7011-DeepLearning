@@ -29,9 +29,11 @@ Son seis preguntas de respuesta corta (una o dos frases por literal), cada una c
 
 ## Parte B · Diagnóstico de una receta de entrenamiento
 
-Cada pareja recibe **su propio** notebook (no está en este repositorio). Entrena un MLP sobre `digits`: imágenes de 8×8 que vienen con scikit-learn, sin descargas, y que corre en CPU en segundos.
+**Notebook:** [`evento1_parteB_diagnostico.ipynb`](evento1_parteB_diagnostico.ipynb) · [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EAFIT-IA/si7011-DeepLearning/blob/main/evaluations/event_1/evento1_parteB_diagnostico.ipynb) [![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/EAFIT-IA/si7011-DeepLearning/blob/main/evaluations/event_1/evento1_parteB_diagnostico.ipynb)
 
-La receta tiene **exactamente dos fallas**: una de **código**, en las funciones del modelo o del loop, y una de **configuración**, en el diccionario `RECETA`. Cada pareja recibe una combinación distinta.
+Es el mismo notebook para todas las parejas. Entrena un MLP sobre `digits`: imágenes de 8×8 que vienen con scikit-learn, sin descargas, y que corre en CPU en segundos.
+
+La receta tiene **exactamente dos fallas**: una de **código**, en las funciones del modelo o del loop, y una de **configuración**, en el diccionario `RECETA`.
 
 Para cada falla registran en la bitácora del notebook:
 
@@ -60,4 +62,4 @@ Después:
 
 **Cómo se califica el diagnóstico.** Señalar la línea o el valor equivocado sin una medición que lo muestre vale como máximo la mitad. Una predicción que resultó equivocada no resta, siempre que esté escrita antes del experimento y se pueda comprobar.
 
-**Reglas.** Cada pareja trabaja solo con su variante. Pueden consultar los notebooks del curso y la documentación de PyTorch y MLflow. Si usan asistentes de IA, la bitácora debe mostrar **sus** mediciones y **sus** corridas: la nota depende de la evidencia registrada en `mlflow.db`, no del diagnóstico final.
+**Reglas.** Todas las parejas tienen el mismo notebook, pero cada una entrega su propia bitácora y sus propias corridas. Dos entregas con las mismas mediciones, predicciones o redacción se califican como una sola. Pueden consultar los notebooks del curso y la documentación de PyTorch y MLflow. Si usan asistentes de IA, la bitácora debe mostrar **sus** mediciones y **sus** corridas: la nota depende de la evidencia registrada en `mlflow.db`, no del diagnóstico final.
