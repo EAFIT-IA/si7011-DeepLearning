@@ -1176,6 +1176,22 @@ Explain the curves after each change.
 
 ---
 
+# Practice C — Hyperparameter search
+
+[Open notebook](../notebooks/sesion_02_busqueda_hiperparametros.ipynb) · Optuna + MLflow
+
+$$
+\lambda^\star=\arg\min_{\lambda}\;J_\text{val}\big(\theta^\star(\lambda)\big)
+$$
+
+- search space: $\eta$ and weight decay on a **log scale**, Dropout, depth, width, batch size, normalization;
+- TPE proposes the next $\lambda$; a **median pruner** stops trials that already look worse;
+- MLflow: one **parent** run per study, one **nested** run per trial; compare them with parallel coordinates.
+
+> The best validation score of a search is optimistic: test once, after choosing.
+
+---
+
 # Why deep training works
 
 Deep networks train because several mechanisms cooperate:
