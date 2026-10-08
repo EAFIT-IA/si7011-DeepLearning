@@ -6,11 +6,23 @@ import glob, sys, urllib.parse, nbformat as nbf
 REPO = 'EAFIT-IA/si7011-DeepLearning'
 MARK = '<!-- open-in-badges -->'
 
+# Published Lightning Studios (one Studio per session). Others import from GitHub.
+LIGHTNING_STUDIO = {
+    'sessions/01_learning/': 'https://lightning.ai/jdmartinev-org/vision-model/studios/si7011-sesion01/code',
+}
+
 # Published Kaggle notebooks (students click "Copy & Edit"). Others import from GitHub.
 KAGGLE = {
     'sessions/01_learning/notebooks/sesion_01_pytorch_60min.ipynb':
         'https://www.kaggle.com/code/juanmartinezv4399/si7011-sesion-01-pytorch-60min-ipynb',
 }
+
+
+def lightning_url(path, blob):
+    for prefix, url in LIGHTNING_STUDIO.items():
+        if path.startswith(prefix):
+            return url
+    return 'https://lightning.ai/new?repo_url=' + urllib.parse.quote(blob, safe='')
 
 
 def badges(path):
@@ -21,7 +33,7 @@ def badges(path):
             f"[![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)]"
             f"({KAGGLE.get(path, 'https://kaggle.com/kernels/welcome?src=' + blob)}) "
             f"[![Abrir en Lightning Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)]"
-            f"(https://lightning.ai/new?repo_url={urllib.parse.quote(blob, safe='')})")
+            f"({lightning_url(path, blob)})")
 
 
 if __name__ == '__main__':
