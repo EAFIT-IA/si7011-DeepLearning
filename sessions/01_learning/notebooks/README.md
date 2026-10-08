@@ -26,3 +26,11 @@ reports accuracy, macro F1 and a confusion matrix.
 The former names `S01_N01_gradient_descent.ipynb` and
 `S01_N02_pytorch_autograd.ipynb` were planning placeholders.
 The presentation now links to the available notebooks above.
+
+## Open online
+<!-- open-in-badges -->
+
+| Notebook | |
+|---|---|
+| `sesion_01_ejercicio_mlp_multiclase_kaggle.ipynb` | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/01_learning/notebooks/sesion_01_ejercicio_mlp_multiclase_kaggle.ipynb) [![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/01_learning/notebooks/sesion_01_ejercicio_mlp_multiclase_kaggle.ipynb) [![Abrir en Lightning Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)](https://lightning.ai/new?repo_url=https%3A%2F%2Fgithub.com%2FEAFIT-IA%2Fsi7011-DeepLearning%2Fblob%2Fmain%2Fsessions%2F01_learning%2Fnotebooks%2Fsesion_01_ejercicio_mlp_multiclase_kaggle.ipynb) |
+| `sesion_01_pytorch_60min.ipynb` | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/01_learning/notebooks/sesion_01_pytorch_60min.ipynb) [![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/01_learning/notebooks/sesion_01_pytorch_60min.ipynb) [![Abrir en Lightning Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)](https://lightning.ai/new?repo_url=https%3A%2F%2Fgithub.com%2FEAFIT-IA%2Fsi7011-DeepLearning%2Fblob%2Fmain%2Fsessions%2F01_learning%2Fnotebooks%2Fsesion_01_pytorch_60min.ipynb) |
