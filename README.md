@@ -88,7 +88,7 @@ Why can deep networks be trained? Signal propagation, initialization, optimizers
 
 ## Evaluation
 
-- [Evaluation strategy](course/evaluation_strategy.md) · [Evaluation Event 1 (S01–S02)](course/evaluation_event_1.md)
+- [Evaluation strategy](course/evaluation_strategy.md) · [Evaluation Event 1 (S01–S02)](evaluations/event_1/README.md)
 
 ## Evaluation
 
@@ -126,6 +126,8 @@ SI7011-DeepLearning/
 │   ├── 04_representation_learning/
 │   ├── 05_foundation_models/
 │   └── 06_adaptation_deployment/
+├── evaluations/
+│   └── event_1/
 ├── assignments/
 └── references/
 ```
