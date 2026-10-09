@@ -1002,7 +1002,13 @@ Rank them before running.
 | CNN | locality, translation equivariance | global context needs depth |
 | ViT | almost nothing; position is learned | data or pretraining |
 
-<!-- Pending figure S03-F14 (full-slide figure after this slide): summary: the same image processed by MLP, CNN and ViT, with what each layer can see -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain What one unit can see: every input in an MLP, a growing neighborhood in a CNN, every patch weighted by content in a ViT](../figures/s03_f14_architecture_summary.png)
 
 ---
 

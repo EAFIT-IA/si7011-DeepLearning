@@ -23,7 +23,7 @@ Slide numbers refer to the current `../slides/S03_slides.marp.md`. Figures that 
 | S03-F09 | From scratch, linear probe, fine-tuning | V48 | done |
 | S03-F12 | Vision Transformer architecture | V62 | done |
 | S03-F13 | Inductive bias versus data | V64 | done |
-| S03-F14 | What one unit can see: MLP, CNN, ViT | V69 | pending |
+| S03-F14 | What one unit can see: MLP, CNN, ViT | V70 | done (CNN panel redrawn by script) |
 
 ## Common style block (prepend to every prompt)
 
@@ -209,7 +209,7 @@ Check: the ViT crosses the CNN only once, at large data; the MLP never crosses e
 
 ---
 
-## S03-F14 · What one unit can see: MLP, CNN, ViT (pending, after slide 69)
+## S03-F14 · What one unit can see: MLP, CNN, ViT (done, slide 70; CNN panel redrawn by `fix_s03_f14_cnn_panel.py`)
 
 File: `s03_f14_architecture_summary.png`
 
