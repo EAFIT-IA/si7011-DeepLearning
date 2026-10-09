@@ -3,7 +3,7 @@
 [S03_slides.marp.md](S03_slides.marp.md) is the editable Marp source.
 [../figures/figures.md](../figures/figures.md) maps every figure and animation to its slide and lists how each one is produced.
 
-Figures and animations that are not ready yet are hidden comments in the source, so the deck renders without gaps (62 slides now, 74 with every figure integrated).
+Figures and animations that are not ready yet are hidden comments in the source, so the deck renders without gaps (63 slides now, 74 with every figure integrated).
 
 ## Render
 

@@ -373,7 +373,13 @@ $$
 
 `nn.Conv2d(3, 64, kernel_size=3)` → $64 \cdot 3 \cdot 9 + 64 = 1792$ parameters.
 
-<!-- Pending figure S03-F04 (full-slide figure after this slide): multichannel convolution: input C_in×H×W, one kernel C_in×K×K giving one map, C_out kernels stacking into C_out×H'×W' -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Multichannel convolution: one kernel spans all input channels and gives one map; C_out kernels give C_out maps](../figures/s03_f04_multichannel_conv.png)
 
 ---
 

@@ -18,25 +18,25 @@ Pending figures are hidden HTML comments in the slide source (`<!-- Pending figu
 ![bg contain <alt text>](../figures/s03_fnn_<name>.png)
 ```
 
-Animations use the `media` class with a poster image, as in Session 02 (V31, V38, V70).
+Animations use the `media` class with a poster image, as in Session 02 (V32, V39, V71).
 
 Figures keep white backgrounds, academic visual style, preserved proportions and lowercase filenames with underscores. All figures are drawn from scratch; none reproduces a figure from a paper or another course.
 
 ## Deck structure
 
-62 slides in five parts, each opened by a divider slide that recaps the previous part: 56 content slides, plus 2 figures and 4 animations already integrated. With the 12 remaining figures the deck has **74 slides** (S02 has 78).
+63 slides in five parts, each opened by a divider slide that recaps the previous part: 56 content slides, plus 3 figures and 4 animations already integrated. With the 11 remaining figures the deck has **74 slides** (S02 has 78).
 
 | Part | Slides | Practice |
 |---|---|---|
 | Opening | V01–V04 | |
 | 1 · Images are structured data | V05–V13 | |
-| 2 · Convolution | V14–V27 | |
-| 3 · CNNs and residual networks | V28–V38 | Practice A (V38): notebooks 3.1–3.3 |
-| 4 · Transfer learning | V39–V47 | |
-| 5 · From patches to attention | V48–V58 | Practice B (V58): notebooks 3.4–3.5 |
-| Closure | V59–V62 | Integrating exercise (V59), exit question (V62) |
+| 2 · Convolution | V14–V28 | |
+| 3 · CNNs and residual networks | V29–V39 | Practice A (V39): notebooks 3.1–3.3 |
+| 4 · Transfer learning | V40–V48 | |
+| 5 · From patches to attention | V49–V59 | Practice B (V59): notebooks 3.4–3.5 |
+| Closure | V60–V63 | Integrating exercise (V60), exit question (V63) |
 
-Self-attention gets one slide (V53); its full mechanics belong to Session 05.
+Self-attention gets one slide (V54); its full mechanics belong to Session 05.
 
 Slide numbers below are those of the current source. For pending figures, "after slide" is the slide the hidden comment sits on; each inserted figure shifts the later numbers by one.
 
@@ -55,17 +55,17 @@ Three routes, depending on what the figure must show:
 | **S03-F01** | V07 (slide) | Image as a C×H×W tensor; one position across channels; batch dimension | `s03_f01_image_tensor.png` | Generator | Included — see review note |
 | **S03-F02** | V10 | Permutation experiment: original vs permuted images, MLP and CNN accuracy on each | `s03_f02_permutation_experiment.png` | Script (numbers from notebook 3.1) | Pending |
 | **S03-F03** | V18 (slide) | One image, four hand-made kernels and their feature maps | `s03_f03_kernels_feature_maps.png` | Script: `make_s03_f03_kernels_feature_maps.py` (skimage `camera`, 128×128) | Included |
-| **S03-F04** | V19 | Multichannel convolution: one kernel spans all input channels; C_out kernels stack into C_out maps | `s03_f04_multichannel_conv.png` | Generator | Pending |
-| **S03-F05** | V29 | CNN anatomy as tensor blocks, 3×32×32 → logits | `s03_f05_cnn_anatomy.png` | Generator | Pending |
-| **S03-F06** | V34 | Feature hierarchy: first-layer kernels and top-activating patches per stage | `s03_f06_feature_hierarchy.png` | Script (ImageNet ResNet-18, Oxford Pets images, notebook 3.4) | Pending |
-| **S03-F07** | V35 | ResNet basic block and downsampling block, with shapes | `s03_f07_resnet_blocks.png` | Generator | Pending |
-| **S03-F08** | V41 | Pretrained backbone: general early features, specific late features, new head | `s03_f08_transfer_backbone.png` | Generator | Pending |
-| **S03-F09** | V42 | From scratch, linear probe and fine-tuning: frozen vs trained layers | `s03_f09_transfer_strategies.png` | Generator | Pending |
-| **S03-F10** | V46 | Test accuracy vs images per class for the three strategies | `s03_f10_transfer_vs_data.png` | Script (numbers from notebook 3.4) | Pending |
-| **S03-F11** | V53 | Attention map of a pretrained ViT for one query patch | `s03_f11_attention_map.png` | Script (pretrained ViT, notebook 3.5) | Pending |
-| **S03-F12** | V55 | ViT architecture: patches, position, CLS, pre-norm blocks, head | `s03_f12_vit_architecture.png` | Generator | Pending |
-| **S03-F13** | V56 | Spectrum of assumptions MLP → CNN → ViT against data needed | `s03_f13_inductive_bias_spectrum.png` | Generator | Pending |
-| **S03-F14** | V61 | Summary: what one unit can see in the first layers of an MLP, a CNN and a ViT | `s03_f14_architecture_summary.png` | Generator | Pending |
+| **S03-F04** | V20 (slide) | Multichannel convolution: one kernel spans all input channels; C_out kernels stack into C_out maps | `s03_f04_multichannel_conv.png` | Generator | Included — see review note |
+| **S03-F05** | V30 | CNN anatomy as tensor blocks, 3×32×32 → logits | `s03_f05_cnn_anatomy.png` | Generator | Pending |
+| **S03-F06** | V35 | Feature hierarchy: first-layer kernels and top-activating patches per stage | `s03_f06_feature_hierarchy.png` | Script (ImageNet ResNet-18, Oxford Pets images, notebook 3.4) | Pending |
+| **S03-F07** | V36 | ResNet basic block and downsampling block, with shapes | `s03_f07_resnet_blocks.png` | Generator | Pending |
+| **S03-F08** | V42 | Pretrained backbone: general early features, specific late features, new head | `s03_f08_transfer_backbone.png` | Generator | Pending |
+| **S03-F09** | V43 | From scratch, linear probe and fine-tuning: frozen vs trained layers | `s03_f09_transfer_strategies.png` | Generator | Pending |
+| **S03-F10** | V47 | Test accuracy vs images per class for the three strategies | `s03_f10_transfer_vs_data.png` | Script (numbers from notebook 3.4) | Pending |
+| **S03-F11** | V54 | Attention map of a pretrained ViT for one query patch | `s03_f11_attention_map.png` | Script (pretrained ViT, notebook 3.5) | Pending |
+| **S03-F12** | V56 | ViT architecture: patches, position, CLS, pre-norm blocks, head | `s03_f12_vit_architecture.png` | Generator | Pending |
+| **S03-F13** | V57 | Spectrum of assumptions MLP → CNN → ViT against data needed | `s03_f13_inductive_bias_spectrum.png` | Generator | Pending |
+| **S03-F14** | V62 | Summary: what one unit can see in the first layers of an MLP, a CNN and a ViT | `s03_f14_architecture_summary.png` | Generator | Pending |
 
 ## Planned animations (Manim)
 
@@ -75,12 +75,13 @@ Only concepts where motion changes understanding.
 |---|---:|---|---|---|---|
 | **S03-A01** | V13 | From dense to convolution | Dense → locally connected → shared: connections disappear, weights collapse to one kernel, parameter counter on screen (1 049 600 → 10 240 → 10) | `s03_a01_dense_to_conv.mp4` | Included |
 | **S03-A02** | V16 | A kernel sliding over an image | 3×3 kernel over a 6×6 integer image; products and sum written at each position; 4×4 feature map filling in | `s03_a02_kernel_sliding.mp4` | Included |
-| **S03-A03** | V25 | The receptive field grows with depth | One output unit; its input region highlighted layer by layer: three 3×3 layers with stride 1 (3, 5, 7), then with stride 2 (3, 7, 15) | `s03_a03_receptive_field.mp4` | Included |
-| **S03-A04** | V52 | From image to tokens | Image → 4×4 grid of patches → each patch flattened → same linear map → token sequence, plus positional embeddings | `s03_a04_patches_to_tokens.mp4` | Included |
+| **S03-A03** | V26 | The receptive field grows with depth | One output unit; its input region highlighted layer by layer: three 3×3 layers with stride 1 (3, 5, 7), then with stride 2 (3, 7, 15) | `s03_a03_receptive_field.mp4` | Included |
+| **S03-A04** | V53 | From image to tokens | Image → 4×4 grid of patches → each patch flattened → same linear map → token sequence, plus positional embeddings | `s03_a04_patches_to_tokens.mp4` | Included |
 
 ## Review notes
 
 - **S03-F01:** channel shading does not follow the pixel values. The white background has value 1 in all three channels, so it should be the darkest cell in every grid; the image instead shades the leaf dark in R and B and the background light. The callout $(0.82, 0.41, 0.13)$ (from the prompt) is a reddish pixel, not a green leaf pixel. Structure, labels and shapes are correct. Usable as is; regeneration with the corrected prompt is optional.
+- **S03-F04:** a stray white "C" next to the G label on the input block was removed by cloning the green cell below it (the delivered PNG is 1671 px wide; harmless with `bg contain`). The dashed arrow to the kernel starts at the edge of the green block, not at the dashed window on the R face; acceptable.
 
 ## Animation sources
 
@@ -104,7 +105,7 @@ If production time is limited, prioritize:
 3. **S03-F12** — ViT architecture;
 4. **S03-F05** / **S03-F07** — CNN anatomy and ResNet blocks.
 
-Already included: S03-F01, S03-F03 and the four animations (S03-A01 to A04).
+Already included: S03-F01, S03-F03, S03-F04 and the four animations (S03-A01 to A04).
 
 ## Notes for slide integration
 
