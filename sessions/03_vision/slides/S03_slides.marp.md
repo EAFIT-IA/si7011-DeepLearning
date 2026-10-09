@@ -940,7 +940,13 @@ A ViT has to **learn** them from data.
 - very large pretraining: the ViT catches up and then passes the CNN;
 - modern CNNs (ConvNeXt) close much of that gap again: the bias is not the whole story.
 
-<!-- Pending figure S03-F13 (full-slide figure after this slide): spectrum of assumptions MLP → CNN → ViT, against the amount of data each needs -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Schematic: test accuracy against the number of training images for CNN, ViT and MLP; the ViT passes the CNN only with very large data](../figures/s03_f13_inductive_bias_spectrum.png)
 
 ---
 

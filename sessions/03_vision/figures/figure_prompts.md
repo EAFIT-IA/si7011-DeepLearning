@@ -22,8 +22,8 @@ Slide numbers refer to the current `../slides/S03_slides.marp.md`. Figures that 
 | S03-F08 | Pretrained backbone and a new head | V46 | done |
 | S03-F09 | From scratch, linear probe, fine-tuning | V48 | done |
 | S03-F12 | Vision Transformer architecture | V62 | done |
-| S03-F13 | Inductive bias versus data | V63 | pending |
-| S03-F14 | What one unit can see: MLP, CNN, ViT | V68 | pending |
+| S03-F13 | Inductive bias versus data | V64 | done |
+| S03-F14 | What one unit can see: MLP, CNN, ViT | V69 | pending |
 
 ## Common style block (prepend to every prompt)
 
@@ -187,7 +187,7 @@ Check: 196 tokens plus one CLS token; the norm comes **before** attention and be
 
 ---
 
-## S03-F13 · Inductive bias versus data (pending, after slide 63)
+## S03-F13 · Inductive bias versus data (done, slide 64)
 
 File: `s03_f13_inductive_bias_spectrum.png`
 
@@ -209,7 +209,7 @@ Check: the ViT crosses the CNN only once, at large data; the MLP never crosses e
 
 ---
 
-## S03-F14 · What one unit can see: MLP, CNN, ViT (pending, after slide 68)
+## S03-F14 · What one unit can see: MLP, CNN, ViT (pending, after slide 69)
 
 File: `s03_f14_architecture_summary.png`
 

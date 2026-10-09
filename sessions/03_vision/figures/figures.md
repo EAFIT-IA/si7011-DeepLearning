@@ -18,13 +18,13 @@ Pending figures are hidden HTML comments in the slide source (`<!-- Pending figu
 ![bg contain <alt text>](../figures/s03_fnn_<name>.png)
 ```
 
-Animations use the `media` class with a poster image, as in Session 02 (V33, V42, V77).
+Animations use the `media` class with a poster image, as in Session 02 (V33, V42, V78).
 
 Figures keep white backgrounds, academic visual style, preserved proportions and lowercase filenames with underscores. All figures are drawn from scratch; none reproduces a figure from a paper or another course.
 
 ## Deck structure
 
-69 slides in five parts, each opened by a divider slide that recaps the previous part: 56 content slides, plus 9 figures and 4 animations already integrated. With the 6 remaining figures the deck has **75 slides** (S02 has 78).
+70 slides in five parts, each opened by a divider slide that recaps the previous part: 56 content slides, plus 10 figures and 4 animations already integrated. With the 5 remaining figures the deck has **75 slides** (S02 has 78).
 
 | Part | Slides | Practice |
 |---|---|---|
@@ -33,8 +33,8 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | 2 · Convolution | V14–V28 | |
 | 3 · CNNs and residual networks | V29–V42 | Practice A (V42): notebooks 3.1–3.3 |
 | 4 · Transfer learning | V43–V53 | |
-| 5 · From patches to attention | V54–V65 | Practice B (V65): notebooks 3.4–3.5 |
-| Closure | V66–V69 | Integrating exercise (V66), exit question (V69) |
+| 5 · From patches to attention | V54–V66 | Practice B (V66): notebooks 3.4–3.5 |
+| Closure | V67–V70 | Integrating exercise (V67), exit question (V70) |
 
 Self-attention gets one slide (V59); its full mechanics belong to Session 05.
 
@@ -65,8 +65,8 @@ Three routes, depending on what the figure must show:
 | **S03-F10** | V52 | Test accuracy vs images per class for the three strategies | `s03_f10_transfer_vs_data.png` | Script (numbers from notebook 3.4) | Pending |
 | **S03-F11** | V59 | Attention map of a pretrained ViT for one query patch | `s03_f11_attention_map.png` | Script (pretrained ViT, notebook 3.5) | Pending |
 | **S03-F12** | V62 (slide) | ViT architecture: patches, position, CLS, pre-norm blocks, head | `s03_f12_vit_architecture.png` | Generator | Included — see review note |
-| **S03-F13** | V63 | Spectrum of assumptions MLP → CNN → ViT against data needed | `s03_f13_inductive_bias_spectrum.png` | Generator | Pending |
-| **S03-F14** | V68 | Summary: what one unit can see in the first layers of an MLP, a CNN and a ViT | `s03_f14_architecture_summary.png` | Generator | Pending |
+| **S03-F13** | V64 (slide) | Spectrum of assumptions MLP → CNN → ViT against data needed | `s03_f13_inductive_bias_spectrum.png` | Generator | Included |
+| **S03-F14** | V69 | Summary: what one unit can see in the first layers of an MLP, a CNN and a ViT | `s03_f14_architecture_summary.png` | Generator | Pending |
 
 ## Planned animations (Manim)
 
@@ -105,9 +105,8 @@ If production time is limited, prioritize:
 
 1. **S03-F02** — the permutation experiment: the argument of the whole session (needs notebook 3.1);
 2. **S03-F10** — transfer learning against the amount of data (needs notebook 3.4);
-3. **S03-F13** — inductive bias versus data.
 
-Already included: S03-F01, S03-F03, S03-F04, S03-F05, S03-F15, S03-F07, S03-F08, S03-F09, S03-F12 and the four animations (S03-A01 to A04).
+Already included: S03-F01, S03-F03, S03-F04, S03-F05, S03-F15, S03-F07, S03-F08, S03-F09, S03-F12, S03-F13 and the four animations (S03-A01 to A04).
 
 ## Notes for slide integration
 
