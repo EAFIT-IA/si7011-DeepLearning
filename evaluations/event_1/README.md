@@ -34,7 +34,7 @@ Son seis preguntas de respuesta corta (una o dos frases por literal), cada una c
 En parejas, una semana. Tiene dos piezas:
 
 1. **El notebook ejecutado**, con los 4 TODO resueltos (partición, modelo, optimizador, `predict_raw`) y las tres corridas registradas en MLflow: línea base, su receta y una corrida que cambia una sola cosa.
-2. **Un documento de análisis** de máximo 3 páginas, con la estructura de [`plantilla_analisis.md`](plantilla_analisis.md):
+2. **Un documento de análisis** en Markdown (`docs/analisis.md`, unas 1500 palabras como máximo), con la estructura de [`plantilla_analisis.md`](plantilla_analisis.md):
    1. **Línea base:** qué falló y con qué medición lo saben (pérdida inicial frente a $\ln C$, gradiente, curvas).
    2. **Receta:** cada decisión con la predicción escrita **antes** de correr, la corrida de MLflow que la respalda y el resultado.
    3. **Corrida 3:** el cambio único, la predicción y si se cumplió.
@@ -43,7 +43,27 @@ En parejas, una semana. Tiene dos piezas:
 
 Un ejemplo de cómo se registra una decisión con evidencia está en [`ejemplo_evidencia.md`](ejemplo_evidencia.md).
 
-**Entrega:** un `.zip` con el notebook ejecutado, `mlflow.db` (con `mlruns/`) y el documento en PDF.
+**Entrega: un repositorio de GitHub por pareja.** Pueden partir de [`plantilla_repo/`](plantilla_repo/): copien su contenido a un repositorio nuevo.
+
+```text
+evento1-<apellido1>-<apellido2>/
+├── README.md                     # integrantes, cómo reproducir, enlace al análisis
+├── .gitignore                    # deja fuera los datos de Covertype
+├── notebook/
+│   └── sesion_02_6_integrador_covertype.ipynb   # ejecutado, con las salidas visibles
+├── docs/
+│   ├── analisis.md               # el documento de análisis
+│   └── figuras/                  # las curvas y tablas que cita el análisis
+└── mlflow/
+    ├── mlflow.db
+    └── mlruns/                   # incluye el best.pt de cada corrida
+```
+
+- **Privado**, con el profesor como colaborador (`jdmartinev`).
+- Los **dos integrantes hacen commits**: el historial es parte de la evidencia de que ambos trabajaron.
+- Las figuras del análisis son archivos en `docs/figuras/` exportados desde el notebook, enlazados desde `analisis.md`. Toda afirmación cita la corrida de MLflow de donde sale.
+- **No suban los datos** (`covtype.csv` ni la carpeta que crea `fetch_covtype`): el `.gitignore` de la plantilla ya los excluye.
+- **Entregan el enlace al repositorio** antes de la fecha límite. Se califica el último commit anterior a esa hora; lo que se suba después no cuenta.
 
 | Criterio | Peso |
 |---|---:|
@@ -55,4 +75,4 @@ Un ejemplo de cómo se registra una decisión con evidencia está en [`ejemplo_e
 
 **Cómo se califica.** Toda afirmación del documento debe citar un número y la corrida de MLflow de donde sale. Una afirmación sin evidencia vale como máximo la mitad. Una predicción que resultó equivocada no resta, siempre que esté escrita antes del experimento y se pueda comprobar. No se exige un F1 mínimo: se evalúa que la receta esté bien armada y que el análisis se apoye en sus corridas.
 
-**Reglas.** Cada pareja entrega su propio documento y sus propias corridas; dos entregas con las mismas mediciones o la misma redacción se califican como una sola. Pueden consultar los notebooks del curso y la documentación de PyTorch y MLflow. Si usan asistentes de IA, el documento debe mostrar **sus** mediciones y **sus** corridas: la nota depende de la evidencia registrada en `mlflow.db`.
+**Reglas.** Cada pareja entrega su propio repositorio, con su documento y sus corridas; dos entregas con las mismas mediciones o la misma redacción se califican como una sola. Pueden consultar los notebooks del curso y la documentación de PyTorch y MLflow. Si usan asistentes de IA, el documento debe mostrar **sus** mediciones y **sus** corridas: la nota depende de la evidencia registrada en `mlflow.db`.
