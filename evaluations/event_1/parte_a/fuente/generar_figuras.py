@@ -1,4 +1,5 @@
-"""Real runs for the Part A exam figures (Fashion-MNIST, CPU). python parte_a_figs.py OUT_DIR"""
+"""Real runs for the Part A exam figures (Fashion-MNIST, CPU, about 1 minute).
+Run from this folder: python generar_figuras.py .  (writes fig1–fig4 and facts.json)"""
 import sys, os, time, math, json
 import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -9,8 +10,8 @@ from torchvision import datasets
 OUT = sys.argv[1]; os.makedirs(OUT, exist_ok=True)
 torch.set_num_threads(2)
 plt.rcParams.update({'figure.dpi': 200, 'axes.grid': True, 'grid.alpha': 0.3, 'font.size': 9})
-ROOT = '/tmp/claude-0/-home-claude/dfb8a7bc-6774-5db0-afa6-758853ca2422/scratchpad/data'
-tr = datasets.FashionMNIST(ROOT, train=True, download=False)
+ROOT = 'data'   # Fashion-MNIST; torchvision downloads it here if missing
+tr = datasets.FashionMNIST(ROOT, train=True, download=True)
 X = tr.data.reshape(-1, 784).float() / 255; y = tr.targets
 perm = torch.randperm(len(X), generator=torch.Generator().manual_seed(1))
 mu, sd = X[perm[:20000]].mean(), X[perm[:20000]].std()
