@@ -5,7 +5,7 @@ Evalúa si pueden **diagnosticar un entrenamiento con evidencia**, no si recuerd
 | Parte | Modalidad | Tiempo | Peso del evento |
 |---|---|---|---:|
 | **A · Leer la evidencia** | individual, en clase, sin computador | 30 min | 40 % |
-| **B · Diagnóstico de una receta** | en parejas, en casa, una semana | ≈ 3 h de trabajo | 60 % |
+| **B · Ejercicio integrador y documento de análisis** | en parejas, en casa, una semana | ≈ 3 h de trabajo | 60 % |
 
 ## Parte A · Leer la evidencia
 
@@ -27,39 +27,32 @@ Son seis preguntas de respuesta corta (una o dos frases por literal), cada una c
 | 5 | notebook 2, sección 4 |
 | 6 | [notebook 4](../../sessions/02_deep_training/notebooks/sesion_02_4_residual_diagnosticos.ipynb), sección 1 · notebook 3, sección 2 |
 
-## Parte B · Diagnóstico de una receta de entrenamiento
+## Parte B · Ejercicio integrador y documento de análisis
 
-**Notebook:** [`evento1_parteB_diagnostico.ipynb`](evento1_parteB_diagnostico.ipynb) · [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EAFIT-IA/si7011-DeepLearning/blob/main/evaluations/event_1/evento1_parteB_diagnostico.ipynb) [![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/EAFIT-IA/si7011-DeepLearning/blob/main/evaluations/event_1/evento1_parteB_diagnostico.ipynb)
+**Notebook:** el [ejercicio integrador de la sesión 2](../../sessions/02_deep_training/notebooks/sesion_02_6_integrador_covertype.ipynb) (Covertype + MLflow) · [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_6_integrador_covertype.ipynb) [![Abrir en Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/EAFIT-IA/si7011-DeepLearning/blob/main/sessions/02_deep_training/notebooks/sesion_02_6_integrador_covertype.ipynb)
 
-Es el mismo notebook para todas las parejas. Entrena un MLP sobre `digits`: imágenes de 8×8 que vienen con scikit-learn, sin descargas, y que corre en CPU en segundos.
+En parejas, una semana. Tiene dos piezas:
 
-La receta tiene **exactamente dos fallas**: una de **código**, en las funciones del modelo o del loop, y una de **configuración**, en el diccionario `RECETA`.
+1. **El notebook ejecutado**, con los 4 TODO resueltos (partición, modelo, optimizador, `predict_raw`) y las tres corridas registradas en MLflow: línea base, su receta y una corrida que cambia una sola cosa.
+2. **Un documento de análisis** de máximo 3 páginas, con la estructura de [`plantilla_analisis.md`](plantilla_analisis.md):
+   1. **Línea base:** qué falló y con qué medición lo saben (pérdida inicial frente a $\ln C$, gradiente, curvas).
+   2. **Receta:** cada decisión con la predicción escrita **antes** de correr, la corrida de MLflow que la respalda y el resultado.
+   3. **Corrida 3:** el cambio único, la predicción y si se cumplió.
+   4. **Comparación:** una tabla de las tres corridas y la evaluación en prueba, hecha una sola vez.
+   5. **Despliegue y límites:** las verificaciones de `predict_raw`, por qué el F1 macro y la accuracy cuentan historias distintas, y qué harían con más tiempo.
 
-Para cada falla registran en la bitácora del notebook:
+Un ejemplo de cómo se registra una decisión con evidencia está en [`ejemplo_evidencia.md`](ejemplo_evidencia.md).
 
-> síntoma → medición → hipótesis → **predicción** (escrita antes de correr) → experimento que cambia **una sola cosa** (registrado en MLflow) → resultado → conclusión
-
-El notebook trae listos los instrumentos de medición de la sesión 2: std$(a_l)$ por capa, $\lVert\nabla_{W_l}J\rVert$ por capa, sobreajustar un lote, $\lVert W\rVert$ y evaluar dos veces. También trae la función `run`, que registra cada corrida en MLflow. Un ejemplo de bitácora bien hecha, con una falla que no le toca a ninguna pareja, está en [`ejemplo_bitacora.md`](ejemplo_bitacora.md).
-
-Después:
-
-1. corrigen las dos fallas y entrenan la receta final (en validación: accuracy ≥ 95 % y pérdida ≤ 0.25);
-2. evalúan en prueba **una sola vez** (la celda ya está escrita);
-3. completan el despliegue mínimo: `predict_raw` recarga la receta desde MLflow y predice sobre filas crudas, y dos verificaciones comprueban que coincide con la prueba y que el contrato rechaza una fila inválida;
-4. responden dos preguntas finales citando corridas de MLflow por su nombre.
-
-**Entrega:** un `.zip` con el notebook ejecutado y `mlflow.db` (con `mlruns/`).
+**Entrega:** un `.zip` con el notebook ejecutado, `mlflow.db` (con `mlruns/`) y el documento en PDF.
 
 | Criterio | Peso |
 |---|---:|
-| Diagnóstico de la falla de código | 20 % |
-| Diagnóstico de la falla de configuración | 20 % |
-| Evidencia: mediciones y corridas comparables en MLflow | 25 % |
-| Predicciones escritas antes de cada experimento | 10 % |
-| Receta final y uso correcto de prueba | 10 % |
-| Despliegue: recarga desde MLflow y predicción sobre datos crudos | 5 % |
-| Dos preguntas finales, respondidas con sus corridas | 10 % |
+| Notebook funcional: los 4 TODO y el pipeline completo (datos → entrenamiento → despliegue) | 25 % |
+| Evidencia: corridas comparables en MLflow que respaldan cada afirmación del documento | 25 % |
+| Diagnóstico de la línea base | 15 % |
+| Predicciones escritas antes de cada experimento | 15 % |
+| Análisis de resultados, prueba y límites | 20 % |
 
-**Cómo se califica el diagnóstico.** Señalar la línea o el valor equivocado sin una medición que lo muestre vale como máximo la mitad. Una predicción que resultó equivocada no resta, siempre que esté escrita antes del experimento y se pueda comprobar.
+**Cómo se califica.** Toda afirmación del documento debe citar un número y la corrida de MLflow de donde sale. Una afirmación sin evidencia vale como máximo la mitad. Una predicción que resultó equivocada no resta, siempre que esté escrita antes del experimento y se pueda comprobar. No se exige un F1 mínimo: se evalúa que la receta esté bien armada y que el análisis se apoye en sus corridas.
 
-**Reglas.** Todas las parejas tienen el mismo notebook, pero cada una entrega su propia bitácora y sus propias corridas. Dos entregas con las mismas mediciones, predicciones o redacción se califican como una sola. Pueden consultar los notebooks del curso y la documentación de PyTorch y MLflow. Si usan asistentes de IA, la bitácora debe mostrar **sus** mediciones y **sus** corridas: la nota depende de la evidencia registrada en `mlflow.db`, no del diagnóstico final.
+**Reglas.** Cada pareja entrega su propio documento y sus propias corridas; dos entregas con las mismas mediciones o la misma redacción se califican como una sola. Pueden consultar los notebooks del curso y la documentación de PyTorch y MLflow. Si usan asistentes de IA, el documento debe mostrar **sus** mediciones y **sus** corridas: la nota depende de la evidencia registrada en `mlflow.db`.
