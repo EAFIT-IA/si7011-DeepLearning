@@ -17,6 +17,7 @@ Slide numbers refer to the current `../slides/S03_slides.marp.md`. Figures that 
 | S03-F01 | Image as a C×H×W tensor | V07 | done (optional correction below) |
 | S03-F04 | Multichannel convolution | V20 | done |
 | S03-F05 | CNN anatomy as tensor blocks | V31 | done |
+| S03-F15 | VGG-style block and stacked 3×3 | V33 | pending |
 | S03-F07 | ResNet basic and downsampling blocks | V38 | done |
 | S03-F08 | Pretrained backbone and a new head | V44 | pending |
 | S03-F09 | From scratch, linear probe, fine-tuning | V45 | pending |
@@ -92,6 +93,33 @@ A left-to-right pipeline of 3-D blocks whose **face size shrinks** (spatial size
 Above the whole pipeline, two thin trend arrows spanning stages: a gray arrow going down labeled "resolution: 32 → 16 → 8" and a blue arrow going up labeled "channels: 32 → 64 → 128".
 
 Check: shapes are exactly $3\times32\times32$, $32\times32\times32$, $64\times16\times16$, $128\times8\times8$, $128$, $10$; block faces visibly shrink while depth grows.
+
+---
+
+## S03-F15 · VGG-style block and stacked 3×3 (pending, after slide 33)
+
+File: `s03_f15_vgg_block.png`
+
+Two panels side by side, same visual style as the ResNet figure (S03-F07): rounded panels, light blue operation boxes, a vertical flow from top to bottom.
+
+**Left panel, blue header "VGG-style block":** input $a_l$ with shape $64 \times 32 \times 32$. Boxes, top to bottom: "conv $3\times3$, 64" → "ReLU" → "conv $3\times3$, 64" → "ReLU" → "max pool $2\times2$". Output $a_{l+1}$ with shape $64 \times 16 \times 16$. **No shortcut line**: a small gray note on the right side of the boxes: "plain: no shortcut".
+
+**Right panel, teal header "why stack two 3 × 3?":** three small square grids drawn left to right with arrows between them, as a 2-D receptive-field view:
+
+1. a $5 \times 5$ gray input grid with a highlighted $5 \times 5$ light-teal region covering all of it, labeled "input";
+2. a $3 \times 3$ grid labeled "after conv 1": one cell outlined in teal, with thin teal lines fanning down to a $3 \times 3$ patch of the input grid;
+3. a single orange cell labeled "after conv 2": thin orange lines fanning down to all 9 cells of the middle grid.
+
+Under the grids, the caption "two $3\times3$ layers see $5\times5$".
+
+Below that, two parameter boxes side by side:
+
+- left box (teal border): "two $3\times3$:" and $2 \cdot 9C^2 = 18C^2$, plus "+ one extra ReLU";
+- right box (gray border): "one $5\times5$:" and $25C^2$.
+
+A "<" sign between the two boxes.
+
+Check: the left block has no line going around the boxes; the output is $64 \times 16 \times 16$ (only the pool halves the size); the receptive field of the second layer is $5\times5$; the numbers are exactly $18C^2$ and $25C^2$.
 
 ---
 

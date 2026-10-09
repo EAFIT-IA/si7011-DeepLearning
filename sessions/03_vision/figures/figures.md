@@ -24,7 +24,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 
 ## Deck structure
 
-65 slides in five parts, each opened by a divider slide that recaps the previous part: 56 content slides, plus 5 figures and 4 animations already integrated. With the 9 remaining figures the deck has **74 slides** (S02 has 78).
+65 slides in five parts, each opened by a divider slide that recaps the previous part: 56 content slides, plus 5 figures and 4 animations already integrated. With the 10 remaining figures the deck has **75 slides** (S02 has 78).
 
 | Part | Slides | Practice |
 |---|---|---|
@@ -57,6 +57,7 @@ Three routes, depending on what the figure must show:
 | **S03-F03** | V18 (slide) | One image, four hand-made kernels and their feature maps | `s03_f03_kernels_feature_maps.png` | Script: `make_s03_f03_kernels_feature_maps.py` (skimage `camera`, 128×128) | Included |
 | **S03-F04** | V20 (slide) | Multichannel convolution: one kernel spans all input channels; C_out kernels stack into C_out maps | `s03_f04_multichannel_conv.png` | Generator | Included — see review note |
 | **S03-F05** | V31 (slide) | CNN anatomy as tensor blocks, 3×32×32 → logits | `s03_f05_cnn_anatomy.png` | Generator | Included |
+| **S03-F15** | V33 | VGG-style block (plain, no shortcut) with shapes; two stacked 3×3 see 5×5 with 18C² < 25C² parameters | `s03_f15_vgg_block.png` | Generator | Pending |
 | **S03-F06** | V36 | Feature hierarchy: first-layer kernels and top-activating patches per stage | `s03_f06_feature_hierarchy.png` | Script (ImageNet ResNet-18, Oxford Pets images, notebook 3.4) | Pending |
 | **S03-F07** | V38 (slide) | ResNet basic block and downsampling block, with shapes | `s03_f07_resnet_blocks.png` | Generator | Included |
 | **S03-F08** | V44 | Pretrained backbone: general early features, specific late features, new head | `s03_f08_transfer_backbone.png` | Generator | Pending |
