@@ -567,7 +567,13 @@ $$
 
 Fewer parameters, and one extra nonlinearity in between.
 
-<!-- Pending figure S03-F15 (full-slide figure after this slide): VGG-style block (conv3×3–ReLU–conv3×3–ReLU–max pool, no shortcut) with shapes; two stacked 3×3 see 5×5; 18C² vs 25C² -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain VGG-style block without shortcut, and why two stacked 3×3 layers see 5×5 with 18C² instead of 25C² parameters](../figures/s03_f15_vgg_block.png)
 
 ---
 
