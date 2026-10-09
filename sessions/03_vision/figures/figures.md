@@ -18,13 +18,13 @@ Pending figures are hidden HTML comments in the slide source (`<!-- Pending figu
 ![bg contain <alt text>](../figures/s03_fnn_<name>.png)
 ```
 
-Animations use the `media` class with a poster image, as in Session 02 (V33, V42, V75).
+Animations use the `media` class with a poster image, as in Session 02 (V33, V42, V76).
 
 Figures keep white backgrounds, academic visual style, preserved proportions and lowercase filenames with underscores. All figures are drawn from scratch; none reproduces a figure from a paper or another course.
 
 ## Deck structure
 
-67 slides in five parts, each opened by a divider slide that recaps the previous part: 56 content slides, plus 7 figures and 4 animations already integrated. With the 8 remaining figures the deck has **75 slides** (S02 has 78).
+68 slides in five parts, each opened by a divider slide that recaps the previous part: 56 content slides, plus 8 figures and 4 animations already integrated. With the 7 remaining figures the deck has **75 slides** (S02 has 78).
 
 | Part | Slides | Practice |
 |---|---|---|
@@ -32,11 +32,11 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | 1 · Images are structured data | V05–V13 | |
 | 2 · Convolution | V14–V28 | |
 | 3 · CNNs and residual networks | V29–V42 | Practice A (V42): notebooks 3.1–3.3 |
-| 4 · Transfer learning | V43–V52 | |
-| 5 · From patches to attention | V53–V63 | Practice B (V63): notebooks 3.4–3.5 |
-| Closure | V64–V67 | Integrating exercise (V64), exit question (V67) |
+| 4 · Transfer learning | V43–V53 | |
+| 5 · From patches to attention | V54–V64 | Practice B (V64): notebooks 3.4–3.5 |
+| Closure | V65–V68 | Integrating exercise (V65), exit question (V68) |
 
-Self-attention gets one slide (V58); its full mechanics belong to Session 05.
+Self-attention gets one slide (V59); its full mechanics belong to Session 05.
 
 Slide numbers below are those of the current source. For pending figures, "after slide" is the slide the hidden comment sits on; each inserted figure shifts the later numbers by one.
 
@@ -61,12 +61,12 @@ Three routes, depending on what the figure must show:
 | **S03-F06** | V37 | Feature hierarchy: first-layer kernels and top-activating patches per stage | `s03_f06_feature_hierarchy.png` | Script (ImageNet ResNet-18, Oxford Pets images, notebook 3.4) | Pending |
 | **S03-F07** | V39 (slide) | ResNet basic block and downsampling block, with shapes | `s03_f07_resnet_blocks.png` | Generator | Included |
 | **S03-F08** | V46 (slide) | Pretrained backbone: general early features, specific late features, new head | `s03_f08_transfer_backbone.png` | Generator | Included |
-| **S03-F09** | V47 | From scratch, linear probe and fine-tuning: frozen vs trained layers | `s03_f09_transfer_strategies.png` | Generator | Pending |
-| **S03-F10** | V51 | Test accuracy vs images per class for the three strategies | `s03_f10_transfer_vs_data.png` | Script (numbers from notebook 3.4) | Pending |
-| **S03-F11** | V58 | Attention map of a pretrained ViT for one query patch | `s03_f11_attention_map.png` | Script (pretrained ViT, notebook 3.5) | Pending |
-| **S03-F12** | V60 | ViT architecture: patches, position, CLS, pre-norm blocks, head | `s03_f12_vit_architecture.png` | Generator | Pending |
-| **S03-F13** | V61 | Spectrum of assumptions MLP → CNN → ViT against data needed | `s03_f13_inductive_bias_spectrum.png` | Generator | Pending |
-| **S03-F14** | V66 | Summary: what one unit can see in the first layers of an MLP, a CNN and a ViT | `s03_f14_architecture_summary.png` | Generator | Pending |
+| **S03-F09** | V48 (slide) | From scratch, linear probe and fine-tuning: frozen vs trained layers | `s03_f09_transfer_strategies.png` | Generator | Included |
+| **S03-F10** | V52 | Test accuracy vs images per class for the three strategies | `s03_f10_transfer_vs_data.png` | Script (numbers from notebook 3.4) | Pending |
+| **S03-F11** | V59 | Attention map of a pretrained ViT for one query patch | `s03_f11_attention_map.png` | Script (pretrained ViT, notebook 3.5) | Pending |
+| **S03-F12** | V61 | ViT architecture: patches, position, CLS, pre-norm blocks, head | `s03_f12_vit_architecture.png` | Generator | Pending |
+| **S03-F13** | V62 | Spectrum of assumptions MLP → CNN → ViT against data needed | `s03_f13_inductive_bias_spectrum.png` | Generator | Pending |
+| **S03-F14** | V67 | Summary: what one unit can see in the first layers of an MLP, a CNN and a ViT | `s03_f14_architecture_summary.png` | Generator | Pending |
 
 ## Planned animations (Manim)
 
@@ -77,7 +77,7 @@ Only concepts where motion changes understanding.
 | **S03-A01** | V13 | From dense to convolution | Dense → locally connected → shared: connections disappear, weights collapse to one kernel, parameter counter on screen (1 049 600 → 10 240 → 10) | `s03_a01_dense_to_conv.mp4` | Included |
 | **S03-A02** | V16 | A kernel sliding over an image | 3×3 kernel over a 6×6 integer image; products and sum written at each position; 4×4 feature map filling in | `s03_a02_kernel_sliding.mp4` | Included |
 | **S03-A03** | V26 | The receptive field grows with depth | One output unit; its input region highlighted layer by layer: three 3×3 layers with stride 1 (3, 5, 7), then with stride 2 (3, 7, 15) | `s03_a03_receptive_field.mp4` | Included |
-| **S03-A04** | V57 | From image to tokens | Image → 4×4 grid of patches → each patch flattened → same linear map → token sequence, plus positional embeddings | `s03_a04_patches_to_tokens.mp4` | Included |
+| **S03-A04** | V58 | From image to tokens | Image → 4×4 grid of patches → each patch flattened → same linear map → token sequence, plus positional embeddings | `s03_a04_patches_to_tokens.mp4` | Included |
 
 ## Review notes
 
@@ -106,7 +106,7 @@ If production time is limited, prioritize:
 2. **S03-F10** — transfer learning against the amount of data (needs notebook 3.4);
 3. **S03-F12** — ViT architecture.
 
-Already included: S03-F01, S03-F03, S03-F04, S03-F05, S03-F15, S03-F07, S03-F08 and the four animations (S03-A01 to A04).
+Already included: S03-F01, S03-F03, S03-F04, S03-F05, S03-F15, S03-F07, S03-F08, S03-F09 and the four animations (S03-A01 to A04).
 
 ## Notes for slide integration
 

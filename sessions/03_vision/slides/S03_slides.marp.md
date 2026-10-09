@@ -728,7 +728,13 @@ So the earlier the layer, the more transferable it is.
 | **Linear probe** | only the new head; backbone frozen | low | little data, similar domain |
 | **Fine-tuning** | head + some or all backbone | medium | moderate data, or a domain gap |
 
-<!-- Pending figure S03-F09 (full-slide figure after this slide): the three strategies side by side, frozen layers shaded, trained layers highlighted -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain From scratch, linear probe and fine-tuning: which layers are frozen and which are trained](../figures/s03_f09_transfer_strategies.png)
 
 ---
 
