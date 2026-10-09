@@ -19,11 +19,11 @@ Slide numbers refer to the current `../slides/S03_slides.marp.md`. Figures that 
 | S03-F05 | CNN anatomy as tensor blocks | V31 | done |
 | S03-F15 | VGG-style block and stacked 3×3 | V33 | pending |
 | S03-F07 | ResNet basic and downsampling blocks | V38 | done |
-| S03-F08 | Pretrained backbone and a new head | V44 | pending |
-| S03-F09 | From scratch, linear probe, fine-tuning | V45 | pending |
-| S03-F12 | Vision Transformer architecture | V58 | pending |
-| S03-F13 | Inductive bias versus data | V59 | pending |
-| S03-F14 | What one unit can see: MLP, CNN, ViT | V64 | pending |
+| S03-F08 | Pretrained backbone and a new head | V45 | done |
+| S03-F09 | From scratch, linear probe, fine-tuning | V46 | pending |
+| S03-F12 | Vision Transformer architecture | V59 | pending |
+| S03-F13 | Inductive bias versus data | V60 | pending |
+| S03-F14 | What one unit can see: MLP, CNN, ViT | V65 | pending |
 
 ## Common style block (prepend to every prompt)
 
@@ -137,7 +137,7 @@ Check: left output shape equals input shape; right output is $128 \times 28 \tim
 
 ---
 
-## S03-F08 · Pretrained backbone and a new head (pending, after slide 44)
+## S03-F08 · Pretrained backbone and a new head (done, slide 45)
 
 File: `s03_f08_transfer_backbone.png`
 
@@ -151,7 +151,7 @@ Check: the backbone blocks are identical in both rows; only the head changes; th
 
 ---
 
-## S03-F09 · From scratch, linear probe, fine-tuning (pending, after slide 45)
+## S03-F09 · From scratch, linear probe, fine-tuning (pending, after slide 46)
 
 File: `s03_f09_transfer_strategies.png`
 
@@ -165,7 +165,7 @@ Check: exactly three rows in this order; in "linear probe" no backbone box is co
 
 ---
 
-## S03-F12 · Vision Transformer architecture (pending, after slide 58)
+## S03-F12 · Vision Transformer architecture (pending, after slide 59)
 
 File: `s03_f12_vit_architecture.png`
 
@@ -183,7 +183,7 @@ Check: 196 tokens plus one CLS token; the norm comes **before** attention and be
 
 ---
 
-## S03-F13 · Inductive bias versus data (pending, after slide 59)
+## S03-F13 · Inductive bias versus data (pending, after slide 60)
 
 File: `s03_f13_inductive_bias_spectrum.png`
 
@@ -205,7 +205,7 @@ Check: the ViT crosses the CNN only once, at large data; the MLP never crosses e
 
 ---
 
-## S03-F14 · What one unit can see: MLP, CNN, ViT (pending, after slide 64)
+## S03-F14 · What one unit can see: MLP, CNN, ViT (pending, after slide 65)
 
 File: `s03_f14_architecture_summary.png`
 

@@ -704,7 +704,13 @@ Late features become specific to the classes of the original task.
 
 So the earlier the layer, the more transferable it is.
 
-<!-- Pending figure S03-F08 (full-slide figure after this slide): backbone pretrained on ImageNet: general features in early stages, task-specific in late stages; new head attached for the target task -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain A backbone pretrained on ImageNet is copied to the new task; only the head changes, from 1000 to 37 classes](../figures/s03_f08_transfer_backbone.png)
 
 ---
 
