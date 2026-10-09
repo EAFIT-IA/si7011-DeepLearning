@@ -531,7 +531,13 @@ $$
 
 Between stages: **halve** the resolution, **double** the channels.
 
-<!-- Pending figure S03-F05 (full-slide figure after this slide): CNN anatomy as tensor blocks: 3×32×32 → 32×32×32 → 64×16×16 → 128×8×8 → 128 → 10 -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain CNN anatomy: 3×32×32 → stem → stages that halve resolution and double channels → global average pool → linear → 10 logits](../figures/s03_f05_cnn_anatomy.png)
 
 ---
 
