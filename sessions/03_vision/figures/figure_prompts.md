@@ -17,12 +17,12 @@ Slide numbers refer to the current `../slides/S03_slides.marp.md`. Figures that 
 | S03-F01 | Image as a C×H×W tensor | V07 | done (optional correction below) |
 | S03-F04 | Multichannel convolution | V20 | done |
 | S03-F05 | CNN anatomy as tensor blocks | V31 | done |
-| S03-F07 | ResNet basic and downsampling blocks | V37 | pending |
-| S03-F08 | Pretrained backbone and a new head | V43 | pending |
-| S03-F09 | From scratch, linear probe, fine-tuning | V44 | pending |
-| S03-F12 | Vision Transformer architecture | V57 | pending |
-| S03-F13 | Inductive bias versus data | V58 | pending |
-| S03-F14 | What one unit can see: MLP, CNN, ViT | V63 | pending |
+| S03-F07 | ResNet basic and downsampling blocks | V38 | done |
+| S03-F08 | Pretrained backbone and a new head | V44 | pending |
+| S03-F09 | From scratch, linear probe, fine-tuning | V45 | pending |
+| S03-F12 | Vision Transformer architecture | V58 | pending |
+| S03-F13 | Inductive bias versus data | V59 | pending |
+| S03-F14 | What one unit can see: MLP, CNN, ViT | V64 | pending |
 
 ## Common style block (prepend to every prompt)
 
@@ -95,7 +95,7 @@ Check: shapes are exactly $3\times32\times32$, $32\times32\times32$, $64\times16
 
 ---
 
-## S03-F07 · ResNet basic and downsampling blocks (pending, after slide 37)
+## S03-F07 · ResNet basic and downsampling blocks (done, slide 38)
 
 File: `s03_f07_resnet_blocks.png`
 
@@ -109,7 +109,7 @@ Check: left output shape equals input shape; right output is $128 \times 28 \tim
 
 ---
 
-## S03-F08 · Pretrained backbone and a new head (pending, after slide 43)
+## S03-F08 · Pretrained backbone and a new head (pending, after slide 44)
 
 File: `s03_f08_transfer_backbone.png`
 
@@ -123,7 +123,7 @@ Check: the backbone blocks are identical in both rows; only the head changes; th
 
 ---
 
-## S03-F09 · From scratch, linear probe, fine-tuning (pending, after slide 44)
+## S03-F09 · From scratch, linear probe, fine-tuning (pending, after slide 45)
 
 File: `s03_f09_transfer_strategies.png`
 
@@ -137,7 +137,7 @@ Check: exactly three rows in this order; in "linear probe" no backbone box is co
 
 ---
 
-## S03-F12 · Vision Transformer architecture (pending, after slide 57)
+## S03-F12 · Vision Transformer architecture (pending, after slide 58)
 
 File: `s03_f12_vit_architecture.png`
 
@@ -155,7 +155,7 @@ Check: 196 tokens plus one CLS token; the norm comes **before** attention and be
 
 ---
 
-## S03-F13 · Inductive bias versus data (pending, after slide 58)
+## S03-F13 · Inductive bias versus data (pending, after slide 59)
 
 File: `s03_f13_inductive_bias_spectrum.png`
 
@@ -177,7 +177,7 @@ Check: the ViT crosses the CNN only once, at large data; the MLP never crosses e
 
 ---
 
-## S03-F14 · What one unit can see: MLP, CNN, ViT (pending, after slide 63)
+## S03-F14 · What one unit can see: MLP, CNN, ViT (pending, after slide 64)
 
 File: `s03_f14_architecture_summary.png`
 

@@ -623,7 +623,13 @@ $$
 
 When a stage halves the resolution, the shortcut becomes a **$1\times1$ convolution with stride 2** so the shapes match.
 
-<!-- Pending figure S03-F07 (full-slide figure after this slide): ResNet basic block (identity shortcut) and downsampling block (1×1 stride-2 shortcut), with tensor shapes -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain ResNet basic block with identity shortcut, and downsampling block with a 1×1 stride-2 shortcut](../figures/s03_f07_resnet_blocks.png)
 
 ---
 
