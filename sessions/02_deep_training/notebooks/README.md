@@ -1,31 +1,32 @@
 # Session 02 notebooks
 
-Five worked notebooks and one integrating exercise. The worked notebooks follow the format of Chollet's
-*Deep Learning with Python* (ch. 5): the theory stays in the slides, **each cell changes one thing**, and the
-curves are overlaid. All five use the same data (Fashion-MNIST as 784-dimensional vectors: 10,000 training,
-10,000 validation, official test set), the same training loop and plain PyTorch with explicit `nn.Sequential`
-models. Each runs in about one minute on CPU, is executed in the repository, and ends with a short
-*Tu turno* list of experiments (about 10 minutes).
+**Why can we train deep networks?** Go through notebooks 1 to 5 in order, then do the integrating exercise.
 
-| # | Notebook | Slides | What changes, one cell at a time |
-|---|---|---|---|
-| 1 | [Signal and initialization](sesion_02_1_senal_inicializacion.ipynb) | Parts 1–2, Practice A | 20-layer MLP: PyTorch default, N(0, 0.01²), N(0, 1), Xavier, He; tanh vs ReLU; per-layer std and gradient via hooks; initial loss vs ln C; 5 training epochs confirm the prediction |
-| 2 | [Optimization](sesion_02_2_optimizacion.ipynb) | Part 3 | SGD with η = 0.001 / 0.05 / 1.0 (nan); momentum and the effective step η/(1−β); Adam; batch size 32 / 128 / 512 and scaling η; warmup + cosine (val acc 0.83 → 0.875); gradient norm and clipping rescue η = 0.3 |
-| 3 | [Normalization and regularization](sesion_02_3_normalizacion_regularizacion.ipynb) | Part 4 | Baseline overfits (val loss 0.39 → 0.52); AdamW weight decay (‖W‖ halved); Dropout; early stopping; BatchNorm takes a 20-layer MLP from ln 10 to 84 %; BatchNorm in `train()` vs `eval()` |
-| 4 | [Residuals and diagnostics](sesion_02_4_residual_diagnosticos.ipynb) | Part 5 | Plain depth 4 / 20 / 50 (degradation in training loss); residual block (50 layers train); first-layer gradient 10⁻²⁰ vs 3.7; pre-norm LayerNorm at η = 10⁻²; overfit one batch catches a double-softmax bug that the ln C check misses |
-| 5 | [Optuna + MLflow](sesion_02_5_optuna_mlflow.ipynb) | Practice C | MLflow basics (params, per-epoch metrics, `search_runs`); log-scale search space; objective with median pruning; TPE study with nested runs (20 trials, ~40 s); importance plots; retrain the best and test once |
-| 6 | [Integrating exercise · Covertype](sesion_02_6_integrador_covertype.ipynb) | Practice B | Student work, 60–75 min, **4 TODOs**, each pointing to the notebook where the piece was shown |
+In notebooks 1–5 everything is already written and runs as is. Each cell changes **one thing** — the initialization, the optimizer, a layer — and you compare the new curve with the previous one. Before running a cell, guess what will happen; after running it, check whether you were right. Each notebook takes about 30 minutes and runs on a laptop CPU, and ends with a short *Tu turno* section where you try your own changes.
 
-## Integrating exercise (student work)
+All five use the same images (Fashion-MNIST) and the same training loop, so the only thing that changes between experiments is the idea being tested.
 
-Forest Covertype (UCI / Kaggle `uciml/forest-cover-type-dataset`): 581,012 rows, 54 features, 7 imbalanced
-classes. It follows the data → training → deployment pipeline with an artifact per stage:
+| # | Notebook | The question it answers |
+|---|---|---|
+| 1 | [Signal and initialization](sesion_02_1_senal_inicializacion.ipynb) | Why does a 20-layer network sometimes learn nothing at all, and how can we tell **before** training? |
+| 2 | [Optimization](sesion_02_2_optimizacion.ipynb) | How do the learning rate, momentum, Adam, the batch size and a schedule change the way the loss goes down? |
+| 3 | [Normalization and regularization](sesion_02_3_normalizacion_regularizacion.ipynb) | How do we stop a model from memorizing, and what does BatchNorm actually fix? |
+| 4 | [Residuals and diagnostics](sesion_02_4_residual_diagnosticos.ipynb) | Why are more layers not always better, and which quick checks catch bugs early? |
+| 5 | [Hyperparameter search with Optuna and MLflow](sesion_02_5_optuna_mlflow.ipynb) | How do we search for a good configuration and keep track of every run? |
+| 6 | [Integrating exercise · Covertype](sesion_02_6_integrador_covertype.ipynb) | Can you put all the pieces together on new data, from raw rows to a deployable model? |
 
-- **Data (provided):** contract validated on load, data card. **TODO 1:** stratified 60/20/20 split and scaling of the 10 numeric columns fitted on training only.
-- **Training:** the loop with scheduler, clipping, gradient norm, early stopping and MLflow logging is provided, as is the baseline run. **TODO 2:** `my_model()` (He, BatchNorm, Dropout, optionally residual), checked against ln C and overfit-one-batch. **TODO 3:** `my_opt()` (AdamW + warmup + cosine), checked by plotting the schedule. A third run changes one thing, with a written prediction.
-- **Deployment:** runs compared with `search_runs` and `get_metric_history`, the chosen run evaluated on test once from its MLflow artifact. **TODO 4:** `predict_raw` on raw rows, checked for consistency and contract rejection.
+## The integrating exercise
 
-With `TRAIN_SIZE = 50_000`, the three runs take about a minute on CPU. The instructor solution is kept outside the repository.
+This one is yours to complete. It uses Forest Covertype: 581,012 forest plots described by 54 variables, where the task is to predict which of 7 types of tree cover dominates each plot.
+
+The data loading, the training loop and the MLflow logging are already written. You fill in **four TODOs**, and each one tells you which notebook shows the piece you need:
+
+1. split and scale the data without leaking information from validation or test;
+2. build your model;
+3. choose your optimizer and learning-rate schedule;
+4. write `predict_raw`, which loads your saved model from MLflow and predicts on new raw rows.
+
+You will compare three runs (a baseline, your recipe, and one change of your choice) and evaluate on the test set once. It is also the deliverable for Part B of [Evaluation Event 1](../../../evaluations/event_1/README.md).
 
 ## Open online
 <!-- open-in-badges -->

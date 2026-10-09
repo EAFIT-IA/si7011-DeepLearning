@@ -84,7 +84,7 @@ $$
 - [Figure and animation inventory](sessions/02_deep_training/figures/figures.md)
 - [Notebooks: five worked examples and the integrating exercise](sessions/02_deep_training/notebooks/README.md)
 
-Why can deep networks be trained? Signal propagation, initialization, optimizers, normalization and regularization, residual learning and training diagnostics. Both practices follow the data → training → deployment pipeline, with runs tracked in MLflow.
+Why can deep networks be trained? Signal propagation, initialization, optimizers, normalization and regularization, residual learning and training diagnostics. The integrating exercise follows the data → training → deployment pipeline, with runs tracked in MLflow.
 
 ## Evaluation
 
