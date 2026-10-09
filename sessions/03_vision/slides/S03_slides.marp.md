@@ -184,13 +184,7 @@ A batch adds one dimension: $N \times C \times H \times W$.
 
 Values are usually scaled to $[0,1]$ and then normalized **per channel**.
 
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-<!-- Pending figure: S03-F01 · image as C×H×W tensor; one pixel position across the three channels; batch dimension -->
+<!-- Pending figure S03-F01 (full-slide figure after this slide): image as C×H×W tensor; one pixel position across the three channels; batch dimension -->
 
 ---
 
@@ -244,13 +238,7 @@ accuracy goes up, down, or stays the same?
 
 </div>
 
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-<!-- Pending figure: S03-F02 · permutation experiment: original vs permuted images; MLP and CNN accuracy on each (measured in notebook 3.1) -->
+<!-- Pending figure S03-F02 (full-slide figure after this slide): permutation experiment: original vs permuted images; MLP and CNN accuracy on each (measured in notebook 3.1) -->
 
 ---
 
@@ -276,13 +264,7 @@ For a $32 \times 32$ single-channel input mapped to a $32 \times 32$ output:
 
 Locality removes most connections; sharing removes most of the rest.
 
----
-
-<!-- _class: media -->
-
-# From dense to convolution
-
-<!-- Pending animation: S03-A01 · dense → local → shared; connections disappear, then weights collapse to one kernel; parameter counter on screen -->
+<!-- Pending animation S03-A01 (media slide "From dense to convolution" after this slide): dense → local → shared; connections disappear, then weights collapse to one kernel; parameter counter on screen -->
 
 ---
 
@@ -315,13 +297,7 @@ $$
 
 Deep learning libraries compute this cross-correlation and call it convolution. The kernel is learned, so the flip does not matter.
 
----
-
-<!-- _class: media -->
-
-# A kernel sliding over an image
-
-<!-- Pending animation: S03-A02 · 3×3 kernel over a small integer image; products and the sum written at each position; feature map filling in -->
+<!-- Pending animation S03-A02 (media slide "A kernel sliding over an image" after this slide): 3×3 kernel over a small integer image; products and the sum written at each position; feature map filling in -->
 
 ---
 
@@ -341,13 +317,7 @@ $$
 
 The result $y$ is a **feature map**: where in the image the pattern occurs.
 
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-<!-- Pending figure: S03-F03 · one image, four hand-made kernels (vertical edge, horizontal edge, blur, sharpen) and their feature maps -->
+<!-- Pending figure S03-F03 (full-slide figure after this slide): one image, four hand-made kernels (vertical edge, horizontal edge, blur, sharpen) and their feature maps -->
 
 ---
 
@@ -365,13 +335,7 @@ $$
 
 `nn.Conv2d(3, 64, kernel_size=3)` → $64 \cdot 3 \cdot 9 + 64 = 1792$ parameters.
 
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-<!-- Pending figure: S03-F04 · multichannel convolution: input C_in×H×W, one kernel C_in×K×K giving one map, C_out kernels stacking into C_out×H'×W' -->
+<!-- Pending figure S03-F04 (full-slide figure after this slide): multichannel convolution: input C_in×H×W, one kernel C_in×K×K giving one map, C_out kernels stacking into C_out×H'×W' -->
 
 ---
 
@@ -452,13 +416,7 @@ $$
 
 Three $3\times3$ layers with stride 1 see $7 \times 7$. Strides make it grow much faster.
 
----
-
-<!-- _class: media -->
-
-# The receptive field grows with depth
-
-<!-- Pending animation: S03-A03 · one output unit; highlight the input region it depends on, layer by layer, without and with stride 2 -->
+<!-- Pending animation S03-A03 (media slide "The receptive field grows with depth" after this slide): one output unit; highlight the input region it depends on, layer by layer, without and with stride 2 -->
 
 ---
 
@@ -516,13 +474,7 @@ $$
 
 Between stages: **halve** the resolution, **double** the channels.
 
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-<!-- Pending figure: S03-F05 · CNN anatomy as tensor blocks: 3×32×32 → 32×32×32 → 64×16×16 → 128×8×8 → 128 → 10 -->
+<!-- Pending figure S03-F05 (full-slide figure after this slide): CNN anatomy as tensor blocks: 3×32×32 → 32×32×32 → 64×16×16 → 128×8×8 → 128 → 10 -->
 
 ---
 
@@ -573,7 +525,7 @@ $$
 Instead of flattening the last feature maps, average each channel:
 
 $$
-z_c = \frac{1}{HW}\sum_{i,j} x_{c,i,j}
+\bar a_c = \frac{1}{HW}\sum_{i,j} a_{c,i,j}
 $$
 
 - far fewer parameters than `flatten` + dense;
@@ -592,13 +544,7 @@ Late layers respond to **object parts**.
 
 Each level is built from local combinations of the level below.
 
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-<!-- Pending figure: S03-F06 · feature hierarchy from our own trained ResNet-18: first-layer kernels, then top-activating patches for channels in stages 2, 3 and 4 -->
+<!-- Pending figure S03-F06 (full-slide figure after this slide): feature hierarchy from the ImageNet-pretrained ResNet-18 used in notebook 3.4: first-layer kernels, then top-activating patches for channels in stages 2, 3 and 4 -->
 
 ---
 
@@ -607,20 +553,14 @@ Each level is built from local combinations of the level below.
 The residual block from Session 02, now with convolutions:
 
 $$
-h_{l+1} = \operatorname{ReLU}\big(h_l + F(h_l)\big),
+a_{l+1} = \operatorname{ReLU}\big(a_l + F(a_l)\big),
 \qquad
 F = \text{conv–BN–ReLU–conv–BN}
 $$
 
 When a stage halves the resolution, the shortcut becomes a **$1\times1$ convolution with stride 2** so the shapes match.
 
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-<!-- Pending figure: S03-F07 · ResNet basic block (identity shortcut) and downsampling block (1×1 stride-2 shortcut), with tensor shapes -->
+<!-- Pending figure S03-F07 (full-slide figure after this slide): ResNet basic block (identity shortcut) and downsampling block (1×1 stride-2 shortcut), with tensor shapes -->
 
 ---
 
@@ -693,13 +633,7 @@ Late features become specific to the classes of the original task.
 
 So the earlier the layer, the more transferable it is.
 
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-<!-- Pending figure: S03-F08 · backbone pretrained on ImageNet: general features in early stages, task-specific in late stages; new head attached for the target task -->
+<!-- Pending figure S03-F08 (full-slide figure after this slide): backbone pretrained on ImageNet: general features in early stages, task-specific in late stages; new head attached for the target task -->
 
 ---
 
@@ -711,24 +645,18 @@ So the earlier the layer, the more transferable it is.
 | **Linear probe** | only the new head; backbone frozen | low | little data, similar domain |
 | **Fine-tuning** | head + some or all backbone | medium | moderate data, or a domain gap |
 
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-<!-- Pending figure: S03-F09 · the three strategies side by side, frozen layers shaded, trained layers highlighted -->
+<!-- Pending figure S03-F09 (full-slide figure after this slide): the three strategies side by side, frozen layers shaded, trained layers highlighted -->
 
 ---
 
 # Linear probe
 
-Freeze the backbone $\phi$ and train a linear classifier on its features:
+Freeze the backbone $g$ and train a linear classifier on its features:
 
 $$
-\hat y = \operatorname{softmax}\big(W\,\phi(x) + b\big),
+\hat y = \operatorname{softmax}\big(W\,g(x) + b\big),
 \qquad
-\phi \ \text{fixed}
+g \ \text{fixed}
 $$
 
 Features can be computed **once** and cached, so training takes seconds.
@@ -770,13 +698,7 @@ from scratch · linear probe · fine-tuning
 1. With **5 images per class**, which wins?
 2. With **all** training images (~100 per class), does the order change?
 
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-<!-- Pending figure: S03-F10 · test accuracy vs images per class for the three strategies (measured in notebook 3.4) -->
+<!-- Pending figure S03-F10 (full-slide figure after this slide): test accuracy vs images per class for the three strategies (measured in notebook 3.4) -->
 
 ---
 
@@ -824,7 +746,7 @@ $$
 16 \cdot 16 \cdot 3 = 768 \ \text{values each}
 $$
 
-Each patch is mapped to a vector of size $D$: a **token**.
+Each patch is mapped to a vector of size $d$: a **token**.
 
 ---
 
@@ -833,18 +755,12 @@ Each patch is mapped to a vector of size $D$: a **token**.
 Flattening each patch and applying the same linear map is exactly:
 
 ```python
-nn.Conv2d(3, D, kernel_size=16, stride=16)   # 3×224×224 → D×14×14
+nn.Conv2d(3, d, kernel_size=16, stride=16)   # 3×224×224 → d×14×14
 ```
 
-Then reshape $D \times 14 \times 14$ into a sequence of $196$ tokens of size $D$.
+Then reshape $d \times 14 \times 14$ into a sequence of $196$ tokens of size $d$.
 
----
-
-<!-- _class: media -->
-
-# From image to tokens
-
-<!-- Pending animation: S03-A04 · image → grid of patches → each patch flattened → linear map → sequence of tokens with positions -->
+<!-- Pending animation S03-A04 (media slide "From image to tokens" after this slide): image → grid of patches → each patch flattened → linear map → sequence of tokens with positions -->
 
 ---
 
@@ -855,22 +771,16 @@ Each token becomes a **weighted average of all tokens**. The weights come from h
 $$
 \operatorname{Attention}(Q,K,V)
 =
-\operatorname{softmax}\!\left(\frac{QK^\top}{\sqrt{d}}\right)V,
+\operatorname{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right)V,
 \qquad
 Q = XW_Q,\ K = XW_K,\ V = XW_V
 $$
 
-The weights depend on the **content**, not on a fixed neighborhood.
+Row $i$ of $X$ is token $t_i$. The weights depend on the **content**, not on a fixed neighborhood.
 
 The full mechanics — heads, masks, cost — come in **Session 05**.
 
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-<!-- Pending figure: S03-F11 · attention map from a pretrained ViT: one query patch and the patches it attends to, over the image -->
+<!-- Pending figure S03-F11 (full-slide figure after this slide): attention map from a pretrained ViT: one query patch and the patches it attends to, over the image -->
 
 ---
 
@@ -883,7 +793,7 @@ That is the **permutation experiment** of Part 1 again.
 So a learned **positional embedding** is added to each token:
 
 $$
-z_i = \operatorname{patch}_i\,W_E + p_i
+t_i = W_E\,\operatorname{patch}_i + p_i
 $$
 
 ---
@@ -891,9 +801,9 @@ $$
 # The Vision Transformer
 
 $$
-[\texttt{CLS}],\ z_1, \dots, z_{196}
+[\texttt{CLS}],\ t_1, \dots, t_{196}
 \rightarrow
-\underbrace{\big[\text{LN} \rightarrow \text{attention} \rightarrow + \;\rightarrow\; \text{LN} \rightarrow \text{MLP} \rightarrow +\big]}_{\times L \ \text{blocks}}
+\underbrace{\big[\text{LN} \rightarrow \text{attention} \rightarrow + \;\rightarrow\; \text{LN} \rightarrow \text{MLP} \rightarrow +\big]}_{\times D \ \text{blocks}}
 \rightarrow
 \text{head}(\texttt{CLS})
 $$
@@ -902,13 +812,7 @@ Everything in the block is from Session 02: LayerNorm, residual paths, an MLP.
 
 The new piece is attention.
 
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-<!-- Pending figure: S03-F12 · ViT architecture: patches → embedding + position → CLS token → L pre-norm encoder blocks → head -->
+<!-- Pending figure S03-F12 (full-slide figure after this slide): ViT architecture: patches → embedding + position → CLS token → D pre-norm encoder blocks → head -->
 
 ---
 
@@ -919,15 +823,10 @@ A CNN **assumes** locality and translation equivariance.
 A ViT has to **learn** them from data.
 
 - small data: the CNN's assumptions win;
-- very large pretraining: the ViT catches up and then passes the CNN.
+- very large pretraining: the ViT catches up and then passes the CNN;
+- modern CNNs (ConvNeXt) close much of that gap again: the bias is not the whole story.
 
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-<!-- Pending figure: S03-F13 · spectrum of assumptions MLP → CNN → ViT, against the amount of data each needs -->
+<!-- Pending figure S03-F13 (full-slide figure after this slide): spectrum of assumptions MLP → CNN → ViT, against the amount of data each needs -->
 
 ---
 
@@ -970,7 +869,7 @@ Rank them before running.
 |---|---|---|
 | tabular features | any | MLP or gradient boosting |
 | images, few labels | ~10–1000 per class | pretrained CNN or ViT, linear probe → fine-tune |
-| images, many labels | $10^4$+ per class | CNN, or ViT with pretraining |
+| images, many labels | $10^3$+ per class | CNN, or ViT with pretraining |
 | images, unusual domain | any | fine-tuning; check the gap with a probe |
 
 ---
@@ -983,13 +882,7 @@ Rank them before running.
 | CNN | locality, translation equivariance | global context needs depth |
 | ViT | almost nothing; position is learned | data or pretraining |
 
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-<!-- Pending figure: S03-F14 · summary: the same image processed by MLP, CNN and ViT, with what each layer can see -->
+<!-- Pending figure S03-F14 (full-slide figure after this slide): summary: the same image processed by MLP, CNN and ViT, with what each layer can see -->
 
 ---
 
