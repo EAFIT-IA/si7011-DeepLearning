@@ -119,6 +119,8 @@ Below that, two parameter boxes side by side:
 
 A "<" sign between the two boxes.
 
+**Optional redraw, 2-D (fixes the delivered version):** the dashed teal lines go from the four corners of the $5 \times 5$ input grid to the four corners of the **whole** $3 \times 3$ "after conv 1" grid, never to a single cell: one conv-1 cell sees only $3 \times 3$; all nine conv-1 cells together see $5 \times 5$. No cell of the conv-1 grid is highlighted. The orange cell of "after conv 2" keeps its 9 lines to the conv-1 grid. (A second attempt drew the lines to the centre conv-1 cell, which says one conv-1 unit sees $5\times5$: wrong, rejected.)
+
 **Optional redraw of the receptive-field sketch (1-D, clearer):** replace the three grids with three horizontal rows of square cells, bottom to top: "input" with 5 cells, "after conv 1" with 3 cells, "after conv 2" with 1 orange cell. Each conv-1 cell has 3 thin teal lines to the 3 input cells below it (cells 1–3, 2–4, 3–5). The orange cell has 3 thin orange lines to all 3 conv-1 cells. All 5 input cells are shaded light teal. Caption: "two $3\times3$ layers see $5\times5$" (in 2-D the same holds per axis).
 
 Check: the left block has no line going around the boxes; the output is $64 \times 16 \times 16$ (only the pool halves the size); the receptive field of the second layer is $5\times5$; the numbers are exactly $18C^2$ and $25C^2$.
