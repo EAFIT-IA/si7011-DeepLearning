@@ -516,28 +516,6 @@ Initialization and activation must be considered together.
 
 ---
 
-# Practice A — Inspect a deep MLP
-
-[Notebook 1 · Signal and initialization](../notebooks/sesion_02_1_senal_inicializacion.ipynb) · worked, one change per cell
-
-The goal is not accuracy yet.
-
-The goal is to measure, layer by layer:
-
-$$
-\operatorname{std}(a_l),
-\qquad
-\left\lVert
-\nabla_{W_l}J
-\right\rVert
-$$
-
-for different activations and initializations, and then check whether that prediction holds after 5 epochs.
-
-> Can we detect a bad training setup before many epochs?
-
----
-
 # Part 3 · Optimization
 
 1. Signal propagation — how scale moves through depth
@@ -698,7 +676,7 @@ $$
 Common patterns: step decay, exponential decay, cosine annealing, usually after a short **warmup**: $\eta_t=\eta_0\,t/T_w$ for $t<T_w$.
 
 <div class="center">
-<img src="../figures/s02_f10_learning_rate_schedules.svg" style="width:92%;max-height:330px;object-fit:contain;" alt="Learning-rate schedules">
+<img src="../figures/s02_f10_learning_rate_schedules.svg" style="width:90%;max-height:260px;object-fit:contain;" alt="Learning-rate schedules">
 </div>
 
 ---
@@ -1156,10 +1134,11 @@ Cheap tests that catch most bugs before a long run:
 
 ---
 
-# Practice B — Build a robust training recipe
+# Practice — Build a robust training recipe
 
 Worked notebooks first, on Fashion-MNIST, one change per cell:
 
+- [1 · Signal and initialization](../notebooks/sesion_02_1_senal_inicializacion.ipynb): per-layer std and gradients, Xavier vs He, initial loss vs ln C
 - [2 · Optimization](../notebooks/sesion_02_2_optimizacion.ipynb): η, momentum, Adam, batch size, warmup + cosine, clipping
 - [3 · Normalization and regularization](../notebooks/sesion_02_3_normalizacion_regularizacion.ipynb): weight decay, Dropout, early stopping, BatchNorm
 - [4 · Residuals and diagnostics](../notebooks/sesion_02_4_residual_diagnosticos.ipynb): residual blocks, pre-norm, overfit one batch
@@ -1168,7 +1147,7 @@ Then the [integrating exercise](../notebooks/sesion_02_6_integrador_covertype.ip
 
 ---
 
-# Practice C — Hyperparameter search
+# Practice — Hyperparameter search
 
 [Notebook 5 · Optuna + MLflow](../notebooks/sesion_02_5_optuna_mlflow.ipynb) · worked, on Fashion-MNIST
 
