@@ -184,7 +184,13 @@ A batch adds one dimension: $N \times C \times H \times W$.
 
 Values are usually scaled to $[0,1]$ and then normalized **per channel**.
 
-<!-- Pending figure S03-F01 (full-slide figure after this slide): image as C×H×W tensor; one pixel position across the three channels; batch dimension -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain An RGB image split into three channels: a C×H×W tensor, and a batch N×C×H×W](../figures/s03_f01_image_tensor.png)
 
 ---
 

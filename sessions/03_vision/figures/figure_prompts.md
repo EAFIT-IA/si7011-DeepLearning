@@ -14,15 +14,15 @@ Slide numbers refer to the current `../slides/S03_slides.marp.md`. Figures that 
 
 | Figure | Concept | After slide | Status |
 |---|---|---:|---|
-| S03-F01 | Image as a C×H×W tensor | V06 | pending |
-| S03-F04 | Multichannel convolution | V18 | pending |
-| S03-F05 | CNN anatomy as tensor blocks | V28 | pending |
-| S03-F07 | ResNet basic and downsampling blocks | V34 | pending |
-| S03-F08 | Pretrained backbone and a new head | V40 | pending |
-| S03-F09 | From scratch, linear probe, fine-tuning | V41 | pending |
-| S03-F12 | Vision Transformer architecture | V54 | pending |
-| S03-F13 | Inductive bias versus data | V55 | pending |
-| S03-F14 | What one unit can see: MLP, CNN, ViT | V60 | pending |
+| S03-F01 | Image as a C×H×W tensor | V07 | done (optional correction below) |
+| S03-F04 | Multichannel convolution | V19 | pending |
+| S03-F05 | CNN anatomy as tensor blocks | V29 | pending |
+| S03-F07 | ResNet basic and downsampling blocks | V35 | pending |
+| S03-F08 | Pretrained backbone and a new head | V41 | pending |
+| S03-F09 | From scratch, linear probe, fine-tuning | V42 | pending |
+| S03-F12 | Vision Transformer architecture | V55 | pending |
+| S03-F13 | Inductive bias versus data | V56 | pending |
+| S03-F14 | What one unit can see: MLP, CNN, ViT | V61 | pending |
 
 ## Common style block (prepend to every prompt)
 
@@ -42,23 +42,25 @@ Slide numbers refer to the current `../slides/S03_slides.marp.md`. Figures that 
 
 ---
 
-## S03-F01 · Image as a C×H×W tensor (pending, after slide 6)
+## S03-F01 · Image as a C×H×W tensor (done, slide 7 — optional correction: shading and callout values)
 
 File: `s03_f01_image_tensor.png`
 
 **Left two thirds:** a small color image of a simple flat-illustration leaf (no photograph) shown as an 8 × 8 pixel grid on the far left, labeled "image". An arrow to the right labeled "split into channels" leads to **three stacked, slightly offset 8 × 8 grids** in perspective, front to back: red grid labeled "R", green grid labeled "G", blue grid labeled "B". Cell shading in each grid follows the leaf's channel intensity. Brace along the stack labeled $C = 3$; brace along the vertical edge labeled $H$; brace along the horizontal edge labeled $W$.
 
-One position is highlighted in all three grids with a thin orange outline at row 3, column 5, joined by an orange line that pierces the stack. A callout from that line shows a column vector $\begin{bmatrix}0.82\\0.41\\0.13\end{bmatrix}$ with the label "one position, all channels".
+One position is highlighted in all three grids with a thin orange outline at row 3, column 5, joined by an orange line that pierces the stack. The highlighted position is inside the leaf. A callout from that line shows a column vector $\begin{bmatrix}0.18\\0.62\\0.21\end{bmatrix}$ (low R, high G, low B: a green pixel) with the label "one position, all channels".
+
+**Shading rule (important):** in each channel grid, the cell color intensity equals that channel's value. White background pixels have value 1 in every channel, so the background is the **most saturated** color in all three grids. The leaf is light in R and B and saturated in G.
 
 Under the stack, centered: $x \in \mathbb{R}^{C \times H \times W}$.
 
 **Right third:** four such stacks drawn small, side by side in a row, with a brace labeled $N$ and the caption $N \times C \times H \times W$ and the small text "a batch".
 
-Check: exactly three channel grids, in the order R, G, B from front to back; the shape text reads $C \times H \times W$, not $H \times W \times C$.
+Check: exactly three channel grids, in the order R, G, B from front to back; the shape text reads $C \times H \times W$, not $H \times W \times C$; background saturated in all three grids, leaf saturated only in G; the callout's largest value is the G entry.
 
 ---
 
-## S03-F04 · Multichannel convolution (pending, after slide 18)
+## S03-F04 · Multichannel convolution (pending, after slide 19)
 
 File: `s03_f04_multichannel_conv.png`
 
@@ -74,7 +76,7 @@ Check: the kernel has as many slices as the input has channels (3); the output h
 
 ---
 
-## S03-F05 · CNN anatomy as tensor blocks (pending, after slide 28)
+## S03-F05 · CNN anatomy as tensor blocks (pending, after slide 29)
 
 File: `s03_f05_cnn_anatomy.png`
 
@@ -93,7 +95,7 @@ Check: shapes are exactly $3\times32\times32$, $32\times32\times32$, $64\times16
 
 ---
 
-## S03-F07 · ResNet basic and downsampling blocks (pending, after slide 34)
+## S03-F07 · ResNet basic and downsampling blocks (pending, after slide 35)
 
 File: `s03_f07_resnet_blocks.png`
 
@@ -107,7 +109,7 @@ Check: left output shape equals input shape; right output is $128 \times 28 \tim
 
 ---
 
-## S03-F08 · Pretrained backbone and a new head (pending, after slide 40)
+## S03-F08 · Pretrained backbone and a new head (pending, after slide 41)
 
 File: `s03_f08_transfer_backbone.png`
 
@@ -121,7 +123,7 @@ Check: the backbone blocks are identical in both rows; only the head changes; th
 
 ---
 
-## S03-F09 · From scratch, linear probe, fine-tuning (pending, after slide 41)
+## S03-F09 · From scratch, linear probe, fine-tuning (pending, after slide 42)
 
 File: `s03_f09_transfer_strategies.png`
 
@@ -135,7 +137,7 @@ Check: exactly three rows in this order; in "linear probe" no backbone box is co
 
 ---
 
-## S03-F12 · Vision Transformer architecture (pending, after slide 54)
+## S03-F12 · Vision Transformer architecture (pending, after slide 55)
 
 File: `s03_f12_vit_architecture.png`
 
@@ -153,7 +155,7 @@ Check: 196 tokens plus one CLS token; the norm comes **before** attention and be
 
 ---
 
-## S03-F13 · Inductive bias versus data (pending, after slide 55)
+## S03-F13 · Inductive bias versus data (pending, after slide 56)
 
 File: `s03_f13_inductive_bias_spectrum.png`
 
@@ -175,7 +177,7 @@ Check: the ViT crosses the CNN only once, at large data; the MLP never crosses e
 
 ---
 
-## S03-F14 · What one unit can see: MLP, CNN, ViT (pending, after slide 60)
+## S03-F14 · What one unit can see: MLP, CNN, ViT (pending, after slide 61)
 
 File: `s03_f14_architecture_summary.png`
 
