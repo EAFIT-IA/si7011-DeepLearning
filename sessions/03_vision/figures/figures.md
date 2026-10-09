@@ -18,13 +18,13 @@ Pending figures are hidden HTML comments in the slide source (`<!-- Pending figu
 ![bg contain <alt text>](../figures/s03_fnn_<name>.png)
 ```
 
-Animations use the `media` class with a poster image, as in Session 02 (V33, V42, V76).
+Animations use the `media` class with a poster image, as in Session 02 (V33, V42, V77).
 
 Figures keep white backgrounds, academic visual style, preserved proportions and lowercase filenames with underscores. All figures are drawn from scratch; none reproduces a figure from a paper or another course.
 
 ## Deck structure
 
-68 slides in five parts, each opened by a divider slide that recaps the previous part: 56 content slides, plus 8 figures and 4 animations already integrated. With the 7 remaining figures the deck has **75 slides** (S02 has 78).
+69 slides in five parts, each opened by a divider slide that recaps the previous part: 56 content slides, plus 9 figures and 4 animations already integrated. With the 6 remaining figures the deck has **75 slides** (S02 has 78).
 
 | Part | Slides | Practice |
 |---|---|---|
@@ -33,8 +33,8 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | 2 · Convolution | V14–V28 | |
 | 3 · CNNs and residual networks | V29–V42 | Practice A (V42): notebooks 3.1–3.3 |
 | 4 · Transfer learning | V43–V53 | |
-| 5 · From patches to attention | V54–V64 | Practice B (V64): notebooks 3.4–3.5 |
-| Closure | V65–V68 | Integrating exercise (V65), exit question (V68) |
+| 5 · From patches to attention | V54–V65 | Practice B (V65): notebooks 3.4–3.5 |
+| Closure | V66–V69 | Integrating exercise (V66), exit question (V69) |
 
 Self-attention gets one slide (V59); its full mechanics belong to Session 05.
 
@@ -64,9 +64,9 @@ Three routes, depending on what the figure must show:
 | **S03-F09** | V48 (slide) | From scratch, linear probe and fine-tuning: frozen vs trained layers | `s03_f09_transfer_strategies.png` | Generator | Included |
 | **S03-F10** | V52 | Test accuracy vs images per class for the three strategies | `s03_f10_transfer_vs_data.png` | Script (numbers from notebook 3.4) | Pending |
 | **S03-F11** | V59 | Attention map of a pretrained ViT for one query patch | `s03_f11_attention_map.png` | Script (pretrained ViT, notebook 3.5) | Pending |
-| **S03-F12** | V61 | ViT architecture: patches, position, CLS, pre-norm blocks, head | `s03_f12_vit_architecture.png` | Generator | Pending |
-| **S03-F13** | V62 | Spectrum of assumptions MLP → CNN → ViT against data needed | `s03_f13_inductive_bias_spectrum.png` | Generator | Pending |
-| **S03-F14** | V67 | Summary: what one unit can see in the first layers of an MLP, a CNN and a ViT | `s03_f14_architecture_summary.png` | Generator | Pending |
+| **S03-F12** | V62 (slide) | ViT architecture: patches, position, CLS, pre-norm blocks, head | `s03_f12_vit_architecture.png` | Generator | Included — see review note |
+| **S03-F13** | V63 | Spectrum of assumptions MLP → CNN → ViT against data needed | `s03_f13_inductive_bias_spectrum.png` | Generator | Pending |
+| **S03-F14** | V68 | Summary: what one unit can see in the first layers of an MLP, a CNN and a ViT | `s03_f14_architecture_summary.png` | Generator | Pending |
 
 ## Planned animations (Manim)
 
@@ -83,7 +83,8 @@ Only concepts where motion changes understanding.
 
 - **S03-F01:** channel shading does not follow the pixel values. The white background has value 1 in all three channels, so it should be the darkest cell in every grid; the image instead shades the leaf dark in R and B and the background light. The callout $(0.82, 0.41, 0.13)$ (from the prompt) is a reddish pixel, not a green leaf pixel. Structure, labels and shapes are correct. Usable as is; regeneration with the corrected prompt is optional.
 - **S03-F04:** a stray white "C" next to the G label on the input block was removed by cloning the green cell below it (the delivered PNG is 1671 px wide; harmless with `bg contain`). The dashed arrow to the kernel starts at the edge of the green block, not at the dashed window on the R face; acceptable.
-- **S03-F15:** left panel and parameter boxes are exact. In the receptive-field sketch the conv-1 unit fans down to a separate 3×3 patch and the 5×5 input grid is not connected to anything, so the 5×5 claim rests on the caption. Acceptable because S03-A03 (V26) already shows the growth with real connections; an optional 1-D redraw is in the prompt.
+- **S03-F15:** left panel and parameter boxes are exact. In the receptive-field sketch the conv-1 unit fans down to a separate 3×3 patch and the 5×5 input grid is not connected to anything, so the 5×5 claim rests on the caption. Acceptable because S03-A03 (V26) already shows the growth with real connections; an optional 1-D redraw is in the prompt. V25 and V33 now state that padding does not change the receptive field, so the window labels read correctly.
+- **S03-F12:** architecture, pre-norm order, token count (197) and ViT-B/16 sizes are exact. The arrow from $W_E$ runs into the [CLS] bar, which suggests [CLS] is a projected patch; V61 now says it is a learned token. Delivered at 2:1 (1774 × 887), letterboxed by `bg contain`.
 
 ## Animation sources
 
@@ -104,9 +105,9 @@ If production time is limited, prioritize:
 
 1. **S03-F02** — the permutation experiment: the argument of the whole session (needs notebook 3.1);
 2. **S03-F10** — transfer learning against the amount of data (needs notebook 3.4);
-3. **S03-F12** — ViT architecture.
+3. **S03-F13** — inductive bias versus data.
 
-Already included: S03-F01, S03-F03, S03-F04, S03-F05, S03-F15, S03-F07, S03-F08, S03-F09 and the four animations (S03-A01 to A04).
+Already included: S03-F01, S03-F03, S03-F04, S03-F05, S03-F15, S03-F07, S03-F08, S03-F09, S03-F12 and the four animations (S03-A01 to A04).
 
 ## Notes for slide integration
 

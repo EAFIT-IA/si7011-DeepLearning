@@ -21,9 +21,9 @@ Slide numbers refer to the current `../slides/S03_slides.marp.md`. Figures that 
 | S03-F07 | ResNet basic and downsampling blocks | V39 | done |
 | S03-F08 | Pretrained backbone and a new head | V46 | done |
 | S03-F09 | From scratch, linear probe, fine-tuning | V48 | done |
-| S03-F12 | Vision Transformer architecture | V61 | pending |
-| S03-F13 | Inductive bias versus data | V62 | pending |
-| S03-F14 | What one unit can see: MLP, CNN, ViT | V67 | pending |
+| S03-F12 | Vision Transformer architecture | V62 | done |
+| S03-F13 | Inductive bias versus data | V63 | pending |
+| S03-F14 | What one unit can see: MLP, CNN, ViT | V68 | pending |
 
 ## Common style block (prepend to every prompt)
 
@@ -169,7 +169,7 @@ Check: exactly three rows in this order; in "linear probe" no backbone box is co
 
 ---
 
-## S03-F12 · Vision Transformer architecture (pending, after slide 61)
+## S03-F12 · Vision Transformer architecture (done, slide 62)
 
 File: `s03_f12_vit_architecture.png`
 
@@ -187,7 +187,7 @@ Check: 196 tokens plus one CLS token; the norm comes **before** attention and be
 
 ---
 
-## S03-F13 · Inductive bias versus data (pending, after slide 62)
+## S03-F13 · Inductive bias versus data (pending, after slide 63)
 
 File: `s03_f13_inductive_bias_spectrum.png`
 
@@ -209,7 +209,7 @@ Check: the ViT crosses the CNN only once, at large data; the MLP never crosses e
 
 ---
 
-## S03-F14 · What one unit can see: MLP, CNN, ViT (pending, after slide 67)
+## S03-F14 · What one unit can see: MLP, CNN, ViT (pending, after slide 68)
 
 File: `s03_f14_architecture_summary.png`
 

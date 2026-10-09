@@ -460,6 +460,8 @@ $$
 
 Three $3\times3$ layers with stride 1 see $7 \times 7$. Strides make it grow much faster.
 
+Padding does not change $r_l$; it only keeps the map size.
+
 ---
 
 <!-- _class: media -->
@@ -566,6 +568,8 @@ $$
 $$
 
 Fewer parameters, and one extra nonlinearity in between.
+
+With padding 1 the map stays $32 \times 32$: each position sees its own $5 \times 5$ window.
 
 ---
 
@@ -910,11 +914,19 @@ $$
 \text{head}(\texttt{CLS})
 $$
 
+$[\texttt{CLS}]$ is a learned token, not a patch; its output feeds the head.
+
 Everything in the block is from Session 02: LayerNorm, residual paths, an MLP.
 
 The new piece is attention.
 
-<!-- Pending figure S03-F12 (full-slide figure after this slide): ViT architecture: patches → embedding + position → CLS token → D pre-norm encoder blocks → head -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Vision Transformer: 196 patches, patch embedding W_E, positional embeddings, CLS token, D pre-norm encoder blocks, head on the CLS output](../figures/s03_f12_vit_architecture.png)
 
 ---
 
