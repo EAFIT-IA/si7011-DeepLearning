@@ -15,14 +15,14 @@ Slide numbers refer to the current `../slides/S03_slides.marp.md`. Figures that 
 | Figure | Concept | After slide | Status |
 |---|---|---:|---|
 | S03-F01 | Image as a C×H×W tensor | V06 | pending |
-| S03-F04 | Multichannel convolution | V15 | pending |
-| S03-F05 | CNN anatomy as tensor blocks | V24 | pending |
-| S03-F07 | ResNet basic and downsampling blocks | V30 | pending |
-| S03-F08 | Pretrained backbone and a new head | V36 | pending |
-| S03-F09 | From scratch, linear probe, fine-tuning | V37 | pending |
-| S03-F12 | Vision Transformer architecture | V49 | pending |
-| S03-F13 | Inductive bias versus data | V50 | pending |
-| S03-F14 | What one unit can see: MLP, CNN, ViT | V55 | pending |
+| S03-F04 | Multichannel convolution | V18 | pending |
+| S03-F05 | CNN anatomy as tensor blocks | V28 | pending |
+| S03-F07 | ResNet basic and downsampling blocks | V34 | pending |
+| S03-F08 | Pretrained backbone and a new head | V40 | pending |
+| S03-F09 | From scratch, linear probe, fine-tuning | V41 | pending |
+| S03-F12 | Vision Transformer architecture | V54 | pending |
+| S03-F13 | Inductive bias versus data | V55 | pending |
+| S03-F14 | What one unit can see: MLP, CNN, ViT | V60 | pending |
 
 ## Common style block (prepend to every prompt)
 
@@ -58,7 +58,7 @@ Check: exactly three channel grids, in the order R, G, B from front to back; the
 
 ---
 
-## S03-F04 · Multichannel convolution (pending, after slide 15)
+## S03-F04 · Multichannel convolution (pending, after slide 18)
 
 File: `s03_f04_multichannel_conv.png`
 
@@ -74,7 +74,7 @@ Check: the kernel has as many slices as the input has channels (3); the output h
 
 ---
 
-## S03-F05 · CNN anatomy as tensor blocks (pending, after slide 24)
+## S03-F05 · CNN anatomy as tensor blocks (pending, after slide 28)
 
 File: `s03_f05_cnn_anatomy.png`
 
@@ -93,7 +93,7 @@ Check: shapes are exactly $3\times32\times32$, $32\times32\times32$, $64\times16
 
 ---
 
-## S03-F07 · ResNet basic and downsampling blocks (pending, after slide 30)
+## S03-F07 · ResNet basic and downsampling blocks (pending, after slide 34)
 
 File: `s03_f07_resnet_blocks.png`
 
@@ -107,7 +107,7 @@ Check: left output shape equals input shape; right output is $128 \times 28 \tim
 
 ---
 
-## S03-F08 · Pretrained backbone and a new head (pending, after slide 36)
+## S03-F08 · Pretrained backbone and a new head (pending, after slide 40)
 
 File: `s03_f08_transfer_backbone.png`
 
@@ -121,7 +121,7 @@ Check: the backbone blocks are identical in both rows; only the head changes; th
 
 ---
 
-## S03-F09 · From scratch, linear probe, fine-tuning (pending, after slide 37)
+## S03-F09 · From scratch, linear probe, fine-tuning (pending, after slide 41)
 
 File: `s03_f09_transfer_strategies.png`
 
@@ -135,7 +135,7 @@ Check: exactly three rows in this order; in "linear probe" no backbone box is co
 
 ---
 
-## S03-F12 · Vision Transformer architecture (pending, after slide 49)
+## S03-F12 · Vision Transformer architecture (pending, after slide 54)
 
 File: `s03_f12_vit_architecture.png`
 
@@ -153,7 +153,7 @@ Check: 196 tokens plus one CLS token; the norm comes **before** attention and be
 
 ---
 
-## S03-F13 · Inductive bias versus data (pending, after slide 50)
+## S03-F13 · Inductive bias versus data (pending, after slide 55)
 
 File: `s03_f13_inductive_bias_spectrum.png`
 
@@ -175,7 +175,7 @@ Check: the ViT crosses the CNN only once, at large data; the MLP never crosses e
 
 ---
 
-## S03-F14 · What one unit can see: MLP, CNN, ViT (pending, after slide 55)
+## S03-F14 · What one unit can see: MLP, CNN, ViT (pending, after slide 60)
 
 File: `s03_f14_architecture_summary.png`
 

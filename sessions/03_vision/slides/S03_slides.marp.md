@@ -264,7 +264,20 @@ For a $32 \times 32$ single-channel input mapped to a $32 \times 32$ output:
 
 Locality removes most connections; sharing removes most of the rest.
 
-<!-- Pending animation S03-A01 (media slide "From dense to convolution" after this slide): dense → local → shared; connections disappear, then weights collapse to one kernel; parameter counter on screen -->
+---
+
+<!-- _class: media -->
+
+# From dense to convolution
+
+<video controls preload="none" poster="../figures/s03_a01_dense_to_conv_poster.png" aria-label="From dense to convolution">
+  <source src="../figures/s03_a01_dense_to_conv.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s03_a01_dense_to_conv_poster.png" alt="Static view of From dense to convolution">
+
+[Open animation](../figures/s03_a01_dense_to_conv.mp4)
+
+<!-- 8 inputs, 8 outputs: dense (72 parameters) → local (32) → one shared kernel (4); for a 32×32 image 1 049 600 → 10 240 → 10. Answers the table on the previous slide. -->
 
 ---
 
@@ -297,7 +310,20 @@ $$
 
 Deep learning libraries compute this cross-correlation and call it convolution. The kernel is learned, so the flip does not matter.
 
-<!-- Pending animation S03-A02 (media slide "A kernel sliding over an image" after this slide): 3×3 kernel over a small integer image; products and the sum written at each position; feature map filling in -->
+---
+
+<!-- _class: media -->
+
+# A kernel sliding over an image
+
+<video controls preload="none" poster="../figures/s03_a02_kernel_sliding_poster.png" aria-label="A kernel sliding over an image">
+  <source src="../figures/s03_a02_kernel_sliding.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s03_a02_kernel_sliding_poster.png" alt="Static view of A kernel sliding over an image">
+
+[Open animation](../figures/s03_a02_kernel_sliding.mp4)
+
+<!-- Vertical-edge kernel [-1 0 1] on a 6×6 image with a bright stripe; first position worked out (sum = 20), then the full 4×4 map: + on the left edge, − on the right. -->
 
 ---
 
@@ -317,7 +343,13 @@ $$
 
 The result $y$ is a **feature map**: where in the image the pattern occurs.
 
-<!-- Pending figure S03-F03 (full-slide figure after this slide): one image, four hand-made kernels (vertical edge, horizontal edge, blur, sharpen) and their feature maps -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain One image, four hand-made kernels and their feature maps](../figures/s03_f03_kernels_feature_maps.png)
 
 ---
 
@@ -416,7 +448,20 @@ $$
 
 Three $3\times3$ layers with stride 1 see $7 \times 7$. Strides make it grow much faster.
 
-<!-- Pending animation S03-A03 (media slide "The receptive field grows with depth" after this slide): one output unit; highlight the input region it depends on, layer by layer, without and with stride 2 -->
+---
+
+<!-- _class: media -->
+
+# The receptive field grows with depth
+
+<video controls preload="none" poster="../figures/s03_a03_receptive_field_poster.png" aria-label="The receptive field grows with depth">
+  <source src="../figures/s03_a03_receptive_field.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s03_a03_receptive_field_poster.png" alt="Static view of The receptive field grows with depth">
+
+[Open animation](../figures/s03_a03_receptive_field.mp4)
+
+<!-- Three 3×3 layers without padding: stride 1 gives r = 3, 5, 7; stride 2 gives r = 3, 7, 15. Same formula as the previous slide. -->
 
 ---
 
@@ -760,7 +805,20 @@ nn.Conv2d(3, d, kernel_size=16, stride=16)   # 3×224×224 → d×14×14
 
 Then reshape $d \times 14 \times 14$ into a sequence of $196$ tokens of size $d$.
 
-<!-- Pending animation S03-A04 (media slide "From image to tokens" after this slide): image → grid of patches → each patch flattened → linear map → sequence of tokens with positions -->
+---
+
+<!-- _class: media -->
+
+# From image to tokens
+
+<video controls preload="none" poster="../figures/s03_a04_patches_to_tokens_poster.png" aria-label="From image to tokens">
+  <source src="../figures/s03_a04_patches_to_tokens.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s03_a04_patches_to_tokens_poster.png" alt="Static view of From image to tokens">
+
+[Open animation](../figures/s03_a04_patches_to_tokens.mp4)
+
+<!-- 64×64 image, 16 patches of 16×16, flattened to 768 numbers, one random W_E (d = 8 for display), plus positional embeddings and the CLS token: 17 tokens. -->
 
 ---
 
