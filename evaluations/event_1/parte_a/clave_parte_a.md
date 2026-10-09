@@ -1,6 +1,6 @@
 # Evento evaluativo 1 · Parte A · Clave del instructor
 
-Las figuras salen de corridas reales sobre Fashion-MNIST (`parte_a_figs.py`, semilla 0). Las cifras de abajo son las de esas corridas. Cada pregunta vale 1 punto (literales de 0.5); nota = puntos × 5 / 6.
+Las figuras salen de corridas reales sobre Fashion-MNIST (`fuente/generar_figuras.py`, semilla 0). Las cifras de abajo son las de esas corridas. Cada pregunta vale 1 punto (literales de 0.5); nota = puntos × 5 / 6.
 
 ## 1. Dos corridas (0.5 + 0.5)
 - **A — sobreajuste.** La pérdida de entrenamiento baja hasta 0.02, y la de validación toca su mínimo (0.45) en la época 6 y sube hasta 0.81. La brecha crece. **B — subajuste por optimización lenta.** Entrenamiento y validación van juntas (0.72 y 0.73 en la época 30) y siguen bajando: el modelo no ha terminado de aprender. Fue SGD con η = 2·10⁻⁴.
