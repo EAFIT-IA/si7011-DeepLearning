@@ -18,7 +18,7 @@ Son seis preguntas de respuesta corta (una o dos frases por literal), cada una c
 5. tamaño del lote, ruido del gradiente y cómo ajustar $\eta$;
 6. degradación con la profundidad, y Adam frente a AdamW.
 
-**Examen:** [`parte_a/examen_parte_a.pdf`](parte_a/examen_parte_a.pdf) · [clave](parte_a/clave_parte_a.md) · [fuente y figuras](parte_a/fuente/). Las figuras salen de corridas reales y `generar_figuras.py` las reproduce.
+**Examen:** [`parte_a/examen_parte_a.pdf`](parte_a/examen_parte_a.pdf) · [fuente y figuras](parte_a/fuente/). Las figuras salen de corridas reales.
 
 **Para estudiar:** las diapositivas de S01 y S02 y los notebooks 1–4 de la sesión 2. Cada pregunta corresponde a algo que hicieron allí:
 
