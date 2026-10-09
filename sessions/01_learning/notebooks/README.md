@@ -1,31 +1,21 @@
 # Session 01 notebooks
 
-## Guided practice — 60 minutes
+**How does a neural network learn?** Start with the guided practice, then do the exercise.
 
-[sesion_01_pytorch_60min.ipynb](sesion_01_pytorch_60min.ipynb)
+| # | Notebook | What you do |
+|---|---|---|
+| 1 | [Guided practice: PyTorch in 60 minutes](sesion_01_pytorch_60min.ipynb) | Everything is written and runs as is. You go from tensors and automatic differentiation to training a small network that separates two classes that a straight line cannot. Run each cell and read the result before moving on. |
+| 2 | [Exercise: a multiclass MLP on tabular data](sesion_01_ejercicio_mlp_multiclase_kaggle.ipynb) | Your turn. You classify dry beans into 7 varieties from 16 measurements of each bean, filling in **seven TODOs**. |
 
-Tensors, affine transformations, scalar autograd, parameter updates,
-`TensorDataset`, `DataLoader` and nonlinear classification with an MLP.
-The notebook includes executed examples, loss curves and decision boundaries.
+## The exercise
 
-## Exercise — Multiclass MLP with tabular data
+The data is the [Dry Bean dataset](https://www.kaggle.com/datasets/muratkokludataset/dry-bean-dataset). **Before class:** on Kaggle, add the dataset to your notebook with *Add Input*; on Colab, save your Kaggle token as the secret `KAGGLE_API_TOKEN` (section 1 of the notebook explains how). A CPU is enough. The notebook walks through the three stages you will use for the whole course:
 
-[sesion_01_ejercicio_mlp_multiclase_kaggle.ipynb](sesion_01_ejercicio_mlp_multiclase_kaggle.ipynb)
+1. **Data:** check that the file has the columns and types you expect, and split and scale it correctly.
+2. **Training:** build the network, choose the loss and the optimizer, train, and keep the version that does best on validation.
+3. **Deployment:** save everything the model needs in one file, reload it, and predict on new raw rows, just as you would in a real application.
 
-Kaggle Dry Bean dataset: 16 numerical features and 7 classes.
-Students complete seven TODO sections covering preprocessing, data loaders,
-the MLP, loss and optimizer, training, prediction and deployment. The notebook
-follows the three pipeline stages used throughout the course, each with an artifact:
-**data** (a data contract that validates columns and types, plus a data card with
-the file hash), **training** (state selected on validation) and **deployment**
-(TODO 7: one `torch.save` bundle with weights, scaler statistics, contract and
-class names; `predict_raw` reloads it and predicts on raw rows, with a consistency
-check against the test predictions and a rejected malformed row). The evaluation
-reports accuracy, macro F1 and a confusion matrix.
-
-The former names `S01_N01_gradient_descent.ipynb` and
-`S01_N02_pytorch_autograd.ipynb` were planning placeholders.
-The presentation now links to the available notebooks above.
+At the end you report accuracy, macro F1 and a confusion matrix, and you will see why accuracy alone can be misleading when some classes are rarer than others.
 
 ## Open online
 <!-- open-in-badges -->

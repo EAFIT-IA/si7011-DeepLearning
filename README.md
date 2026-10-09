@@ -56,10 +56,8 @@ Detailed course design: [`course/course_structure.md`](course/course_structure.m
 
 ## Session 01 — Learning
 
-- [Slides (PDF)](sessions/01_learning/slides/S01_slides.pdf) · [Marp source](sessions/01_learning/slides/S01_slides.marp.md)
-- [Rendering instructions](sessions/01_learning/slides/README.md)
-- [Figure and animation inventory](sessions/01_learning/figures/figures.md)
-- [Guided practice and exercise](sessions/01_learning/notebooks/README.md)
+- [Slides (PDF) and animations](sessions/01_learning/slides/README.md)
+- [Notebooks: guided practice and exercise](sessions/01_learning/notebooks/README.md)
 
 The central mental model is:
 
@@ -80,8 +78,7 @@ $$
 
 ## Session 02 — Deep Training
 
-- [Slides (PDF)](sessions/02_deep_training/slides/S02_slides.pdf) · [Marp source](sessions/02_deep_training/slides/S02_slides.marp.md)
-- [Figure and animation inventory](sessions/02_deep_training/figures/figures.md)
+- [Slides (PDF) and animations](sessions/02_deep_training/slides/README.md)
 - [Notebooks: five worked examples and the integrating exercise](sessions/02_deep_training/notebooks/README.md)
 
 Why can deep networks be trained? Signal propagation, initialization, optimizers, normalization and regularization, residual learning and training diagnostics. The integrating exercise follows the data → training → deployment pipeline, with runs tracked in MLflow.
