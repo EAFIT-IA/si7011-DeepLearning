@@ -53,17 +53,17 @@ Three routes, depending on what the figure must show:
 | ID | After slide | Purpose | Planned filename | Route | Status |
 |---|---:|---|---|---|---|
 | **S03-F01** | V07 (slide) | Image as a C×H×W tensor; one position across channels; batch dimension | `s03_f01_image_tensor.png` | Generator | Included — see review note |
-| **S03-F02** | V10 | Permutation experiment: original vs permuted images, MLP and CNN accuracy on each | `s03_f02_permutation_experiment.png` | Script (numbers from notebook 3.1) | Pending |
+| **S03-F02** | V10 | Permutation experiment: original vs permuted images, MLP and CNN accuracy on each | `s03_f02_permutation_experiment.png` | Script (numbers from notebook 3.1, section 4: `resultados_permutacion.json`) | Pending |
 | **S03-F03** | V18 (slide) | One image, four hand-made kernels and their feature maps | `s03_f03_kernels_feature_maps.png` | Script: `make_s03_f03_kernels_feature_maps.py` (skimage `camera`, 128×128) | Included |
 | **S03-F04** | V20 (slide) | Multichannel convolution: one kernel spans all input channels; C_out kernels stack into C_out maps | `s03_f04_multichannel_conv.png` | Generator | Included — see review note |
 | **S03-F05** | V31 (slide) | CNN anatomy as tensor blocks, 3×32×32 → logits | `s03_f05_cnn_anatomy.png` | Generator | Included |
 | **S03-F15** | V34 (slide) | VGG-style block (plain, no shortcut) with shapes; two stacked 3×3 see 5×5 with 18C² < 25C² parameters | `s03_f15_vgg_block.png` | Generator | Included — see review note |
-| **S03-F06** | V37 | Feature hierarchy: first-layer kernels and top-activating patches per stage | `s03_f06_feature_hierarchy.png` | Script (ImageNet ResNet-18, Oxford Pets images, notebook 3.4) | Pending |
+| **S03-F06** | V37 | Feature hierarchy: first-layer kernels and top-activating patches per stage | `s03_f06_feature_hierarchy.png` | From notebook 3.4, section 7 (ImageNet ResNet-18 kernels and top-activating patches on Pets) | Pending |
 | **S03-F07** | V39 (slide) | ResNet basic block and downsampling block, with shapes | `s03_f07_resnet_blocks.png` | Generator | Included |
 | **S03-F08** | V46 (slide) | Pretrained backbone: general early features, specific late features, new head | `s03_f08_transfer_backbone.png` | Generator | Included |
 | **S03-F09** | V48 (slide) | From scratch, linear probe and fine-tuning: frozen vs trained layers | `s03_f09_transfer_strategies.png` | Generator | Included |
-| **S03-F10** | V52 | Test accuracy vs images per class for the three strategies | `s03_f10_transfer_vs_data.png` | Script (numbers from notebook 3.4) | Pending |
-| **S03-F11** | V59 | Attention map of a pretrained ViT for one query patch | `s03_f11_attention_map.png` | Script (pretrained ViT, notebook 3.5) | Pending |
+| **S03-F10** | V52 | Validation accuracy vs images per class for the three strategies | `s03_f10_transfer_vs_data.png` | Script (numbers from notebook 3.4, section 6: `resultados_transfer.json`) | Pending |
+| **S03-F11** | V59 | Attention map of a pretrained ViT for one query patch | `s03_f11_attention_map.png` | From notebook 3.5, section 6 (attention of [CLS] in the last block of ViT-B/16) | Pending |
 | **S03-F12** | V62 (slide) | ViT architecture: patches, position, CLS, pre-norm blocks, head | `s03_f12_vit_architecture.png` | Generator | Included — see review note |
 | **S03-F13** | V64 (slide) | Spectrum of assumptions MLP → CNN → ViT against data needed | `s03_f13_inductive_bias_spectrum.png` | Generator | Included |
 | **S03-F14** | V70 (slide) | Summary: what one unit can see in the first layers of an MLP, a CNN and a ViT | `s03_f14_architecture_summary.png` | Generator + script: CNN panel redrawn by `fix_s03_f14_cnn_panel.py` | Included — see review note |

@@ -678,7 +678,7 @@ Worked notebooks on CIFAR-10, one change per cell:
 
 - [3.1 · Images and structure](../notebooks/sesion_03_1_imagenes_estructura.ipynb): tensors, the permutation experiment, MLP vs small CNN
 - [3.2 · Convolution](../notebooks/sesion_03_2_convolucion.ipynb): convolution by hand vs `nn.Conv2d`, kernels, shapes, receptive field
-- [3.3 · CNNs and residuals](../notebooks/sesion_03_3_cnn_resnet.ipynb): small CNN → + BatchNorm → + residual blocks → + augmentation
+- [3.3 · CNNs and residuals](../notebooks/sesion_03_3_cnn_resnet.ipynb): VGG-style blocks → + BatchNorm → + augmentation → ResNet-20 vs plain-20
 
 > Before each cell: which curve moves, and in which direction?
 
@@ -789,9 +789,9 @@ Oxford-IIIT Pets, 37 breeds. Three strategies with ResNet-18:
 from scratch · linear probe · fine-tuning
 
 1. With **5 images per class**, which wins?
-2. With **all** training images (~100 per class), does the order change?
+2. With **all** training images (~80 per class), does the order change?
 
-<!-- Pending figure S03-F10 (full-slide figure after this slide): test accuracy vs images per class for the three strategies (measured in notebook 3.4) -->
+<!-- Pending figure S03-F10 (full-slide figure after this slide): validation accuracy vs images per class for the three strategies (notebook 3.4, section 6, resultados_transfer.json) -->
 
 ---
 
@@ -964,8 +964,8 @@ Rank them before running.
 
 # Practice B — Transfer and attention
 
-- [3.4 · Transfer learning](../notebooks/sesion_03_4_transfer_learning.ipynb) · Oxford-IIIT Pets: from scratch, linear probe and fine-tuning, with 5 to ~100 images per class
-- [3.5 · From patches to ViT](../notebooks/sesion_03_5_patches_vit.ipynb) · CIFAR-10: patch embedding, small ViT vs CNN, pretrained ViT
+- [3.4 · Transfer learning](../notebooks/sesion_03_4_transfer_learning.ipynb) · Oxford-IIIT Pets: from scratch, linear probe and fine-tuning, with 5 to ~80 images per class
+- [3.5 · From patches to ViT](../notebooks/sesion_03_5_patches_vit.ipynb) · CIFAR-10: patch embedding, small ViT vs CNN, no position, pretrained ViT and its attention
 
 > 3.4 and 3.5 run best with a GPU (Colab or Kaggle).
 
