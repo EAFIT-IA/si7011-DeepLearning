@@ -12,7 +12,7 @@ White backgrounds, preserved image proportions and the existing course style app
 
 | ID | Current slide(s) | Purpose | Format | Repository file | Status |
 |---|---|---|---|---|---|
-| **S01-F01** | V60 | Full learning loop: forward, loss, backward and parameter update | SVG | [s01_f01_learning_loop.svg](s01_f01_learning_loop.svg) | Included |
+| **S01-F01** | V64 | Full learning loop: forward, loss, backward and parameter update | SVG | [s01_f01_learning_loop.svg](s01_f01_learning_loop.svg) | Included |
 | **S01-F01A** | V02 | Data, model and prediction | PNG | [s01_f01_supervised_learning_data_to_prediction.png](s01_f01_supervised_learning_data_to_prediction.png) | Included |
 | **S01-F02** | V04 | From observed data to a learning problem | PNG | [s01_f02_from_data_to_learning_problem.png](s01_f02_from_data_to_learning_problem.png) | Included |
 | **S01-F04** | V21 | Training versus inference | SVG | [s01_f04_training_vs_inference.svg](s01_f04_training_vs_inference.svg) | Included |
@@ -23,26 +23,27 @@ White backgrounds, preserved image proportions and the existing course style app
 | **S01-F05D** | V18 | Cross-entropy intuition: confidence and confident errors | SVG | [s01_f05d_cross_entropy_confidence.svg](s01_f05d_cross_entropy_confidence.svg) | Included |
 | **S01-F05E** | V19 | PyTorch inputs for MSELoss, BCEWithLogitsLoss and CrossEntropyLoss | SVG | [s01_f05e_pytorch_loss_expectations.svg](s01_f05e_pytorch_loss_expectations.svg) | Included |
 | **S01-F06** | V24 | Derivative as local slope | PNG (matplotlib, `make_s01_f06_local_slope.py`) | [s01_f06_local_slope.png](s01_f06_local_slope.png) | Included |
-| **S01-F12A** | V42, V43 | Two shifted and scaled ReLU components and their sum | PNG | [s01_f12_two_relu_components.png](s01_f12_two_relu_components.png) | Included |
-| **S01-F12B** | V43 | Progressive approximation by sums of ReLU components | MP4 / Manim | [E7_AproximacionReLU.mp4](E7_AproximacionReLU.mp4) | Included |
-| **S01-F13** | V46 | MLP as a composition of affine maps and generic activation $\phi$ | SVG | [s01_f13_mlp_composition.svg](s01_f13_mlp_composition.svg) | Included |
-| **S01-F13A** | V39 | Input, affine map, tanh and ReLU representations | MP4 / Manim | [E9_EjemploActivaciones.mp4](E9_EjemploActivaciones.mp4) | Included |
-| **S01-F13A-P** | V39 | Static view of the activation example | PNG | [s01_transformation_overview.png](s01_transformation_overview.png) | Poster / static fallback |
-| **S01-F14** | V50, V54 | Forward values through affine and nonlinear layers | SVG | [s01_f14_computational_graph_forward.svg](s01_f14_computational_graph_forward.svg) | Included |
-| **S01-F15** | V53 | Backward signals $\delta$ and parameter gradients $\nabla L$ | SVG | [s01_f15_backward_gradients.svg](s01_f15_backward_gradients.svg) | Included |
-| **S01-F15B** | V54 | Animated forward values and backward signals ($\phi$, $\delta$, $\nabla L$) | MP4 / Manim | [E10_GrafoForwardBackward.mp4](E10_GrafoForwardBackward.mp4) | Included |
-| **S01-F16** | V59 | Mathematics and the PyTorch training loop | SVG | [s01_f16_math_pytorch_mapping.svg](s01_f16_math_pytorch_mapping.svg) | Included |
+| **S01-F12A** | V46, V47 | Two shifted and scaled ReLU components and their sum | PNG | [s01_f12_two_relu_components.png](s01_f12_two_relu_components.png) | Included |
+| **S01-F12B** | V47 | Progressive approximation by sums of ReLU components | MP4 / Manim | [E7_AproximacionReLU.mp4](E7_AproximacionReLU.mp4) | Included |
+| **S01-F13** | V50 | MLP as a composition of affine maps and generic activation $\phi$ | SVG | [s01_f13_mlp_composition.svg](s01_f13_mlp_composition.svg) | Included |
+| **S01-F13A** | V43 | Input, affine map, tanh and ReLU representations | MP4 / Manim | [E9_EjemploActivaciones.mp4](E9_EjemploActivaciones.mp4) | Included |
+| **S01-F13A-P** | V43 | Static view of the activation example | PNG | [s01_transformation_overview.png](s01_transformation_overview.png) | Poster / static fallback |
+| **S01-F14** | V54, V58 | Forward values through affine and nonlinear layers | SVG | [s01_f14_computational_graph_forward.svg](s01_f14_computational_graph_forward.svg) | Included |
+| **S01-F15** | V57 | Backward signals $\delta$ and parameter gradients $\nabla L$ | SVG | [s01_f15_backward_gradients.svg](s01_f15_backward_gradients.svg) | Included |
+| **S01-F15B** | V58 | Animated forward values and backward signals ($\phi$, $\delta$, $\nabla L$) | MP4 / Manim | [E10_GrafoForwardBackward.mp4](E10_GrafoForwardBackward.mp4) | Included |
+| **S01-F16** | V63 | Mathematics and the PyTorch training loop | SVG | [s01_f16_math_pytorch_mapping.svg](s01_f16_math_pytorch_mapping.svg) | Included |
 | **S01-F03** | V07 | Model as a parameterized function: input, θ, model, prediction | PNG | [s01_f03_data_model.png](s01_f03_data_model.png) | Included |
 | **S01-F10** | V33 | Batch, SGD and mini-batch: subset, gradient estimate, noise and cost | PNG | [s01_f10_batch_strategies.png](s01_f10_batch_strategies.png) | Included |
 | **S01-F11** | V35 | Linear versus nonlinear model capacity on the same non-linearly separable data | PNG | [s01_f11_linear_vs_nonlinear.png](s01_f11_linear_vs_nonlinear.png) | Included |
+| **S01-F11A** | V37 | One neuron $z=w^\top x+b,\ a=\phi(z)$ and a layer of neurons stacked as the rows of $W$ | SVG | [s01_f11a_neuron_to_layer.svg](s01_f11a_neuron_to_layer.svg) | Included |
 | **S01-A01** | V12 | Parameters, residuals, MSE and level curves of J(w, b) | MP4 / Manim | [E1_ParametrosPerdida.mp4](E1_ParametrosPerdida.mp4) | Included |
 | **S01-A02** | V16 | Score z, sigmoid probability and BCE for confident errors | MP4 / Manim | [E2_PuntajeProbabilidad.mp4](E2_PuntajeProbabilidad.mp4) | Included |
 | **S01-A03** | V26 | Derivative, exact gradient steps on L(w), and gradient of J on level curves | MP4 / Manim | [E3_DescensoGradiente.mp4](E3_DescensoGradiente.mp4) | Included |
 | **S01-A04** | V28 | Three learning rates on the same parabola | MP4 / Manim | [E4_TasaAprendizaje.mp4](E4_TasaAprendizaje.mp4) | Included |
 | **S01-A11** | V31 | Each parameter as a knob; gradient components and GD steps on J | MP4 / Manim | [E11_PerillasGradiente.mp4](E11_PerillasGradiente.mp4) | Included |
-| **S01-A05** | V38 | Affine composition collapses; ReLU adds breakpoints; ReLU vs sigmoid | MP4 / Manim | [E5_Activacion.mp4](E5_Activacion.mp4) | Included |
-| **S01-A06** | V45 | Trained 2–2–1 MLP: affine map, ReLU fold, linear boundary in a1 | MP4 / Manim | [E6_TransformacionEspacio.mp4](E6_TransformacionEspacio.mp4) | Included |
-| **S01-A08** | V47 | Trained 2–2–2–2–1 tanh MLP: each layer bends the space | MP4 / Manim | [E8_CapasTransformanEspacio.mp4](E8_CapasTransformanEspacio.mp4) | Included |
+| **S01-A05** | V42 | Affine composition collapses; ReLU adds breakpoints; ReLU vs sigmoid | MP4 / Manim | [E5_Activacion.mp4](E5_Activacion.mp4) | Included |
+| **S01-A06** | V49 | Trained 2–2–1 MLP: affine map, ReLU fold, linear boundary in a1 | MP4 / Manim | [E6_TransformacionEspacio.mp4](E6_TransformacionEspacio.mp4) | Included |
+| **S01-A08** | V51 | Trained 2–2–2–2–1 tanh MLP: each layer bends the space | MP4 / Manim | [E8_CapasTransformanEspacio.mp4](E8_CapasTransformanEspacio.mp4) | Included |
 
 Learning-rate schedules and optimizer comparisons moved to S02. The former pending figures F07 (learning rates) and F08 (loss surface) are covered by the animations A04 and A03. F12A uses `s01_f12_two_relu_components.png`.
 F12B uses the rendered Manim scene `E7_AproximacionReLU.mp4`.
