@@ -596,6 +596,8 @@ $$
 
 It can reduce oscillation and accelerate movement along persistent descent directions.
 
+In a constant direction $v_t\to g/(1-\beta)$: the **effective step** is $\eta/(1-\beta)$, ten times larger for $\beta=0.9$. Compare SGD and momentum at equal effective step.
+
 ---
 
 <!-- _class: media -->
@@ -673,10 +675,16 @@ $$
 \eta_t = s(t)\,\eta_0
 $$
 
-Common patterns: step decay, exponential decay, cosine annealing, usually after a short **warmup**: $\eta_t=\eta_0\,t/T_w$ for $t<T_w$.
+Common patterns: step decay, exponential decay, cosine annealing. Warmup + cosine over $T$ steps:
+
+$$
+s(t)=\frac{t}{T_w}\ \ (t<T_w),
+\qquad
+s(t)=\tfrac12\left(1+\cos\frac{\pi\,(t-T_w)}{T-T_w}\right)\ \ (t\ge T_w)
+$$
 
 <div class="center">
-<img src="../figures/s02_f10_learning_rate_schedules.svg" style="width:90%;max-height:260px;object-fit:contain;" alt="Learning-rate schedules">
+<img src="../figures/s02_f10_learning_rate_schedules.svg" style="width:90%;max-height:220px;object-fit:contain;" alt="Learning-rate schedules">
 </div>
 
 ---
@@ -761,21 +769,22 @@ $$
 
 # BatchNorm: training versus inference
 
-During training:
+During training, $\mu_\mathcal B$ and $s_\mathcal B^2$ come from the current mini-batch.
+
+During inference, the model uses running estimates accumulated during training:
 
 $$
-\mu_\mathcal B,\ s_\mathcal B^2
+\mu_\text{run}\leftarrow(1-m)\,\mu_\text{run}+m\,\mu_\mathcal B,
+\qquad
+m=0.1\ \text{(PyTorch momentum)}
 $$
 
-come from the current mini-batch.
-
-During inference, the model uses running estimates accumulated during training.
+and the same for $s^2$. Typical placement: `Linear` → `BatchNorm1d` → $\phi$.
 
 ```python
 model.train()   # batch statistics
 model.eval()    # running statistics
 ```
-
 
 ---
 
@@ -1081,6 +1090,29 @@ The identity path gives gradients a direct route through the block, even when $\
 
 ---
 
+# A residual block in practice
+
+$F$ is a small network, for example two affine maps:
+
+$$
+F(x)=W_2\,\phi(W_1x+b_1)+b_2,
+\qquad
+H(x)=x+F(x)
+$$
+
+- $x$ and $F(x)$ are **added**, so they need the same shape; otherwise the shortcut uses a projection $W_sx$.
+- The sums accumulate across blocks, so the scale of $x$ can grow. **Pre-norm** normalizes the input of $F$:
+
+$$
+H(x)=x+F\big(\operatorname{LN}(x)\big)
+$$
+
+The identity path stays clean; this is the Transformer block of S05.
+
+<!-- Notebook 4, section 4: same eta = 1e-2 with and without LayerNorm inside the block. Tu turno compares pre-norm and post-norm. -->
+
+---
+
 # Diagnostics
 
 When training fails, ask what failed.
@@ -1131,6 +1163,22 @@ Cheap tests that catch most bugs before a long run:
 2. **Overfit one batch.** A correct model and loop drive the loss on one small batch close to 0.
 3. **Gradient norms.** Finite and non-zero in every layer after the first backward.
 4. **Modes.** `model.train()` while training, `model.eval()` for validation (BatchNorm, Dropout).
+
+---
+
+# From an experiment to a deployable model
+
+A good curve is not enough: the run must be **comparable** and the model **usable** on new data.
+
+| Stage | Rule |
+|---|---|
+| Data | stratified train/val/test split; fit the scaler on **train only** (no leakage) |
+| Tracking | one MLflow **run** = parameters + metrics per epoch + artifacts |
+| Selection | choose with $J_\text{val}$; evaluate on test **once** |
+| Artifact | weights **and** architecture, preprocessing statistics, input contract |
+| Prediction | rebuild the model, `model.eval()`, same preprocessing as in training |
+
+<!-- This is the structure of the integrating exercise: TODO 1 is the data rule, TODO 4 is the prediction rule. -->
 
 ---
 
