@@ -78,9 +78,8 @@ def main():
     paso, lote = 0, 128
     foto()
     while paso < PASOS_SNAPSHOT[-1]:
-        perm = torch.randperm(len(x_tr))
-        for i in range(0, len(x_tr) - lote + 1, lote):
-            xb = x_tr[perm[i:i + lote]]
+        for bidx in torch.randperm(len(x_tr)).split(lote):                        # como train_ae del notebook 4.1
+            xb = x_tr[bidx]
             loss = ((d(g(xb)) - xb) ** 2).mean()                                   # L_i = ||x - x̂||², promedio
             opt.zero_grad()
             loss.backward()
@@ -94,16 +93,17 @@ def main():
     # probe lineal sobre h (con etiquetas, solo para reportar cuánta estructura hay)
     with torch.no_grad():
         h_tr, h_te = g(x_tr), g(x_te)
-    mu, sd = h_tr.mean(0), h_tr.std(0)
+    mu, sd = h_tr.mean(0), h_tr.std(0) + 1e-6
     h_tr, h_te = (h_tr - mu) / sd, (h_te - mu) / sd
     y_tr = torch.tensor(leer_idx(Path(args.data) / "train-labels-idx1-ubyte.gz").astype(np.int64)) \
         if args.data else None
     if y_tr is None:
         from torchvision import datasets
         y_tr = datasets.FashionMNIST("data", train=True).targets
+    torch.manual_seed(0)                                                           # la misma probe del notebook 4.1
     probe = nn.Linear(k, 10)
     po = torch.optim.Adam(probe.parameters(), lr=1e-2)
-    for _ in range(300):
+    for _ in range(500):
         l = nn.functional.cross_entropy(probe(h_tr), y_tr)
         po.zero_grad()
         l.backward()

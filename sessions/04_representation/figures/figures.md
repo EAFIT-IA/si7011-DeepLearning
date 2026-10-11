@@ -48,14 +48,14 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 |---|---:|---|---|---|---|
 | **S04-F01** | V09 | Supervised vs self-supervised pipeline: label from an annotator vs target generated from the input; pretext head discarded, $g$ kept | `s04_f01_supervised_vs_selfsupervised.png` | Generator | Included — see review note |
 | **S04-F02** | V16 | Autoencoder with shapes: 784 → 256 → $k$ → 256 → 784, bottleneck highlighted, loss | `s04_f02_autoencoder.png` | Generator | Included — see review note |
-| **S04-F03** | V21 | Reconstructions of the same 8 test images for $k$ = 2, 8, 32 and PCA with $k$ = 32, with test MSE and probe accuracy per row | `s04_f03_reconstructions_k.png` | Script (notebook 4.1, section 5: `resultados_ae.json`, `recon_k*.pt`) | Pending |
+| **S04-F03** | V21 | Reconstructions of the same 8 test images for $k$ = 2, 8, 32 and PCA with $k$ = 32, with test MSE and probe accuracy per row | `s04_f03_reconstructions_k.png` | Script (notebook 4.1, section 4: `resultados_ae.json`, `reconstrucciones_ae.npz`) | Pending |
 | **S04-F04** | V32 | Masked autoencoder: 16 patches, 75 % masked, encoder on visible tokens only, mask tokens, light decoder, loss on masked patches | `s04_f04_mae_pipeline.png` | Generator + script: `fix_s04_f04_f06.py` | Included — see review note |
-| **S04-F05** | V40 | Eight CIFAR-10 images, each with two SimCLR views | `s04_f05_augmented_views.png` | Script (notebook 4.4, section 2: same transform object) | Pending |
+| **S04-F05** | V40 | Eight CIFAR-10 images, each with two SimCLR views | `s04_f05_augmented_views.png` | Script (notebook 4.4, section 1: `vistas_ejemplo.npz`) | Pending |
 | **S04-F06** | V42 | SimCLR: two views, shared $g$, $\mathbf h$, projection head $p$, $\mathbf u$, similarity; downstream path uses $\mathbf h$ | `s04_f06_simclr.png` | Generator + script: `fix_s04_f04_f06.py` | Included — see review note |
-| **S04-F07** | V45 | $2N\times 2N$ similarity matrix for $N=8$ from the trained checkpoint; diagonal masked, positives marked, one row read as softmax | `s04_f07_similarity_matrix.png` | Script (checkpoint of notebook 4.4) | Pending |
-| **S04-F08** | V55 | Retrieval: 5 query images and their 6 nearest neighbors with SimCLR $\mathbf h$ | `s04_f08_knn_retrieval.png` | Script (notebook 4.5, section 3) | Pending |
-| **S04-F09** | V57 | Probe accuracy vs labels per class (1, 10, 100, 5000) for random, autoencoder, SimCLR and ImageNet encoders | `s04_f09_label_efficiency.png` | Script (notebook 4.5, section 5: `resultados_eficiencia.json`) | Pending |
-| **S04-F10** | V59 | t-SNE of CIFAR-10 test embeddings: random $g$, autoencoder, SimCLR | `s04_f10_tsne_embeddings.png` | Script (notebook 4.5, section 6: `embeddings_test.npz`) | Pending |
+| **S04-F07** | V45 | $2N\times 2N$ similarity matrix for $N=8$ from the trained checkpoint; diagonal masked, positives marked, one row read as softmax | `s04_f07_similarity_matrix.png` | Script (notebook 4.4, section 5: `similitud_n8.npz`) | Pending |
+| **S04-F08** | V55 | Retrieval: 5 query images and their 6 nearest neighbors with SimCLR $\mathbf h$ | `s04_f08_knn_retrieval.png` | Script (notebook 4.5, section 2: `recuperacion_simclr.npz`) | Pending |
+| **S04-F09** | V57 | Probe accuracy vs labels per class (1, 10, 100, 1000, 5000) for random, autoencoder, SimCLR and ImageNet encoders | `s04_f09_label_efficiency.png` | Script (notebook 4.5, section 4: `resultados_eficiencia.json`) | Pending |
+| **S04-F10** | V59 | t-SNE of CIFAR-10 test embeddings: random $g$, autoencoder, SimCLR | `s04_f10_tsne_embeddings.png` | Script (notebook 4.5, section 5: `embeddings_test.npz`) | Pending |
 | **S04-F11** | V65 | Summary: four objectives around one encoder $g$ and what each one keeps | `s04_f11_objectives_summary.png` | Generator | Included |
 
 ## Review notes
@@ -78,7 +78,7 @@ Common rules: white background, 16:9 at 1672 × 941 px (`figsize=(16.72, 9.41), 
 
 **S04-F08 · Retrieval.** 5 rows; first column the query (navy frame), then the 6 nearest training images by cosine similarity of $\mathbf h$ (not $\mathbf u$). Frame of each neighbor teal if same class as the query, red if not; similarity printed under each one with two decimals. Queries chosen by fixed index, at least one where the neighbors share color or background but not class, so the figure also shows a failure.
 
-**S04-F09 · Label efficiency.** Line plot, x axis "labels per class" on log scale with ticks 1, 10, 100, 5000; y axis "test accuracy (linear probe)" from 0 to 1. Four lines with markers: random $g$ (gray), autoencoder (blue), SimCLR (teal), ImageNet ResNet-18 (orange, dashed, labeled "ImageNet (1.2 M labels)"). Shaded band = min–max over 3 label samplings (seeds saved in the JSON). Horizontal dotted line at 0.10 labeled "chance". Direct labels at the right end of each line instead of a legend.
+**S04-F09 · Label efficiency.** Line plot, x axis "labels per class" on log scale with ticks 1, 10, 100, 1000, 5000; y axis "test accuracy (linear probe)" from 0 to 1. Four lines with markers: random $g$ (gray), autoencoder (blue), SimCLR (teal), ImageNet ResNet-18 (orange, dashed, labeled "ImageNet (1.2 M labels)"). Shaded band = min–max over 3 label samplings (seeds saved in the JSON). Horizontal dotted line at 0.10 labeled "chance". Direct labels at the right end of each line instead of a legend.
 
 **S04-F10 · t-SNE.** Three panels side by side: "random $g$", "autoencoder", "SimCLR". 2 000 test images (same indices in the three panels), t-SNE with perplexity 30 and `random_state=0`, PCA to 50 dimensions first. Points colored by class with a 10-color qualitative palette, small markers, no axes or ticks. Shared legend at the bottom with the 10 class names. Small gray note at bottom right: "t-SNE keeps neighbors, not distances".
 

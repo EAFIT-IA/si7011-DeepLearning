@@ -15,7 +15,9 @@ Instructor planning document. It fixes the deck structure, the content of each s
 | S03 deck, branch `s03-esqueleto` | Bridges already in place: V49 says probe accuracy measures representation quality "which we use again in Session 04"; V41 augmentation encodes invariances; V56–V58 patches and tokens; V47 three transfer strategies |
 | jdmartinev/si7011-deeplearning, `Lecture03-04` | SimCLR notebooks and the self-supervised section of `3_1_CNNs.pdf` (pp. 238–273). Details in [Reusable material](#reusable-material-from-jdmartinevsi7011-deeplearning) |
 
-## Decisions to confirm
+## Decisions (taken)
+
+All four proposals below were adopted when the notebooks were built.
 
 1. **Integrating exercise.** Proposal: continue EuroSAT from S03. Pretrain on EuroSAT images without labels, then probe with 1 % and 10 % of the labels and compare with the ImageNet backbone from the S03 exercise. It answers the question S03 left open (does ImageNet help with satellite images?) with a new tool, and it can be the Part B deliverable of Event 2.
 2. **SimCLR training time.** In class, notebook 4.4 trains for 3 epochs to see the loss fall, then loads a checkpoint trained beforehand (about 100 epochs, published as a Kaggle dataset). Training from scratch in class does not fit in Practice B.
@@ -106,7 +108,7 @@ Prediction-before-experiment slides: V12, V19, V35, V47, V60.
 | V19 | Prediction before experiment | Fashion-MNIST, $k=2$ and $k=32$. Which reconstructs better? In which latent space are the classes more separated, judged by a linear probe? | |
 | V20 | The latent space organizes itself | **S04-A01** (media) | A01 |
 | V21 | *(figure)* | **S04-F03** | F03 |
-| V22 | Reconstruction is not the goal | Pixel MSE spends capacity on texture and gives blurry outputs. Lower reconstruction error does not imply a better probe: notebook 4.1 shows both curves | |
+| V22 | Reconstruction is not the goal | Pixel MSE spends capacity on texture and gives blurry outputs. Measured in notebook 4.1 on Fashion-MNIST: with $k=32$ the ReLU autoencoder has 28 % less reconstruction error than PCA, and its probe changes by +0.6 points (0.807 → 0.812). In notebook 4.2 the denoising autoencoder reconstructs clean images worse (0.0114 → 0.0126) and has a better probe (0.813 → 0.819) | |
 | V23 | Convolutional autoencoder | Conv encoder from S03; decoder with `ConvTranspose2d` or upsample + conv. Shapes 1×28×28 → 64×7×7 → $k$ → back | |
 | V24 | Denoising autoencoder | $\tilde{\mathbf x}=\mathbf x+\boldsymbol\varepsilon$ or masked; $L_i=\lVert\mathbf x_i-d(g(\tilde{\mathbf x}_i))\rVert^2$. Copying is no longer possible, so the bottleneck can be wide | |
 | V25 | Denoising pulls points back to the data | **S04-A02** (media) | A02 |
@@ -125,7 +127,7 @@ Prediction-before-experiment slides: V12, V19, V35, V47, V60.
 | V33 | Masking in motion | **S04-A03** (media) | A03 |
 | V34 | Why mask so much? | Images are redundant: with 25 % masked, neighbors can be interpolated. Text needs only 15 % (BERT, S05). Encoding only 25 % of the patches also cuts compute by about 4× | |
 | V35 | Prediction before experiment | Tiny MAE on Fashion-MNIST with 25 % and 75 % masked. Which one gives the better probe? (notebook 4.3) | |
-| V36 | What masked prediction learns | MAE features are weak under a linear probe and strong after fine-tuning: the information is there, but not linearly arranged. Bridge to Part 4 | |
+| V36 | What masked prediction learns | Probe below fine-tuning for MAE features: the information is there, but not linearly arranged. Cite the MAE paper (ViT-L on ImageNet: about 10 points between probe and fine-tuning). In notebook 4.3 on Fashion-MNIST the gap is small (100 labels per class: probe 0.76, fine-tuning 0.78), and the notebook says so. Bridge to Part 4 | |
 
 ## Part 4 · Contrastive learning (V37–V51)
 
@@ -212,8 +214,8 @@ Short, self-contained, one change per cell, Chollet DLwP style in PyTorch, with 
 | 4.1 | `sesion_04_1_autoencoders.ipynb` | What does a bottleneck keep? $k$ = 2, 8, 32; PCA vs linear AE vs deep AE; probe on $\mathbf h$; saves latent snapshots for A01 and figure F03 | Fashion-MNIST | CPU, ~10 min |
 | 4.2 | `sesion_04_2_denoising_conv.ipynb` | Conv AE, then denoising with three noise levels; reconstruction error and probe side by side | Fashion-MNIST | CPU/GPU, ~10 min |
 | 4.3 | `sesion_04_3_masked_prediction.ipynb` | Tiny MAE with the small ViT of notebook 3.5; mask ratio 25 / 50 / 75 %; probe and fine-tune (homework) | Fashion-MNIST | GPU, ~15 min |
-| 4.4 | `sesion_04_4_simclr.ipynb` | Two views, InfoNCE, projection head; 3 epochs live, then the provided checkpoint; ablation without color jitter (from the checkpoint set) | CIFAR-10 | GPU, ~15 min |
-| 4.5 | `sesion_04_5_evaluar_representaciones.ipynb` | $k$-NN, probe and fine-tune for random / AE / SimCLR / ImageNet; label-efficiency curve; t-SNE; retrieval (figures F08–F10) | CIFAR-10 | GPU, ~15 min |
+| 4.4 | `sesion_04_4_simclr.ipynb` | Two views (GPU augmentations), InfoNCE checked against the formula, projection head; 3 epochs live, then the 100-epoch checkpoint; similarity matrix (F07); ablation without color jitter from the second checkpoint; saves `simclr_g.pt` | CIFAR-10 | GPU, ~15 min |
+| 4.5 | `sesion_04_5_evaluar_representaciones.ipynb` | Four ResNet-18 encoders (random, autoencoder trained in the notebook, SimCLR, ImageNet): $k$-NN, retrieval (F08), linear probe, label efficiency at 1/10/100/1000/5000 per class (F09), t-SNE (F10), and with 10 labels per class $k$-NN vs probe vs fine-tuning | CIFAR-10 | GPU, ~15 min |
 | 4.6 | `sesion_04_6_integrador_eurosat_ssl.ipynb` | Integrating exercise (decision 1) with MLflow | EuroSAT | GPU |
 
 Proposed TODOs for 4.6, in the S03 style:

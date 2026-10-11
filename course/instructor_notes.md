@@ -27,3 +27,13 @@ If an animation is added or renamed, update the table in that session's `slides/
 ## Notebooks
 
 Open-in badges (Colab, Kaggle, Lightning) are inserted with `python tools/add_open_in_badges.py` from the repository root. The script also touches the S01 notebooks' cell ids; revert those if they were not meant to change.
+
+## S04: the SimCLR checkpoint dataset
+
+Notebooks 4.4 and 4.5 expect a Kaggle dataset named **`si7011-s04-simclr`** with two files. Produce them once, before the session:
+
+1. Open `sessions/04_representation/notebooks/sesion_04_4_simclr.ipynb` on Kaggle with a GPU (T4 or P100).
+2. In section 4 set `ENTRENAR_LARGO, ABLACION = True, True` and run the notebook. It writes `simclr_resnet18_cifar10.pt` (100 epochs, with color jitter) and `simclr_sin_color.pt` (100 epochs, without color jitter and grayscale): about two hours in total.
+3. Create the dataset `si7011-s04-simclr` from those two files (public, so students can add it with *Add Input*) and set the flags back to `False`.
+
+The S04 integrating-exercise solutions are not in the repository.
