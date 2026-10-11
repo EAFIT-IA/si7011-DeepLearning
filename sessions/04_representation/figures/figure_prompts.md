@@ -14,17 +14,17 @@ Slide numbers refer to the slide-by-slide plan, `../S04_plan.md`. Figures that s
 
 | Figure | Concept | Slide | Status |
 |---|---|---:|---|
-| S04-F01 | Supervised vs self-supervised pipeline | V09 | pending |
-| S04-F02 | Autoencoder with a bottleneck | V16 | pending |
-| S04-F04 | Masked autoencoder pipeline | V32 | pending |
-| S04-F06 | SimCLR: two views, shared encoder, projection head | V42 | pending |
-| S04-F11 | Four objectives, one encoder | V65 | pending |
+| S04-F01 | Supervised vs self-supervised pipeline | V09 | done (see review note in figures.md) |
+| S04-F02 | Autoencoder with a bottleneck | V16 | done |
+| S04-F04 | Masked autoencoder pipeline | V32 | done, patched by script |
+| S04-F06 | SimCLR: two views, shared encoder, projection head | V42 | done, patched by script |
+| S04-F11 | Four objectives, one encoder | V65 | done |
 
 ## Common style block (prepend to every prompt)
 
 > Clean academic figure for a deep learning lecture slide, 16:9, 1672 × 941 px, pure white background, flat vector style, thin rounded panels with soft pastel fills, dark navy text, LaTeX-style math typography. **No title at the top: the slide provides the title.** Use exactly the labels, symbols and numbers given; no extra text, no watermark, no spelling variations. All text horizontal and legible at slide size. English only. Images inside the figure are simple flat illustrations, never photographs.
 >
-> Notation (use it exactly): input $\mathbf x$; corrupted input $\tilde{\mathbf x}$; encoder $g$; decoder $d$; representation $\mathbf h = g(\mathbf x)$; reconstruction $\hat{\mathbf x}$; projection head $p$; projected embedding $\mathbf u = p(\mathbf h)$; similarity $s_{ij}$; temperature $\tau$; per-example loss $L_i$; batch of $N$ images. Never use $z$ for the representation, and never use $\sigma$ for anything except the sigmoid.
+> Notation (use it exactly): input $\mathbf x$; corrupted input $\tilde{\mathbf x}$; encoder $g$; decoder $d$; representation $\mathbf h = g(\mathbf x)$; reconstruction $\hat{\mathbf x}$; projection head $p$; projected embedding $\mathbf u = p(\mathbf h)$; similarity $s_{ij}$; temperature $\tau$; per-example loss $L_i$; batch of $N$ images. Never use $z$ for the representation, and never use $\sigma$ for anything except the sigmoid. Write the loss as a plain italic $L$ ($L_i$), never calligraphic $\mathcal L$.
 >
 > Palette: blue #1f6fb4 (encoder $g$), teal #167d78 (decoder $d$, projection head $p$), orange #d9631e (bottleneck, loss, positives), red #c0392b (errors), gray #8a94a3 (discarded or inactive parts), navy text #14213d. The encoder $g$ is **always blue** in every figure of this session.
 
@@ -38,7 +38,7 @@ Slide numbers refer to the slide-by-slide plan, `../S04_plan.md`. Figures that s
 
 ---
 
-## S04-F01 · Supervised vs self-supervised pipeline (pending, slide 9)
+## S04-F01 · Supervised vs self-supervised pipeline (done, slide 9)
 
 File: `s04_f01_supervised_vs_selfsupervised.png`
 
@@ -47,7 +47,7 @@ Two horizontal rows, each inside a rounded panel, left to right. Same encoder bo
 **Top row, gray tag "supervised":**
 1. Three small flat-illustration images stacked (a boat, a dog, a leaf), labeled $\mathbf x$.
 2. A simple generic person icon (no face details) with a speech label "dog", labeled "annotator" and below it, in gray, "labels: costly".
-3. Blue box "$g$" → small gray box "head" → $\hat y$.
+3. Blue box "$g$" → small gray box "head" → $\hat y$. The images $\mathbf x$ go straight into $g$; the annotator is drawn above this path and only sends $y$ to the loss.
 4. Orange circle "$L_i(\hat y, y)$", with the label $y$ coming from the annotator by a thin arrow.
 
 **Bottom row, teal tag "self-supervised":**
@@ -62,7 +62,7 @@ Check: there is no annotator in the bottom row; the encoder box is the same blue
 
 ---
 
-## S04-F02 · Autoencoder with a bottleneck (pending, slide 16)
+## S04-F02 · Autoencoder with a bottleneck (done, slide 16)
 
 File: `s04_f02_autoencoder.png`
 
@@ -82,7 +82,7 @@ Check: layer sizes are exactly 784 → 256 → $k$ → 256 → 784; the bottlene
 
 ---
 
-## S04-F04 · Masked autoencoder pipeline (pending, slide 32)
+## S04-F04 · Masked autoencoder pipeline (done, slide 32)
 
 File: `s04_f04_mae_pipeline.png`
 
@@ -91,8 +91,8 @@ Left to right, five stages connected by arrows.
 1. **Input:** a flat-illustration landscape (sun, hill, one tree, blue sky) divided by thin white lines into a **4 × 4 grid of 16 patches**, labeled $\mathbf x$, "16 patches".
 2. **Masking:** the same grid with **12 patches gray** and **4 patches visible**, at (row, column) = (1, 2), (2, 4), (3, 1), (4, 3). Label above: "mask 75 %". Label below: "keep 4 of 16".
 3. **Encoder:** the 4 visible patches as 4 small token squares in a column entering a **large** blue box "$g$ (ViT encoder)", which outputs 4 blue tokens $\mathbf h_i$. Small gray note: "sees only visible patches".
-4. **Decoder:** a column of 16 token squares: the 4 blue ones at their original positions and 12 light-gray squares labeled "[M]", with a brace "mask tokens + positions". They enter a **small** teal box "$d$ (light decoder)". The size difference between $g$ (large) and $d$ (small) must be obvious.
-5. **Output:** a 4 × 4 grid of predicted patches forming the reconstructed landscape, slightly blurred. The 12 previously masked patches have an orange outline; the 4 visible ones have none.
+4. **Decoder:** a column of 16 token squares: the 4 blue ones (encoded tokens labeled $\mathbf h_i$, not image patches) at their original positions and 12 light-gray squares labeled "[M]", with a brace "mask tokens + positions". They enter a **small** teal box "$d$ (light decoder)". The size difference between $g$ (large) and $d$ (small) must be obvious.
+5. **Output:** a 4 × 4 grid of predicted patches forming the reconstructed landscape, slightly blurred. The 12 previously masked patches have an orange outline; the 4 visible ones have none. Count them: exactly 12 outlined, exactly 4 without outline, at the visible positions.
 
 Below stage 5: "loss only on masked patches: $L_i = \frac{1}{|M|}\sum_{m \in M} \lVert \mathbf x_m - \hat{\mathbf x}_m \rVert^2$".
 
@@ -102,7 +102,7 @@ Check: exactly 16 patches, exactly 4 visible at the stated positions; the encode
 
 ---
 
-## S04-F06 · SimCLR: two views, shared encoder, projection head (pending, slide 42)
+## S04-F06 · SimCLR: two views, shared encoder, projection head (done, slide 42)
 
 File: `s04_f06_simclr.png`
 
@@ -110,7 +110,7 @@ A symmetric diagram, two parallel horizontal branches (upper and lower) that sta
 
 1. **Left:** one flat-illustration image of a small bird on a branch, labeled $\mathbf x$.
 2. Two arrows out of it: upper arrow labeled $t \sim \mathcal T$, lower arrow labeled $t' \sim \mathcal T$.
-3. **Views:** upper view $\tilde{\mathbf x}_i$ = a zoomed-in crop of the bird with shifted colors; lower view $\tilde{\mathbf x}_j$ = the whole image flipped horizontally and in grayscale.
+3. **Views:** upper view $\tilde{\mathbf x}_i$ = a zoomed-in crop of the bird with shifted colors; lower view $\tilde{\mathbf x}_j$ = the whole image flipped horizontally and in grayscale. **Both views must show exactly the same bird as $\mathbf x$** (same pose, same branch); only crop, color and flip change.
 4. **Encoder:** a blue box "$g$" on each branch. A dashed vertical line between the two boxes labeled "shared weights".
 5. **Representation:** a short vertical vector on each branch, $\mathbf h_i$ and $\mathbf h_j$, with "$\in \mathbb R^{512}$" under the upper one.
 6. **Projection head:** a small teal box "$p$" on each branch, with "Linear – ReLU – Linear" written small inside or under it.
@@ -125,7 +125,7 @@ Check: the two encoder boxes are identical and blue, joined by "shared weights";
 
 ---
 
-## S04-F11 · Four objectives, one encoder (pending, slide 65)
+## S04-F11 · Four objectives, one encoder (done, slide 65)
 
 File: `s04_f11_objectives_summary.png`
 
