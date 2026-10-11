@@ -80,10 +80,18 @@ Only concepts where motion changes understanding.
 
 | ID | Slide | Media slide title | What it shows | Rendered file | Status |
 |---|---:|---|---|---|---|
-| **S04-A01** | V20 | The latent space organizes itself | 2-D latent of a Fashion-MNIST autoencoder at 8 training snapshots (saved by notebook 4.1, section 4): a shapeless cloud separates into groups. Points are gray until the end; then colored by class, with the line "labels were never used" | `s04_a01_latent_space.mp4` | Pending |
-| **S04-A02** | V25 | Denoising pulls points back to the data | Points on a 1-D curve in 2-D; noise pushes them off; arrows send each corrupted point back to its clean position; then the learned field $d(g(\tilde{\mathbf x}))-\tilde{\mathbf x}$ on a grid, computed from a small MLP trained in the scene script | `s04_a02_denoising_manifold.mp4` | Pending |
-| **S04-A03** | V33 | Masking in motion | Image → 16 patches (reuses the patch layout of S03-A04) → 12 masked → encoder takes only the 4 visible tokens → decoder receives mask tokens at their positions → reconstruction; loss highlighted on the 12 masked patches only | `s04_a03_masking.mp4` | Pending |
-| **S04-A04** | V46 | Pull and push on the sphere | Unit circle; 6 images, 2 views each, same color per image. Gradient steps of InfoNCE (computed exactly in the script) pull positives together and push negatives apart. Second half: the same start with τ = 0.1 and τ = 1.0 side by side; with small τ only the nearest negatives move | `s04_a04_contrastive_sphere.mp4` | Pending |
+| **S04-A01** | V20 | The latent space organizes itself | 2-D code of a Fashion-MNIST autoencoder (784 → 256 → 2 → 256 → 784, MSE, no labels) for 1 000 test images at 9 training steps (0 to 4 800): a shapeless cloud separates into groups. Points stay gray until the end; then colored by class, with "labels were never used" and the linear-probe accuracy on h (52 %). Data from `make_s04_a01_latent_snapshots.py` (same model as notebook 4.1, section 4) | `s04_a01_latent_space.mp4` | Included |
+| **S04-A02** | V25 | Denoising pulls points back to the data | Points on a 1-D curve in 2-D; noise σ = 0.45 pushes them off; arrows send each corrupted point to the best possible denoiser output $E[\mathbf x\mid\tilde{\mathbf x}]$, which lands near the curve but not on its own clean point; then the field $d(g(\tilde{\mathbf x}))-\tilde{\mathbf x}$ on a grid for σ = 0.45 and σ = 1.3. The field is the exact optimum that a trained denoising autoencoder approximates, computed in the scene | `s04_a02_denoising_manifold.mp4` | Included |
+| **S04-A03** | V33 | Masking in motion | The image of S03-A04 → 16 patches → 12 masked (visible patches as in S04-F04) → the large encoder takes only the 4 visible tokens → 16 slots (4 encoded + 12 [M]) → small decoder → output; loss outlined on the 12 masked patches only; decoder struck out at the end. The output is labeled as an illustration: biharmonic inpainting from the 4 visible patches stands in for a trained decoder | `s04_a03_masking.mp4` | Included |
+| **S04-A04** | V46 | Pull and push on the sphere | Unit circle; 6 images, 2 views each. Forces on one anchor (pull toward its other view, push from the negatives), then 200 steps of exact gradient descent on InfoNCE with τ = 0.2: J goes from 5.08 to 0.29, views merge and images spread out. Second half: one anchor and 10 negatives; bars with each negative's share of the push while τ goes from 1.0 to 0.1. On screen: the embeddings move directly, in SimCLR the gradient goes into g and p | `s04_a04_contrastive_sphere.mp4` | Included |
+
+Render from this folder (posters are the last frame):
+
+```bash
+python make_s04_a01_latent_snapshots.py                 # only for A01; writes s04_a01_latent_snapshots.npz
+S01_VIDEO=1 manim -qh escenas_s04.py A01_LatentSpace    # linear video; without S01_VIDEO, manim-slides pauses
+ffmpeg -sseof -0.1 -i s04_a01_latent_space.mp4 -frames:v 1 -update 1 s04_a01_latent_space_poster.png
+```
 
 ## Production order
 
@@ -91,4 +99,4 @@ Only concepts where motion changes understanding.
 2. Notebook 4.1, then F03 and A01 (they use its outputs).
 3. Notebook 4.4 and the long SimCLR run for the checkpoint, then F05 and F07.
 4. Notebook 4.5, then F08, F09 and F10.
-5. A02, A03 and A04 do not depend on notebooks and can be done at any point.
+5. Animations: done. A01 uses `make_s04_a01_latent_snapshots.py` (≈30 s on CPU); when notebook 4.1 exists, its section 4 must use the same model, seed and steps.
