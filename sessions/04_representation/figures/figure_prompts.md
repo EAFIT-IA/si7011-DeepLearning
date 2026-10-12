@@ -8,7 +8,7 @@
 4. Before delivering, check the image against the **review checklist** and the figure's own "Check" line. If any label, number or symbol differs from the prompt, regenerate.
 5. Do not edit the slides or `figures.md`; the course maintainer integrates each image after review.
 
-Slide numbers refer to the slide-by-slide plan, `../S04_plan.md`. Figures that show real data or a trained model (S04-F03, F05, F07, F08, F09, F10) are **not** in this file: they are produced by scripts, see `figures.md`.
+Slide numbers refer to the current deck, `../slides/S04_slides.marp.md`. Figures that show real data or a trained model (S04-F03, F05, F07, F08, F09, F10) are **not** in this file: they are produced by scripts, see `figures.md`.
 
 ## Status
 
@@ -16,9 +16,9 @@ Slide numbers refer to the slide-by-slide plan, `../S04_plan.md`. Figures that s
 |---|---|---:|---|
 | S04-F01 | Supervised vs self-supervised pipeline | V09 | done (see review note in figures.md) |
 | S04-F02 | Autoencoder with a bottleneck | V16 | done |
-| S04-F04 | Masked autoencoder pipeline | V32 | done, patched by script |
-| S04-F06 | SimCLR: two views, shared encoder, projection head | V42 | done, patched by script |
-| S04-F11 | Four objectives, one encoder | V65 | done |
+| S04-F04 | Masked autoencoder pipeline | V31 | done, patched by script |
+| S04-F06 | SimCLR: two views, shared encoder, projection head | V40 | done, patched by script |
+| S04-F11 | Four objectives, one encoder | V59 | done |
 
 ## Common style block (prepend to every prompt)
 
@@ -82,7 +82,7 @@ Check: layer sizes are exactly 784 → 256 → $k$ → 256 → 784; the bottlene
 
 ---
 
-## S04-F04 · Masked autoencoder pipeline (done, slide 32)
+## S04-F04 · Masked autoencoder pipeline (done, slide 31)
 
 File: `s04_f04_mae_pipeline.png`
 
@@ -102,7 +102,7 @@ Check: exactly 16 patches, exactly 4 visible at the stated positions; the encode
 
 ---
 
-## S04-F06 · SimCLR: two views, shared encoder, projection head (done, slide 42)
+## S04-F06 · SimCLR: two views, shared encoder, projection head (done, slide 40)
 
 File: `s04_f06_simclr.png`
 
@@ -125,7 +125,7 @@ Check: the two encoder boxes are identical and blue, joined by "shared weights";
 
 ---
 
-## S04-F11 · Four objectives, one encoder (done, slide 65)
+## S04-F11 · Four objectives, one encoder (done, slide 59)
 
 File: `s04_f11_objectives_summary.png`
 

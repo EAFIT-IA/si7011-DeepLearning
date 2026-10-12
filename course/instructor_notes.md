@@ -13,7 +13,7 @@ npx @marp-team/marp-cli@4.5.1 sessions/01_learning/slides/S01_slides.marp.md --h
 npx @marp-team/marp-cli@4.5.1 sessions/01_learning/slides/S01_slides.marp.md --html --allow-local-files --pdf -o sessions/01_learning/slides/S01_slides.pdf
 ```
 
-For S02, replace `01_learning/slides/S01` with `02_deep_training/slides/S02`. After editing a `.marp.md`, re-render the PDF: the student READMEs link to the PDF.
+For S02, replace `01_learning/slides/S01` with `02_deep_training/slides/S02`; for S04, with `04_representation/slides/S04`. If marp waits on stdin, add `--no-stdin`. After editing a `.marp.md`, re-render the PDF: the student READMEs link to the PDF.
 
 ## Figures and animations
 
@@ -21,6 +21,7 @@ For S02, replace `01_learning/slides/S01` with `02_deep_training/slides/S02`. Af
 |---|---|---|
 | S01 | [`figures.md`](../sessions/01_learning/figures/figures.md) | Manim scenes in `escena*.py`, `escenas_s01.py` |
 | S02 | [`figures.md`](../sessions/02_deep_training/figures/figures.md) | [`figure_prompts.md`](../sessions/02_deep_training/figures/figure_prompts.md) (image-generator prompts), `escenas_s02.py` |
+| S04 | [`figures.md`](../sessions/04_representation/figures/figures.md) | [`figure_prompts.md`](../sessions/04_representation/figures/figure_prompts.md), `escenas_s04.py`, `make_s04_a01_latent_snapshots.py`, `fix_s04_f04_f06.py`; slide plan in [`S04_plan.md`](../sessions/04_representation/S04_plan.md) |
 
 If an animation is added or renamed, update the table in that session's `slides/README.md`.
 
