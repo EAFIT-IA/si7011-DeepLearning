@@ -8,7 +8,7 @@ Notebooks 1–3 and 5 use CIFAR-10 (60,000 color images of 32×32 pixels, 10 cla
 
 Notebooks 1 and 2 run on a laptop CPU in a few minutes and notebook 3 in about 15. Notebooks 4, 5 and the integrating exercise need a GPU (Colab or Kaggle).
 
-**Before class, on Kaggle:** add each notebook's dataset with **Add Input**, so the images are read from disk instead of downloaded: [`pankrzysiu/cifar10-python`](https://www.kaggle.com/datasets/pankrzysiu/cifar10-python) in notebooks 1, 2, 3 and 5, and [`tanlikesmath/the-oxfordiiit-pet-dataset`](https://www.kaggle.com/datasets/tanlikesmath/the-oxfordiiit-pet-dataset) in notebook 4. On Colab, the notebooks download them with your `KAGGLE_API_TOKEN` secret, the same one from Session 01.
+**Before class, on Kaggle:** add each notebook's dataset with **Add Input**, so the images are read from disk instead of downloaded: [`pankrzysiu/cifar10-python`](https://www.kaggle.com/datasets/pankrzysiu/cifar10-python) in notebooks 1, 2, 3 and 5, [`tanlikesmath/the-oxfordiiit-pet-dataset`](https://www.kaggle.com/datasets/tanlikesmath/the-oxfordiiit-pet-dataset) in notebook 4, and [`apollo2506/eurosat-dataset`](https://www.kaggle.com/datasets/apollo2506/eurosat-dataset) in the integrating exercise. On Colab, the notebooks download them with your `KAGGLE_API_TOKEN` secret, the same one from Session 01.
 
 | # | Notebook | The question it answers |
 |---|---|---|
