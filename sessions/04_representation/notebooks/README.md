@@ -8,6 +8,16 @@ No network in notebooks 1–5 sees a label while it learns its representation. L
 
 Notebooks 1–3 use Fashion-MNIST (70,000 grayscale images of clothing, 28×28) and run on a laptop CPU. Notebooks 4, 5 and the integrating exercise use CIFAR-10 and EuroSAT and need a GPU (Colab or Kaggle).
 
+**Before class, on Kaggle:** add each notebook's datasets with **Add Input**, so the data are read from disk instead of downloaded:
+
+| Notebooks | Datasets to add |
+|---|---|
+| 1, 2, 3 | [`zalando-research/fashionmnist`](https://www.kaggle.com/datasets/zalando-research/fashionmnist) |
+| 4, 5 | [`pankrzysiu/cifar10-python`](https://www.kaggle.com/datasets/pankrzysiu/cifar10-python) and [`juanmartinezv4399/si7011-s04-simclr`](https://www.kaggle.com/datasets/juanmartinezv4399/si7011-s04-simclr) (the trained SimCLR encoders) |
+| 6 | [`apollo2506/eurosat-dataset`](https://www.kaggle.com/datasets/apollo2506/eurosat-dataset) |
+
+Turn on the GPU (*Settings → Accelerator*) for notebooks 4, 5 and 6, and keep *Internet* on: notebooks 5 and 6 download the ImageNet weights of ResNet-18. On Colab, the notebooks download the datasets with your `KAGGLE_API_TOKEN` secret, the same one from Session 01. Each notebook prints the source it used: check it.
+
 | # | Notebook | The question it answers |
 |---|---|---|
 | 1 | [Autoencoders](sesion_04_1_autoencoders.ipynb) | What does a bottleneck keep, and is a better reconstruction a better representation? |
@@ -19,7 +29,7 @@ Notebooks 1–3 use Fashion-MNIST (70,000 grayscale images of clothing, 28×28) 
 
 ## The SimCLR checkpoint
 
-Training SimCLR for 100 epochs takes about an hour on a GPU, so notebooks 4 and 5 load a model that is already trained. On Kaggle, click *Add Input* and add the dataset **`si7011-s04-simclr`**. On Colab or on your computer, download `simclr_resnet18_cifar10.pt` from that dataset and put it next to the notebook. Notebook 4 trains for 3 epochs in front of you first, so you see the loss go down before loading the long run.
+Training SimCLR for 100 epochs takes about an hour on a GPU, so notebooks 4 and 5 load a model that is already trained, from the dataset [`juanmartinezv4399/si7011-s04-simclr`](https://www.kaggle.com/datasets/juanmartinezv4399/si7011-s04-simclr). On Colab it is downloaded with your token; on your computer or on Lightning, put `simclr_resnet18_cifar10.pt` next to the notebook or in `data/`. Notebook 4 trains for 3 epochs in front of you first, so you see the loss go down before loading the long run.
 
 ## The integrating exercise
 

@@ -31,10 +31,10 @@ Open-in badges (Colab, Kaggle, Lightning) are inserted with `python tools/add_op
 
 ## S04: the SimCLR checkpoint dataset
 
-Notebooks 4.4 and 4.5 expect a Kaggle dataset named **`si7011-s04-simclr`** with two files. Produce them once, before the session:
+Notebooks 4.4 and 4.5 expect the Kaggle dataset **`juanmartinezv4399/si7011-s04-simclr`** (the handle is hard-coded as `CKPT_HANDLE` in both notebooks and in the notebooks README) with two files. Produce them once, before the session:
 
 1. Open `sessions/04_representation/notebooks/sesion_04_4_simclr.ipynb` on Kaggle with a GPU (T4 or P100).
 2. In section 4 set `ENTRENAR_LARGO, ABLACION = True, True` and run the notebook. It writes `simclr_resnet18_cifar10.pt` (100 epochs, with color jitter) and `simclr_sin_color.pt` (100 epochs, without color jitter and grayscale): about two hours in total.
-3. Create the dataset `si7011-s04-simclr` from those two files (public, so students can add it with *Add Input*) and set the flags back to `False`.
+3. Create the dataset `si7011-s04-simclr` under the account `juanmartinezv4399` from those two files (public, so students can add it with *Add Input* and Colab can fetch it with `kagglehub`) and set the flags back to `False`. To train on Kaggle, add `pankrzysiu/cifar10-python` as input first.
 
 The S04 integrating-exercise solutions are not in the repository.
