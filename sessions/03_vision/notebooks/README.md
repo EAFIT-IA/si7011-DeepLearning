@@ -8,6 +8,8 @@ Notebooks 1–3 and 5 use CIFAR-10 (60,000 color images of 32×32 pixels, 10 cla
 
 Notebooks 1 and 2 run on a laptop CPU in a few minutes and notebook 3 in about 15. Notebooks 4, 5 and the integrating exercise need a GPU (Colab or Kaggle).
 
+**Before class, on Kaggle:** in notebooks 1, 2, 3 and 5, add the dataset [`pankrzysiu/cifar10-python`](https://www.kaggle.com/datasets/pankrzysiu/cifar10-python) with **Add Input**, so CIFAR-10 is read from disk instead of downloaded. On Colab, the notebooks download it with your `KAGGLE_API_TOKEN` secret, the same one from Session 01.
+
 | # | Notebook | The question it answers |
 |---|---|---|
 | 1 | [Images and structure](sesion_03_1_imagenes_estructura.ipynb) | Why does shuffling the pixels not bother an MLP, but ruin a CNN? |
