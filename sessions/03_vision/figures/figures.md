@@ -24,7 +24,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 
 ## Deck structure
 
-74 slides in five parts, each opened by a divider slide that recaps the previous part: 56 content slides, plus 14 figures and 4 animations already integrated. With S03-F11, the last pending figure, the deck has **75 slides** (S02 has 78).
+**75 slides** in five parts, each opened by a divider slide that recaps the previous part: 56 content slides, 15 figures and 4 animations (S02 has 78).
 
 | Part | Slides | Practice |
 |---|---|---|
@@ -33,12 +33,12 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | 2 · Convolution | V15–V29 | |
 | 3 · CNNs and residual networks | V30–V44 | Practice A (V44): notebooks 3.1–3.3 |
 | 4 · Transfer learning | V45–V56 | |
-| 5 · From patches to attention | V57–V69 | Practice B (V69): notebooks 3.4–3.5 |
-| Closure | V70–V74 | Integrating exercise (V70), exit question (V74) |
+| 5 · From patches to attention | V57–V70 | Practice B (V70): notebooks 3.4–3.5 |
+| Closure | V71–V75 | Integrating exercise (V71), exit question (V75) |
 
 Self-attention gets one slide (V62); its full mechanics belong to Session 05.
 
-Slide numbers below are those of the current source. For pending figures, "after slide" is the slide the hidden comment sits on; each inserted figure shifts the later numbers by one.
+Slide numbers below are those of the current source; every figure is integrated.
 
 ## Production routes
 
@@ -63,10 +63,10 @@ Three routes, depending on what the figure must show:
 | **S03-F08** | V48 (slide) | Pretrained backbone: general early features, specific late features, new head | `s03_f08_transfer_backbone.png` | Generator | Included |
 | **S03-F09** | V50 (slide) | From scratch, linear probe and fine-tuning: frozen vs trained layers | `s03_f09_transfer_strategies.png` | Generator | Included |
 | **S03-F10** | V55 (slide) | Validation accuracy vs images per class for the three strategies | `s03_f10_transfer_vs_data.png` | Script: `make_s03_figs_from_notebooks.py` (numbers from the saved outputs of notebook 3.4, section 4) | Included |
-| **S03-F11** | V62 | Attention of [CLS] in a pretrained ViT-B/16: last layer and attention rollout | `s03_f11_attention_map.png` | From notebook 3.5, section 6, once it is re-run with the rollout cell | Pending |
-| **S03-F12** | V65 (slide) | ViT architecture: patches, position, CLS, pre-norm blocks, head | `s03_f12_vit_architecture.png` | Generator | Included — see review note |
-| **S03-F13** | V67 (slide) | Spectrum of assumptions MLP → CNN → ViT against data needed | `s03_f13_inductive_bias_spectrum.png` | Generator | Included |
-| **S03-F14** | V73 (slide) | Summary: what one unit can see in the first layers of an MLP, a CNN and a ViT | `s03_f14_architecture_summary.png` | Generator + script: CNN panel redrawn by `fix_s03_f14_cnn_panel.py` | Included — see review note |
+| **S03-F11** | V63 (slide) | Attention of [CLS] in a pretrained ViT-B/16: last layer and attention rollout | `s03_f11_attention_map.png` | Script: `make_s03_figs_from_notebooks.py` (the image of notebook 3.5, section 6) | Included — see review note |
+| **S03-F12** | V66 (slide) | ViT architecture: patches, position, CLS, pre-norm blocks, head | `s03_f12_vit_architecture.png` | Generator | Included — see review note |
+| **S03-F13** | V68 (slide) | Spectrum of assumptions MLP → CNN → ViT against data needed | `s03_f13_inductive_bias_spectrum.png` | Generator | Included |
+| **S03-F14** | V74 (slide) | Summary: what one unit can see in the first layers of an MLP, a CNN and a ViT | `s03_f14_architecture_summary.png` | Generator + script: CNN panel redrawn by `fix_s03_f14_cnn_panel.py` | Included — see review note |
 
 ## Planned animations (Manim)
 
@@ -81,12 +81,12 @@ Only concepts where motion changes understanding.
 
 ## Review notes
 
-- **S03-F11:** in the first Kaggle run, the last-layer attention of [CLS] landed on a few background tokens in all four images (the high-norm "register" tokens of Darcet et al., 2024), not on the object. Notebook 3.5 now also computes attention rollout; the figure should show both rows, and the slide should not claim that attention finds the object: an attention map is a hint, not an explanation.
+- **S03-F11:** the last-layer attention of [CLS] lands on a few background tokens (the attention sinks of Darcet et al., 2024), not on the object. Rollout spreads it: it covers the car and the front of the second truck, and stays scattered on the frog. The banner says so and does not claim that attention finds the object. Class names are re-typed in the script; if notebook 3.5 changes `idx`, update them.
 
 - **S03-F01:** channel shading does not follow the pixel values. The white background has value 1 in all three channels, so it should be the darkest cell in every grid; the image instead shades the leaf dark in R and B and the background light. The callout $(0.82, 0.41, 0.13)$ (from the prompt) is a reddish pixel, not a green leaf pixel. Structure, labels and shapes are correct. Usable as is; regeneration with the corrected prompt is optional.
 - **S03-F04:** a stray white "C" next to the G label on the input block was removed by cloning the green cell below it (the delivered PNG is 1671 px wide; harmless with `bg contain`). The dashed arrow to the kernel starts at the edge of the green block, not at the dashed window on the R face; acceptable.
 - **S03-F15:** left panel and parameter boxes are exact. In the receptive-field sketch the conv-1 unit fans down to a separate 3×3 patch and the 5×5 input grid is not connected to anything, so the 5×5 claim rests on the caption. Acceptable because S03-A03 (V27) already shows the growth with real connections; an optional 1-D redraw is in the prompt. V26 and V34 now state that padding does not change the receptive field, so the window labels read correctly.
-- **S03-F12:** architecture, pre-norm order, token count (197) and ViT-B/16 sizes are exact. The arrow from $W_E$ runs into the [CLS] bar, which suggests [CLS] is a projected patch; V64 now says it is a learned token. Delivered at 2:1 (1774 × 887), letterboxed by `bg contain`.
+- **S03-F12:** architecture, pre-norm order, token count (197) and ViT-B/16 sizes are exact. The arrow from $W_E$ runs into the [CLS] bar, which suggests [CLS] is a projected patch; V65 now says it is a learned token. Delivered at 2:1 (1774 × 887), letterboxed by `bg contain`.
 - **S03-F14:** the generated CNN panel drew a 4×3 grid labelled "3 × 3" and a 6×6 region labelled "5 × 5", off the input grid. That panel is redrawn on the grid by `fix_s03_f14_cnn_panel.py` from `s03_f14_architecture_summary_generated.png` (kept for reproducibility); MLP and ViT panels, header and captions are the generated ones.
 
 ## Animation sources
@@ -104,11 +104,7 @@ Render with `S01_VIDEO=1 manim -qh escenas_s03.py <Scene>` (Manim Community 0.22
 
 ## Core visual priorities
 
-If production time is limited, prioritize:
-
-1. **S03-F11** — attention map (needs notebook 3.5 re-run).
-
-Already included: every other figure (S03-F01 to F10, F12 to F15) and the four animations (S03-A01 to A04).
+All figures (S03-F01 to F15) and the four animations (S03-A01 to A04) are included. Optional: regenerate S03-F01 and S03-F15 with the corrected prompts.
 
 ## Notes for slide integration
 

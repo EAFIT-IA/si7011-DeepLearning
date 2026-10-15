@@ -1,4 +1,4 @@
-# Builds S03-F02, S03-F06 and S03-F10 from the outputs of the executed notebooks 3.1 and 3.4.
+# Builds S03-F02, S03-F06, S03-F10 and S03-F11 from the outputs of the executed notebooks 3.1, 3.4 and 3.5.
 # Usage (from this folder): python make_s03_figs_from_notebooks.py ../notebooks .
 # Numbers and images come from the notebooks' saved outputs, so the slides show the same run the students see.
 import ast, base64, io, json, re, sys
@@ -103,4 +103,24 @@ for y, msg in [(0.465, 'small parts: eyes, noses, ears'), (0.345, 'faces'), (0.2
     fig.text(0.72, y, '← ' + msg, fontsize=15, color=TEAL, va='center')
 banner(fig, 'Each stage combines the one below: the receptive field grows, and so does the pattern.')
 fig.savefig(OUT / 's03_f06_feature_hierarchy.png', dpi=DPI, facecolor='white'); plt.close(fig)
+
+# ------------------------------------------------------------------ S03-F11 · attention of [CLS] (notebook 3.5, section 6)
+att = image(cell('sesion_03_5_patches_vit.ipynb', "maps = {'última capa'"))
+X0, Y0, S = [11, 211, 411, 611], [30, 227, 425], 165                     # panel corners in the notebook's 3 × 4 grid
+labels = ['frog', 'truck', 'automobile', 'truck']                         # CIFAR-10 classes of R_val[[3, 11, 25, 42]]
+assert att.size == (786, 600), f'unexpected image size {att.size}: re-check the panel corners'
+
+fig = plt.figure(figsize=(W / DPI, H / DPI), dpi=DPI)
+rows_txt = [('input (32 × 32,\nresized to 224)', NAVY), ('last layer', ORANGE), ('rollout,\nall 12 layers', TEAL)]
+for r, (lab, col) in enumerate(rows_txt):
+    fig.text(0.205, 0.765 - 0.215 * r, lab, fontsize=16, color=col, ha='right', va='center', weight='bold')
+    for k in range(4):
+        ax = fig.add_axes([0.225 + 0.145 * k, 0.665 - 0.215 * r, 0.135, 0.2])
+        ax.imshow(att.crop((X0[k], Y0[r], X0[k] + S, Y0[r] + S)).resize((330, 330), Image.NEAREST)); ax.axis('off')
+        if r == 0:
+            ax.set_title(labels[k], fontsize=15, color=NAVY)
+fig.text(0.825, 0.555, 'attention of [CLS]\nto the 14 × 14 patches\n\nViT-B/16, ImageNet weights,\nCIFAR-10 validation images',
+         fontsize=12.5, color=GRAY, va='center')
+banner(fig, 'The last layer parks attention on a few background tokens. Rollout spreads it out. A hint, not an explanation.')
+fig.savefig(OUT / 's03_f11_attention_map.png', dpi=DPI, facecolor='white'); plt.close(fig)
 print('F02:', res, '· F10:', list(zip(xs, probe, ft, scratch)))

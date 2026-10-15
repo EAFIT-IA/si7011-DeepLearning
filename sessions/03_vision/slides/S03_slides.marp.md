@@ -904,7 +904,15 @@ Row $i$ of $X$ is token $t_i$. The weights depend on the **content**, not on a f
 
 The full mechanics — heads, masks, cost — come in **Session 05**.
 
-<!-- Pending figure S03-F11 (full-slide figure after this slide): attention of [CLS] in a pretrained ViT-B/16 on four images: last layer (a few background tokens take the attention) and attention rollout over the 12 layers; from notebook 3.5, section 6 -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Attention of the CLS token in a pretrained ViT-B/16 on four CIFAR-10 images: in the last layer it lands on a few background patches; attention rollout over the 12 layers spreads it out and, for the car, lands on the object](../figures/s03_f11_attention_map.png)
+
+<!-- Notebook 3.5, section 6. Last layer: [CLS] row of the attention matrix, averaged over the 12 heads. Rollout (Abnar & Zuidema, 2020): R = Â_12 ⋯ Â_1 with Â_l = ½(A_l + I), rows renormalized. The background tokens are attention sinks (Darcet et al., 2024). -->
 
 ---
 
