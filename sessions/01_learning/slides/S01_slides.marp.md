@@ -517,6 +517,75 @@ Training moves through parameter space using successive gradient estimates.
 
 ---
 
+# One artificial neuron
+
+An input $x\in\mathbb{R}^d$, one weight vector $w\in\mathbb{R}^d$ and one bias $b\in\mathbb{R}$:
+
+$$
+z=w^\top x+b=\sum_{j=1}^{d}w_jx_j+b,\qquad a=\phi(z)
+$$
+
+- $z$: a **score** (weighted sum of the inputs plus a shift)
+- $\phi$: an activation applied to that score
+
+We have already used this neuron: $\phi(z)=z$ is **linear regression**; $\phi=\sigma$ is **logistic regression**.
+
+<!-- Point back to E1 (the line wx + b) and E2 (z -> sigma(z) -> BCE): both were single neurons. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain From one neuron to a layer](../figures/s01_f11a_neuron_to_layer.svg)
+
+---
+
+# From one neuron to a layer
+
+$m$ neurons read the **same** input, each with its own weights and bias:
+
+$$
+z_k=w_k^\top x+b_k,\qquad k=1,\ldots,m
+$$
+
+Stacking the $m$ equations:
+
+$$
+\underbrace{\begin{bmatrix}z_1\\ \vdots\\ z_m\end{bmatrix}}_{z}
+=
+\underbrace{\begin{bmatrix}w_1^\top\\ \vdots\\ w_m^\top\end{bmatrix}}_{W}
+x
++
+\underbrace{\begin{bmatrix}b_1\\ \vdots\\ b_m\end{bmatrix}}_{b},
+\qquad
+a=\phi(z)\ \text{(elementwise)}
+$$
+
+Row $k$ of $W$ is neuron $k$.
+
+<!-- Ask: how many parameters does a layer with d inputs and m neurons have? Answer: m*d + m. -->
+
+---
+
+# Layer shapes
+
+| Object | Shape | Meaning |
+|---|---|---|
+| $x$ | $d$ | one example, $d$ features |
+| $W$ | $m\times d$ | one row per neuron |
+| $b$ | $m$ | one bias per neuron |
+| $z,\ a$ | $m$ | one score and one output per neuron |
+
+For a batch $X\in\mathbb{R}^{B\times d}$: $\;Z=XW^\top+b\in\mathbb{R}^{B\times m}$.
+
+In PyTorch, `nn.Linear(d, m)` stores `weight` with shape `(m, d)` and `bias` with shape `(m,)`.
+
+<!-- The batch form with W transposed is exactly what nn.Linear computes; this is why weight.shape is (out, in). -->
+
+---
+
 # Stacking linear transformations
 
 $$

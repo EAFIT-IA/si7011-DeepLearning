@@ -1,6 +1,8 @@
 # Documento de análisis · Evento evaluativo 1 · Parte B
 
-**Pareja:** _nombre 1_ · _nombre 2_ · **Máximo 3 páginas.** Cada afirmación lleva un número y el nombre de la corrida de MLflow de donde sale.
+> Copien este archivo a `docs/analisis.md` en su repositorio.
+
+**Pareja:** _nombre 1_ · _nombre 2_ · **Unas 1500 palabras como máximo.** Cada afirmación lleva un número y el nombre de la corrida de MLflow de donde sale. Las figuras van en `docs/figuras/` y se enlazan así: `![Curvas de las tres corridas](figuras/curvas.png)`.
 
 ## 1. Línea base
 - **Síntoma** (con números de la corrida `1-linea-base`):

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><rect width="1600" height="900" fill="#fff"/><style>
+.title{font:700 46px Arial,Helvetica,sans-serif;fill:#153b63}
+.h{font:700 28px Arial,Helvetica,sans-serif;fill:#172033}
+.t{font:23px Arial,Helvetica,sans-serif;fill:#172033}
+.s{font:20px Arial,Helvetica,sans-serif;fill:#4b596b}
+.m{font:italic 30px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#172033}
+.ms{font:italic 24px 'DejaVu Serif','STIX Two Text','Times New Roman',serif;fill:#172033}
+.arrow{stroke:#455468;stroke-width:3;fill:none;marker-end:url(#a)}
+.e1{stroke:#4285f4;stroke-width:3;fill:none}
+.e2{stroke:#146c72;stroke-width:3;fill:none}
+.e3{stroke:#d38b33;stroke-width:3;fill:none}
+.eg{stroke:#455468;stroke-width:3;fill:none}
+</style>
+<defs>
+<marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#455468"/></marker>
+</defs>
+<text x="800" y="70" text-anchor="middle" class="title">From one neuron to a layer</text>
+<text x="800" y="115" text-anchor="middle" class="s">Each neuron has its own weight vector and bias; a layer stacks them as the rows of W.</text>
+
+<!-- Left panel: one neuron -->
+<rect x="50" y="150" width="690" height="700" rx="22" fill="#f6f8fb"/>
+<text x="395" y="198" text-anchor="middle" class="h">One neuron</text>
+<path d="M175 330 L366 435" class="eg"/>
+<path d="M175 450 L360 450" class="eg"/>
+<path d="M175 570 L366 465" class="eg"/>
+<text x="255" y="360" class="ms">w₁</text>
+<text x="255" y="438" class="ms">w₂</text>
+<text x="255" y="562" class="ms">w₃</text>
+<circle cx="140" cy="330" r="34" fill="#d9eaff" stroke="#4285f4" stroke-width="2"/><text x="140" y="340" text-anchor="middle" class="m">x₁</text>
+<circle cx="140" cy="450" r="34" fill="#d9eaff" stroke="#4285f4" stroke-width="2"/><text x="140" y="460" text-anchor="middle" class="m">x₂</text>
+<circle cx="140" cy="570" r="34" fill="#d9eaff" stroke="#4285f4" stroke-width="2"/><text x="140" y="580" text-anchor="middle" class="m">x₃</text>
+<circle cx="420" cy="450" r="58" fill="#e4eefc" stroke="#7aa6dc" stroke-width="2"/><text x="420" y="445" text-anchor="middle" class="m">Σ + b</text><text x="420" y="480" text-anchor="middle" class="ms">z</text>
+<path d="M478 450 H528" class="arrow"/>
+<rect x="538" y="410" width="80" height="80" rx="14" fill="#e3f5ea" stroke="#83c9a0" stroke-width="2"/><text x="578" y="461" text-anchor="middle" class="m">φ</text>
+<path d="M618 450 H668" class="arrow"/>
+<text x="700" y="461" text-anchor="middle" class="m">a</text>
+<text x="395" y="700" text-anchor="middle" class="m">z = wᵀx + b = Σⱼ wⱼxⱼ + b</text>
+<text x="395" y="755" text-anchor="middle" class="m">a = φ(z)</text>
+<text x="150" y="810" class="ms">w ∈ <tspan style="font-style:normal;font-family:'DejaVu Serif','STIX Two Math',serif">ℝ</tspan>³,  b ∈ <tspan style="font-style:normal;font-family:'DejaVu Serif','STIX Two Math',serif">ℝ</tspan>  →  one score z, one output a</text>
+
+<!-- Right panel: a layer of three neurons -->
+<rect x="790" y="150" width="760" height="700" rx="22" fill="#f6f8fb"/>
+<text x="1170" y="198" text-anchor="middle" class="h">A layer of m = 3 neurons</text>
+<path d="M934 290 L1138 262" class="e1"/><path d="M934 400 L1140 270" class="e1"/><path d="M934 510 L1142 280" class="e1"/>
+<path d="M934 290 L1138 392" class="e2"/><path d="M934 400 L1138 400" class="e2"/><path d="M934 510 L1138 408" class="e2"/>
+<path d="M934 290 L1142 520" class="e3"/><path d="M934 400 L1140 530" class="e3"/><path d="M934 510 L1138 538" class="e3"/>
+<circle cx="900" cy="290" r="34" fill="#d9eaff" stroke="#4285f4" stroke-width="2"/><text x="900" y="300" text-anchor="middle" class="m">x₁</text>
+<circle cx="900" cy="400" r="34" fill="#d9eaff" stroke="#4285f4" stroke-width="2"/><text x="900" y="410" text-anchor="middle" class="m">x₂</text>
+<circle cx="900" cy="510" r="34" fill="#d9eaff" stroke="#4285f4" stroke-width="2"/><text x="900" y="520" text-anchor="middle" class="m">x₃</text>
+<circle cx="1182" cy="270" r="44" fill="#fff" stroke="#4285f4" stroke-width="4"/><text x="1182" y="280" text-anchor="middle" class="m">z₁</text>
+<circle cx="1182" cy="400" r="44" fill="#fff" stroke="#146c72" stroke-width="4"/><text x="1182" y="410" text-anchor="middle" class="m">z₂</text>
+<circle cx="1182" cy="530" r="44" fill="#fff" stroke="#d38b33" stroke-width="4"/><text x="1182" y="540" text-anchor="middle" class="m">z₃</text>
+<path d="M1226 270 H1300" class="arrow"/><path d="M1226 400 H1300" class="arrow"/><path d="M1226 530 H1300" class="arrow"/>
+<text x="1310" y="280" class="ms">a₁ = φ(z₁)</text>
+<text x="1310" y="410" class="ms">a₂ = φ(z₂)</text>
+<text x="1310" y="540" class="ms">a₃ = φ(z₃)</text>
+
+<!-- Matrix with coloured rows -->
+<text x="850" y="725" class="m">W =</text>
+<path d="M945 640 h-14 v150 h14" stroke="#172033" stroke-width="3" fill="none"/>
+<rect x="950" y="645" width="120" height="44" rx="8" fill="#d9eaff"/><text x="1010" y="677" text-anchor="middle" class="ms">w₁ᵀ</text>
+<rect x="950" y="693" width="120" height="44" rx="8" fill="#d7ecec"/><text x="1010" y="725" text-anchor="middle" class="ms">w₂ᵀ</text>
+<rect x="950" y="741" width="120" height="44" rx="8" fill="#f8e7d2"/><text x="1010" y="773" text-anchor="middle" class="ms">w₃ᵀ</text>
+<path d="M1075 640 h14 v150 h-14" stroke="#172033" stroke-width="3" fill="none"/>
+<text x="1100" y="725" class="ms">∈ <tspan style="font-style:normal;font-family:'DejaVu Serif','STIX Two Math',serif">ℝ</tspan>³ˣ³,  b ∈ <tspan style="font-style:normal;font-family:'DejaVu Serif','STIX Two Math',serif">ℝ</tspan>³</text>
+<text x="1330" y="700" class="m">z = Wx + b</text>
+<text x="1330" y="755" class="m">a = φ(z)</text>
+<text x="1310" y="810" class="s">φ acts elementwise</text>
+</svg>
