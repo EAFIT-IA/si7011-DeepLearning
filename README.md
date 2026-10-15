@@ -85,8 +85,7 @@ Why can deep networks be trained? Signal propagation, initialization, optimizers
 
 ## Session 03 — Architectures for Vision
 
-- [Marp source](sessions/03_vision/slides/S03_slides.marp.md) *(draft)*
-- [Figure and animation inventory](sessions/03_vision/figures/figures.md)
+- [Slides (PDF) and animations](sessions/03_vision/slides/README.md)
 - [Notebooks: five worked examples and the integrating exercise](sessions/03_vision/notebooks/README.md)
 
 How does data structure shape the network? Images as tensors, convolution, receptive fields, CNNs and ResNet, transfer learning, and a first look at patches, attention and Vision Transformers. The integrating exercise asks whether ImageNet features help with satellite images (EuroSAT), with runs tracked in MLflow.
