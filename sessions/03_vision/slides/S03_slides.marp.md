@@ -619,7 +619,7 @@ $$
 
 Early layers respond to **edges and colors**.
 
-Middle layers respond to **textures and repeated motifs**.
+Middle layers respond to **textures, motifs and small parts** such as eyes.
 
 Late layers respond to **object parts**.
 
