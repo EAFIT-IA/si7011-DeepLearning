@@ -29,7 +29,7 @@ Turn on the GPU (*Settings → Accelerator*) for notebooks 4, 5 and 6, and keep 
 
 ## The SimCLR checkpoint
 
-Training SimCLR for 100 epochs takes about an hour on a GPU, so notebooks 4 and 5 load a model that is already trained, from the dataset [`juanmartinezv4399/si7011-s04-simclr`](https://www.kaggle.com/datasets/juanmartinezv4399/si7011-s04-simclr). On Colab it is downloaded with your token; on your computer or on Lightning, put `simclr_resnet18_cifar10.pt` next to the notebook or in `data/`. Notebook 4 trains for 3 epochs in front of you first, so you see the loss go down before loading the long run.
+Training SimCLR long enough takes hours on a GPU, so notebooks 4 and 5 load a model that is already trained, from the dataset [`juanmartinezv4399/si7011-s04-simclr`](https://www.kaggle.com/datasets/juanmartinezv4399/si7011-s04-simclr). On Colab it is downloaded with your token; on your computer or on Lightning, put `simclr_resnet18_cifar10.pt` next to the notebook or in `data/`. Notebook 4 trains for 3 epochs in front of you first, so you see the loss go down before loading the long run.
 
 ## The integrating exercise
 

@@ -31,10 +31,11 @@ Open-in badges (Colab, Kaggle, Lightning) are inserted with `python tools/add_op
 
 ## S04: the SimCLR checkpoint dataset
 
-Notebooks 4.4 and 4.5 expect the Kaggle dataset **`juanmartinezv4399/si7011-s04-simclr`** (the handle is hard-coded as `CKPT_HANDLE` in both notebooks and in the notebooks README) with two files. Produce them once, before the session:
+Notebooks 4.4 and 4.5 expect the Kaggle dataset **`juanmartinezv4399/si7011-s04-simclr`** (the handle is hard-coded as `CKPT_HANDLE` in both notebooks and in the notebooks README) with two files: `simclr_resnet18_cifar10.pt` and `simclr_sin_color.pt`. They are produced by [`s04_entrenar_simclr.ipynb`](s04_entrenar_simclr.ipynb), which copies the data, views, model and loss cells of notebook 4.4:
 
-1. Open `sessions/04_representation/notebooks/sesion_04_4_simclr.ipynb` on Kaggle with a GPU (T4 or P100).
-2. In section 4 set `ENTRENAR_LARGO, ABLACION = True, True` and run the notebook. It writes `simclr_resnet18_cifar10.pt` (100 epochs, with color jitter) and `simclr_sin_color.pt` (100 epochs, without color jitter and grayscale): about two hours in total.
-3. Create the dataset `si7011-s04-simclr` under the account `juanmartinezv4399` from those two files (public, so students can add it with *Add Input* and Colab can fetch it with `kagglehub`) and set the flags back to `False`. To train on Kaggle, add `pankrzysiu/cifar10-python` as input first.
+1. Open it on Kaggle (*File → Import notebook* from GitHub, or the import URL with this path). *Add Input* `pankrzysiu/cifar10-python`; *Settings → Accelerator* GPU.
+2. **Save Version → Save & Run All (Commit)**, so it runs in the background. After the first epoch it prints the estimated total time. Default: 30 epochs per file; lower `EPOCAS` if the estimate is too long.
+3. It saves `*_parcial.pt` every epoch and stops by itself before `MAX_HORAS` (11 h). If it stopped: new version, *Add Input → Your Work →* the previous version's output, *Save & Run All* again. It resumes where it stopped and copies finished files to the new output.
+4. When the last cell shows both files with their $k$-NN accuracy: *Output* tab of that version → **New Dataset** → `si7011-s04-simclr`, public.
 
 The S04 integrating-exercise solutions are not in the repository.

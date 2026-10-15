@@ -20,7 +20,7 @@ Instructor planning document. It fixes the deck structure, the content of each s
 All four proposals below were adopted when the notebooks were built.
 
 1. **Integrating exercise.** Proposal: continue EuroSAT from S03. Pretrain on EuroSAT images without labels, then probe with 1 % and 10 % of the labels and compare with the ImageNet backbone from the S03 exercise. It answers the question S03 left open (does ImageNet help with satellite images?) with a new tool, and it can be the Part B deliverable of Event 2.
-2. **SimCLR training time.** In class, notebook 4.4 trains for 3 epochs to see the loss fall, then loads a checkpoint trained beforehand (about 100 epochs, published as a Kaggle dataset). Training from scratch in class does not fit in Practice B.
+2. **SimCLR training time.** In class, notebook 4.4 trains for 3 epochs to see the loss fall, then loads a checkpoint trained beforehand (30 epochs by default, with `course/s04_entrenar_simclr.ipynb`, published as a Kaggle dataset). Training from scratch in class does not fit in Practice B.
 3. **Masked prediction notebook (4.3).** A tiny MAE on Fashion-MNIST (7×7 patches, 16 tokens) reusing the small ViT from notebook 3.5. It fits in 10 minutes on GPU, but Practice B is already full, so 4.3 is listed as homework.
 4. **VAE and generative models.** Not in the S04 topic list. One line in V26 points out that a VAE is the generative version of the autoencoder; nothing more.
 
@@ -214,7 +214,7 @@ Short, self-contained, one change per cell, Chollet DLwP style in PyTorch, with 
 | 4.1 | `sesion_04_1_autoencoders.ipynb` | What does a bottleneck keep? $k$ = 2, 8, 32; PCA vs linear AE vs deep AE; probe on $\mathbf h$; saves latent snapshots for A01 and figure F03 | Fashion-MNIST | CPU, ~10 min |
 | 4.2 | `sesion_04_2_denoising_conv.ipynb` | Conv AE, then denoising with three noise levels; reconstruction error and probe side by side | Fashion-MNIST | CPU/GPU, ~10 min |
 | 4.3 | `sesion_04_3_masked_prediction.ipynb` | Tiny MAE with the small ViT of notebook 3.5; mask ratio 25 / 50 / 75 %; probe and fine-tune (homework) | Fashion-MNIST | GPU, ~15 min |
-| 4.4 | `sesion_04_4_simclr.ipynb` | Two views (GPU augmentations), InfoNCE checked against the formula, projection head; 3 epochs live, then the 100-epoch checkpoint; similarity matrix (F07); ablation without color jitter from the second checkpoint; saves `simclr_g.pt` | CIFAR-10 | GPU, ~15 min |
+| 4.4 | `sesion_04_4_simclr.ipynb` | Two views (GPU augmentations), InfoNCE checked against the formula, projection head; 3 epochs live, then the long checkpoint (trained with `course/s04_entrenar_simclr.ipynb`); similarity matrix (F07); ablation without color jitter from the second checkpoint; saves `simclr_g.pt` | CIFAR-10 | GPU, ~15 min |
 | 4.5 | `sesion_04_5_evaluar_representaciones.ipynb` | Four ResNet-18 encoders (random, autoencoder trained in the notebook, SimCLR, ImageNet): $k$-NN, retrieval (F08), linear probe, label efficiency at 1/10/100/1000/5000 per class (F09), t-SNE (F10), and with 10 labels per class $k$-NN vs probe vs fine-tuning | CIFAR-10 | GPU, ~15 min |
 | 4.6 | `sesion_04_6_integrador_eurosat_ssl.ipynb` | Integrating exercise (decision 1) with MLflow | EuroSAT | GPU |
 

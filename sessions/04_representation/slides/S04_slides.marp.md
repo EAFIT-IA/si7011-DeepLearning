@@ -824,7 +824,7 @@ Which wins on the test set?
 
 Worked notebooks on CIFAR-10, GPU:
 
-- [4.4 · SimCLR](../notebooks/sesion_04_4_simclr.ipynb): two views, InfoNCE checked against the formula, 3 epochs live, the 100-epoch checkpoint, the color shortcut
+- [4.4 · SimCLR](../notebooks/sesion_04_4_simclr.ipynb): two views, InfoNCE checked against the formula, 3 epochs live, then the long checkpoint, the color shortcut
 - [4.5 · Evaluating representations](../notebooks/sesion_04_5_evaluar_representaciones.ipynb): $k$-NN, retrieval, probe, label efficiency, t-SNE, 10 labels per class
 
 At home: [4.3 · Masked prediction](../notebooks/sesion_04_3_masked_prediction.ipynb), a tiny MAE on Fashion-MNIST.
