@@ -244,7 +244,13 @@ accuracy goes up, down, or stays the same?
 
 </div>
 
-<!-- Pending figure S03-F02 (full-slide figure after this slide): permutation experiment: original vs permuted images; MLP and CNN accuracy on each (measured in notebook 3.1) -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Permutation experiment: the MLP is unchanged, the CNN loses its advantage](../figures/s03_f02_permutation_experiment.png)
 
 ---
 
@@ -619,7 +625,13 @@ Late layers respond to **object parts**.
 
 Each level is built from local combinations of the level below.
 
-<!-- Pending figure S03-F06 (full-slide figure after this slide): feature hierarchy from the ImageNet-pretrained ResNet-18 used in notebook 3.4: first-layer kernels, then top-activating patches for channels in stages 2, 3 and 4 -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Feature hierarchy of an ImageNet ResNet-18: first-layer kernels and top-activating patches per stage](../figures/s03_f06_feature_hierarchy.png)
 
 ---
 
@@ -791,7 +803,13 @@ from scratch · linear probe · fine-tuning
 1. With **5 images per class**, which wins?
 2. With **all** training images (~80 per class), does the order change?
 
-<!-- Pending figure S03-F10 (full-slide figure after this slide): validation accuracy vs images per class for the three strategies (notebook 3.4, section 6, resultados_transfer.json) -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Validation accuracy versus images per breed for linear probe, fine-tuning and training from scratch](../figures/s03_f10_transfer_vs_data.png)
 
 ---
 
@@ -886,7 +904,7 @@ Row $i$ of $X$ is token $t_i$. The weights depend on the **content**, not on a f
 
 The full mechanics — heads, masks, cost — come in **Session 05**.
 
-<!-- Pending figure S03-F11 (full-slide figure after this slide): attention map from a pretrained ViT: one query patch and the patches it attends to, over the image -->
+<!-- Pending figure S03-F11 (full-slide figure after this slide): attention of [CLS] in a pretrained ViT-B/16 on four images: last layer (a few background tokens take the attention) and attention rollout over the 12 layers; from notebook 3.5, section 6 -->
 
 ---
 
