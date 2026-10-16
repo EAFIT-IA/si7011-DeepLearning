@@ -353,7 +353,13 @@ In which latent space are the classes **more separated**, judged by a linear pro
 
 <!-- 2-D code of 1 000 test images over 4 800 training steps; colors added only at the end. Same model and seed as notebook 4.1, section 1: probe on h = 60 %, chance 10 %. -->
 
-<!-- Pending figure S04-F03 (full-slide figure after this slide): reconstructions of 8 test images for k = 2, 8, 32 and PCA k = 32, with test MSE and probe accuracy per row (notebook 4.1, section 4) -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain The same 8 Fashion-MNIST test images reconstructed by autoencoders with k = 2, 8, 32 and by PCA with k = 32, with test MSE and linear-probe accuracy per row](../figures/s04_f03_reconstructions_k.png)
 
 ---
 
