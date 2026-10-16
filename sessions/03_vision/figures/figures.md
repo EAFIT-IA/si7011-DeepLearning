@@ -24,19 +24,19 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 
 ## Deck structure
 
-**78 slides** in five parts, each opened by a divider slide that recaps the previous part: 56 content slides, 18 figures and 4 animations. With S03-F19 and S03-F20, the two pending figures, the deck has **80 slides** (S02 has 78).
+**79 slides** in five parts, each opened by a divider slide that recaps the previous part: 56 content slides, 19 figures and 4 animations. With S03-F19, the last pending figure, the deck has **80 slides** (S02 has 78).
 
 | Part | Slides | Practice |
 |---|---|---|
 | Opening | V01–V04 | |
 | 1 · Images are structured data | V05–V14 | |
-| 2 · Convolution | V15–V32 | |
-| 3 · CNNs and residual networks | V33–V47 | Practice A (V47): notebooks 3.1–3.3 |
-| 4 · Transfer learning | V48–V59 | |
-| 5 · From patches to attention | V60–V73 | Practice B (V73): notebooks 3.4–3.5 |
-| Closure | V74–V78 | Integrating exercise (V74), exit question (V78) |
+| 2 · Convolution | V15–V33 | |
+| 3 · CNNs and residual networks | V34–V48 | Practice A (V48): notebooks 3.1–3.3 |
+| 4 · Transfer learning | V49–V60 | |
+| 5 · From patches to attention | V61–V74 | Practice B (V74): notebooks 3.4–3.5 |
+| Closure | V75–V79 | Integrating exercise (V75), exit question (V79) |
 
-Self-attention gets one slide (V65); its full mechanics belong to Session 05.
+Self-attention gets one slide (V66); its full mechanics belong to Session 05.
 
 Slide numbers below are those of the current source. For pending figures, "after slide" is the slide the hidden comment sits on; each inserted figure shifts the later numbers by one.
 
@@ -59,19 +59,19 @@ Three routes, depending on what the figure must show:
 | **S03-F16** | V23 (slide) | Padding and stride: the same 6×6 input with (p, s) = (0, 1), (1, 1), (1, 2), output sizes from the formula | `s03_f16_padding_stride.png` | Script: `make_s03_f16_padding_stride.py` | Included |
 | **S03-F17** | V26 (slide) | Equivariance as a commuting square: conv(shift(x)) = shift(conv(x)), with the difference map | `s03_f17_equivariance.png` | Script: `make_s03_f17_equivariance.py` (same image and kernel as F03) | Included |
 | **S03-F18** | V28 (slide) | 2×2 max and average pooling on a 4×4 map and on the map shifted 1 px | `s03_f18_pooling.png` | Script: `make_s03_f18_pooling.py` | Included |
-| **S03-F20** | V31 | 1×1 convolution: the same $W \in \mathbb{R}^{C_\text{out} \times C_\text{in}}$ applied to the channel vector at every position | `s03_f20_one_by_one_conv.png` | Generator | Pending |
-| **S03-F19** | V39 | BatchNorm2d: one channel averaged over $N$, $H$, $W$, next to the BatchNorm1d column of S02-F23 | `s03_f19_batchnorm2d.png` | Generator | Pending |
-| **S03-F05** | V35 (slide) | CNN anatomy as tensor blocks, 3×32×32 → logits | `s03_f05_cnn_anatomy.png` | Generator | Included |
-| **S03-F15** | V38 (slide) | VGG-style block (plain, no shortcut) with shapes; two stacked 3×3 see 5×5 with 18C² < 25C² parameters | `s03_f15_vgg_block.png` | Generator | Included — see review note |
-| **S03-F06** | V42 (slide) | Feature hierarchy: first-layer kernels and top-activating patches per stage | `s03_f06_feature_hierarchy.png` | Script: `make_s03_figs_from_notebooks.py` (the two images of notebook 3.4, section 7) | Included |
-| **S03-F07** | V44 (slide) | ResNet basic block and downsampling block, with shapes | `s03_f07_resnet_blocks.png` | Generator | Included |
-| **S03-F08** | V51 (slide) | Pretrained backbone: general early features, specific late features, new head | `s03_f08_transfer_backbone.png` | Generator | Included |
-| **S03-F09** | V53 (slide) | From scratch, linear probe and fine-tuning: frozen vs trained layers | `s03_f09_transfer_strategies.png` | Generator | Included |
-| **S03-F10** | V58 (slide) | Validation accuracy vs images per class for the three strategies | `s03_f10_transfer_vs_data.png` | Script: `make_s03_figs_from_notebooks.py` (numbers from the saved outputs of notebook 3.4, section 4) | Included |
-| **S03-F11** | V66 (slide) | Attention of [CLS] in a pretrained ViT-B/16: last layer and attention rollout | `s03_f11_attention_map.png` | Script: `make_s03_figs_from_notebooks.py` (the image of notebook 3.5, section 6) | Included — see review note |
-| **S03-F12** | V69 (slide) | ViT architecture: patches, position, CLS, pre-norm blocks, head | `s03_f12_vit_architecture.png` | Generator | Included — see review note |
-| **S03-F13** | V71 (slide) | Spectrum of assumptions MLP → CNN → ViT against data needed | `s03_f13_inductive_bias_spectrum.png` | Generator | Included |
-| **S03-F14** | V77 (slide) | Summary: what one unit can see in the first layers of an MLP, a CNN and a ViT | `s03_f14_architecture_summary.png` | Generator + script: CNN panel redrawn by `fix_s03_f14_cnn_panel.py` | Included — see review note |
+| **S03-F20** | V32 (slide) | 1×1 convolution: the same $W \in \mathbb{R}^{C_\text{out} \times C_\text{in}}$ applied to the channel vector at every position | `s03_f20_one_by_one_conv.png` | Script: `make_s03_f20_one_by_one_conv.py` | Included — see review note |
+| **S03-F19** | V40 | BatchNorm2d: one channel averaged over $N$, $H$, $W$, next to the BatchNorm1d column of S02-F23 | `s03_f19_batchnorm2d.png` | Generator | Pending |
+| **S03-F05** | V36 (slide) | CNN anatomy as tensor blocks, 3×32×32 → logits | `s03_f05_cnn_anatomy.png` | Generator | Included |
+| **S03-F15** | V39 (slide) | VGG-style block (plain, no shortcut) with shapes; two stacked 3×3 see 5×5 with 18C² < 25C² parameters | `s03_f15_vgg_block.png` | Generator | Included — see review note |
+| **S03-F06** | V43 (slide) | Feature hierarchy: first-layer kernels and top-activating patches per stage | `s03_f06_feature_hierarchy.png` | Script: `make_s03_figs_from_notebooks.py` (the two images of notebook 3.4, section 7) | Included |
+| **S03-F07** | V45 (slide) | ResNet basic block and downsampling block, with shapes | `s03_f07_resnet_blocks.png` | Generator | Included |
+| **S03-F08** | V52 (slide) | Pretrained backbone: general early features, specific late features, new head | `s03_f08_transfer_backbone.png` | Generator | Included |
+| **S03-F09** | V54 (slide) | From scratch, linear probe and fine-tuning: frozen vs trained layers | `s03_f09_transfer_strategies.png` | Generator | Included |
+| **S03-F10** | V59 (slide) | Validation accuracy vs images per class for the three strategies | `s03_f10_transfer_vs_data.png` | Script: `make_s03_figs_from_notebooks.py` (numbers from the saved outputs of notebook 3.4, section 4) | Included |
+| **S03-F11** | V67 (slide) | Attention of [CLS] in a pretrained ViT-B/16: last layer and attention rollout | `s03_f11_attention_map.png` | Script: `make_s03_figs_from_notebooks.py` (the image of notebook 3.5, section 6) | Included — see review note |
+| **S03-F12** | V70 (slide) | ViT architecture: patches, position, CLS, pre-norm blocks, head | `s03_f12_vit_architecture.png` | Generator | Included — see review note |
+| **S03-F13** | V72 (slide) | Spectrum of assumptions MLP → CNN → ViT against data needed | `s03_f13_inductive_bias_spectrum.png` | Generator | Included |
+| **S03-F14** | V78 (slide) | Summary: what one unit can see in the first layers of an MLP, a CNN and a ViT | `s03_f14_architecture_summary.png` | Generator + script: CNN panel redrawn by `fix_s03_f14_cnn_panel.py` | Included — see review note |
 
 ## Planned animations (Manim)
 
@@ -82,16 +82,17 @@ Only concepts where motion changes understanding.
 | **S03-A01** | V14 | From dense to convolution | Dense → locally connected → shared: connections disappear, weights collapse to one kernel, parameter counter on screen (1 049 600 → 10 240 → 10) | `s03_a01_dense_to_conv.mp4` | Included |
 | **S03-A02** | V17 | A kernel sliding over an image | 3×3 kernel over a 6×6 integer image; products and sum written at each position; 4×4 feature map filling in | `s03_a02_kernel_sliding.mp4` | Included |
 | **S03-A03** | V30 | The receptive field grows with depth | One output unit; its input region highlighted layer by layer: three 3×3 layers with stride 1 (3, 5, 7), then with stride 2 (3, 7, 15) | `s03_a03_receptive_field.mp4` | Included |
-| **S03-A04** | V64 | From image to tokens | Image → 4×4 grid of patches → each patch flattened → same linear map → token sequence, plus positional embeddings | `s03_a04_patches_to_tokens.mp4` | Included |
+| **S03-A04** | V65 | From image to tokens | Image → 4×4 grid of patches → each patch flattened → same linear map → token sequence, plus positional embeddings | `s03_a04_patches_to_tokens.mp4` | Included |
 
 ## Review notes
 
+- **S03-F20:** the generated version drew the highlighted position as a column of pixels on the front face (several positions) instead of one cell going through all channels, which contradicts the point of the slide; it also read "+, b". Redrawn by `make_s03_f20_one_by_one_conv.py` with the same composition: depth is the channel axis, one 1 × 1 rod through 64 channels in, 16 out, two other positions in dashed gray using the same $W$.
 - **S03-F11:** the last-layer attention of [CLS] lands on a few background tokens (the attention sinks of Darcet et al., 2024), not on the object. Rollout spreads it: it covers the car and the front of the second truck, and stays scattered on the frog. The banner says so and does not claim that attention finds the object. Class names are re-typed in the script; if notebook 3.5 changes `idx`, update them.
 
 - **S03-F01:** channel shading does not follow the pixel values. The white background has value 1 in all three channels, so it should be the darkest cell in every grid; the image instead shades the leaf dark in R and B and the background light. The callout $(0.82, 0.41, 0.13)$ (from the prompt) is a reddish pixel, not a green leaf pixel. Structure, labels and shapes are correct. Usable as is; regeneration with the corrected prompt is optional.
 - **S03-F04:** a stray white "C" next to the G label on the input block was removed by cloning the green cell below it (the delivered PNG is 1671 px wide; harmless with `bg contain`). The dashed arrow to the kernel starts at the edge of the green block, not at the dashed window on the R face; acceptable.
-- **S03-F15:** left panel and parameter boxes are exact. In the receptive-field sketch the conv-1 unit fans down to a separate 3×3 patch and the 5×5 input grid is not connected to anything, so the 5×5 claim rests on the caption. Acceptable because S03-A03 (V27) already shows the growth with real connections; an optional 1-D redraw is in the prompt. V29 and V37 now state that padding does not change the receptive field, so the window labels read correctly.
-- **S03-F12:** architecture, pre-norm order, token count (197) and ViT-B/16 sizes are exact. The arrow from $W_E$ runs into the [CLS] bar, which suggests [CLS] is a projected patch; V68 now says it is a learned token. Delivered at 2:1 (1774 × 887), letterboxed by `bg contain`.
+- **S03-F15:** left panel and parameter boxes are exact. In the receptive-field sketch the conv-1 unit fans down to a separate 3×3 patch and the 5×5 input grid is not connected to anything, so the 5×5 claim rests on the caption. Acceptable because S03-A03 (V27) already shows the growth with real connections; an optional 1-D redraw is in the prompt. V29 and V38 now state that padding does not change the receptive field, so the window labels read correctly.
+- **S03-F12:** architecture, pre-norm order, token count (197) and ViT-B/16 sizes are exact. The arrow from $W_E$ runs into the [CLS] bar, which suggests [CLS] is a projected patch; V69 now says it is a learned token. Delivered at 2:1 (1774 × 887), letterboxed by `bg contain`.
 - **S03-F14:** the generated CNN panel drew a 4×3 grid labelled "3 × 3" and a 6×6 region labelled "5 × 5", off the input grid. That panel is redrawn on the grid by `fix_s03_f14_cnn_panel.py` from `s03_f14_architecture_summary_generated.png` (kept for reproducibility); MLP and ViT panels, header and captions are the generated ones.
 
 ## Animation sources
@@ -109,10 +110,9 @@ Render with `S01_VIDEO=1 manim -qh escenas_s03.py <Scene>` (Manim Community 0.22
 
 ## Core visual priorities
 
-1. **S03-F20** — 1×1 convolution (generator).
-2. **S03-F19** — BatchNorm2d (generator).
+1. **S03-F19** — BatchNorm2d (generator).
 
-Already included: S03-F01 to F18 and the four animations (S03-A01 to A04). Optional: regenerate S03-F01 and S03-F15 with the corrected prompts.
+Already included: S03-F01 to F18, S03-F20 and the four animations (S03-A01 to A04). Optional: regenerate S03-F01 and S03-F15 with the corrected prompts.
 
 ## Notes for slide integration
 

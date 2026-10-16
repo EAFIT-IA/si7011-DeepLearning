@@ -527,7 +527,15 @@ $$
 
 It is a small MLP applied to every pixel. It mixes channels and changes their number cheaply.
 
-<!-- Pending figure S03-F20 (full-slide figure after this slide): a 1×1 convolution as the same dense layer W ∈ R^{C_out × C_in} applied to the channel vector at every position; prompt in figure_prompts.md -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain A 1 by 1 convolution: at position i, j the 64 input channels form a rod through the input tensor; the same matrix W of size 16 by 64, plus b, maps it to the 16 output channels at the same position, and the same W is used at all 64 positions; 1040 parameters](../figures/s03_f20_one_by_one_conv.png)
+
+<!-- Script: make_s03_f20_one_by_one_conv.py. -->
 
 ---
 
