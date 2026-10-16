@@ -792,7 +792,15 @@ No training, no hyperparameters beyond $k$.
 
 It is also **retrieval**: "show me images like this one".
 
-<!-- Pending figure S04-F08 (full-slide figure after this slide): 5 query images and their 6 nearest training neighbors with SimCLR h, green frame same class, red other (notebook 4.5, section 2: recuperacion_simclr.npz) -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Five CIFAR-10 test queries and their six nearest training images by SimCLR similarity](../figures/s04_f08_knn_retrieval.png)
+
+<!-- Row 1: the 0.98 and 0.96 neighbors are near-copies of the query; CIFAR-10 has near-duplicates between train and test. Row 3: the frog finds birds and a car on green or diagonal shapes, color and pose over class. Rows 2 and 5: airplane/bird on plain sky and deer/horse confusions. -->
 
 ---
 

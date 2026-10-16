@@ -24,7 +24,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 
 ## Deck structure
 
-65 slides in five parts, each opened by a divider slide that recaps the previous part: 51 content slides, plus 10 figures and 4 animations already integrated. With the remaining figure (S04-F08, from notebook 4.5) the deck has **66 slides**, the numbering of [`../S04_plan.md`](../S04_plan.md).
+66 slides in five parts, each opened by a divider slide that recaps the previous part: 51 content slides, plus 11 figures and 4 animations already integrated. All figures are integrated; this is the numbering of [`../S04_plan.md`](../S04_plan.md).
 
 | Part | Slides | Practice |
 |---|---|---|
@@ -33,8 +33,8 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | 2 · Autoencoders | V14–V27 | Practice A (V27): notebooks 4.1–4.2 |
 | 3 · Masked prediction | V28–V36 | |
 | 4 · Contrastive learning | V37–V51 | |
-| 5 · Evaluating representations | V52–V60 | Practice B (V60): notebooks 4.4–4.5, 4.3 at home |
-| Closure | V61–V65 | Integrating exercise (V61), exit question (V65) |
+| 5 · Evaluating representations | V52–V61 | Practice B (V61): notebooks 4.4–4.5, 4.3 at home |
+| Closure | V62–V66 | Integrating exercise (V62), exit question (V66) |
 
 ## Production routes
 
@@ -53,10 +53,10 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | **S04-F05** | V40 | Eight CIFAR-10 images, each with two SimCLR views | `s04_f05_augmented_views.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.4, section 1: `vistas_ejemplo.npz`) | Included |
 | **S04-F06** | V42 | SimCLR: two views, shared $g$, $\mathbf h$, projection head $p$, $\mathbf u$, similarity; downstream path uses $\mathbf h$ | `s04_f06_simclr.png` | Generator + script: `fix_s04_f04_f06.py` | Included — see review note |
 | **S04-F07** | V45 | $2N\times 2N$ similarity matrix for $N=8$ from the trained checkpoint; diagonal masked, positives marked, one row read as softmax | `s04_f07_similarity_matrix.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.4, section 5: `similitud_n8.npz`) | Included |
-| **S04-F08** | V54 (after) | Retrieval: 5 query images and their 6 nearest neighbors with SimCLR $\mathbf h$ | `s04_f08_knn_retrieval.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.5, section 2: `recuperacion_simclr.npz`) | Pending |
-| **S04-F09** | V56 | Probe accuracy vs labels per class (1, 10, 100, 1000, 5000) for random, autoencoder, SimCLR and ImageNet encoders | `s04_f09_label_efficiency.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.5, section 4: `resultados_eficiencia.json`) | Included |
-| **S04-F10** | V58 | t-SNE of CIFAR-10 test embeddings: random $g$, autoencoder, SimCLR | `s04_f10_tsne_embeddings.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.5, section 5: `embeddings_test.npz`) | Included |
-| **S04-F11** | V64 | Summary: four objectives around one encoder $g$ and what each one keeps | `s04_f11_objectives_summary.png` | Generator | Included |
+| **S04-F08** | V55 | Retrieval: 5 query images and their 6 nearest neighbors with SimCLR $\mathbf h$ | `s04_f08_knn_retrieval.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.5, section 2: `recuperacion_simclr.npz`) | Included |
+| **S04-F09** | V57 | Probe accuracy vs labels per class (1, 10, 100, 1000, 5000) for random, autoencoder, SimCLR and ImageNet encoders | `s04_f09_label_efficiency.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.5, section 4: `resultados_eficiencia.json`) | Included |
+| **S04-F10** | V59 | t-SNE of CIFAR-10 test embeddings: random $g$, autoencoder, SimCLR | `s04_f10_tsne_embeddings.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.5, section 5: `embeddings_test.npz`) | Included |
+| **S04-F11** | V65 | Summary: four objectives around one encoder $g$ and what each one keeps | `s04_f11_objectives_summary.png` | Generator | Included |
 
 ## Review notes
 

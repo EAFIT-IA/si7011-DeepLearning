@@ -18,7 +18,7 @@ Slide numbers refer to the current deck, `../slides/S04_slides.marp.md`. Figures
 | S04-F02 | Autoencoder with a bottleneck | V16 | done |
 | S04-F04 | Masked autoencoder pipeline | V32 | done, patched by script |
 | S04-F06 | SimCLR: two views, shared encoder, projection head | V42 | done, patched by script |
-| S04-F11 | Four objectives, one encoder | V64 | done |
+| S04-F11 | Four objectives, one encoder | V65 | done |
 
 ## Common style block (prepend to every prompt)
 
@@ -125,7 +125,7 @@ Check: the two encoder boxes are identical and blue, joined by "shared weights";
 
 ---
 
-## S04-F11 · Four objectives, one encoder (done, slide 64)
+## S04-F11 · Four objectives, one encoder (done, slide 65)
 
 File: `s04_f11_objectives_summary.png`
 
