@@ -90,6 +90,13 @@ Why can deep networks be trained? Signal propagation, initialization, optimizers
 
 How does data structure shape the network? Images as tensors, convolution, receptive fields, CNNs and ResNet, transfer learning, and a first look at patches, attention and Vision Transformers. The integrating exercise asks whether ImageNet features help with satellite images (EuroSAT), with runs tracked in MLflow.
 
+## Session 04 — Representation Learning
+
+- [Slides (PDF) and animations](sessions/04_representation/slides/README.md)
+- [Notebooks: five worked examples and the integrating exercise](sessions/04_representation/notebooks/README.md)
+
+How can a network learn useful representations without labels? Autoencoders and the bottleneck, denoising, masked prediction, contrastive learning with SimCLR, and how to measure a representation with $k$-NN, a linear probe and label efficiency. The integrating exercise pretrains SimCLR on the EuroSAT images without their labels and compares it with ImageNet features when labels are few, with runs tracked in MLflow.
+
 ## Evaluation
 
 - [Evaluation strategy](course/evaluation_strategy.md) · [Evaluation Event 1 (S01–S02)](evaluations/event_1/README.md)
@@ -127,7 +134,7 @@ SI7011-DeepLearning/
 │   │   └── notebooks/
 │   ├── 02_deep_training/
 │   ├── 03_vision/
-│   ├── 04_representation_learning/
+│   ├── 04_representation/
 │   ├── 05_foundation_models/
 │   └── 06_adaptation_deployment/
 ├── evaluations/
