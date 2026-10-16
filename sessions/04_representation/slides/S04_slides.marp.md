@@ -178,6 +178,16 @@ A good $\mathbf h$ makes the task **easy for a simple model**.
 
 ---
 
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Two rings that no line separates in x become two bands separated by one line in h = (norm of x, angle of x)](../figures/s04_f14_change_of_coordinates.png)
+
+<!-- Here g is written by hand (polar coordinates). Self-supervised learning has to find a g like this without labels. -->
+
+---
+
 # What makes a representation useful
 
 - keeps the information the task needs;
@@ -325,6 +335,16 @@ Linear $g$ and $d$, trained with MSE, learn the subspace of the **top-$k$ princi
 Notebook 4.1, Fashion-MNIST, $k = 32$: same test error as PCA (0.015), 31 of 32 directions match.
 
 The only new ingredient of a deep autoencoder is the nonlinearity $\varphi$.
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain A linear autoencoder with k = 1 rotates its decoder direction onto the first principal component; on Fashion-MNIST with k = 32, 31 of 32 principal-angle cosines are near 1](../figures/s04_f15_linear_ae_pca.png)
+
+<!-- Left: 2-D toy, 400 gradient steps. Right: same training as notebook 4.1, section 3; numbers computed by make_s04_figuras_conceptos.py. -->
 
 ---
 
@@ -493,6 +513,16 @@ Before masking became the standard:
 - **inpaint** a missing square.
 
 Each worked a little, and each had **shortcuts**: low-level cues that solve the task without understanding the image.
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Rotation, jigsaw, colorization and inpainting on one CIFAR-10 image, each with its low-level shortcut](../figures/s04_f16_pretext_tasks.png)
+
+<!-- Rotation: Gidaris et al. 2018. Jigsaw: Noroozi and Favaro 2016 (they had to add gaps between tiles to block edge matching). Colorization: Zhang et al. 2016. Inpainting: Pathak et al. 2016. -->
 
 ---
 
@@ -725,6 +755,16 @@ Second question: $\tau = 0.05$ versus $\tau = 1.0$.
 
 ---
 
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Two crops of one image have nearly the same color histogram; matching views by histogram alone succeeds 89 percent of the time without color jitter and 21 percent with it](../figures/s04_f17_color_shortcut.png)
+
+<!-- Show after the class has answered. Same crop, flip and color jitter as notebook 4.4. Among 1 023 candidates in a real batch the histogram is weaker, but it is still a cheap cue the network finds first. -->
+
+---
+
 # Why a projection head?
 
 The loss makes $\mathbf u$ **invariant** to the augmentations, so $\mathbf u$ throws information away: color, orientation, position.
@@ -754,6 +794,16 @@ If every $\mathbf u$ is the same, the two views of an image always match.
 Methods **without** negatives (BYOL, DINO) prevent collapse with asymmetry: a second network updated slowly, and no gradient through one branch.
 
 Symptom to watch: the variance of $\mathbf h$ across a batch goes to zero.
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain A toy encoder trained with InfoNCE spreads its outputs over the circle; trained with positive pairs only, every input maps to the same point and the spread drops to zero](../figures/s04_f18_collapse.png)
+
+<!-- Toy shared encoder, same seed and steps for both losses. Positive pairs only: constant output is a perfect solution, and gradient descent finds it in about 50 steps. -->
 
 ---
 
@@ -791,6 +841,14 @@ CLIP is a **foundation model**: Session 05.
 | fine-tuning | everything | $g$ as a starting point |
 
 The same three strategies as Session 03, now applied to **our own** $g$.
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain k-NN, linear probe and fine-tuning on the same encoder g: what is frozen, what is trained, what each measures and costs](../figures/s04_f19_three_readings.png)
 
 ---
 
