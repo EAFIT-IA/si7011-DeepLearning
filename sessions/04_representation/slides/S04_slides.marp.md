@@ -829,7 +829,7 @@ Worked notebooks on CIFAR-10, GPU:
 
 At home: [4.3 · Masked prediction](../notebooks/sesion_04_3_masked_prediction.ipynb), a tiny MAE on Fashion-MNIST.
 
-> On Kaggle, add `pankrzysiu/cifar10-python` and `juanmartinezv4399/si7011-s04-simclr` with *Add Input*, and turn on the GPU.
+> On Kaggle, add the dataset `pankrzysiu/cifar10-python` and the model `juanmartinezv4399/si7011-s04-simclr` with *Add Input*, and turn on the GPU.
 
 ---
 

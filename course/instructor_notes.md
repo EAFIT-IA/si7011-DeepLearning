@@ -29,13 +29,17 @@ If an animation is added or renamed, update the table in that session's `slides/
 
 Open-in badges (Colab, Kaggle, Lightning) are inserted with `python tools/add_open_in_badges.py` from the repository root. The script also touches the S01 notebooks' cell ids; revert those if they were not meant to change.
 
-## S04: the SimCLR checkpoint dataset
+## S04: the SimCLR checkpoint model
 
-Notebooks 4.4 and 4.5 expect the Kaggle dataset **`juanmartinezv4399/si7011-s04-simclr`** (the handle is hard-coded as `CKPT_HANDLE` in both notebooks and in the notebooks README) with two files: `simclr_resnet18_cifar10.pt` and `simclr_sin_color.pt`. They are produced by [`s04_entrenar_simclr.ipynb`](s04_entrenar_simclr.ipynb), which copies the data, views, model and loss cells of notebook 4.4:
+Notebooks 4.4 and 4.5 load the SimCLR encoders from the **Kaggle model** [`juanmartinezv4399/si7011-s04-simclr`](https://www.kaggle.com/models/juanmartinezv4399/si7011-s04-simclr), framework/variation `pyTorch/default` (hard-coded as `CKPT_HANDLE` and `CKPT_VARIANTE` in both notebooks). On Kaggle students add it with *Add Input → Models*; the notebooks find the files anywhere under `/kaggle/input`. On Colab they download it with `kagglehub.model_download`.
 
-1. Open it on Kaggle (*File → Import notebook* from GitHub, or the import URL with this path). *Add Input* `pankrzysiu/cifar10-python`; *Settings → Accelerator* GPU.
+Files: `simclr_resnet18_cifar10.pt` (required by 4.4 and 4.5) and `simclr_sin_color.pt` (only section 6 of 4.4; without it, that section prints a notice and is skipped).
+
+To produce or redo them, use [`s04_entrenar_simclr.ipynb`](s04_entrenar_simclr.ipynb), which copies the data, views, model and loss cells of notebook 4.4:
+
+1. Open it on Kaggle; *Add Input* `pankrzysiu/cifar10-python`; *Settings → Accelerator* GPU.
 2. **Save Version → Save & Run All (Commit)**, so it runs in the background. After the first epoch it prints the estimated total time. Default: 30 epochs per file; lower `EPOCAS` if the estimate is too long.
 3. It saves `*_parcial.pt` every epoch and stops by itself before `MAX_HORAS` (11 h). If it stopped: new version, *Add Input → Your Work →* the previous version's output, *Save & Run All* again. It resumes where it stopped and copies finished files to the new output.
-4. When the last cell shows both files with their $k$-NN accuracy: *Output* tab of that version → **New Dataset** → `si7011-s04-simclr`, public.
+4. Download the finished `.pt` files from the *Output* tab and upload them as a **new version** of the model (same framework and variation), so the handle does not change.
 
 The S04 integrating-exercise solutions are not in the repository.
