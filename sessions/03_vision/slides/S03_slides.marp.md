@@ -639,7 +639,15 @@ $$
 
 `nn.BatchNorm2d(C)` has $2C$ learned parameters, whatever the image size.
 
-<!-- Pending figure S03-F19 (full-slide figure after this slide): which entries BatchNorm2d averages: one channel across N, H and W, next to the BatchNorm1d column of Session 02 (S02-F23); prompt in figure_prompts.md -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Left, Session 02 BatchNorm1d: in a batch-by-features matrix one feature column is normalized over the batch. Right, BatchNorm2d: four samples with three channels each; the same channel, c = 2, is normalized over N, H and W; mu_c = 1/(NHW) times the sum of x over n, i, j; 2C learned parameters](../figures/s03_f19_batchnorm2d.png)
+
+<!-- Generator figure; prompt in figure_prompts.md. -->
 
 ---
 

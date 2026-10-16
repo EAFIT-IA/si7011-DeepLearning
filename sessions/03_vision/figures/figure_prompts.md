@@ -19,13 +19,13 @@ Slide numbers refer to the current `../slides/S03_slides.marp.md`. Figures that 
 | S03-F20 | 1×1 convolution | V32 | done by script (`make_s03_f20_one_by_one_conv.py`); the generated version drew a pixel column |
 | S03-F05 | CNN anatomy as tensor blocks | V36 | done |
 | S03-F15 | VGG-style block and stacked 3×3 | V39 | done (optional redraw of right panel) |
-| S03-F19 | BatchNorm2d | V40 | **pending** |
-| S03-F07 | ResNet basic and downsampling blocks | V45 | done |
-| S03-F08 | Pretrained backbone and a new head | V52 | done |
-| S03-F09 | From scratch, linear probe, fine-tuning | V54 | done |
-| S03-F12 | Vision Transformer architecture | V70 | done |
-| S03-F13 | Inductive bias versus data | V72 | done |
-| S03-F14 | What one unit can see: MLP, CNN, ViT | V78 | done (CNN panel redrawn by script) |
+| S03-F19 | BatchNorm2d | V41 | done |
+| S03-F07 | ResNet basic and downsampling blocks | V46 | done |
+| S03-F08 | Pretrained backbone and a new head | V53 | done |
+| S03-F09 | From scratch, linear probe, fine-tuning | V55 | done |
+| S03-F12 | Vision Transformer architecture | V71 | done |
+| S03-F13 | Inductive bias versus data | V73 | done |
+| S03-F14 | What one unit can see: MLP, CNN, ViT | V79 | done (CNN panel redrawn by script) |
 
 ## Common style block (prepend to every prompt)
 
@@ -246,7 +246,7 @@ Check: the input and output have the same $8 \times 8$ spatial size; the highlig
 
 ---
 
-## S03-F19 · BatchNorm2d: which entries are averaged (pending, after slide 40)
+## S03-F19 · BatchNorm2d: which entries are averaged (done, slide 41)
 
 File: `s03_f19_batchnorm2d.png`
 
