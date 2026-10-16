@@ -24,7 +24,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 
 ## Deck structure
 
-74 slides in five parts, each opened by a divider slide that recaps the previous part: 51 content slides, plus 19 figures and 4 animations already integrated. All figures are integrated. [`../S04_plan.md`](../S04_plan.md) uses the 66-slide numbering, before F12–F19 were added.
+74 slides in five parts, each opened by a divider slide that recaps the previous part: 51 content slides, plus 19 figures and 4 animations already integrated. All figures are integrated. [`S04_plan.md`](../../../course/plans/S04_plan.md) uses the 66-slide numbering, before F12–F19 were added.
 
 | Part | Slides | Practice |
 |---|---|---|
