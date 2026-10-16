@@ -17,8 +17,8 @@ Slide numbers refer to the current deck, `../slides/S04_slides.marp.md`. Figures
 | S04-F01 | Supervised vs self-supervised pipeline | V09 | done (see review note in figures.md) |
 | S04-F02 | Autoencoder with a bottleneck | V16 | done |
 | S04-F04 | Masked autoencoder pipeline | V32 | done, patched by script |
-| S04-F06 | SimCLR: two views, shared encoder, projection head | V41 | done, patched by script |
-| S04-F11 | Four objectives, one encoder | V60 | done |
+| S04-F06 | SimCLR: two views, shared encoder, projection head | V42 | done, patched by script |
+| S04-F11 | Four objectives, one encoder | V62 | done |
 
 ## Common style block (prepend to every prompt)
 
@@ -102,7 +102,7 @@ Check: exactly 16 patches, exactly 4 visible at the stated positions; the encode
 
 ---
 
-## S04-F06 · SimCLR: two views, shared encoder, projection head (done, slide 41)
+## S04-F06 · SimCLR: two views, shared encoder, projection head (done, slide 42)
 
 File: `s04_f06_simclr.png`
 
@@ -125,7 +125,7 @@ Check: the two encoder boxes are identical and blue, joined by "shared weights";
 
 ---
 
-## S04-F11 · Four objectives, one encoder (done, slide 60)
+## S04-F11 · Four objectives, one encoder (done, slide 62)
 
 File: `s04_f11_objectives_summary.png`
 

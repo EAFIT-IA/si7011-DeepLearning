@@ -24,7 +24,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 
 ## Deck structure
 
-61 slides in five parts, each opened by a divider slide that recaps the previous part: 51 content slides, plus 6 figures and 4 animations already integrated. With the 5 remaining figures (all produced from notebooks 4.4 and 4.5) the deck has **66 slides**, the numbering of [`../S04_plan.md`](../S04_plan.md).
+63 slides in five parts, each opened by a divider slide that recaps the previous part: 51 content slides, plus 8 figures and 4 animations already integrated. With the 3 remaining figures (all produced from notebook 4.5) the deck has **66 slides**, the numbering of [`../S04_plan.md`](../S04_plan.md).
 
 | Part | Slides | Practice |
 |---|---|---|
@@ -32,9 +32,9 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | 1 · What is a representation? | V05–V13 | |
 | 2 · Autoencoders | V14–V27 | Practice A (V27): notebooks 4.1–4.2 |
 | 3 · Masked prediction | V28–V36 | |
-| 4 · Contrastive learning | V37–V49 | |
-| 5 · Evaluating representations | V50–V56 | Practice B (V56): notebooks 4.4–4.5, 4.3 at home |
-| Closure | V57–V61 | Integrating exercise (V57), exit question (V61) |
+| 4 · Contrastive learning | V37–V51 | |
+| 5 · Evaluating representations | V52–V58 | Practice B (V58): notebooks 4.4–4.5, 4.3 at home |
+| Closure | V59–V63 | Integrating exercise (V59), exit question (V63) |
 
 ## Production routes
 
@@ -50,13 +50,13 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | **S04-F02** | V16 | Autoencoder with shapes: 784 → 256 → $k$ → 256 → 784, bottleneck highlighted, loss | `s04_f02_autoencoder.png` | Generator | Included — see review note |
 | **S04-F03** | V21 | Reconstructions of the same 8 test images for $k$ = 2, 8, 32 and PCA with $k$ = 32, with test MSE and probe accuracy per row | `s04_f03_reconstructions_k.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.1, section 4: `resultados_ae.json`, `reconstrucciones_ae.npz`) | Included |
 | **S04-F04** | V32 | Masked autoencoder: 16 patches, 75 % masked, encoder on visible tokens only, mask tokens, light decoder, loss on masked patches | `s04_f04_mae_pipeline.png` | Generator + script: `fix_s04_f04_f06.py` | Included — see review note |
-| **S04-F05** | V39 (after) | Eight CIFAR-10 images, each with two SimCLR views | `s04_f05_augmented_views.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.4, section 1: `vistas_ejemplo.npz`) | Pending |
-| **S04-F06** | V41 | SimCLR: two views, shared $g$, $\mathbf h$, projection head $p$, $\mathbf u$, similarity; downstream path uses $\mathbf h$ | `s04_f06_simclr.png` | Generator + script: `fix_s04_f04_f06.py` | Included — see review note |
-| **S04-F07** | V43 (after) | $2N\times 2N$ similarity matrix for $N=8$ from the trained checkpoint; diagonal masked, positives marked, one row read as softmax | `s04_f07_similarity_matrix.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.4, section 5: `similitud_n8.npz`) | Pending |
-| **S04-F08** | V52 (after) | Retrieval: 5 query images and their 6 nearest neighbors with SimCLR $\mathbf h$ | `s04_f08_knn_retrieval.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.5, section 2: `recuperacion_simclr.npz`) | Pending |
-| **S04-F09** | V53 (after) | Probe accuracy vs labels per class (1, 10, 100, 1000, 5000) for random, autoencoder, SimCLR and ImageNet encoders | `s04_f09_label_efficiency.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.5, section 4: `resultados_eficiencia.json`) | Pending |
-| **S04-F10** | V54 (after) | t-SNE of CIFAR-10 test embeddings: random $g$, autoencoder, SimCLR | `s04_f10_tsne_embeddings.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.5, section 5: `embeddings_test.npz`) | Pending |
-| **S04-F11** | V60 | Summary: four objectives around one encoder $g$ and what each one keeps | `s04_f11_objectives_summary.png` | Generator | Included |
+| **S04-F05** | V40 | Eight CIFAR-10 images, each with two SimCLR views | `s04_f05_augmented_views.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.4, section 1: `vistas_ejemplo.npz`) | Included |
+| **S04-F06** | V42 | SimCLR: two views, shared $g$, $\mathbf h$, projection head $p$, $\mathbf u$, similarity; downstream path uses $\mathbf h$ | `s04_f06_simclr.png` | Generator + script: `fix_s04_f04_f06.py` | Included — see review note |
+| **S04-F07** | V45 | $2N\times 2N$ similarity matrix for $N=8$ from the trained checkpoint; diagonal masked, positives marked, one row read as softmax | `s04_f07_similarity_matrix.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.4, section 5: `similitud_n8.npz`) | Included |
+| **S04-F08** | V54 (after) | Retrieval: 5 query images and their 6 nearest neighbors with SimCLR $\mathbf h$ | `s04_f08_knn_retrieval.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.5, section 2: `recuperacion_simclr.npz`) | Pending |
+| **S04-F09** | V55 (after) | Probe accuracy vs labels per class (1, 10, 100, 1000, 5000) for random, autoencoder, SimCLR and ImageNet encoders | `s04_f09_label_efficiency.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.5, section 4: `resultados_eficiencia.json`) | Pending |
+| **S04-F10** | V56 (after) | t-SNE of CIFAR-10 test embeddings: random $g$, autoencoder, SimCLR | `s04_f10_tsne_embeddings.png` | Script `make_s04_figuras_notebooks.py` (notebook 4.5, section 5: `embeddings_test.npz`) | Pending |
+| **S04-F11** | V62 | Summary: four objectives around one encoder $g$ and what each one keeps | `s04_f11_objectives_summary.png` | Generator | Included |
 
 ## Review notes
 
@@ -91,7 +91,7 @@ Only concepts where motion changes understanding.
 | **S04-A01** | V20 | The latent space organizes itself | 2-D code of a Fashion-MNIST autoencoder (784 → 256 → 2 → 256 → 784, MSE, no labels) for 1 000 test images at 9 training steps (0 to 4 800): a shapeless cloud separates into groups. Points stay gray until the end; then colored by class, with "labels were never used" and the linear-probe accuracy on h (52 %). Data from `make_s04_a01_latent_snapshots.py` (same model as notebook 4.1, section 4) | `s04_a01_latent_space.mp4` | Included |
 | **S04-A02** | V25 | Denoising pulls points back to the data | Points on a 1-D curve in 2-D; noise σ = 0.45 pushes them off; arrows send each corrupted point to the best possible denoiser output $E[\mathbf x\mid\tilde{\mathbf x}]$, which lands near the curve but not on its own clean point; then the field $d(g(\tilde{\mathbf x}))-\tilde{\mathbf x}$ on a grid for σ = 0.45 and σ = 1.3. The field is the exact optimum that a trained denoising autoencoder approximates, computed in the scene | `s04_a02_denoising_manifold.mp4` | Included |
 | **S04-A03** | V33 | Masking in motion | The image of S03-A04 → 16 patches → 12 masked (visible patches as in S04-F04) → the large encoder takes only the 4 visible tokens → 16 slots (4 encoded + 12 [M]) → small decoder → output; loss outlined on the 12 masked patches only; decoder struck out at the end. The output is labeled as an illustration: biharmonic inpainting from the 4 visible patches stands in for a trained decoder | `s04_a03_masking.mp4` | Included |
-| **S04-A04** | V44 | Pull and push on the sphere | Unit circle; 6 images, 2 views each. Forces on one anchor (pull toward its other view, push from the negatives), then 200 steps of exact gradient descent on InfoNCE with τ = 0.2: J goes from 5.08 to 0.29, views merge and images spread out. Second half: one anchor and 10 negatives; bars with each negative's share of the push while τ goes from 1.0 to 0.1. On screen: the embeddings move directly, in SimCLR the gradient goes into g and p | `s04_a04_contrastive_sphere.mp4` | Included |
+| **S04-A04** | V46 | Pull and push on the sphere | Unit circle; 6 images, 2 views each. Forces on one anchor (pull toward its other view, push from the negatives), then 200 steps of exact gradient descent on InfoNCE with τ = 0.2: J goes from 5.08 to 0.29, views merge and images spread out. Second half: one anchor and 10 negatives; bars with each negative's share of the push while τ goes from 1.0 to 0.1. On screen: the embeddings move directly, in SimCLR the gradient goes into g and p | `s04_a04_contrastive_sphere.mp4` | Included |
 
 Render from this folder (posters are the last frame):
 

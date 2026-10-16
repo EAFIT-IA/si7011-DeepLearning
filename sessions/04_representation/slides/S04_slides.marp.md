@@ -611,7 +611,13 @@ The augmentations chosen are the **invariances learned**: whatever $\mathcal T$ 
 
 Session 03: augmentation encodes invariances. Here it is the **only** supervision.
 
-<!-- Pending figure S04-F05 (full-slide figure after this slide): eight CIFAR-10 images, each with two SimCLR views (notebook 4.4, section 1: vistas_ejemplo.npz) -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Eight CIFAR-10 images, each with two random SimCLR views: crops, flips, color changes and grayscale](../figures/s04_f05_augmented_views.png)
 
 ---
 
@@ -658,7 +664,13 @@ A classification over $2N - 1$ candidates, where the correct "class" is the othe
 
 The same softmax + cross-entropy as Session 01. At initialization, $L \approx \ln(2N - 1)$.
 
-<!-- Pending figure S04-F07 (full-slide figure after this slide): 2N × 2N similarity matrix for N = 8 from the trained checkpoint, positives marked, one row read as softmax (notebook 4.4, section 5: similitud_n8.npz) -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Similarity matrix of 16 views from the trained SimCLR model: the highest value in every row is the other view of the same image; one row read as a softmax](../figures/s04_f07_similarity_matrix.png)
 
 ---
 

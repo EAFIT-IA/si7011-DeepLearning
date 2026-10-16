@@ -104,6 +104,7 @@ def f07(d, fila=3):
         ax.add_patch(Rectangle((i - 0.5, i - 0.5), 1, 1, facecolor='#e5e8ec', edgecolor=GRAY, hatch='///', lw=0.5))
         j = (i + N) % n
         ax.add_patch(Rectangle((j - 0.5, i - 0.5), 1, 1, fill=False, edgecolor=ORANGE, lw=3))
+    ax.add_patch(Rectangle((-0.5, fila - 0.5), n, 1, fill=False, edgecolor=NAVY, lw=3, ls='--'))   # la fila del panel derecho
     ax.set_xticks([]); ax.set_yticks([])
     for k in range(n):                                     # miniaturas en los dos ejes
         for pos in [(k / n, -0.065, 1 / n, 0.06), (-0.065, 1 - (k + 1) / n, 0.06, 1 / n)]:
@@ -119,7 +120,7 @@ def f07(d, fila=3):
     bx.bar(range(len(cand)), p[cand], color=[ORANGE if k == pos else GRAY for k in cand])
     bx.set_xticks([]); bx.set_ylabel('softmax over the row', fontsize=16)
     bx.spines[['top', 'right']].set_visible(False)
-    bx.set_title(f'row $i = {fila}$: {n - 1} candidates', fontsize=18)
+    bx.set_title(f'dashed row ($i = {fila}$):\nsoftmax over its {n - 1} candidates', fontsize=18)
     for k_, k in enumerate(cand):
         t = bx.inset_axes([k_ / len(cand), -0.13, 1 / len(cand), 0.11]); t.imshow(np.clip(vistas[k], 0, 1)); t.axis('off')
     fig.text(0.84, 0.13, f'$L_i = -\\log p_{{i,j(i)}} = {-np.log(p[pos]):.2f}$', ha='center', fontsize=24, color=ORANGE)
