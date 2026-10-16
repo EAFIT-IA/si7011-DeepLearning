@@ -172,7 +172,7 @@ def f09(d):
         ys.append(min(finales[n], ys[-1] - 0.05))
     for n, yy in zip(orden, ys):
         ax.text(x[-1] * 1.3, yy, nombres[n], color=colores[n], fontsize=20, va='center', clip_on=False)
-    ax.axhline(0.1, color=NAVY, ls=':', lw=1.5); ax.text(x[0], 0.115, 'chance', fontsize=16, color=GRAY)
+    ax.axhline(0.1, color=NAVY, ls=':', lw=1.5); ax.text(x[-1], 0.065, 'chance', fontsize=16, color=GRAY, ha='right')
     ax.set_xscale('log'); ax.set_xticks(x, [str(k) for k in x]); ax.minorticks_off(); ax.set_ylim(0, 1)
     ax.set_xlabel('labels per class', fontsize=22); ax.set_ylabel('test accuracy (linear probe)', fontsize=22)
     ax.tick_params(labelsize=18); ax.spines[['top', 'right']].set_visible(False)
@@ -194,7 +194,8 @@ def f10(d):
         ax.set_title(t, fontsize=24); ax.set_xticks([]); ax.set_yticks([])
         for s in ax.spines.values(): s.set(color='#d5dae1')
     manijas = [plt.Line2D([], [], marker='o', ls='', color=PALETA_10[c], ms=11) for c in range(10)]
-    fig.legend(manijas, clases, loc='lower center', ncol=10, fontsize=17, frameon=False, bbox_to_anchor=(0.5, 0.04))
+    fig.legend(manijas, clases, loc='lower center', ncol=10, fontsize=16, frameon=False, bbox_to_anchor=(0.5, 0.04),
+               columnspacing=1.2, handletextpad=0.3)
     fig.text(0.985, 0.012, 't-SNE keeps neighbors, not distances', ha='right', fontsize=15, color=GRAY)
     guardar(fig, 's04_f10_tsne_embeddings.png')
 

@@ -247,7 +247,7 @@ Chance is 10 %.
 
 > What accuracy do you expect? Answer in notebook 4.5.
 
-<!-- Expected: well above chance. Random convolutional features already keep local color and edge statistics. -->
+<!-- Expected: well above chance. Random convolutional features already keep local color and edge statistics. Notebook 4.5 (Kaggle run): 0.43 with 5000 labels per class, 0.21 with 10. -->
 
 ---
 
@@ -806,7 +806,15 @@ Notebook 4.5: linear probe with 1, 10, 100, 1000 and 5000 labels per class, for 
 
 The gap at the **left** of the curve is the value of the unlabeled images.
 
-<!-- Pending figure S04-F09 (full-slide figure after this slide): probe accuracy vs labels per class (1, 10, 100, 1000, 5000) for random, autoencoder, SimCLR and ImageNet encoders (notebook 4.5, section 4: resultados_eficiencia.json) -->
+<!-- Notebook 4.5 (Kaggle run, mean of 3 seeds). 10 labels/class: random 0.21, autoencoder 0.25, SimCLR 0.66, ImageNet 0.66. 5000 labels/class: 0.43, 0.50, 0.84, 0.84. SimCLR saw 50 000 unlabeled CIFAR images; ImageNet used 1.2 M labels. -->
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Linear-probe accuracy versus labels per class for four encoders](../figures/s04_f09_label_efficiency.png)
 
 ---
 
@@ -820,7 +828,13 @@ t-SNE and UMAP keep **neighbors**, not distances.
 
 Use them to **look**. Use the probe and $k$-NN to **measure**.
 
-<!-- Pending figure S04-F10 (full-slide figure after this slide): t-SNE of 2 000 CIFAR-10 test embeddings for random g, autoencoder and SimCLR (notebook 4.5, section 5: embeddings_test.npz) -->
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain t-SNE of CIFAR-10 test embeddings for random, autoencoder and SimCLR encoders](../figures/s04_f10_tsne_embeddings.png)
 
 ---
 
