@@ -83,6 +83,13 @@ $$
 
 Why can deep networks be trained? Signal propagation, initialization, optimizers, normalization and regularization, residual learning and training diagnostics. The integrating exercise follows the data → training → deployment pipeline, with runs tracked in MLflow.
 
+## Session 03 — Architectures for Vision
+
+- [Slides (PDF) and animations](sessions/03_vision/slides/README.md)
+- [Notebooks: five worked examples and the integrating exercise](sessions/03_vision/notebooks/README.md)
+
+How does data structure shape the network? Images as tensors, convolution, receptive fields, CNNs and ResNet, transfer learning, and a first look at patches, attention and Vision Transformers. The integrating exercise asks whether ImageNet features help with satellite images (EuroSAT), with runs tracked in MLflow.
+
 ## Evaluation
 
 - [Evaluation strategy](course/evaluation_strategy.md) · [Evaluation Event 1 (S01–S02)](evaluations/event_1/README.md)
