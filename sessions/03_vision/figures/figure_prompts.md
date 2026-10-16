@@ -8,7 +8,7 @@
 4. Before delivering, check the image against the **review checklist** and the figure's own "Check" line. If any label, number or symbol differs from the prompt, regenerate.
 5. Do not edit the slides or `figures.md`; the course maintainer integrates each image after review.
 
-Slide numbers refer to the current `../slides/S03_slides.marp.md`. Figures that show real data or a real model (S03-F02, F03, F06, F10, F11) are **not** in this file: they are produced by scripts, see `figures.md`.
+Slide numbers refer to the current `../slides/S03_slides.marp.md`. Figures that show real data, a real model or computed numbers (S03-F02, F03, F06, F10, F11, F16, F17, F18) are **not** in this file: they are produced by scripts, see `figures.md`.
 
 ## Status
 
@@ -16,14 +16,16 @@ Slide numbers refer to the current `../slides/S03_slides.marp.md`. Figures that 
 |---|---|---:|---|
 | S03-F01 | Image as a C×H×W tensor | V07 | done (optional correction below) |
 | S03-F04 | Multichannel convolution | V21 | done |
-| S03-F05 | CNN anatomy as tensor blocks | V32 | done |
-| S03-F15 | VGG-style block and stacked 3×3 | V35 | done (optional redraw of right panel) |
-| S03-F07 | ResNet basic and downsampling blocks | V41 | done |
-| S03-F08 | Pretrained backbone and a new head | V48 | done |
-| S03-F09 | From scratch, linear probe, fine-tuning | V50 | done |
-| S03-F12 | Vision Transformer architecture | V65 | done |
-| S03-F13 | Inductive bias versus data | V67 | done |
-| S03-F14 | What one unit can see: MLP, CNN, ViT | V73 | done (CNN panel redrawn by script) |
+| S03-F20 | 1×1 convolution | V31 | **pending** |
+| S03-F05 | CNN anatomy as tensor blocks | V35 | done |
+| S03-F15 | VGG-style block and stacked 3×3 | V38 | done (optional redraw of right panel) |
+| S03-F19 | BatchNorm2d | V39 | **pending** |
+| S03-F07 | ResNet basic and downsampling blocks | V44 | done |
+| S03-F08 | Pretrained backbone and a new head | V51 | done |
+| S03-F09 | From scratch, linear probe, fine-tuning | V53 | done |
+| S03-F12 | Vision Transformer architecture | V69 | done |
+| S03-F13 | Inductive bias versus data | V71 | done |
+| S03-F14 | What one unit can see: MLP, CNN, ViT | V77 | done (CNN panel redrawn by script) |
 
 ## Common style block (prepend to every prompt)
 
@@ -222,3 +224,42 @@ Three columns with headers "MLP", "CNN", "ViT". In each column, the same $8 \tim
 Bottom banner across the three columns: "What each architecture assumes decides what it must learn from data."
 
 Check: the CNN regions are $3 \times 3$ and $5 \times 5$; the ViT has 16 patches; the MLP unit connects to all 64 cells.
+
+---
+
+## S03-F20 · 1×1 convolution (pending, after slide 31)
+
+File: `s03_f20_one_by_one_conv.png`
+
+Left to right, one row, in the tensor-block style of S03-F05 and S03-F04.
+
+1. **Input block**, light blue, drawn as a 3-D slab, labeled below "$a_l$: $64 \times 8 \times 8$". The depth axis is the channel axis, labeled "$C_\text{in} = 64$". On its front face an $8 \times 8$ grid. **One position** $(i, j)$, in the third row and fifth column, is highlighted as a thin orange rod that goes through the **whole depth** of the slab (all 64 channels), labeled "$x_{:,i,j}$, 64 numbers".
+2. An arrow from that rod to a **matrix box** labeled "$W \in \mathbb{R}^{16 \times 64}$" with "$+\,b$" beside it, and above it the equation "$y_{:,i,j} = W\,x_{:,i,j} + b$".
+3. An arrow from the matrix to the **output block**, light teal, labeled below "$a_{l+1}$: $16 \times 8 \times 8$", depth labeled "$C_\text{out} = 16$". The **same position** $(i, j)$ is highlighted as an orange rod through its 16 channels.
+4. Faint dashed gray arrows from two other positions of the input (for example the top-left and bottom-right cells) to the **same** matrix box and on to the matching positions of the output, with the gray note "the same $W$ at all $8 \times 8 = 64$ positions".
+
+Below the row, a parameter box: "parameters: $16 \cdot 64 + 16 = 1040$, whatever $H$ and $W$".
+
+Bottom banner: "A 1 × 1 convolution is a small dense layer applied to every pixel: it mixes channels, not positions."
+
+Check: the input and output have the same $8 \times 8$ spatial size; the highlighted rods sit at the same $(i, j)$; the rod spans all channels, not one; the matrix is $16 \times 64$ (output × input); 1040 parameters.
+
+---
+
+## S03-F19 · BatchNorm2d: which entries are averaged (pending, after slide 39)
+
+File: `s03_f19_batchnorm2d.png`
+
+Two panels side by side. The left one recalls Session 02 (S02-F23); the right one is new.
+
+**Left panel, gray header "Session 02 · BatchNorm1d":** a matrix drawn as a grid with 6 rows labeled "batch $N$" and 5 columns labeled "features". One **column** is filled orange, with a brace and the label "one feature: mean and variance over the batch".
+
+**Right panel, blue header "Session 03 · BatchNorm2d":** a row of $N = 4$ small 3-D tensor blocks labeled "sample 1", …, "sample 4", each with $C = 3$ slices along the depth axis, each slice a $4 \times 4$ grid ($H \times W$). In **every** sample the **same** slice, channel $c = 2$, is filled orange; the other slices are light gray. A bracket under the four blocks joins the four orange slices, labeled "one channel: mean and variance over $N$, $H$ and $W$". Under it the formula
+$$\mu_c = \frac{1}{NHW}\sum_{n,i,j} x_{n,c,i,j}$$
+and a small note "then $\hat x = (x - \mu_c)/\sqrt{\mathrm{var}_c + \epsilon}$, scaled by $\gamma_c$ and shifted by $\beta_c$".
+
+Bottom of the right panel, a small box: "learned parameters: $\gamma_c, \beta_c$ for each channel → $2C$, whatever the image size".
+
+Bottom banner across both panels: "In a CNN a channel plays the role of a feature: one detector, applied at every position, normalized as one."
+
+Check: the orange slice is the same channel in all four samples; the averaging set is $N \times H \times W = 4 \times 4 \times 4 = 64$ numbers per channel; the parameters are $2C$, with no $H$ or $W$; never write $\sigma$ for the standard deviation (use $\sqrt{\mathrm{var}_c + \epsilon}$).

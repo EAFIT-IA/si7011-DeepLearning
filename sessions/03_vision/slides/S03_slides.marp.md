@@ -408,6 +408,16 @@ $K=3,\ p=1,\ s=1$ keeps the size: the usual choice inside a block.
 
 ---
 
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain The same 6 by 6 input and 3 by 3 kernel with no padding (output 4 by 4), padding 1 (output 6 by 6) and padding 1 with stride 2 (output 3 by 3); the first two kernel positions and the output cells they produce are highlighted](../figures/s03_f16_padding_stride.png)
+
+<!-- Script: make_s03_f16_padding_stride.py. Output sizes from the formula on the previous slide. -->
+
+---
+
 # Prediction before experiment
 
 Input: $64 \times 32 \times 32$.
@@ -436,6 +446,16 @@ Equivariance is exact away from the borders, and stride breaks it partially.
 
 ---
 
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Commuting square: shifting the camera image 24 pixels and then convolving with a vertical-edge kernel gives the same feature map as convolving and then shifting; their difference is zero except next to the borders](../figures/s03_f17_equivariance.png)
+
+<!-- Script: make_s03_f17_equivariance.py (same image and kernel as S03-F03; zero padding 1). The script asserts the difference is exactly 0 away from the borders. -->
+
+---
+
 # Pooling
 
 Pooling summarizes a neighborhood with one number:
@@ -446,6 +466,16 @@ Pooling summarizes a neighborhood with one number:
 It halves the resolution and gives a small **invariance** to local shifts.
 
 Modern networks often replace pooling with a strided convolution.
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain 2 by 2 max and average pooling on a 4 by 4 feature map and on the same map shifted one pixel right: the max-pooled map is identical, three of the four averages change](../figures/s03_f18_pooling.png)
+
+<!-- Script: make_s03_f18_pooling.py. Every peak sits in an even column, so a 1-pixel shift keeps it inside its window; a shift across windows would change the max. -->
 
 ---
 
@@ -496,6 +526,8 @@ W \in \mathbb{R}^{C_\text{out} \times C_\text{in}}
 $$
 
 It is a small MLP applied to every pixel. It mixes channels and changes their number cheaply.
+
+<!-- Pending figure S03-F20 (full-slide figure after this slide): a 1×1 convolution as the same dense layer W ∈ R^{C_out × C_in} applied to the channel vector at every position; prompt in figure_prompts.md -->
 
 ---
 
@@ -598,6 +630,8 @@ $$
 $$
 
 `nn.BatchNorm2d(C)` has $2C$ learned parameters, whatever the image size.
+
+<!-- Pending figure S03-F19 (full-slide figure after this slide): which entries BatchNorm2d averages: one channel across N, H and W, next to the BatchNorm1d column of Session 02 (S02-F23); prompt in figure_prompts.md -->
 
 ---
 
