@@ -262,6 +262,16 @@ Same ResNet-18, different $J$ → different $\mathbf h$.
 
 ---
 
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain The three encoders of the notebooks with their tensor shapes and parameter counts: convolutional autoencoder, masked autoencoder and ResNet-18](../figures/s04_f12_architectures.png)
+
+<!-- Shapes and parameters measured on the notebook models (make_s04_f12_f13.py). In the ResNet-18, 75 % of the weights sit in stage 4. The MAE encoder sees 4 tokens in pretraining and 16 at probe time. -->
+
+---
+
 # Part 2 · Autoencoders
 
 1. What is a representation? — and how to measure one
@@ -894,6 +904,16 @@ At home: [4.3 · Masked prediction](../notebooks/sesion_04_3_masked_prediction.i
 | denoising | the structure of the data | a corruption | probe |
 | masked | how parts relate | a decoder, redundancy | fine-tuning |
 | contrastive | what augmentations do not change | good augmentations, many negatives | $k$-NN, probe |
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Compute cost: forward FLOPs per image for each encoder, and total pretraining FLOPs for each notebook run, with supervised ImageNet as reference](../figures/s04_f13_compute_costs.png)
+
+<!-- FLOPs counted with torch.utils.flop_counter on the notebook models; training = 3 × forward × images seen. MAE: 75 % masking halves the step (2.0× in FLOPs; 1.7× measured in notebook 4.3). The ResNet-18 at 32×32 costs ~500× the small encoders per image, and SimCLR pays it twice per image. FLOPs are not wall time: the SimCLR checkpoint took hours on a Kaggle GPU (data loading and augmentation). -->
 
 ---
 
