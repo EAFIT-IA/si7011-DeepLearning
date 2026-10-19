@@ -679,6 +679,8 @@ The neighbors are grouped by **polarity**, not by meaning: an adjective of prais
 
 An embedding is useful **for its task** (Session 04).
 
+Pretrained GloVe instead (notebook 5.4, section 9): *actor* → actress, comedian; *boring* → tedious, dull, funny. Neighbors by **meaning**. Frozen, with 101 trainable parameters: 75.3 %; fine-tuned: 85.9 %.
+
 ---
 
 <!-- _class: figure -->
