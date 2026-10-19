@@ -683,15 +683,13 @@ An embedding is useful **for its task** (Session 04).
 
 ---
 
-<div class="placeholder">
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-**S05-F07 · Nearest neighbors in the learned embedding**
+![bg contain Five nearest neighbors in the learned embedding for six words after training on IMDB sentiment: excellent sits with loved, great, best and superb; terrible with worse, worst and stupid; the neutral word actor gets neighbors with nothing in common](../figures/s05_f07_embedding_neighbors.png)
 
-Six query words and their five nearest neighbors in $E$ after training on IMDB.
-
-`../figures/s05_f07_embedding_neighbors.png` · route: script (notebook 5.4)
-
-</div>
+<!-- Notebook 5.4, section 8: E of the bag-of-embeddings model (d = 64, 20 002 tokens). Colour: sign of w·e_w in the output layer. -->
 
 ---
 
@@ -724,6 +722,14 @@ Answer in notebook 5.4.
 ---
 
 # When order matters
+
+Notebook 5.4, IMDB test set (25 000 reviews):
+
+| | accuracy | words shuffled |
+|---|---:|---:|
+| bag of embeddings | **85.4 %** | 85.4 % |
+| 1-D CNN | 84.1 % | 79.6 % |
+| LSTM (3 epochs) | 82.6 % | 80.7 % |
 
 Sentiment is close to a bag of words: which words appear says most of it.
 
