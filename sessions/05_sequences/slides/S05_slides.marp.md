@@ -575,7 +575,7 @@ Worked notebooks, one change per cell, GPU recommended:
 
 - [5.1 · Series and windows](../notebooks/sesion_05_1_series_ventanas.ipynb): the three leaks, shown and fixed; baseline; flattened MLP; 1-D CNN
 - [5.2 · RNN and BPTT](../notebooks/sesion_05_2_rnn_bptt.ipynb): the cell as a loop, gradient vs $t$, clipping, 1 day vs 5 days
-- [5.3 · LSTM and GRU](../notebooks/sesion_05_3_lstm_gru.ipynb): same windows, same plot, stacking, recurrent dropout
+- [5.3 · LSTM and GRU](../notebooks/sesion_05_3_lstm_gru.ipynb): the LSTM cell as a loop, same windows, the gradient plot for the three cells, 1 day vs 5 days, stacking
 
 > Keep one table: model, parameters, validation MAE, MAE minus baseline.
 
@@ -590,6 +590,16 @@ Worked notebooks, one change per cell, GPU recommended:
 5. Sequence to sequence — and the first form of attention
 
 > Part 3: an additive path keeps the signal over long windows. Now the steps are **words**.
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Gradient norm of the loss with respect to each input hour on Jena, log scale, for RNN, LSTM and GRU: the RNN falls in a straight line to exactly zero, while the LSTM and the GRU flatten out around one thousandth of the last hour](../figures/s05_f11_gradient_rnn_lstm_gru.png)
+
+<!-- Notebook 5.3, section 4. Validation MAE: RNN 2.33, LSTM 2.32, GRU 2.30 °C; LSTM with 1 day of input 2.30 °C. The gradient reaches five days back, but this task does not need it: the additive path matters when the task depends on the far past (Parts 4 and 5). -->
 
 ---
 

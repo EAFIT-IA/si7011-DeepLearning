@@ -6,7 +6,7 @@ Session 05 focuses on the question:
 
 > **How does a network remember the past?**
 
-Slide numbers are those of the current deck source, [`../slides/S05_slides.marp.md`](../slides/S05_slides.marp.md), which matches the 64-slide numbering of [`S05_plan.md`](../../../course/plans/S05_plan.md). Pending figures and animations are shown in the deck as dashed placeholder boxes with their ID and planned filename. To integrate a figure, replace the placeholder `<div class="placeholder">…</div>` with:
+Slide numbers are those of the current deck source, [`../slides/S05_slides.marp.md`](../slides/S05_slides.marp.md), which has 65 slides: the 64 of [`S05_plan.md`](../../../course/plans/S05_plan.md) plus F11 after the Part 4 divider (so slides from V36 on are one number higher than in the plan). Pending figures and animations are shown in the deck as dashed placeholder boxes with their ID and planned filename. To integrate a figure, replace the placeholder `<div class="placeholder">…</div>` with:
 
 ```markdown
 <!-- _class: figure -->
@@ -40,6 +40,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | **S05-F08** | V49 | Seq2seq with the single vector $\mathbf h_T$, on a date | `s05_f08_seq2seq.png` | Generator + script: `fix_s05_f08_seq2seq.py` (one input per decoder step) | Included |
 | **S05-F09** | V55 | Attention weights $\alpha_{\tau t}$ for three dates | `s05_f09_attention_alignment.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.5, section 6: `atencion_fechas.npz`) | Included |
 | **S05-F10** | V63 | Window, RNN, LSTM and attention: how much of step 1 reaches the prediction | `s05_f10_summary.png` | Generator + script: `fix_s05_f10_summary.py` (removes "T = 8"; RNN ribbon thin at step 1, thick at step 8, as F03) | Included |
+| **S05-F11** | V36 | $\lVert\partial L/\partial\mathbf x_t\rVert$ against $t$ for RNN, LSTM and GRU on Jena, log scale; hours where the RNN gradient is exactly 0 shaded | `s05_f11_gradient_rnn_lstm_gru.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.3, section 4: `gradiente_tiempo_lstm_gru.npz`) | Included |
 
 ### Script specifications
 

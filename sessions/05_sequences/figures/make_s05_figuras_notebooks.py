@@ -9,6 +9,7 @@ Run from this folder after running the notebooks:
 | F03    | gradiente_tiempo_rnn.npz   (notebook 5.2)              |
 | F07    | vecinos_embedding.json     (notebook 5.4)              |
 | F09    | atencion_fechas.npz        (notebook 5.5, section 6)   |
+| F11    | gradiente_tiempo_lstm_gru.npz (notebook 5.3, section 4) |
 
 A figure whose input file is missing is skipped with a notice.
 """
@@ -178,6 +179,32 @@ def f07():
     save(fig, 's05_f07_embedding_neighbors.png')
 
 
+# ---------------------------------------------------------------- F11 · gradient through time, RNN vs LSTM vs GRU
+def f11():
+    p = need('gradiente_tiempo_lstm_gru.npz')
+    if p is None:
+        return
+    z = np.load(p)
+    fig, ax = plt.subplots(figsize=(W, H))
+    fig.subplots_adjust(left=0.09, right=0.97, top=0.89, bottom=0.11)
+    T = len(z['g_rnn']); t = np.arange(1, T + 1)
+    for key, c, lab in (('g_rnn', BLUE, 'RNN'), ('g_lstm', ORANGE, 'LSTM'), ('g_gru', TEAL, 'GRU')):
+        g = z[key]
+        ax.semilogy(t, np.where(g > 0, g / g[-1], np.nan), color=c, lw=3.5, label=lab)
+    ceros = np.where(z['g_rnn'] == 0)[0]
+    if len(ceros):
+        ax.axvspan(0.5, ceros[-1] + 1.5, color=GRAY, alpha=0.15, lw=0)
+        ax.text((ceros[-1] + 2) / 2, 0.5, f'RNN: first {len(ceros)} hours\nexactly 0', transform=ax.get_xaxis_transform(),
+                ha='center', va='center', color=NAVY, fontsize=14)
+    ax.set_xlabel('hour $t$ of the window  (the prediction is made at $t = T$)')
+    ax.set_ylabel('$\\Vert \\partial L / \\partial \\mathbf{x}_t \\Vert$, relative to the last hour')
+    ax.set_xlim(1, T); ax.grid(alpha=0.3)
+    top = ax.secondary_xaxis('top', functions=(lambda x: T - x, lambda x: T - x))
+    top.set_xlabel('hours before the prediction', color=GRAY)
+    ax.legend(frameon=False, loc='lower right', fontsize=17)
+    save(fig, 's05_f11_gradient_rnn_lstm_gru.png')
+
+
 if __name__ == '__main__':
-    for f in (f02, f03, f07, f09):
+    for f in (f02, f03, f07, f09, f11):
         f()
