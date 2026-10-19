@@ -55,8 +55,8 @@ Conventions of `escenas_s02.py`–`escenas_s04.py`: slide palette, on-screen tex
 
 | ID | Slide | What it shows | Rendered file | Status |
 |---|---:|---|---|---|
-| **S05-A01** | V16 | The RNN cell rolled up, then unrolled over 8 steps with the same $W_{hh}$ highlighted at every step; the gradient flows back from step 8 and its arrow thins step by step | `s05_a01_unrolling_bptt.mp4` | Pending |
-| **S05-A02** | V29 | A value written into $\mathbf c_t$ at step 2, kept by $\mathbf f_t\approx 1$, read by $\mathbf o_t$ at step 7; the same input in a plain RNN fades | `s05_a02_lstm_memory.mp4` | Pending |
-| **S05-A03** | V53 | Decoding a date: scores over the input words, softmax into $\alpha_{\tau t}$, context $\mathbf a_\tau$, emitted character; the weight matrix of F09 fills row by row | `s05_a03_seq2seq_attention.mp4` | Pending |
+| **S05-A01** | V16 | The RNN cell rolled up, then unrolled over 8 steps with the same $W_{hh}$ highlighted at every step; the gradient flows back from step 8 and its arrow thins step by step | `s05_a01_unrolling_bptt.mp4` | Included |
+| **S05-A02** | V29 | A value written into $\mathbf c_t$ at step 2, kept by $\mathbf f_t\approx 1$, read by $\mathbf o_t$ at step 7; the same input in a plain RNN fades | `s05_a02_lstm_memory.mp4` | Included |
+| **S05-A03** | V53 | Decoding a date: scores over the input words, softmax into $\alpha_{\tau t}$, context $\mathbf a_\tau$, emitted character; the weight matrix of F09 fills row by row | `s05_a03_seq2seq_attention.mp4` | Included |
 
-The A03 weights should come from the notebook 5.5 run (`atencion_fechas.npz`), so the animation and F09 show the same matrix.
+A01 reads `gradiente_tiempo_rnn.npz` (notebook 5.2) and A03 reads `atencion_fechas.npz` (notebook 5.5), so the animations and F03/F09 show the same numbers. Render: `S01_VIDEO=1 manim -qh -o s05_a01_unrolling_bptt escenas_s05.py A01_UnrollingBPTT`, and the poster with `-s -o s05_a01_unrolling_bptt_poster`.

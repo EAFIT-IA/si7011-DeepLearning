@@ -294,15 +294,14 @@ Parameters do not depend on $T$.
 
 # Unrolling through time
 
-<div class="placeholder">
+<video controls preload="none" poster="../figures/s05_a01_unrolling_bptt_poster.png" aria-label="Unrolling through time">
+  <source src="../figures/s05_a01_unrolling_bptt.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s05_a01_unrolling_bptt_poster.png" alt="Static view of Unrolling through time">
 
-**S05-A01 · Unrolling and backpropagation through time**
+[Open animation](../figures/s05_a01_unrolling_bptt.mp4)
 
-The cell rolled up, then unrolled over 8 steps with the same $W_{hh}$ highlighted at every step; the gradient flows back from step 8 and its arrow thins step by step.
-
-`../figures/s05_a01_unrolling_bptt.mp4` · route: Manim (`escenas_s05.py`)
-
-</div>
+<!-- The cell rolled up, then unrolled over 8 steps with the same W_hh; the gradient flows back from step 8 and weakens step by step. Magnitudes: trained RNN of notebook 5.2, last 8 hours (1, 0.3, 0.1, … 0.01). -->
 
 ---
 
@@ -496,15 +495,14 @@ A gate is a **learned multiplier that depends on the input**. Common trick: forg
 
 # The memory in motion
 
-<div class="placeholder">
+<video controls preload="none" poster="../figures/s05_a02_lstm_memory_poster.png" aria-label="The memory in motion">
+  <source src="../figures/s05_a02_lstm_memory.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s05_a02_lstm_memory_poster.png" alt="Static view of The memory in motion">
 
-**S05-A02 · Writing, keeping and reading a memory**
+[Open animation](../figures/s05_a02_lstm_memory.mp4)
 
-A value written into $\mathbf c_t$ at step 2, kept by $\mathbf f_t \approx 1$, read by $\mathbf o_t$ at step 7. The same input in a plain RNN fades step after step.
-
-`../figures/s05_a02_lstm_memory.mp4` · route: Manim (`escenas_s05.py`)
-
-</div>
+<!-- A value enters at step 2. In the RNN it fades at every step; in the LSTM the input gate writes it into c_t, the forget gate (≈ 1) keeps it and the output gate reads it at step 7. Illustrative values. -->
 
 ---
 
@@ -829,15 +827,14 @@ The context $\mathbf a_\tau$ changes at every output step and enters the decoder
 
 # Attention in motion
 
-<div class="placeholder">
+<video controls preload="none" poster="../figures/s05_a03_seq2seq_attention_poster.png" aria-label="Attention in motion">
+  <source src="../figures/s05_a03_seq2seq_attention.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s05_a03_seq2seq_attention_poster.png" alt="Static view of Attention in motion">
 
-**S05-A03 · Decoding a date with attention**
+[Open animation](../figures/s05_a03_seq2seq_attention.mp4)
 
-At each output character: scores over the input words, softmax into $\alpha_{\tau t}$, the weighted sum $\mathbf a_\tau$, the emitted character. The matrix of weights fills row by row.
-
-`../figures/s05_a03_seq2seq_attention.mp4` · route: Manim (`escenas_s05.py`)
-
-</div>
+<!-- Decoding "el diecinueve de octubre de 2 0 2 6 en la sala dos" into 2026-10-19 with the weights of notebook 5.5 (the third panel of F09), row by row. -->
 
 ---
 
