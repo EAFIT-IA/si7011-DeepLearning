@@ -12,7 +12,7 @@ Notebooks 1, 2 and 3 use **Jena Climate**: 14 weather variables every 10 minutes
 | 2 | [RNN y retropropagación en el tiempo](sesion_05_2_rnn_bptt.ipynb) | ¿Hasta dónde llega el gradiente en una red recurrente? |
 | 3 | [LSTM y GRU](sesion_05_3_lstm_gru.ipynb) | ¿Qué cambia con un camino aditivo para la memoria, y cuándo sirve? |
 | 4 | [Texto y embeddings](sesion_05_4_texto_embeddings.ipynb) | Para el sentimiento de una reseña, ¿importa el orden de las palabras? |
-| 5 | [Seq2seq y atención](sesion_05_5_seq2seq_atencion.ipynb) | ¿Qué cabe en un solo vector, y qué cambia cuando el decodificador puede mirar atrás? |
+| 5 | [Seq2seq y atención](sesion_05_5_seq2seq_atencion.ipynb) · *opcional, en casa* | ¿Qué cabe en un solo vector, y qué cambia cuando el decodificador puede mirar atrás? |
 | 6 | [Ejercicio integrador: Bike Sharing](sesion_05_6_integrador_bike_sharing.ipynb) | ¿Cuántas horas adelante le gana tu red a la respuesta obvia? Cuatro TODOs, con MLflow |
 
 ## Open online

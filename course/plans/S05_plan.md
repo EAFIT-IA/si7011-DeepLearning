@@ -6,7 +6,7 @@
 
 Instructor planning document, same format as `S04_plan.md`. It fixes the deck structure, the content of each slide, the figures and animations, and the notebooks before anything is built. Conventions of Sessions 02–04: slides in English, notebooks in Spanish, five parts opened by divider slides that recap the previous part, one prediction-before-experiment slide per part, two practice blocks and an exit question. Folder: `sessions/05_sequences/`.
 
-**Status: draft.** Scope adopted (see [Course change](#course-change-adopted)); the decisions below are proposals.
+**Status: built.** Deck, figures, animations and notebooks 5.1–5.6 are in `sessions/05_sequences/`. Decisions below are adopted; measured results are in the notebook table.
 
 ## Course change (adopted)
 
@@ -28,12 +28,12 @@ Forward references updated in this branch: S02 slides (GELU, pre-norm block), no
 | S02–S04 | S02: depth as a product of Jacobians, residuals, gradient clipping, regularization. S03: weight sharing, 1-D thinking about receptive fields, the permutation test of notebook 3.5. S04: `nn.Embedding` as lookup (V08), self-supervision |
 | jdmartinev/si7011-deeplearning, `Lecture05` and `Lecture06` | Jena Climate notebooks (RNN, LSTM, GRU), Bike Sharing exercise, RNN lecture, text-preprocessing lecture. Details in [Reusable material](#reusable-material-from-jdmartinevsi7011-deeplearning) |
 
-## Decisions (proposals)
+## Decisions (adopted)
 
 1. **Two datasets, one per half.** Parts 1–3 use **Jena Climate** (temperature 24 h ahead from 14 variables every 10 min), already prepared in the old repo. Part 4 uses **IMDB** (50 000 English reviews, binary sentiment), because the sentiment of a review mostly depends on which words appear, which makes the word-order experiment informative. Part 5 uses a small synthetic task: Spanish sentences that contain a date in words ("el contrato se firmó el veintinueve de septiembre de mil novecientos noventa y ocho sin falta") converted to ISO format (`1998-09-29`). It trains in about a minute per model on CPU and its attention map is readable. Measured in notebook 5.5: without attention the decoder needs $d \approx 100$ (0.4 % exact at $d = 24$, 93 % at $d = 128$; between 48 and 96 the result depends on the seed); with attention $d = 24$ gives 100 %. Length is not what limits it here: trained on all lengths, the plain model does not degrade with length up to 27 words, and trained on short sentences only, the attention model extrapolates worse to longer ones.
 2. **Integrating exercise: Bike Sharing.** *How many hours ahead can you forecast bike demand better than the obvious baseline?* Hourly demand (UCI), the old exercise. Data contract, temporal split, windows without leakage, LSTM/GRU, multi-step horizon, MLflow, `forecast_raw`. Four TODOs as in S02–S04. S06 can come back to the same series with a zero-shot time-series foundation model (Chronos) and compare.
 3. **Attention ends the session, not the Transformer.** Part 5 introduces attention as the fix for the seq2seq bottleneck (Bahdanau, 2015). Self-attention, heads, masks and cost stay for S06. The last slide is the bridge: "what if we keep the attention and drop the recurrence?"
-4. **Homework.** Notebook 5.5 (seq2seq with attention) is short and could be in class; the proposal is to leave it as homework if Practice B runs long, since the slides show its result.
+4. **Homework.** Notebook 5.5 (seq2seq with attention) is an optional homework; the slides show its results. Practice B is notebook 5.4.
 
 ## Notation
 
@@ -61,7 +61,7 @@ Consistent with S01–S04 (φ is the activation, σ only the sigmoid, *L* the lo
 | 00:55–01:45 | Practice A | V34 · notebooks 5.1–5.3 |
 | 01:45–01:55 | Break | |
 | 01:55–02:50 | Theory B | Parts 4–5 (V35–V58) |
-| 02:50–03:45 | Practice B | V59 · notebooks 5.4–5.5 (5.5 at home if time runs out) |
+| 02:50–03:45 | Practice B | V59 · notebook 5.4 (5.5 optional, at home) |
 | 03:45–04:00 | Closure | V60–V64 |
 
 Theory A has more slides than in S04, but Part 1 is light (data handling the students already know from S02) and moves fast.
@@ -77,7 +77,7 @@ Theory A has more slides than in S04, but Part 1 is light (data handling the stu
 | 2 · Recurrence and its gradients | V14–V24 | |
 | 3 · Memory that lasts: LSTM and GRU | V25–V34 | Practice A (V34): notebooks 5.1–5.3 |
 | 4 · Text as a sequence | V35–V46 | |
-| 5 · Sequence to sequence and attention | V47–V59 | Practice B (V59): notebooks 5.4–5.5 |
+| 5 · Sequence to sequence and attention | V47–V59 | Practice B (V59): notebook 5.4; 5.5 optional at home |
 | Closure | V60–V64 | Integrating exercise (V60), exit question (V64) |
 
 Prediction-before-experiment slides: V12, V21, V31, V44, V56.
@@ -171,7 +171,7 @@ Prediction-before-experiment slides: V12, V21, V31, V44, V56.
 | V56 | Prediction before experiment | Dates in sentences: seq2seq without attention at $d = 128$ and $d = 24$, then with attention at $d = 24$. Which part of the date is lost first without attention? Does attention fix it at the same $d$? (notebook 5.5) | |
 | V57 | What attention changed | The decoder reads any input position directly: path length 1 instead of $T$. The weights are interpretable as an alignment, with care (S03 F11) | |
 | V58 | Keep the attention, drop the recurrence? | Recurrence is still sequential: step $t$ waits for $t-1$, training does not parallelize along $T$. If each step can look at every other step, is the recurrence needed? Bridge to S06 | |
-| V59 | Practice B — Text and seq2seq | Notebooks 5.4 and 5.5 | |
+| V59 | Practice B — Text and seq2seq | Notebook 5.4 in class; 5.5 optional at home | |
 
 ## Closure (V60–V64)
 
@@ -259,9 +259,11 @@ Concepts S05 adds, phrased as decisions to justify:
 - deciding from a shuffled-words experiment whether a task needs an order-aware model;
 - explaining the seq2seq bottleneck and what attention changes, from an accuracy-vs-length curve or an attention map.
 
-## Open questions for the instructor
+## Resolved and open questions
 
-1. Text dataset for 5.4: IMDB (English, standard) or a Spanish sentiment corpus? With Spanish, the shuffled-words result must be checked first.
-2. Seq2seq task for 5.5: Spanish dates in words → ISO (proposal), or something closer to a real use?
-3. Notebook 5.5 in class or at home.
-4. Evaluation Event 2 (S03–S04) is not yet in `evaluations/`. Does it need to be ready before S05?
+Resolved: 5.4 uses IMDB (English); 5.5 uses Spanish dates in words → ISO; 5.5 is an optional homework.
+
+Open:
+
+1. Kaggle handle for Bike Sharing (5.6 downloads the UCI zip meanwhile, so *Internet* must be on).
+2. Evaluation Event 2 (S03–S04) is not yet in `evaluations/`.

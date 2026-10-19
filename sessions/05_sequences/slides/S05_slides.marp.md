@@ -913,10 +913,10 @@ If every step can look at every other step directly…
 
 # Practice B — Text and sequence to sequence
 
-Worked notebooks:
+Worked notebook in class, and an optional one at home:
 
 - [5.4 · Text and embeddings](../notebooks/sesion_05_4_texto_embeddings.ipynb): vocabulary from train, padding and masks, bag of embeddings vs 1-D CNN vs LSTM, shuffled words, neighbors in $E$ · GPU
-- [5.5 · Seq2seq and attention](../notebooks/sesion_05_5_seq2seq_atencion.ipynb): dates in sentences → ISO, without attention at $d = 128$ and $d = 24$, with attention at $d = 24$, the attention map, how big $\mathbf h_T$ must be · CPU, ~7 min
+- *Optional, at home:* [5.5 · Seq2seq and attention](../notebooks/sesion_05_5_seq2seq_atencion.ipynb): dates in sentences → ISO, without attention at $d = 128$ and $d = 24$, with attention at $d = 24$, the attention map, how big $\mathbf h_T$ must be · CPU, ~7 min
 
 > Write down for each text model: parameters, test accuracy, accuracy with shuffled words.
 
