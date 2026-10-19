@@ -234,7 +234,7 @@ TODOs of 5.6, in the S03–S04 style (committed without solutions; the notebook 
 3. evaluation by horizon: MAE at 1, 6, 12 and 24 h against the baseline; at which horizon does the model stop paying off?
 4. `forecast_raw`, which loads the chosen model from MLflow, takes raw hourly records, rejects those that break the contract (gaps, wrong columns, out-of-range values) and returns the forecast.
 
-Data loading follows the S03–S04 pattern: Kaggle dataset with *Add Input*, `kagglehub` with `KAGGLE_API_TOKEN` on Colab, local `data/` on Lightning. Jena: Kaggle `mnassrib/jena-climate`. IMDB: Hugging Face `stanfordnlp/imdb` parquet. Bike Sharing: UCI zip (downloaded by the notebook if `hour.csv` is not in `data/` or a Kaggle input); Kaggle handle still to confirm.
+Data loading follows the S03–S04 pattern: Kaggle dataset with *Add Input*, `kagglehub` with `KAGGLE_API_TOKEN` on Colab, local `data/` on Lightning. Jena: Kaggle `mnassrib/jena-climate`. IMDB: Hugging Face `stanfordnlp/imdb` parquet. Bike Sharing: `hour.csv` downloaded by the notebook from Udacity's GitHub copy (`udacity/deep-learning-v2-pytorch`, byte-identical to UCI, checked by MD5), with the UCI zip as fallback; no Kaggle dataset needed.
 
 ---
 
@@ -259,10 +259,6 @@ Concepts S05 adds, phrased as decisions to justify:
 - deciding from a shuffled-words experiment whether a task needs an order-aware model;
 - explaining the seq2seq bottleneck and what attention changes, from an accuracy-vs-length curve or an attention map.
 
-## Resolved and open questions
+## Resolved questions
 
-Resolved: 5.4 uses IMDB (English); 5.5 uses Spanish dates in words → ISO; 5.5 is an optional homework.
-
-Open:
-
-1. Kaggle handle for Bike Sharing (5.6 downloads the UCI zip meanwhile, so *Internet* must be on).
+5.4 uses IMDB (English); 5.5 uses Spanish dates in words → ISO; 5.5 is an optional homework; 5.6 downloads Bike Sharing from GitHub (no Kaggle dataset).
