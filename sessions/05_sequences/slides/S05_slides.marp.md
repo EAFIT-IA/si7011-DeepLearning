@@ -537,13 +537,9 @@ Three blocks of weights instead of four: about **3/4** of the LSTM parameters. O
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain GRU cell: the hidden state runs as a straight orange line with one product and one sum; the update gate keeps one minus u of the old state and writes u times the candidate; the reset gate multiplies the old state inside the candidate](../figures/s05_f15_gru_cell.png)
 
-**S05-F15 · The GRU cell** · `s05_f15_gru_cell.png` · Generator (prompt in `figure_prompts.md`)
-
-The hidden state as the additive path: $\mathbf h_t = (1 - \mathbf u_t) \odot \mathbf h_{t-1} + \mathbf u_t \odot \tilde{\mathbf h}_t$, with the reset gate inside the candidate. Same style as F04.
-
-</div>
+<!-- Generated image, patched by fix_s05_f15_gru_cell.py: the generator sent the reset product into r_t; now r_t multiplies h_{t-1} and the result feeds the candidate. -->
 
 ---
 

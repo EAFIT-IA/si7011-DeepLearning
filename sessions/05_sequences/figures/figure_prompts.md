@@ -20,7 +20,7 @@ Slide numbers refer to the current deck, `../slides/S05_slides.marp.md`. Figures
 | S05-F06 | What each text model sees | V44 | replaced by script `make_s05_f06_three_text_models.py` |
 | S05-F08 | Sequence to sequence with one vector | V52 | done, patched by script |
 | S05-F10 | How each model reaches the past | V68 | done, patched by script |
-| S05-F15 | The GRU cell | V32 | **pending** |
+| S05-F15 | The GRU cell | V32 | done, patched by script |
 
 ## Common style block (prepend to every prompt)
 
@@ -138,7 +138,7 @@ Check: all four rows share the same 8-step axis; the RNN ribbon grows monotonica
 
 ---
 
-## S05-F15 · The GRU cell (pending, slide 32)
+## S05-F15 · The GRU cell (done, patched by script, slide 32)
 
 File: `s05_f15_gru_cell.png`
 

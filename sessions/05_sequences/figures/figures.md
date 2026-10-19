@@ -44,7 +44,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | **S05-F12** | V12 | Three ways to leak the future, drawn; below, leak 1 measured on Jena (shuffled split vs temporal split vs baseline, validation and future) | `s05_f12_three_leaks.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.1, section 6: `resultados_jena_51.json`); panel 2 schematic | Included |
 | **S05-F13** | V62 | Accuracy per output character of the date, seq2seq without attention at $d$ = 24 … 128 and with attention at $d = 24$ | `s05_f13_bottleneck_by_character.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.5: `resultados_seq2seq.json`) | Included |
 | **S05-F14** | V54 | Teacher forcing: what the decoder receives in training (true previous character) and at inference (its own) | `s05_f14_teacher_forcing.png` | Script `make_s05_f14_teacher_forcing.py` (drawn, no data) | Included |
-| **S05-F15** | V32 | The GRU cell, same style as F04: $\mathbf h_t$ as the additive path, reset gate inside the candidate | `s05_f15_gru_cell.png` | Generator ([prompt](figure_prompts.md)) | Pending (placeholder in the deck) |
+| **S05-F15** | V32 | The GRU cell, same style as F04: $\mathbf h_t$ as the additive path, reset gate inside the candidate | `s05_f15_gru_cell.png` | Generator + script: `fix_s05_f15_gru_cell.py` (reset gate rewired: $\mathbf r_t \odot \mathbf h_{t-1}$ feeds the candidate, not $\mathbf r_t$) | Included |
 
 ### Script specifications
 
