@@ -17,9 +17,9 @@ $$
 \rightarrow
 \text{represent}
 \rightarrow
-\text{pretrain}
+\text{remember}
 \rightarrow
-\text{adapt/evaluate/deploy}
+\text{pretrain/adapt}
 $$
 
 ## S01 — Learning
@@ -84,31 +84,28 @@ $$
 - self-supervised learning
 - linear probing
 
-## S05 — Sequences & Foundation Models
-### From recurrent memory to pretrained models
+## S05 — Sequences
+### How does a network remember the past?
 
-- RNNs
+- sequences as data: windows, temporal splits, leakage, baselines
+- RNNs and backpropagation through time
+- vanishing and exploding gradients, clipping
 - LSTM / GRU
-- attention
-- Transformers
-- pretraining
+- text as a sequence: tokens, vocabulary, embeddings, padding
+- sequence-to-sequence models
+- attention as the fix for the seq2seq bottleneck
+
+## S06 — Transformers & Foundation Models
+### From attention to pretrained models
+
+- self-attention: heads, causal masks, cost
+- the Transformer block
+- pretraining: next-token and masked prediction
 - scaling
 - foundation-model concept
-- vision, tabular and time-series foundation models
-
-## S06 — Adaptation, Evaluation & Deployment
-### From pretrained models to reliable applications
-
-- frozen feature extraction
-- fine-tuning
-- PEFT / LoRA
-- distillation
-- quantization
-- distribution shift
-- evaluation and calibration
-- latency and memory
-- inference pipelines
-- deployment and monitoring
+- vision, time-series and tabular foundation models
+- using a pretrained model: zero-shot, frozen features, fine-tuning
+- PEFT / LoRA (mentioned)
 
 ## Session format
 

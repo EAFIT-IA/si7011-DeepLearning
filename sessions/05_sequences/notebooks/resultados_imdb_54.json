@@ -1,0 +1,27 @@
+{
+ "bolsa": {
+  "test": 0.85448,
+  "test_barajado": 0.85448,
+  "parametros": 1280193
+ },
+ "cnn": {
+  "test": 0.84108,
+  "test_barajado": 0.79608,
+  "parametros": 1292545
+ },
+ "lstm": {
+  "test": 0.8258,
+  "test_barajado": 0.80712,
+  "parametros": 1313473
+ },
+ "glove_congelado": {
+  "test": 0.75292,
+  "test_barajado": 0.75292,
+  "parametros": 2000301
+ },
+ "glove_ajustado": {
+  "test": 0.85872,
+  "test_barajado": 0.85872,
+  "parametros": 2000301
+ }
+}

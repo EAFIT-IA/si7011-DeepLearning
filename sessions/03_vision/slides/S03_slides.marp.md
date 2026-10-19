@@ -952,7 +952,7 @@ $$
 
 Row $i$ of $X$ is token $t_i$. The weights depend on the **content**, not on a fixed neighborhood.
 
-The full mechanics — heads, masks, cost — come in **Session 05**.
+The full mechanics — heads, masks, cost — come in **Session 06**.
 
 ---
 
