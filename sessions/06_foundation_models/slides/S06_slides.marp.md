@@ -158,23 +158,54 @@ But the encoder is still an RNN:
 
 **Session 05:** the decoder state $\mathbf s_{\tau-1}$ asked; the encoder states $\mathbf h_t$ answered.
 
-**Now:** every token asks **every token of the same sequence**, itself included.
-
-Output $i$ is a weighted average of all tokens:
+**Now:** every token asks **every token of the same sequence**, itself included. The simplest version, with no parameters at all:
 
 $$
-\mathbf y_i = \sum_{j=1}^{T} A_{ij}\,\mathbf v_j,
+\omega_{ij} = \mathbf x_i^\top \mathbf x_j,
 \qquad
-\sum_j A_{ij} = 1
+A_{ij} = \operatorname{softmax}_j(\omega_{ij}),
+\qquad
+\mathbf y_i = \sum_{j=1}^{T} A_{ij}\,\mathbf x_j
 $$
 
-The weights $A_{ij}$ depend on the **content** of tokens $i$ and $j$, not on a fixed neighborhood (Session 03).
+Compare, normalize, average. The weights depend on the **content** of the tokens, not on a fixed neighborhood (Session 03).
+
+---
+
+# The same word, two meanings
+
+<div class="placeholder">
+
+**S06-F13 · The same word, two meanings**
+
+"banco" has the same embedding in "me senté en el banco" and "el banco cerró temprano"; after self-attention its two outputs differ: one is a bench, the other a bank.
+
+`../figures/s06_f13_same_word_two_meanings.png` · route: Generator (`figure_prompts.md`)
+
+</div>
+
+---
+
+# Attention without weights, for one token
+
+<div class="placeholder">
+
+**S06-F14 · Self-attention without weights**
+
+"banco" compares itself with every token ($\omega_{5j} = \mathbf x_5^\top\mathbf x_j$), the softmax turns the scores into weights, and the weights average the tokens. Without parameters, "banco" reads mostly itself (0.73).
+
+`../figures/s06_f14_attention_no_weights.png` · route: Generator (`figure_prompts.md`)
+
+</div>
 
 ---
 
 # Query, key, value
 
-Each token plays three roles, each with its own learned projection:
+Without parameters, $\mathbf x_i^\top\mathbf x_i$ is usually the largest score: each token mostly reads **itself**, and the similarity is the same for every task.
+
+
+Give each token three roles, each with its own **learned** projection:
 
 | Role | Matrix | Question it answers |
 |---|---|---|
@@ -185,6 +216,20 @@ Each token plays three roles, each with its own learned projection:
 Row $i$ of $X$ is token $\mathbf x_i$, as in Session 03.
 
 A **soft dictionary lookup**: compare the query with every key, return a mixture of the values.
+
+---
+
+# Query, key and value, for the same token
+
+<div class="placeholder">
+
+**S06-F15 · Query, key and value**
+
+The same three steps as the previous figure, now with $\mathbf q_5$, $\mathbf k_j$ and $\mathbf v_j$ from learned projections. "banco" now reads mostly "senté" (0.41).
+
+`../figures/s06_f15_query_key_value.png` · route: Generator (`figure_prompts.md`)
+
+</div>
 
 ---
 
@@ -341,6 +386,20 @@ Add a vector $\mathbf p_i$ for each position: $\ \mathbf x_i \leftarrow \mathbf 
 
 ---
 
+# Adding position
+
+<div class="placeholder">
+
+**S06-F16 · Adding position**
+
+Token vectors plus position vectors, column by column; without position, two orders of the same words give the same outputs, shuffled.
+
+`../figures/s06_f16_adding_position.png` · route: Generator (`figure_prompts.md`)
+
+</div>
+
+---
+
 # Masks and position, measured
 
 <div class="placeholder">
@@ -474,6 +533,20 @@ Tokens flow through one pre-norm block: LN → attention (tokens exchange inform
 
 ---
 
+# A whole GPT
+
+<div class="placeholder">
+
+**S06-F17 · A whole GPT, from token ids to probabilities**
+
+Token ids $(B,T)$ → embedding and position $(B,T,d)$ → $D$ blocks → LN → linear $W_U$ → logits $(B,T,\lvert V\rvert)$ → softmax over the vocabulary for the next token.
+
+`../figures/s06_f17_whole_gpt.png` · route: Generator (`figure_prompts.md`)
+
+</div>
+
+---
+
 # Counting parameters
 
 Per block, ignoring biases and LayerNorm:
@@ -563,7 +636,7 @@ The Session 02 recipe, with two emphases:
 - dropout on the attention weights and on each residual branch;
 - gradient clipping (Session 05).
 
-Warmup matters more than in a CNN: early Adam steps are large, and large updates to $W_Q, W_K$ can push the scores into the saturated softmax of V10.
+Warmup matters more than in a CNN: early Adam steps are large, and large updates to $W_Q, W_K$ can push the scores into the saturated softmax of V13.
 
 ---
 
@@ -657,6 +730,20 @@ Session 04: images need about 75 % masked, text only 15 %. A word is much harder
 
 ---
 
+# How BERT hides words
+
+<div class="placeholder">
+
+**S06-F18 · How BERT hides words**
+
+Choose 15 % of the tokens; replace 80 % of them with [MASK], 10 % with a random word, keep 10 %; the encoder reads both sides and is scored only on the chosen tokens.
+
+`../figures/s06_f18_bert_masking.png` · route: Generator (`figure_prompts.md`)
+
+</div>
+
+---
+
 # The causal mask makes training parallel
 
 One forward pass over a sequence of $T$ tokens gives **$T$ predictions** and **$T$ losses** at once, each one seeing only its own past.
@@ -669,6 +756,20 @@ loss = F.cross_entropy(
 ```
 
 **Training** is parallel along $T$. **Generation** is still one token at a time: the next input is the token just produced.
+
+---
+
+# Training vs generation
+
+<div class="placeholder">
+
+**S06-F19 · Training in parallel, generating one token at a time**
+
+Training: one pass over `<s> me senté en el banco`, six targets shifted by one, six losses at once under the causal mask. Generation: three steps, each one appending the token just produced.
+
+`../figures/s06_f19_training_vs_generation.png` · route: Generator (`figure_prompts.md`)
+
+</div>
 
 ---
 
@@ -997,9 +1098,9 @@ $$
 
 <div class="placeholder">
 
-**S06-F10 · LoRA**
+**S06-F10 · From fine-tuning to LoRA, in three steps**
 
-$\mathbf x$ goes through the frozen $W_0$ ($d\times d$) and, in parallel, through the thin trained factors $A_r$ ($r\times d$) and $B$ ($d\times r$); the two paths add.
+① fine-tuning updates $W$ with $\Delta W$ ($d^2$ values); ② the same written as two paths, $W_0\mathbf x + \Delta W\mathbf x$; ③ LoRA replaces $\Delta W$ with the thin factors $BA_r$ ($2dr$ values).
 
 `../figures/s06_f10_lora.png` · route: Generator (`figure_prompts.md`)
 

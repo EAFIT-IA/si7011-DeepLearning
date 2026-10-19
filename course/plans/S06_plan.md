@@ -29,17 +29,18 @@ S06 must keep these. Each row is a forward reference already in the slides or no
 
 | Where | What it promises | Kept in |
 |---|---|---|
-| S02 slides (GELU, line 360) | GELU is the default activation in Transformers | V22 |
-| S02 slides (LayerNorm, line 827) | LayerNorm is the standard choice in Transformers | V21 |
-| S02 slides (pre-norm residual, line 1110) | "The identity path stays clean; this is the Transformer block of S06" | V20–V21, A02 |
+| S02 slides (GELU, line 360) | GELU is the default activation in Transformers | V26 |
+| S02 slides (LayerNorm, line 827) | LayerNorm is the standard choice in Transformers | V25 |
+| S02 slides (pre-norm residual, line 1110) | "The identity path stays clean; this is the Transformer block of S06" | V24–V25, A02 |
 | S03 V-"Self-attention in one slide" | "The full mechanics — heads, masks, cost — come in Session 06" | Part 1 |
-| S03 positional embedding, permutation test | Attention is permutation-equivariant; position must be added | V15–V16, notebook 6.1 |
-| S04 V34 | BERT masks only 15 % of the words | V36 |
-| S04 V51 | CLIP is a foundation model | V48, notebook 6.4 |
-| S05 V36 (table) | Subwords (BPE): Session 06 | V33 |
-| S05 V54 | The scaled dot product is the one that survives | V08 |
+| S03 positional embedding, permutation test | Attention is permutation-equivariant; position must be added | V18–V20, notebook 6.1 |
+| S04 V34 | BERT masks only 15 % of the words | V41 |
+| V42 | *(figure)* | **S06-F18** | F18 |
+| S04 V51 | CLIP is a foundation model | V55, notebook 6.4 |
+| S05 V36 (table) | Subwords (BPE): Session 06 | V38 |
+| S05 V54 | The scaled dot product is the one that survives | V11 |
 | S05 V58 | "Is the recurrence still needed?" | V03–V04 |
-| S05 decision 2 | Return to Bike Sharing with a zero-shot time-series foundation model (Chronos) | V50, notebook 6.4 |
+| S05 decision 2 | Return to Bike Sharing with a zero-shot time-series foundation model (Chronos) | V57, notebook 6.4 |
 
 ## Sources
 
@@ -63,7 +64,7 @@ S06 must keep these. Each row is a forward reference already in the slides or no
 5. **LoRA gets one slide and one cell.** $W = W_0 + BA$ with rank $r$; the cell counts trainable parameters and trains for the same budget as full fine-tuning. No further PEFT methods.
 6. **Integrating exercise: fine-tune a language model to answer in a style (adopted).** Adapted from MIT 6.S191 Lab 3. The S06 question becomes: *is it enough to ask a pretrained LLM for the style in the prompt, or does it have to be fine-tuned?* Three conditions on the same test questions: base model, base model with the style requested in the prompt, LoRA. The training loop and the next-token loss are the ones of notebook 6.3; the new pieces are the chat template and the mask that keeps the loss on the answer. Changes from the MIT lab:
    - base model: a plain Transformer decoder that handles Spanish and fits a Kaggle T4 (proposal: Qwen2.5-0.5B-Instruct, to check license and time per step), instead of LFM2-1.2B, a hybrid of short convolutions and attention whose modules do not match the block of Part 2;
-   - metric: held-out masked NLL, computed with the loss of V64, as the graded number; the LLM judge (Gemini through OpenRouter) and Opik tracing become one optional cell (NVIDIA NIM free API), since they need accounts and keys;
+   - metric: held-out masked NLL, computed with the loss of V71, as the graded number; the LLM judge (Gemini through OpenRouter) and Opik tracing become one optional cell (NVIDIA NIM free API), since they need accounts and keys;
    - style: in Spanish, not Yoda (a protected character, and English). Proposal: the style of the corpus used in 6.3, so the tiny GPT trained from scratch and the adapted LLM can be read side by side. The styled answers are generated once offline (`course/s06_generar_estilo.ipynb`) and published as a Kaggle dataset, as MIT does with its `text_styles/*.txt`;
    - MLflow and a `responder_raw` function, as in the S02–S05 integrators.
 
@@ -97,32 +98,32 @@ Consistent with S01–S05 (φ is the activation, σ only the sigmoid, *L* the lo
 
 | Time | Block | Slides / notebooks |
 |---|---|---|
-| 00:00–00:55 | Theory A | Opening, Parts 1–2 (V01–V30) |
-| 00:55–01:45 | Practice A | V31 · notebooks 6.1–6.2 |
+| 00:00–00:55 | Theory A | Opening, Parts 1–2 (V01–V35) |
+| 00:55–01:45 | Practice A | V36 · notebooks 6.1–6.2 |
 | 01:45–01:55 | Break | |
-| 01:55–02:50 | Theory B | Parts 3–5 (V32–V69) |
-| 02:50–03:45 | Practice B | V70 · notebooks 6.3 and 6.5 (6.4 at home) |
-| 03:45–04:00 | Closure | V71–V75 |
+| 01:55–02:50 | Theory B | Parts 3–5 (V37–V76) |
+| 02:50–03:45 | Practice B | V77 · notebooks 6.3 and 6.5 (6.4 at home) |
+| 03:45–04:00 | Closure | V78–V82 |
 
 Theory A is dense but much of it is review: S03 showed the attention formula, S02 the block's parts, S05 the attention weights. Part 1 states what is new (heads, masks, cost) and moves on.
 
-Theory B now has 38 slides (V32–V69) because of the fine-tuning block V61–V66, which prepares the integrating exercise. If it runs long, V50 (time series and tables) and V53 (cost of size) can be cut to one line each, and V67 (comparing fairly) can move to the notebook.
+Theory B now has 40 slides (V37–V76) because of the fine-tuning block V68–V73, which prepares the integrating exercise. If it runs long, V57 (time series and tables) and V60 (cost of size) can be cut to one line each, and V74 (comparing fairly) can move to the notebook.
 
 ## Deck structure
 
-75 slides (S02 78, S03 75, S04 66, S05 64).
+82 slides (S02 78, S03 75, S04 66, S05 64). Seven of them (V07, V08, V10, V19, V29, V42, V44) are figure-only slides that walk through the architecture step by step, in the order the previous course used; they go fast.
 
 | Part | Slides | Practice |
 |---|---|---|
 | Opening | V01–V04 | |
-| 1 · Self-attention in full | V05–V18 | |
-| 2 · The Transformer block | V19–V31 | Practice A (V31): notebooks 6.1–6.2 |
-| 3 · Pretraining | V32–V42 | |
-| 4 · Scale and foundation models | V43–V53 | |
-| 5 · Using a pretrained model | V54–V70 | Practice B (V70): notebooks 6.3–6.5 |
-| Closure | V71–V75 | Integrating exercise (V71), exit question (V75) |
+| 1 · Self-attention in full | V05–V22 | |
+| 2 · The Transformer block | V23–V36 | Practice A (V36): notebooks 6.1–6.2 |
+| 3 · Pretraining | V37–V49 | |
+| 4 · Scale and foundation models | V50–V60 | |
+| 5 · Using a pretrained model | V61–V77 | Practice B (V77): notebooks 6.3–6.5 |
+| Closure | V78–V82 | Integrating exercise (V78), exit question (V82) |
 
-Prediction-before-experiment slides: V14, V28, V40, V52, V68.
+Prediction-before-experiment slides: V17, V33, V47, V59, V75.
 
 ---
 
@@ -135,107 +136,120 @@ Prediction-before-experiment slides: V14, V28, V40, V52, V68.
 | V03 | Where S05 left us | Seq2seq with attention: the decoder reads every encoder state directly. But the encoder is still an RNN: step $t$ waits for $t-1$, training does not parallelize along $T$, and the path between distant tokens is still long inside the encoder | |
 | V04 | The question for today | If every token can read every other token, do we need the recurrence at all? And once we have such a model, what happens when we train it on a lot of text? | |
 
-## Part 1 · Self-attention in full (V05–V18)
+## Part 1 · Self-attention in full (V05–V22)
 
 | # | Slide | Content | Visual |
 |---|---|---|---|
 | V05 | Part 1 · Self-attention | Divider. Recap of S05: attention as a per-step lookup from the decoder into the encoder | |
-| V06 | From cross-attention to self-attention | In S05 the decoder state asked and the encoder states answered. Now every token asks every token of the **same** sequence. Output $i$ is a weighted average of all tokens, with weights that depend on content | |
-| V07 | Query, key, value | Three roles for each token, three learned projections: $Q = XW_Q$, $K = XW_K$, $V = XW_V$. What I am looking for, what I offer to be found by, what I hand over. A soft dictionary lookup | |
-| V08 | Scaled dot-product attention | $\operatorname{Attention}(Q,K,V) = \operatorname{softmax}\!\big(QK^\top/\sqrt{d_k}\big)V$. The dot product of S05 V54, now in matrix form: one matrix product gives all $T^2$ scores at once | |
-| V09 | Self-attention in motion | **S06-A01** (media) | A01 |
-| V10 | Why divide by $\sqrt{d_k}$ | With unit-variance entries, $\mathbf q^\top\mathbf k$ has variance $d_k$. Large scores saturate the softmax: one weight near 1, gradients near 0. The same variance argument as initialization in S02 | |
-| V11 | Multi-head attention | $H$ heads of width $d_k = d/H$, each with its own $W_Q, W_K, W_V$; concatenate and project with $W_O$. Same cost as one wide head. Several relations at once, like several kernels in a conv layer (S03) | |
-| V12 | *(figure)* | **S06-F01** | F01 |
-| V13 | Masks | $A = \operatorname{softmax}(S + M)$ with $M_{ij} = -\infty$ where $i$ must not read $j$. **Padding mask**: ignore `[PAD]` tokens (S05 V39). **Causal mask**: token $i$ reads only $j \le i$, so the model cannot look at the future | |
-| V14 | Prediction before experiment | Shuffle the tokens of a sentence and feed them to a self-attention layer **without** positional information. What happens to the outputs? And with the causal mask on? Answer in notebook 6.1 | |
-| V15 | Order has to be added | Without position, attention is permutation-equivariant (S03 permutation test, S05 V44 shuffled words). Add $\mathbf p_i$ to each token: learned (S03, ViT) or sinusoidal (Vaswani et al., 2017). Modern LLMs rotate $Q$ and $K$ by position instead (RoPE): one line | |
-| V16 | *(figure)* | **S06-F02** | F02 |
-| V17 | The cost of attention | $T\times T$ scores per head per layer: time and memory grow as $T^2$. Doubling the context quadruples the attention cost. The price of path length 1. Measured in notebook 6.1 | |
-| V18 | Recurrence vs attention | Table: per-layer cost ($T d^2$ vs $T^2 d$), sequential steps ($T$ vs 1), longest path between two tokens ($T$ vs 1). Attention wins on parallelism and path; loses on long $T$ | |
+| V06 | From cross-attention to self-attention | Every token asks every token of the same sequence. First with no parameters: $\omega_{ij}=\mathbf x_i^\top\mathbf x_j$, softmax, weighted average of the $\mathbf x_j$ (the order of the previous course's lecture). Running example: "me senté en el banco" | |
+| V07 | *(figure)* | **S06-F13** | F13 |
+| V08 | *(figure)* | **S06-F14** | F14 |
+| V09 | Query, key, value | Without parameters each token mostly reads itself (F14: 0.73) and the similarity is fixed. Three learned projections: $Q = XW_Q$, $K = XW_K$, $V = XW_V$. What I am looking for, what I offer to be found by, what I hand over. A soft dictionary lookup | |
+| V10 | *(figure)* | **S06-F15** | F15 |
+| V11 | Scaled dot-product attention | $\operatorname{Attention}(Q,K,V) = \operatorname{softmax}\!\big(QK^\top/\sqrt{d_k}\big)V$. The dot product of S05 V54, now in matrix form: one matrix product gives all $T^2$ scores at once | |
+| V12 | Self-attention in motion | **S06-A01** (media) | A01 |
+| V13 | Why divide by $\sqrt{d_k}$ | With unit-variance entries, $\mathbf q^\top\mathbf k$ has variance $d_k$. Large scores saturate the softmax: one weight near 1, gradients near 0. The same variance argument as initialization in S02 | |
+| V14 | Multi-head attention | $H$ heads of width $d_k = d/H$, each with its own $W_Q, W_K, W_V$; concatenate and project with $W_O$. Same cost as one wide head. Several relations at once, like several kernels in a conv layer (S03) | |
+| V15 | *(figure)* | **S06-F01** | F01 |
+| V16 | Masks | $A = \operatorname{softmax}(S + M)$ with $M_{ij} = -\infty$ where $i$ must not read $j$. **Padding mask**: ignore `[PAD]` tokens (S05 V39). **Causal mask**: token $i$ reads only $j \le i$, so the model cannot look at the future | |
+| V17 | Prediction before experiment | Shuffle the tokens of a sentence and feed them to a self-attention layer **without** positional information. What happens to the outputs? And with the causal mask on? Answer in notebook 6.1 | |
+| V18 | Order has to be added | Without position, attention is permutation-equivariant (S03 permutation test, S05 V44 shuffled words). Add $\mathbf p_i$ to each token: learned (S03, ViT) or sinusoidal (Vaswani et al., 2017). Modern LLMs rotate $Q$ and $K$ by position instead (RoPE): one line | |
+| V19 | *(figure)* | **S06-F16** | F16 |
+| V20 | *(figure)* | **S06-F02** | F02 |
+| V21 | The cost of attention | $T\times T$ scores per head per layer: time and memory grow as $T^2$. Doubling the context quadruples the attention cost. The price of path length 1. Measured in notebook 6.1 | |
+| V22 | Recurrence vs attention | Table: per-layer cost ($T d^2$ vs $T^2 d$), sequential steps ($T$ vs 1), longest path between two tokens ($T$ vs 1). Attention wins on parallelism and path; loses on long $T$ | |
 
-## Part 2 · The Transformer block (V19–V31)
-
-| # | Slide | Content | Visual |
-|---|---|---|---|
-| V19 | Part 2 · The Transformer block | Divider. Recap: attention mixes tokens; by itself it is a weighted average, close to linear in $V$ | |
-| V20 | Two sublayers | $X \leftarrow X + \operatorname{MHA}(\operatorname{LN}(X))$, then $X \leftarrow X + \operatorname{MLP}(\operatorname{LN}(X))$. Attention mixes **across** tokens; the MLP transforms **each** token on its own. Everything else is from S02 | |
-| V21 | Pre-norm and the clean residual path | LayerNorm (S02: normalizes each token, not the batch) before each sublayer. The identity path stays clean from input to output, as promised in S02. Post-norm (the original paper) needs warmup to train deep | |
-| V22 | The MLP and GELU | $\operatorname{MLP}(\mathbf x) = W_2\,\varphi(W_1\mathbf x)$ with $W_1\in\mathbb R^{4d\times d}$ and φ = GELU (S02). Two thirds of the parameters of a block are here | |
-| V23 | *(figure)* | **S06-F03** | F03 |
-| V24 | The block in motion | **S06-A02** (media) | A02 |
-| V25 | Counting parameters | Per block: $4d^2$ (attention) $+ 8d^2$ (MLP) $= 12d^2$. Embedding: $|V|\cdot d$. GPT-2 small: $d = 768$, 12 blocks → about 85 M in blocks + 38 M embeddings. Computed in notebook 6.2 and checked with `sum(p.numel())` | |
-| V26 | Three architectures | **Encoder** (no mask; BERT, ViT): understand a whole input. **Decoder** (causal mask; GPT): generate. **Encoder-decoder** (cross-attention; original Transformer, T5): input → output sequence, the S05 seq2seq without recurrence | |
-| V27 | *(figure)* | **S06-F04** | F04 |
-| V28 | Prediction before experiment | The dates task of S05: a 2-layer Transformer encoder-decoder with $d = 64$ against the S05 RNN with attention. Which trains faster per epoch? Which reaches 100 % first? And without positional embeddings? (notebook 6.2) | |
-| V29 | Training a Transformer | AdamW, warmup then cosine decay (S02), dropout on attention weights and residuals, gradient clipping (S05). Warmup matters more here: early Adam steps with large updates can push attention into saturation | |
-| V30 | What the Transformer changed | No recurrence: all positions in parallel during training. Path length 1 between any two tokens. One block type for text, images (S03 ViT), audio, time series. What it costs: $T^2$ and no built-in notion of order or locality | |
-| V31 | Practice A — Attention and the block | Notebooks 6.1 and 6.2. What to compare, how long, what to write down | |
-
-## Part 3 · Pretraining (V32–V42)
+## Part 2 · The Transformer block (V23–V36)
 
 | # | Slide | Content | Visual |
 |---|---|---|---|
-| V32 | Part 3 · Pretraining | Divider. Recap: a block that scales well and fits any sequence. Recap of S04: unlabeled data can supervise itself | |
-| V33 | Subword tokens | Words: huge vocabulary, unknown words. Characters: long sequences, and $T^2$. **BPE**: start from bytes, merge the most frequent pair, repeat until $|V|$ merges. Frequent words are one token; rare words split into pieces. Trained in notebook 6.3 | |
-| V34 | *(figure)* | **S06-F05** | F05 |
-| V35 | Next-token prediction | $J(\theta) = -\sum_t \log p_\theta(w_t \mid w_{<t})$: a cross-entropy over the vocabulary at every position (S01). The labels are the text itself shifted by one: self-supervision (S04) | |
-| V36 | Masked prediction for text | BERT: mask 15 % of the tokens, predict them from both sides (S04 V34: images need 75 %, text 15 %). An encoder, not a generator. Good representations for classification; cannot generate left to right | |
-| V37 | The causal mask makes training parallel | One forward pass of a $T$-token sequence gives $T$ predictions and $T$ losses at once, each seeing only its past. Training is parallel; generation is still one token at a time | |
-| V38 | Generating text | **S06-A03** (media) | A03 |
-| V39 | Sampling | Greedy (argmax), temperature $\tau$ on the logits (S04 temperature, same role), top-$k$ / top-$p$. Low τ: repetitive; high τ: incoherent | |
-| V40 | Prediction before experiment | Tiny GPT trained on a Spanish novel. After 200 steps, after 2 000 steps, after the long checkpoint: what does a sample look like at each stage? Letters, words, syntax, meaning: which appears first? (notebook 6.3) | |
-| V41 | *(figure)* | **S06-F06** | F06 |
-| V42 | What pretraining learns | To predict the next token well, the model has to learn spelling, grammar, facts and some reasoning patterns present in the text. Nobody labels any of it. GPT-2 (2019): one pretrained model, many tasks without task-specific training | |
+| V23 | Part 2 · The Transformer block | Divider. Recap: attention mixes tokens; by itself it is a weighted average, close to linear in $V$ | |
+| V24 | Two sublayers | $X \leftarrow X + \operatorname{MHA}(\operatorname{LN}(X))$, then $X \leftarrow X + \operatorname{MLP}(\operatorname{LN}(X))$. Attention mixes **across** tokens; the MLP transforms **each** token on its own. Everything else is from S02 | |
+| V25 | Pre-norm and the clean residual path | LayerNorm (S02: normalizes each token, not the batch) before each sublayer. The identity path stays clean from input to output, as promised in S02. Post-norm (the original paper) needs warmup to train deep | |
+| V26 | The MLP and GELU | $\operatorname{MLP}(\mathbf x) = W_2\,\varphi(W_1\mathbf x)$ with $W_1\in\mathbb R^{4d\times d}$ and φ = GELU (S02). Two thirds of the parameters of a block are here | |
+| V27 | *(figure)* | **S06-F03** | F03 |
+| V28 | The block in motion | **S06-A02** (media) | A02 |
+| V29 | A whole GPT | **S06-F17**: token ids → embedding + position → $D$ blocks → LN → $W_U$ → softmax, with the shape at every stage. Before counting its parameters | F17 |
+| V30 | Counting parameters | Per block: $4d^2$ (attention) $+ 8d^2$ (MLP) $= 12d^2$. Embedding: $|V|\cdot d$. GPT-2 small: $d = 768$, 12 blocks → about 85 M in blocks + 38 M embeddings. Computed in notebook 6.2 and checked with `sum(p.numel())` | |
+| V31 | Three architectures | **Encoder** (no mask; BERT, ViT): understand a whole input. **Decoder** (causal mask; GPT): generate. **Encoder-decoder** (cross-attention; original Transformer, T5): input → output sequence, the S05 seq2seq without recurrence | |
+| V32 | *(figure)* | **S06-F04** | F04 |
+| V33 | Prediction before experiment | The dates task of S05: a 2-layer Transformer encoder-decoder with $d = 64$ against the S05 RNN with attention. Which trains faster per epoch? Which reaches 100 % first? And without positional embeddings? (notebook 6.2) | |
+| V34 | Training a Transformer | AdamW, warmup then cosine decay (S02), dropout on attention weights and residuals, gradient clipping (S05). Warmup matters more here: early Adam steps with large updates can push attention into saturation | |
+| V35 | What the Transformer changed | No recurrence: all positions in parallel during training. Path length 1 between any two tokens. One block type for text, images (S03 ViT), audio, time series. What it costs: $T^2$ and no built-in notion of order or locality | |
+| V36 | Practice A — Attention and the block | Notebooks 6.1 and 6.2. What to compare, how long, what to write down | |
 
-## Part 4 · Scale and foundation models (V43–V53)
-
-| # | Slide | Content | Visual |
-|---|---|---|---|
-| V43 | Part 4 · Scale and foundation models | Divider. Recap: next-token prediction turns any text into supervision | |
-| V44 | Scaling laws | Test loss falls as a power law in parameters $N$, data $D$ and compute $C$, over many orders of magnitude (Kaplan et al., 2020). Bigger is predictably better, not suddenly better | |
-| V45 | *(figure)* | **S06-F07** | F07 |
-| V46 | Compute-optimal training | $C \approx 6ND$. For a fixed $C$, grow $N$ and $D$ together: about 20 tokens per parameter (Hoffmann et al., 2022, Chinchilla). Many earlier large models were undertrained | |
-| V47 | What is a foundation model? | Trained on broad data at scale with self-supervision, then adapted to many downstream tasks (Bommasani et al., 2021). A training and use pattern, not an architecture: a Transformer is not a foundation model by itself | |
-| V48 | Beyond text: vision | CLIP (S04 V51): image and caption as a positive pair, 400 M pairs; **zero-shot classification** by comparing an image with the texts "a photo of a {class}". DINO and MAE (S04): vision backbones without labels | |
-| V49 | *(figure)* | **S06-F08** | F08 |
-| V50 | Beyond text: time series and tables | **Chronos**: scale and quantize a series into tokens, train a language model on many series, forecast by sampling. **TabPFN**: a Transformer pretrained on synthetic tables that predicts for a new small table in one forward pass. Both zero-shot | |
-| V51 | Zero-shot is a claim to check | A foundation model may never have seen data like yours: satellite bands, a hospital's bed occupancy, a factory's sensors. The baseline still has to be beaten (S05 commonsense baseline) | |
-| V52 | Prediction before experiment | EuroSAT: CLIP zero-shot vs CLIP features + linear probe vs the S04 SimCLR probe at 10 % of labels. Bike Sharing: Chronos zero-shot vs the S05 LSTM at 24 h. Which comes out ahead in each case? (notebook 6.4) | |
-| V53 | The cost of size | Training compute only the largest labs can pay; inference memory: parameters × bytes (a 7 B model in 16-bit is 14 GB). Most practitioners use foundation models, they do not train them. Bridge to Part 5 | |
-
-## Part 5 · Using a pretrained model (V54–V70)
+## Part 3 · Pretraining (V37–V49)
 
 | # | Slide | Content | Visual |
 |---|---|---|---|
-| V54 | Part 5 · Using a pretrained model | Divider. Recap: pretrained models exist for text, images, series and tables; the question is how to use one | |
-| V55 | Four ways to use it | Zero-shot (no training), frozen features + probe (train the head), fine-tuning (train everything), PEFT (train a few added parameters). The three transfer strategies of S03 V47 and S04 V53, plus one | |
-| V56 | *(figure)* | **S06-F09** | F09 |
-| V57 | Frozen features | Run the encoder once, cache $\mathbf h$ (the `[CLS]` token or the mean of the tokens), train a linear layer in seconds. Cheap, robust with few labels; limited by what pretraining put in $\mathbf h$ | |
-| V58 | Fine-tuning | All weights trainable, small learning rate ($10^{-5}$ to $5\cdot10^{-5}$), warmup, few epochs (the S03 fine-tuning recipe). Best when there are enough labels or the domain is far; costs memory for gradients and optimizer state of every weight | |
-| V59 | LoRA, in one slide | Freeze $W_0$, learn $\Delta W = BA_r$ with rank $r \ll d$: $2dr$ trainable values instead of $d^2$. For $d = 768$, $r = 8$: 2 % of the matrix. Merge after training, so inference costs nothing extra (Hu et al., 2021) | |
-| V60 | *(figure)* | **S06-F10** | F10 |
-| V61 | From a language model to an assistant | A pretrained LM continues text; it does not answer. Three stages: pretraining (Part 3), **supervised fine-tuning** on (question, answer) pairs, preference tuning (RLHF, DPO: one line). The **chat template** turns a pair into one token sequence with role markers. Fine-tuning a style is the SFT stage in miniature | |
-| V62 | The next-token loss, token by token | Logits $Z\in\mathbb R^{T\times|V|}$. Position $t$ predicts token $t+1$: compare `logits[:, :-1]` with `tokens[:, 1:]`. $L_t = -\log \operatorname{softmax}(\mathbf z_t)_{w_{t+1}}$, a cross-entropy over the vocabulary (S01). Worked example with 6 tokens: target, $p(\text{target})$, $L_t$ | |
-| V63 | The loss in motion | **S06-A04** (media) | A04 |
-| V64 | Loss only on the answer | Mask $m_t = 1$ if token $t+1$ belongs to the answer, $0$ for template and question: $J = \sum_t m_t L_t \big/ \sum_t m_t$. Without the mask the model also learns to predict the user's question, and the template tokens (nearly free to predict) dilute the gradient. Code: `F.cross_entropy(..., reduction="none")`, then `loss[mask].mean()` | |
-| V65 | *(figure)* | **S06-F12** | F12 |
-| V66 | Measuring a style | Held-out NLL: the same masked $J$ on test pairs, without gradients. $\exp(J)$ is the perplexity: "among how many tokens is the model choosing". Compare base, base with the style asked in the prompt, and LoRA, with the **same tokenizer** (NLL across tokenizers is not comparable). Optional: an LLM judge, which is cheaper to read and harder to trust | |
-| V67 | Comparing fairly | Same data split, same number of steps or the same compute, several seeds where cheap. Report trainable parameters, training time and memory next to accuracy. Data contract for text: tokenizer and maximum length are part of the model | |
-| V68 | Prediction before experiment | IMDB with 2 000 training reviews: S05 LSTM, frozen DistilBERT + probe, full fine-tuning, LoRA. Rank them by accuracy. Rank them by trainable parameters. Do the two rankings agree? (notebook 6.5) | |
-| V69 | When to use what | Few labels and a domain close to pretraining → frozen features. Enough labels or a distant domain → fine-tuning. Limited memory or many tasks → LoRA. No labels at all → zero-shot, checked against a baseline | |
-| V70 | Practice B — Pretraining and adaptation | Notebooks 6.3 and 6.5 in class; 6.4 at home | |
+| V37 | Part 3 · Pretraining | Divider. Recap: a block that scales well and fits any sequence. Recap of S04: unlabeled data can supervise itself | |
+| V38 | Subword tokens | Words: huge vocabulary, unknown words. Characters: long sequences, and $T^2$. **BPE**: start from bytes, merge the most frequent pair, repeat until $|V|$ merges. Frequent words are one token; rare words split into pieces. Trained in notebook 6.3 | |
+| V39 | *(figure)* | **S06-F05** | F05 |
+| V40 | Next-token prediction | $J(\theta) = -\sum_t \log p_\theta(w_t \mid w_{<t})$: a cross-entropy over the vocabulary at every position (S01). The labels are the text itself shifted by one: self-supervision (S04) | |
+| V41 | Masked prediction for text | BERT: mask 15 % of the tokens, predict them from both sides (S04 V34: images need 75 %, text 15 %). An encoder, not a generator. Good representations for classification; cannot generate left to right | |
+| V43 | The causal mask makes training parallel | One forward pass of a $T$-token sequence gives $T$ predictions and $T$ losses at once, each seeing only its past. Training is parallel; generation is still one token at a time | |
+| V44 | *(figure)* | **S06-F19** | F19 |
+| V45 | Generating text | **S06-A03** (media) | A03 |
+| V46 | Sampling | Greedy (argmax), temperature $\tau$ on the logits (S04 temperature, same role), top-$k$ / top-$p$. Low τ: repetitive; high τ: incoherent | |
+| V47 | Prediction before experiment | Tiny GPT trained on a Spanish novel. After 200 steps, after 2 000 steps, after the long checkpoint: what does a sample look like at each stage? Letters, words, syntax, meaning: which appears first? (notebook 6.3) | |
+| V48 | *(figure)* | **S06-F06** | F06 |
+| V49 | What pretraining learns | To predict the next token well, the model has to learn spelling, grammar, facts and some reasoning patterns present in the text. Nobody labels any of it. GPT-2 (2019): one pretrained model, many tasks without task-specific training | |
 
-## Closure (V71–V75)
+## Part 4 · Scale and foundation models (V50–V60)
 
 | # | Slide | Content | Visual |
 |---|---|---|---|
-| V71 | Integrating exercise — Is a foundation model worth it? | See decision 6. Four TODOs, as in S02–S05 | |
-| V72 | The course in six questions | learn → train → structure → represent → remember → pretrain / adapt. One line per session: the idea each one added to the loop $x \rightarrow f_\theta(x) \rightarrow L \rightarrow \nabla_\theta L \rightarrow \theta'$ | |
-| V73 | What each choice assumes | Format of S03 V69, S04 V64, S05 V62: "assumes" and "pays with". Attention assumes any token may matter (pays with $T^2$); pretraining assumes the pretraining data resembles yours; LoRA assumes the update is low rank | |
-| V74 | *(figure)* | **S06-F11** | F11 |
-| **S06-F12** | V65 | One chat example as tokens, colored by role (template, question, answer); bars with the per-token loss $L_t$ of the base model; masked positions greyed; the masked mean $J$ against the unmasked mean | `s06_f12_masked_loss.png` | Script (notebook 6.6, base model, before training) |
-| V75 | Exit question | A clinic has 800 labeled Spanish clinical notes (3 classes) and one 16 GB GPU. Choose two and justify: an LSTM trained from scratch; a multilingual encoder frozen + probe; full fine-tuning of the same encoder; LoRA on a 7 B decoder; ask a chat LLM zero-shot and compare with a baseline on a held-out set | |
+| V50 | Part 4 · Scale and foundation models | Divider. Recap: next-token prediction turns any text into supervision | |
+| V51 | Scaling laws | Test loss falls as a power law in parameters $N$, data $D$ and compute $C$, over many orders of magnitude (Kaplan et al., 2020). Bigger is predictably better, not suddenly better | |
+| V52 | *(figure)* | **S06-F07** | F07 |
+| V53 | Compute-optimal training | $C \approx 6ND$. For a fixed $C$, grow $N$ and $D$ together: about 20 tokens per parameter (Hoffmann et al., 2022, Chinchilla). Many earlier large models were undertrained | |
+| V54 | What is a foundation model? | Trained on broad data at scale with self-supervision, then adapted to many downstream tasks (Bommasani et al., 2021). A training and use pattern, not an architecture: a Transformer is not a foundation model by itself | |
+| V55 | Beyond text: vision | CLIP (S04 V51): image and caption as a positive pair, 400 M pairs; **zero-shot classification** by comparing an image with the texts "a photo of a {class}". DINO and MAE (S04): vision backbones without labels | |
+| V56 | *(figure)* | **S06-F08** | F08 |
+| V57 | Beyond text: time series and tables | **Chronos**: scale and quantize a series into tokens, train a language model on many series, forecast by sampling. **TabPFN**: a Transformer pretrained on synthetic tables that predicts for a new small table in one forward pass. Both zero-shot | |
+| V58 | Zero-shot is a claim to check | A foundation model may never have seen data like yours: satellite bands, a hospital's bed occupancy, a factory's sensors. The baseline still has to be beaten (S05 commonsense baseline) | |
+| V59 | Prediction before experiment | EuroSAT: CLIP zero-shot vs CLIP features + linear probe vs the S04 SimCLR probe at 10 % of labels. Bike Sharing: Chronos zero-shot vs the S05 LSTM at 24 h. Which comes out ahead in each case? (notebook 6.4) | |
+| V60 | The cost of size | Training compute only the largest labs can pay; inference memory: parameters × bytes (a 7 B model in 16-bit is 14 GB). Most practitioners use foundation models, they do not train them. Bridge to Part 5 | |
+
+## Part 5 · Using a pretrained model (V61–V77)
+
+| # | Slide | Content | Visual |
+|---|---|---|---|
+| V61 | Part 5 · Using a pretrained model | Divider. Recap: pretrained models exist for text, images, series and tables; the question is how to use one | |
+| V62 | Four ways to use it | Zero-shot (no training), frozen features + probe (train the head), fine-tuning (train everything), PEFT (train a few added parameters). The three transfer strategies of S03 V47 and S04 V53, plus one | |
+| V63 | *(figure)* | **S06-F09** | F09 |
+| V64 | Frozen features | Run the encoder once, cache $\mathbf h$ (the `[CLS]` token or the mean of the tokens), train a linear layer in seconds. Cheap, robust with few labels; limited by what pretraining put in $\mathbf h$ | |
+| V65 | Fine-tuning | All weights trainable, small learning rate ($10^{-5}$ to $5\cdot10^{-5}$), warmup, few epochs (the S03 fine-tuning recipe). Best when there are enough labels or the domain is far; costs memory for gradients and optimizer state of every weight | |
+| V66 | LoRA, in one slide | Freeze $W_0$, learn $\Delta W = BA_r$ with rank $r \ll d$: $2dr$ trainable values instead of $d^2$. For $d = 768$, $r = 8$: 2 % of the matrix. Merge after training, so inference costs nothing extra (Hu et al., 2021) | |
+| V67 | *(figure)* | **S06-F10** | F10 |
+| V68 | From a language model to an assistant | A pretrained LM continues text; it does not answer. Three stages: pretraining (Part 3), **supervised fine-tuning** on (question, answer) pairs, preference tuning (RLHF, DPO: one line). The **chat template** turns a pair into one token sequence with role markers. Fine-tuning a style is the SFT stage in miniature | |
+| V69 | The next-token loss, token by token | Logits $Z\in\mathbb R^{T\times|V|}$. Position $t$ predicts token $t+1$: compare `logits[:, :-1]` with `tokens[:, 1:]`. $L_t = -\log \operatorname{softmax}(\mathbf z_t)_{w_{t+1}}$, a cross-entropy over the vocabulary (S01). Worked example with 6 tokens: target, $p(\text{target})$, $L_t$ | |
+| V70 | The loss in motion | **S06-A04** (media) | A04 |
+| V71 | Loss only on the answer | Mask $m_t = 1$ if token $t+1$ belongs to the answer, $0$ for template and question: $J = \sum_t m_t L_t \big/ \sum_t m_t$. Without the mask the model also learns to predict the user's question, and the template tokens (nearly free to predict) dilute the gradient. Code: `F.cross_entropy(..., reduction="none")`, then `loss[mask].mean()` | |
+| V72 | *(figure)* | **S06-F12** | F12 |
+| **S06-F13** | V07 | "banco" with the same embedding in two sentences and two different outputs after self-attention | `s06_f13_same_word_two_meanings.png` | Generator |
+| **S06-F14** | V08 | Self-attention without weights for one token: scores, softmax, weighted average (banco reads itself, 0.73) | `s06_f14_attention_no_weights.png` | Generator |
+| **S06-F15** | V10 | The same three steps with $\mathbf q, \mathbf k, \mathbf v$ (banco reads "senté", 0.41); same layout as F14 | `s06_f15_query_key_value.png` | Generator |
+| **S06-F16** | V19 | $\mathbf x_i + \mathbf p_i$ column by column; two orders with and without position | `s06_f16_adding_position.png` | Generator |
+| **S06-F17** | V29 | A whole GPT with shapes, from token ids to next-token probabilities | `s06_f17_whole_gpt.png` | Generator |
+| **S06-F18** | V42 | BERT masking: 15 % chosen, 80/10/10, both-side context, loss on the chosen token | `s06_f18_bert_masking.png` | Generator |
+| **S06-F19** | V44 | Training (one pass, shifted targets, causal mask) vs generation (three growing steps) | `s06_f19_training_vs_generation.png` | Generator |
+| V73 | Measuring a style | Held-out NLL: the same masked $J$ on test pairs, without gradients. $\exp(J)$ is the perplexity: "among how many tokens is the model choosing". Compare base, base with the style asked in the prompt, and LoRA, with the **same tokenizer** (NLL across tokenizers is not comparable). Optional: an LLM judge, which is cheaper to read and harder to trust | |
+| V74 | Comparing fairly | Same data split, same number of steps or the same compute, several seeds where cheap. Report trainable parameters, training time and memory next to accuracy. Data contract for text: tokenizer and maximum length are part of the model | |
+| V75 | Prediction before experiment | IMDB with 2 000 training reviews: S05 LSTM, frozen DistilBERT + probe, full fine-tuning, LoRA. Rank them by accuracy. Rank them by trainable parameters. Do the two rankings agree? (notebook 6.5) | |
+| V76 | When to use what | Few labels and a domain close to pretraining → frozen features. Enough labels or a distant domain → fine-tuning. Limited memory or many tasks → LoRA. No labels at all → zero-shot, checked against a baseline | |
+| V77 | Practice B — Pretraining and adaptation | Notebooks 6.3 and 6.5 in class; 6.4 at home | |
+
+## Closure (V78–V82)
+
+| # | Slide | Content | Visual |
+|---|---|---|---|
+| V78 | Integrating exercise — Is a foundation model worth it? | See decision 6. Four TODOs, as in S02–S05 | |
+| V79 | The course in six questions | learn → train → structure → represent → remember → pretrain / adapt. One line per session: the idea each one added to the loop $x \rightarrow f_\theta(x) \rightarrow L \rightarrow \nabla_\theta L \rightarrow \theta'$ | |
+| V80 | What each choice assumes | Format of S03 V69, S04 V64, S05 V62: "assumes" and "pays with". Attention assumes any token may matter (pays with $T^2$); pretraining assumes the pretraining data resembles yours; LoRA assumes the update is low rank | |
+| V81 | *(figure)* | **S06-F11** | F11 |
+| **S06-F12** | V72 | One chat example as tokens, colored by role (template, question, answer); bars with the per-token loss $L_t$ of the base model; masked positions greyed; the masked mean $J$ against the unmasked mean | `s06_f12_masked_loss.png` | Script (notebook 6.6, base model, before training) |
+| V82 | Exit question | A clinic has 800 labeled Spanish clinical notes (3 classes) and one 16 GB GPU. Choose two and justify: an LSTM trained from scratch; a multilingual encoder frozen + probe; full fine-tuning of the same encoder; LoRA on a 7 B decoder; ask a chat LLM zero-shot and compare with a baseline on a held-out set | |
 
 ---
 
@@ -245,17 +259,17 @@ Same routes as S03–S05: **Generator** (prompts in `figure_prompts.md`), **Scri
 
 | ID | Slide | Purpose | Planned filename | Route |
 |---|---:|---|---|---|
-| **S06-F01** | V12 | Multi-head attention: $X$ → $H$ heads with their own $Q, K, V$ → concatenate → $W_O$; shapes $(T, d) \to H\times(T, d_k) \to (T, d)$ | `s06_f01_multihead.png` | Generator |
-| **S06-F02** | V16 | Attention matrices of one sentence: no mask, padding mask, causal mask; plus outputs before and after shuffling the tokens without position | `s06_f02_masks_permutation.png` | Script (notebook 6.1) |
-| **S06-F03** | V23 | The pre-norm Transformer block with the residual path drawn as the straight line of S02 | `s06_f03_block.png` | Generator |
-| **S06-F04** | V27 | Encoder, decoder, encoder-decoder side by side, with the mask each one uses | `s06_f04_three_architectures.png` | Generator |
-| **S06-F05** | V34 | BPE on one Spanish sentence: characters → merges → tokens; vocabulary sizes 256 / 2 000 / 8 000 vs sequence length | `s06_f05_bpe.png` | Script (notebook 6.3) |
-| **S06-F06** | V41 | Training loss of the tiny GPT with three samples printed at their steps | `s06_f06_gpt_samples.png` | Script (notebook 6.3) |
-| **S06-F07** | V45 | Test loss vs compute on log-log axes from the published power-law fits; optional points from `resultados_escalado.json` | `s06_f07_scaling.png` | Script |
-| **S06-F08** | V49 | CLIP zero-shot: one EuroSAT image against the text embeddings of the 10 class prompts, similarities as bars | `s06_f08_clip_zeroshot.png` | Script (notebook 6.4) |
-| **S06-F09** | V56 | Four ways to use a pretrained model: which parameters are frozen, trained or added | `s06_f09_four_ways.png` | Generator |
-| **S06-F10** | V60 | LoRA: frozen $W_0$ beside $B$ and $A_r$, with the parameter counts | `s06_f10_lora.png` | Generator |
-| **S06-F11** | V74 | Summary: accuracy vs trainable parameters on IMDB for the S05 models and the four strategies of 6.5 | `s06_f11_summary.png` | Script (notebook 6.5: `resultados_adaptacion.json`) |
+| **S06-F01** | V15 | Multi-head attention: $X$ → $H$ heads with their own $Q, K, V$ → concatenate → $W_O$; shapes $(T, d) \to H\times(T, d_k) \to (T, d)$ | `s06_f01_multihead.png` | Generator |
+| **S06-F02** | V20 | Attention matrices of one sentence: no mask, padding mask, causal mask; plus outputs before and after shuffling the tokens without position | `s06_f02_masks_permutation.png` | Script (notebook 6.1) |
+| **S06-F03** | V27 | The pre-norm Transformer block with the residual path drawn as the straight line of S02 | `s06_f03_block.png` | Generator |
+| **S06-F04** | V32 | Encoder, decoder, encoder-decoder side by side, with the mask each one uses | `s06_f04_three_architectures.png` | Generator |
+| **S06-F05** | V39 | BPE on one Spanish sentence: characters → merges → tokens; vocabulary sizes 256 / 2 000 / 8 000 vs sequence length | `s06_f05_bpe.png` | Script (notebook 6.3) |
+| **S06-F06** | V48 | Training loss of the tiny GPT with three samples printed at their steps | `s06_f06_gpt_samples.png` | Script (notebook 6.3) |
+| **S06-F07** | V52 | Test loss vs compute on log-log axes from the published power-law fits; optional points from `resultados_escalado.json` | `s06_f07_scaling.png` | Script |
+| **S06-F08** | V56 | CLIP zero-shot: one EuroSAT image against the text embeddings of the 10 class prompts, similarities as bars | `s06_f08_clip_zeroshot.png` | Script (notebook 6.4) |
+| **S06-F09** | V63 | Four ways to use a pretrained model: which parameters are frozen, trained or added | `s06_f09_four_ways.png` | Generator |
+| **S06-F10** | V67 | From fine-tuning to LoRA in three panels: $W + \Delta W$; $W_0\mathbf x + \Delta W\mathbf x$; $W_0\mathbf x + BA_r\mathbf x$, with the parameter counts (the progression of the previous course) | `s06_f10_lora.png` | Generator |
+| **S06-F11** | V81 | Summary: accuracy vs trainable parameters on IMDB for the S05 models and the four strategies of 6.5 | `s06_f11_summary.png` | Script (notebook 6.5: `resultados_adaptacion.json`) |
 
 ## Animations (Manim)
 
@@ -263,10 +277,10 @@ Only where motion changes understanding. Conventions of `escenas_s02.py`–`esce
 
 | ID | Slide | What it shows | Why animate | Rendered file |
 |---|---:|---|---|---|
-| **S06-A01** | V09 | A 5-token sentence. Each token emits $\mathbf q, \mathbf k, \mathbf v$; token 3 compares its $\mathbf q$ with every $\mathbf k$, scores become a softmax row, the row averages the $\mathbf v$'s; then all rows at once as $QK^\top$, and the causal mask greys out the upper triangle | Moves from one token's lookup (S05-A03) to the whole matrix in one product | `s06_a01_self_attention.mp4` |
-| **S06-A02** | V24 | Tokens flow through one block: LN → attention (tokens exchange information, arrows between columns) → add; LN → MLP (each column on its own) → add. The residual stream stays as a straight band | Separates "across tokens" from "per token" | `s06_a02_block.mp4` |
-| **S06-A03** | V38 | Autoregressive generation: the prompt goes in, the last position's logits become a distribution over the vocabulary, a token is sampled, appended, and the window shifts; then the same with low and high temperature | Generation is a loop over time; training is not | `s06_a03_generation.mp4` |
-| **S06-A04** | V63 | A short chat example as a row of tokens. The model outputs one distribution per position; each is shifted one step to face the next token; the probability of the true token is picked and becomes $L_t$ (a bar). Then the mask turns off the template and question bars, and the average is taken over the answer only. Last, the same sequence after LoRA: the answer bars shrink | Shows where the shift, the cross-entropy and the mask act, which the code hides in two lines | `s06_a04_masked_loss.mp4` |
+| **S06-A01** | V12 | A 5-token sentence. Each token emits $\mathbf q, \mathbf k, \mathbf v$; token 3 compares its $\mathbf q$ with every $\mathbf k$, scores become a softmax row, the row averages the $\mathbf v$'s; then all rows at once as $QK^\top$, and the causal mask greys out the upper triangle | Moves from one token's lookup (S05-A03) to the whole matrix in one product | `s06_a01_self_attention.mp4` |
+| **S06-A02** | V28 | Tokens flow through one block: LN → attention (tokens exchange information, arrows between columns) → add; LN → MLP (each column on its own) → add. The residual stream stays as a straight band | Separates "across tokens" from "per token" | `s06_a02_block.mp4` |
+| **S06-A03** | V45 | Autoregressive generation: the prompt goes in, the last position's logits become a distribution over the vocabulary, a token is sampled, appended, and the window shifts; then the same with low and high temperature | Generation is a loop over time; training is not | `s06_a03_generation.mp4` |
+| **S06-A04** | V70 | A short chat example as a row of tokens. The model outputs one distribution per position; each is shifted one step to face the next token; the probability of the true token is picked and becomes $L_t$ (a bar). Then the mask turns off the template and question bars, and the average is taken over the answer only. Last, the same sequence after LoRA: the answer bars shrink | Shows where the shift, the cross-entropy and the mask act, which the code hides in two lines | `s06_a04_masked_loss.mp4` |
 
 ## Notebooks
 
@@ -284,7 +298,7 @@ Short, self-contained, one change per cell, Chollet DLwP style in PyTorch, comme
 Proposed TODOs for 6.6, in the S03–S05 style. Sections marked "(listo)": loading the model and tokenizer, generating answers with `chat`, the LoRA wrapper, the training loop (copied from 6.3).
 
 1. **Template and mask** · 10 min: apply the chat template to a (question, answer) pair and build $m_t$ from the position where the answer starts; check it by decoding only the tokens with $m_t = 1$;
-2. **The masked loss** · 5 min: complete `perdida_respuesta(logits, tokens, mask)` from V62 and V64 (shift by one, `reduction="none"`, masked mean); the notebook checks it against the unmasked loss of `model(..., labels=...)` on an all-answer sequence;
+2. **The masked loss** · 5 min: complete `perdida_respuesta(logits, tokens, mask)` from V69 and V71 (shift by one, `reduction="none"`, masked mean); the notebook checks it against the unmasked loss of `model(..., labels=...)` on an all-answer sequence;
 3. **Train and compare** · 15 min: LoRA run of fixed steps logged to MLflow (rank, trainable parameters, loss curve); held-out $J$ and perplexity for base, base + style in the prompt, LoRA; three generated answers per condition;
 4. **`responder_raw`** · 5 min: loads the LoRA adapter from MLflow, applies the template and the contract (non-empty question, maximum length in tokens) and returns the answer.
 
@@ -298,7 +312,7 @@ Data loading follows the S03–S05 pattern: Kaggle dataset with *Add Input*, `ka
 
 | Material | Path | Use in S06 | Changes needed |
 |---|---|---|---|
-| Transformer lecture | `Lecture06/Clase06b - Transformers.pdf` (37 pp.) | Narrative order for Parts 1–3 and V55–V59: attention from translation (pp. 7–8), self-attention without and with learned weights (pp. 9–14), QKV as retrieval (p. 12), multi-head as several conv filters (pp. 15–19), masked attention (pp. 20–25), positional encoding (p. 26), GPT (pp. 27–28), BERT (pp. 29–32), feature-based vs fine-tuning (p. 33), PEFT and LoRA (pp. 34–37) | Text only; Spanish → English deck. Diagrams come from external material (the original paper, blog figures): redrawn in F01, F03, F04, F09, F10 and A01. Add what is not there: $\sqrt{d_k}$, cost, pre-norm, parameter count, BPE, scaling, non-text foundation models |
+| Transformer lecture | `Lecture06/Clase06b - Transformers.pdf` (37 pp.) | Narrative order for Parts 1–3 and V62–V66: attention from translation (pp. 7–8), self-attention without and with learned weights (pp. 9–14), QKV as retrieval (p. 12), multi-head as several conv filters (pp. 15–19), masked attention (pp. 20–25), positional encoding (p. 26), GPT (pp. 27–28), BERT (pp. 29–32), feature-based vs fine-tuning (p. 33), PEFT and LoRA (pp. 34–37) | Text only; Spanish → English deck. Diagrams come from external material (the original paper, blog figures): redrawn in F01, F03, F04, F09, F10, F13–F19 and A01. The figures of that lecture (most from Sebastian Raschka's course and from the original paper) were its strongest part; S06 keeps their **order** (attention without weights → with $Q, K, V$ → heads → position → decoder step by step → BERT masking → $\Delta W$ → LoRA) with figures drawn from scratch on a Spanish running example. Add what is not there: $\sqrt{d_k}$, cost, pre-norm, parameter count, BPE, scaling, non-text foundation models |
 | IMDB DistilBERT notebooks | `Lecture06/notebooks/rnns/part-1-data` … `part-5-comparison` | Base for 6.5: tokenization and saving the tokenized dataset (part 1), freezing the encoder (part 3), `LoraConfig` and module inspection (part 4), comparison table, confusion matrices and examples where the models disagree (part 5) | Five notebooks with the same loading and `Trainer` code → one notebook, course loop, one change per section. Each part pushes to and reloads from the Hub: keep models in memory. Full IMDB at `max_len` 512 does not fit the class time: subset and 256 tokens. Add trainable parameters, time and peak memory to the table. Folder name `rnns` is misleading |
 | TweetEval exercise | `Lecture06/notebooks/excercise/tweeteval-part-1-data` … `part-5-lora` | **Not used** now that the integrating exercise is the LLM one. Its tokenizer comparison (TODO 2.1) can become a *Tu turno* in 6.3 | |
 | Deployment notebooks | `Lecture06/notebooks/*/part-6-deployment.ipynb`, `client.py` | **Not used.** Serving is no longer covered | |
@@ -312,10 +326,10 @@ Not in the old repo: self-attention from scratch, cost measurement, the block an
 
 | Piece | Use in 6.6 | Changes needed |
 |---|---|---|
-| Templating and tokenization (§1.1) | Template with and without answer; inspecting BPE tokens of a real LLM (link to V33) | Use the tokenizer's own `apply_chat_template` instead of a hand-written string |
-| `chat` with sampling (§1.3.1) | "(listo)" helper, temperature as in V39 | None |
-| LoRA with `peft` (§1.3.2) | "(listo)", plus the trainable-parameter count against $2dr$ (V59) | `target_modules` for the chosen model |
-| `forward_and_compute_loss` (§1.3.3) | Becomes TODO 2 | Shift by one made explicit (the lab hides it) and notation of V62–V64 |
+| Templating and tokenization (§1.1) | Template with and without answer; inspecting BPE tokens of a real LLM (link to V38) | Use the tokenizer's own `apply_chat_template` instead of a hand-written string |
+| `chat` with sampling (§1.3.1) | "(listo)" helper, temperature as in V46 | None |
+| LoRA with `peft` (§1.3.2) | "(listo)", plus the trainable-parameter count against $2dr$ (V66) | `target_modules` for the chosen model |
+| `forward_and_compute_loss` (§1.3.3) | Becomes TODO 2 | Shift by one made explicit (the lab hides it) and notation of V69–V71 |
 | Training loop (§1.3.4): Lion, 200 steps, batch 1, context 512 | Replaced by the loop of 6.3 with AdamW | Batch > 1 with padding mask, MLflow logging |
 | LLM judge and Opik (§2.2–2.5) | One optional cell | NIM instead of OpenRouter; no Opik |
 | Final log-likelihood on a fixed text (§2.6) | Generalized to held-out $J$ on the test pairs | Same metric for the three conditions |
