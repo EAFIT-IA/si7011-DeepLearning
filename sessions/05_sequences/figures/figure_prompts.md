@@ -17,7 +17,7 @@ Slide numbers refer to the current deck, `../slides/S05_slides.marp.md`. Figures
 | S05-F01 | Four task types on sequences | V08 | done |
 | S05-F04 | The LSTM cell | V27 | done, patched by script |
 | S05-F05 | The text pipeline | V37 | done |
-| S05-F06 | What each text model sees | V41 | done |
+| S05-F06 | What each text model sees | V41 | replaced by script `make_s05_f06_three_text_models.py` |
 | S05-F08 | Sequence to sequence with one vector | V49 | pending |
 | S05-F10 | How each model reaches the past | V63 | pending |
 
