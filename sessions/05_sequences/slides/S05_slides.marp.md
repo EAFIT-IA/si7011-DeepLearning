@@ -928,7 +928,7 @@ Worked notebooks:
 
 - temporal split and windows **without leakage**;
 - your recurrent model (LSTM or GRU), logged to **MLflow**;
-- MAE at 1, 6, 12 and 24 hours ahead, against the baseline;
+- MAE at 1, 6, 12 and 24 hours ahead, against two baselines: *the same as now* and *the same hour yesterday*;
 - `forecast_raw`: a forecast from raw hourly records that rejects those that break the contract.
 
 > How many hours ahead does your network still beat the obvious answer?

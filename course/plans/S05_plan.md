@@ -225,16 +225,16 @@ Short, self-contained, one change per cell, Chollet DLwP style in PyTorch, comme
 | 5.3 | `sesion_05_3_lstm_gru.ipynb` | LSTM cell as a loop checked against `nn.LSTM`; LSTM and GRU on the same windows (val 2.32 and 2.30 °C vs RNN 2.33); gradient per hour for the three cells (F11: RNN falls to 0, LSTM and GRU flatten near 1e-3); LSTM with 1 day vs 5 days (same MAE); 2 layers with dropout between layers; recurrent dropout and the forget-gate bias in *Tu turno* | Jena Climate | CPU, ~4 min |
 | 5.4 | `sesion_05_4_texto_embeddings.ipynb` | Tokenizer and vocabulary from train (20 000 words, 256-token truncation); padding and masks; bag of embeddings 85.4 %, 1-D CNN 84.1 %, LSTM 82.6 % (3 epochs) on IMDB test; shuffled words: 85.4 / 79.6 / 80.7 %; six hand-written negation sentences; neighbors in $E$ (F07); pretrained GloVe 100d frozen (75.3 %) and fine-tuned (85.9 %), with neighbors by meaning | IMDB (Hugging Face `stanfordnlp/imdb`) | GPU ~3 min (CPU ~7 min) |
 | 5.5 | `sesion_05_5_seq2seq_atencion.ipynb` | Dates in sentences → ISO: without attention at $d = 128$ and $d = 24$, accuracy per output position; with additive attention at $d = 24$; attention map (F09); $d$ sweep 48–96 | synthetic (generated in the notebook) | CPU, ~7 min |
-| 5.6 | `sesion_05_6_integrador_bike_sharing.ipynb` | Integrating exercise (decision 2) with MLflow | Bike Sharing | GPU |
+| 5.6 | `sesion_05_6_integrador_bike_sharing.ipynb` | Integrating exercise (decision 2) with MLflow: 72 h of demand, weather and calendar → demand at 1, 6, 12 and 24 h. Data contract with the 165 missing hours (75 gaps); split by date (train to 2012-06, validation 2012-07 to 09, test 2012-10 to 12). Reference solution (GRU 32, 12 epochs, not committed), validation MAE 37 / 51 / 52 / 58 bikes per hour vs best baseline 84 / 84 / 83 / 83 (improvement 56 % at 1 h, 30 % at 24 h); test 31 / 49 / 47 / 54 vs 76 / 76 / 76 / 77 | Bike Sharing (UCI `hour.csv`) | CPU, <1 min per run |
 
-Proposed TODOs for 5.6, in the S03–S04 style:
+TODOs of 5.6, in the S03–S04 style (committed without solutions; the notebook has no outputs):
 
 1. temporal split and windows without leakage (scaler fit on train only, no window crossing a cut);
 2. the recurrent model (LSTM or GRU) and its training run, logged to MLflow;
 3. evaluation by horizon: MAE at 1, 6, 12 and 24 h against the baseline; at which horizon does the model stop paying off?
 4. `forecast_raw`, which loads the chosen model from MLflow, takes raw hourly records, rejects those that break the contract (gaps, wrong columns, out-of-range values) and returns the forecast.
 
-Data loading follows the S03–S04 pattern: Kaggle dataset with *Add Input*, `kagglehub` with `KAGGLE_API_TOKEN` on Colab, local `data/` on Lightning. Kaggle handles to choose for Jena, IMDB and Bike Sharing.
+Data loading follows the S03–S04 pattern: Kaggle dataset with *Add Input*, `kagglehub` with `KAGGLE_API_TOKEN` on Colab, local `data/` on Lightning. Jena: Kaggle `mnassrib/jena-climate`. IMDB: Hugging Face `stanfordnlp/imdb` parquet. Bike Sharing: UCI zip (downloaded by the notebook if `hour.csv` is not in `data/` or a Kaggle input); Kaggle handle still to confirm.
 
 ---
 
