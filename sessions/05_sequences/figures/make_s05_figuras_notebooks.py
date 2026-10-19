@@ -84,32 +84,46 @@ def f02():
     if p is None:
         return
     d = json.load(open(p))
-    # expected keys: horas (list of hourly timestamps as strings or indices), temp (list), cortes [i_val, i_test],
-    # T (window, hours), H_fut (horizon, hours), ventanas (list of window start indices for the inset)
-    t, temp = np.arange(len(d['temp'])), np.asarray(d['temp'])
+    # keys: temp (hourly °C), cortes [i_val, i_test], T, H_fut, ventanas (three window starts before the cut)
+    temp = np.asarray(d['temp']); t = np.arange(len(temp))
     i_val, i_test = d['cortes']
     T, Hf = d['T'], d['H_fut']
-    fig, (ax, axz) = plt.subplots(2, 1, figsize=(W, H), gridspec_kw={'height_ratios': [1, 1.25], 'hspace': 0.35})
-    for (a, b, c, lab) in [(0, i_val, BLUE, 'train 50 %'), (i_val, i_test, TEAL, 'validation 25 %'),
-                           (i_test, len(t), ORANGE, 'test 25 %')]:
-        ax.axvspan(a, b, color=c, alpha=0.12, lw=0)
-        ax.text((a + b) / 2, temp.max() + 2, lab, ha='center', color=c, fontsize=15)
-    ax.plot(t, temp, color=GRAY, lw=0.4)
-    ax.set_ylabel('temperature (°C)'); ax.set_xlim(0, len(t)); ax.set_xticks([])
-    z0 = i_val - 3 * (T + Hf)
-    zz = slice(z0, i_val + (T + Hf))
-    axz.plot(t[zz], temp[zz], color=GRAY, lw=1)
-    axz.axvline(i_val, color=NAVY, lw=1.5, ls='--'); axz.text(i_val, temp[zz].max() + 1, 'train | validation', ha='center')
+    fig, (ax, axz) = plt.subplots(2, 1, figsize=(W, H), gridspec_kw={'height_ratios': [1, 1.45], 'hspace': 0.32})
+    fig.subplots_adjust(left=0.07, right=0.97, top=0.95, bottom=0.08)
+    for (a0, b0, c, lab) in [(0, i_val, BLUE, 'train · 50 %'), (i_val, i_test, TEAL, 'validation · 25 %'),
+                             (i_test, len(t), ORANGE, 'test · 25 %')]:
+        ax.axvspan(a0, b0, color=c, alpha=0.10, lw=0)
+        ax.text((a0 + b0) / 2, 41, lab, ha='center', va='bottom', color=c, fontsize=16)
+    ax.plot(t, temp, color=GRAY, lw=0.3)
+    ax.set_ylim(-26, 40); ax.set_ylabel('°C'); ax.set_xlim(0, len(t))
+    ax.set_xticks([0, i_val, i_test, len(t)], ['2009', '', '', '2017'])
+    for s0 in (i_val, i_test):
+        ax.axvline(s0, color=NAVY, lw=1)
+    x0, x1 = i_val - 3 * (T + Hf) - 12, i_val + T + 60
+    ax.axvspan(x0, x1, ymin=0, ymax=1, fill=False, ec=NAVY, lw=1.2, ls=':')
+
+    zz = slice(x0, x1)
+    axz.plot(t[zz] - i_val, temp[zz], color=GRAY, lw=1.2)
+    axz.axvline(0, color=NAVY, lw=1.5, ls='--')
+    lo = temp[zz].min()
+    axz.text(-6, temp[zz].max() + 0.6, 'train', ha='right', fontsize=15, color=BLUE)
+    axz.text(6, temp[zz].max() + 0.6, 'validation', ha='left', fontsize=15, color=TEAL)
+    lanes = [lo - 3 - 2.6 * k for k in range(4)]
     for k, s0 in enumerate(d['ventanas']):
-        y = temp[zz].min() - 2 - 1.6 * k
-        axz.plot([s0, s0 + T], [y, y], color=BLUE, lw=5, solid_capstyle='butt')
-        axz.plot([s0 + T + Hf], [y], 'o', color=ORANGE, ms=9)
-    bad = i_val - T // 2
-    y = temp[zz].min() - 2 - 1.6 * len(d['ventanas'])
-    axz.plot([bad, bad + T], [y, y], color=RED, lw=5, solid_capstyle='butt')
-    axz.plot([bad + T + Hf], [y], 'x', color=RED, ms=12, mew=3)
-    axz.text(bad + T + Hf + 10, y, 'crosses the cut: not allowed', color=RED, va='center')
-    axz.set_xlabel('hours'); axz.set_ylabel('temperature (°C)')
+        y = lanes[k]
+        axz.plot([s0 - i_val, s0 + T - i_val], [y, y], color=BLUE, lw=7, solid_capstyle='butt')
+        axz.plot([s0 + T - i_val, s0 + T - 1 + Hf - i_val], [y, y], color=ORANGE, lw=1.4, ls=':')
+        axz.plot([s0 + T - 1 + Hf - i_val], [y], 'o', color=ORANGE, ms=11)
+    bad = -T // 2; y = lanes[3]
+    axz.plot([bad, bad + T], [y, y], color=RED, lw=7, solid_capstyle='butt')
+    axz.plot([bad + T, bad + T - 1 + Hf], [y, y], color=RED, lw=1.4, ls=':')
+    axz.plot([bad + T - 1 + Hf], [y], 'X', color=RED, ms=13)
+    axz.text(bad - 10, y, 'crosses the cut: not allowed', color=RED, va='center', ha='right', fontsize=14)
+    axz.plot([], [], color=BLUE, lw=7, label=f'window: T = {T} h of the 14 variables')
+    axz.plot([], [], 'o', color=ORANGE, ms=11, label=f'target: temperature {Hf} h after the window')
+    axz.legend(frameon=False, loc='upper left', fontsize=14)
+    axz.set_xlim(x0 - i_val, x1 - i_val); axz.set_ylim(lanes[3] - 2.2, temp[zz].max() + 3.5)
+    axz.set_xlabel('hours from the train | validation cut'); axz.set_ylabel('°C')
     save(fig, 's05_f02_windows_split.png')
 
 
@@ -121,18 +135,23 @@ def f03():
     z = np.load(p)
     # expected arrays: g (mean ||dL/dx_t|| over a validation batch, t = 1..T), optional g_lstm, g_gru
     fig, ax = plt.subplots(figsize=(W, H))
-    fig.subplots_adjust(left=0.09, right=0.97, top=0.95, bottom=0.12)
+    fig.subplots_adjust(left=0.09, right=0.97, top=0.89, bottom=0.11)
     T = len(z['g'])
     t = np.arange(1, T + 1)
-    ax.semilogy(t, z['g'], color=BLUE, lw=3, label='RNN')
+    pos = lambda v: np.where(v > 0, v / z['g'][-1], np.nan)          # relative to the last hour; zeros (float32) not drawn
+    ax.semilogy(t, pos(z['g']), color=BLUE, lw=3.5, label='RNN, trained')
+    if 'g_inicial' in z.files:
+        ax.semilogy(t, np.where(z['g_inicial'] > 0, z['g_inicial'] / z['g_inicial'][-1], np.nan),
+                    color=BLUE, lw=1.8, ls='--', alpha=0.7, label='RNN, random weights')
     for key, c, lab in (('g_lstm', ORANGE, 'LSTM'), ('g_gru', TEAL, 'GRU')):
         if key in z.files:
-            ax.semilogy(t, z[key], color=c, lw=3, label=lab)
-    ax.set_xlabel('input step $t$  (the prediction is made at $t = T$)')
-    ax.set_ylabel('$\\lVert \\partial L / \\partial \\mathbf{x}_t \\rVert$  (log scale)')
-    ax.set_xlim(1, T); ax.grid(alpha=0.3)
-    if len(ax.get_lines()) > 1:
-        ax.legend(frameon=False)
+            ax.semilogy(t, pos(z[key]) if False else np.where(z[key] > 0, z[key] / z[key][-1], np.nan), color=c, lw=3, label=lab)
+    ax.set_xlabel('hour $t$ of the window  (the prediction is made at $t = T$)')
+    ax.set_ylabel('$\\Vert \\partial L / \\partial \\mathbf{x}_t \\Vert$, relative to the last hour')
+    ax.set_xlim(1, T); ax.grid(alpha=0.3, which='major')
+    top = ax.secondary_xaxis('top', functions=(lambda x: T - x, lambda x: T - x))
+    top.set_xlabel('hours before the prediction', color=GRAY)
+    ax.legend(frameon=False, loc='lower right')
     save(fig, 's05_f03_rnn_gradient_time.png')
 
 

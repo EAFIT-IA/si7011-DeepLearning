@@ -204,15 +204,13 @@ Notebook 5.1: one reading per hour, $T = 120$ hours (5 days), $H_{\text{fut}} = 
 
 ---
 
-<div class="placeholder">
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-**S05-F02 · Windows and the temporal split**
+![bg contain Jena temperature 2009 to 2016 split in time into train, validation and test; below, a zoom on the train to validation cut with three windows of 120 hours and their targets 24 hours later, and one forbidden window that crosses the cut](../figures/s05_f02_windows_split.png)
 
-The Jena temperature series with three windows and their 24 h targets; train / validation / test as consecutive blocks; no window crosses a cut.
-
-`../figures/s05_f02_windows_split.png` · route: script (notebook 5.1)
-
-</div>
+<!-- Notebook 5.1, section 3: 34 894 train windows, 17 376 validation, 17 376 test. Baseline MAE 2.44 °C (validation), 2.62 °C (test). -->
 
 ---
 
@@ -357,15 +355,13 @@ With tanh, $\gamma = 1$ and $\varphi' < 1$ away from zero: fading is the usual c
 
 ---
 
-<div class="placeholder">
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-**S05-F03 · How far back does the gradient reach?**
+![bg contain Gradient norm of the loss with respect to each input hour of the window for the RNN on Jena, on a log scale: it falls geometrically from the last hour back, to about 10 to the minus 21 at the first hour, for the trained and the untrained network](../figures/s05_f03_rnn_gradient_time.png)
 
-$\lVert \partial L / \partial \mathbf x_t \rVert$ against $t$ for the trained RNN on Jena, log scale, averaged over a validation batch.
-
-`../figures/s05_f03_rnn_gradient_time.png` · route: script (notebook 5.2)
-
-</div>
+<!-- Notebook 5.2, section 3: 16-unit tanh RNN, MAE 2.33 °C vs baseline 2.44 °C. 12 h back the gradient is 1.6e-3 of the last hour, 48 h back 1e-9. Trained with 1 day or 5 days of input: same MAE (2.33 °C). -->
 
 ---
 
