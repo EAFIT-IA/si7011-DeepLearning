@@ -266,4 +266,3 @@ Resolved: 5.4 uses IMDB (English); 5.5 uses Spanish dates in words → ISO; 5.5 
 Open:
 
 1. Kaggle handle for Bike Sharing (5.6 downloads the UCI zip meanwhile, so *Internet* must be on).
-2. Evaluation Event 2 (S03–S04) is not yet in `evaluations/`.
