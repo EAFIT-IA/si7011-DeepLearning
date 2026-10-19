@@ -35,7 +35,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | **S05-F03** | V20 | $\lVert\partial L/\partial\mathbf x_t\rVert$ against $t$ for the trained RNN, log scale, mean over a validation batch | `s05_f03_rnn_gradient_time.png` | Script (notebook 5.2: `gradiente_tiempo_rnn.npz`) | Pending |
 | **S05-F04** | V27 | The LSTM cell with the additive memory line | `s05_f04_lstm_cell.png` | Generator + script: `fix_s05_f04_lstm_cell.py` (removes an $\mathbf h_t$ drawn out of the $\mathbf c_t$ line) | Included |
 | **S05-F05** | V37 | Text pipeline: text → tokens → ids → padded batch and mask → embeddings | `s05_f05_text_pipeline.png` | Generator | Included |
-| **S05-F06** | V41 | Bag of embeddings, 1-D CNN and LSTM over the same sentence | `s05_f06_three_text_models.png` | Generator | Pending |
+| **S05-F06** | V41 | Bag of embeddings, 1-D CNN and LSTM over the same sentence | `s05_f06_three_text_models.png` | Generator | Included — see note: CNN brackets float above the filters |
 | **S05-F07** | V43 | Six query words and their five nearest neighbors in the learned $E$ | `s05_f07_embedding_neighbors.png` | Script (notebook 5.4: `vecinos_embedding.json`) | Pending |
 | **S05-F08** | V49 | Seq2seq with the single vector $\mathbf h_T$, on a date | `s05_f08_seq2seq.png` | Generator | Pending |
 | **S05-F09** | V55 | Attention weights $\alpha_{\tau t}$ for three dates | `s05_f09_attention_alignment.png` | Script (notebook 5.5: `atencion_fechas.npz`) | Pending |

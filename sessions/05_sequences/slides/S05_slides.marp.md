@@ -659,15 +659,11 @@ Same embedding size, same training budget, IMDB (25 000 reviews for training, 25
 
 ---
 
-<div class="placeholder">
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-**S05-F06 · What each text model sees**
-
-The same sentence through the three models: an average with no order, sliding windows of 3 words, a chain of states.
-
-`../figures/s05_f06_three_text_models.png` · route: generator
-
-</div>
+![bg contain Three text classifiers over the sentence not good, but very fun: a bag of embeddings averages the six embeddings and ignores order; a 1-D CNN applies the same filter to four windows of three words and takes the maximum over time; an LSTM reads the six embeddings in order and classifies from its last state h_T](../figures/s05_f06_three_text_models.png)
 
 ---
 

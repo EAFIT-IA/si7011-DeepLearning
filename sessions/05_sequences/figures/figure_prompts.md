@@ -17,7 +17,7 @@ Slide numbers refer to the current deck, `../slides/S05_slides.marp.md`. Figures
 | S05-F01 | Four task types on sequences | V08 | done |
 | S05-F04 | The LSTM cell | V27 | done, patched by script |
 | S05-F05 | The text pipeline | V37 | done |
-| S05-F06 | What each text model sees | V41 | pending |
+| S05-F06 | What each text model sees | V41 | done |
 | S05-F08 | Sequence to sequence with one vector | V49 | pending |
 | S05-F10 | How each model reaches the past | V63 | pending |
 
@@ -91,14 +91,14 @@ Check: the integers match between stages 3 and 4; exactly four padding cells; th
 
 ---
 
-## S05-F06 · What each text model sees (pending, slide 41)
+## S05-F06 · What each text model sees (done, slide 41)
 
 File: `s05_f06_three_text_models.png`
 
 Three horizontal rows, one per model, each inside a rounded panel with a tag on the left. In every row the same sentence appears at the bottom as six word chips: [not] [good] [,] [but] [very] [fun], and above each chip a small light-blue column for its embedding $\mathbf e_w$.
 
 1. **Tag "bag of embeddings":** the six embedding columns all go by thin gray arrows into one teal circle labeled "mean", then to a small teal box "linear" and $\hat y$. To the right, a small gray note: "same output for any order of the words".
-2. **Tag "1-D CNN":** three overlapping brackets of width 3 over the embeddings (words 1–3, 2–4, 3–5, 4–6 shown as four brackets), each into a small blue box with the same filter icon, then a teal box "max over time" and $\hat y$. Gray note: "sees order within 3 words".
+2. **Tag "1-D CNN":** overlapping brackets of width 3 drawn **directly on top of the embedding columns** (each bracket touches the three columns it covers, and the filter box sits above its bracket) (words 1–3, 2–4, 3–5, 4–6 shown as four brackets), each into a small blue box with the same filter icon, then a teal box "max over time" and $\hat y$. Gray note: "sees order within 3 words".
 3. **Tag "LSTM":** six identical blue boxes in a chain left to right, one above each embedding, connected by arrows; the last box outputs $\mathbf h_T$ in orange, then a small teal box "linear" and $\hat y$. Gray note: "sees the whole order, step by step".
 
 Check: the sentence and its punctuation are identical in the three rows; exactly four brackets in the CNN row; exactly six LSTM boxes; only the LSTM row has an orange $\mathbf h_T$.
