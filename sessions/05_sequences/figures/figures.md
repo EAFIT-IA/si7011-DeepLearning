@@ -33,7 +33,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | **S05-F01** | V08 | Four task types on sequences | `s05_f01_sequence_tasks.png` | Generator | Included |
 | **S05-F02** | V10 | Jena: temperature series, three windows with their 24 h targets, train/val/test blocks, no window crossing a cut | `s05_f02_windows_split.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.1: `particion_jena.json`) | Pending |
 | **S05-F03** | V20 | $\lVert\partial L/\partial\mathbf x_t\rVert$ against $t$ for the trained RNN, log scale, mean over a validation batch | `s05_f03_rnn_gradient_time.png` | Script (notebook 5.2: `gradiente_tiempo_rnn.npz`) | Pending |
-| **S05-F04** | V27 | The LSTM cell with the additive memory line | `s05_f04_lstm_cell.png` | Generator | Pending |
+| **S05-F04** | V27 | The LSTM cell with the additive memory line | `s05_f04_lstm_cell.png` | Generator + script: `fix_s05_f04_lstm_cell.py` (removes an $\mathbf h_t$ drawn out of the $\mathbf c_t$ line) | Included |
 | **S05-F05** | V37 | Text pipeline: text → tokens → ids → padded batch and mask → embeddings | `s05_f05_text_pipeline.png` | Generator | Pending |
 | **S05-F06** | V41 | Bag of embeddings, 1-D CNN and LSTM over the same sentence | `s05_f06_three_text_models.png` | Generator | Pending |
 | **S05-F07** | V43 | Six query words and their five nearest neighbors in the learned $E$ | `s05_f07_embedding_neighbors.png` | Script (notebook 5.4: `vecinos_embedding.json`) | Pending |

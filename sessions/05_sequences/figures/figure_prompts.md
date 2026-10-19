@@ -15,7 +15,7 @@ Slide numbers refer to the current deck, `../slides/S05_slides.marp.md`. Figures
 | Figure | Concept | Slide | Status |
 |---|---|---:|---|
 | S05-F01 | Four task types on sequences | V08 | done |
-| S05-F04 | The LSTM cell | V27 | pending |
+| S05-F04 | The LSTM cell | V27 | done, patched by script |
 | S05-F05 | The text pipeline | V37 | pending |
 | S05-F06 | What each text model sees | V41 | pending |
 | S05-F08 | Sequence to sequence with one vector | V49 | pending |
@@ -55,7 +55,7 @@ Check: the counts of inputs and outputs are exactly as listed; the boxes in the 
 
 ---
 
-## S05-F04 · The LSTM cell (pending, slide 27)
+## S05-F04 · The LSTM cell (done, patched by script, slide 27)
 
 File: `s05_f04_lstm_cell.png`
 

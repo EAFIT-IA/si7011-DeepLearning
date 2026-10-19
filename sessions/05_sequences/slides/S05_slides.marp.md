@@ -467,15 +467,13 @@ With $\mathbf f_t \approx \mathbf 1$: $\;\partial \mathbf c_t / \partial \mathbf
 
 ---
 
-<div class="placeholder">
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-**S05-F04 · The LSTM cell**
+![bg contain The LSTM cell: the memory c_t runs along a straight orange line with one product by the forget gate and one sum with the gated candidate; the output gate reads tanh of c_t to give h_t](../figures/s05_f04_lstm_cell.png)
 
-The $\mathbf c_t$ path drawn as one straight additive line across the cell; the three gates as valves on it; $\mathbf h_t$ read from $\mathbf c_t$ through $\mathbf o_t$.
-
-`../figures/s05_f04_lstm_cell.png` · route: generator
-
-</div>
+<!-- Generated image, patched by fix_s05_f04_lstm_cell.py: the generator drew a second h_t leaving straight from the c_t line, which would mean h_t = c_t. -->
 
 ---
 
