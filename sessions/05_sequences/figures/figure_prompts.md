@@ -16,7 +16,7 @@ Slide numbers refer to the current deck, `../slides/S05_slides.marp.md`. Figures
 |---|---|---:|---|
 | S05-F01 | Four task types on sequences | V08 | done |
 | S05-F04 | The LSTM cell | V27 | done, patched by script |
-| S05-F05 | The text pipeline | V37 | pending |
+| S05-F05 | The text pipeline | V37 | done |
 | S05-F06 | What each text model sees | V41 | pending |
 | S05-F08 | Sequence to sequence with one vector | V49 | pending |
 | S05-F10 | How each model reaches the past | V63 | pending |
@@ -75,7 +75,7 @@ Check: the orange line is straight, unbroken and carries exactly one $\odot$ and
 
 ---
 
-## S05-F05 · The text pipeline (pending, slide 37)
+## S05-F05 · The text pipeline (done, slide 37)
 
 File: `s05_f05_text_pipeline.png`
 
@@ -83,8 +83,8 @@ Five stages left to right, connected by arrows, each stage with a small gray cap
 
 1. **Text:** a light panel with two short reviews written in a typewriter font, one under the other: "a slow but moving film" and "terrible". Caption: "raw text".
 2. **Tokens:** the same two reviews split into word chips: [a] [slow] [but] [moving] [film] and [terrible]. Caption: "tokenize".
-3. **Ids:** the chips replaced by integers: [7] [431] [22] [1] [58] and [912]. The chip with **1** has a small gray tag "<unk>" above it (the word "moving" is not in the vocabulary). Caption: "vocabulary from the training set only".
-4. **Padded batch:** a 2 × 5 grid of integer cells. Row 1: 7, 431, 22, 1, 58. Row 2: 912, 0, 0, 0, 0, where the four 0 cells are gray and labeled "<pad>" once with a brace. To the right of the grid, a second small 2 × 5 grid of 1 and 0 values labeled "mask": row 1 all 1; row 2: 1, 0, 0, 0, 0. Caption: "pad to the longest, keep a mask".
+3. **Ids:** the chips replaced by integers: [7] [431] [22] [1] [58] and [912]. The chip with **1** has a small gray tag "[UNK]" above it (the word "moving" is not in the vocabulary). Caption: "vocabulary from the training set only".
+4. **Padded batch:** a 2 × 5 grid of integer cells. Row 1: 7, 431, 22, 1, 58. Row 2: 912, 0, 0, 0, 0, where the four 0 cells are gray and labeled "[PAD]" once with a brace. To the right of the grid, a second small 2 × 5 grid of 1 and 0 values labeled "mask": row 1 all 1; row 2: 1, 0, 0, 0, 0. Caption: "pad to the longest, keep a mask".
 5. **Embeddings:** a 3-D block (a stack of 2 slabs, each made of 5 colored columns) labeled $(B, T, d_e) = (2, 5, d_e)$. A small box above the arrow into this stage: "$\mathbf e_w = E[w]$, `nn.Embedding`". The padding columns in the second slab are gray. Caption: "lookup".
 
 Check: the integers match between stages 3 and 4; exactly four padding cells; the mask matches the padding; the dimension label is exactly $(B, T, d_e) = (2, 5, d_e)$.

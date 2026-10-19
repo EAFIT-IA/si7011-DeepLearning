@@ -600,8 +600,8 @@ Worked notebooks, one change per cell, GPU recommended:
 # From text to integers
 
 1. **Tokenize**: split the text into units.
-2. **Vocabulary**: the most frequent tokens of the **training set** only; the rest map to `<unk>`.
-3. **Ids**: each token → an integer; special tokens `<pad>`, `<unk>`.
+2. **Vocabulary**: the most frequent tokens of the **training set** only; the rest map to `[UNK]`.
+3. **Ids**: each token → an integer; special tokens `[PAD]`, `[UNK]`.
 
 | Unit | Vocabulary | Sequence length | Unknown words |
 |---|---|---|---|
@@ -611,15 +611,11 @@ Worked notebooks, one change per cell, GPU recommended:
 
 ---
 
-<div class="placeholder">
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-**S05-F05 · The text pipeline**
-
-A sentence → tokens → ids → a padded batch with its mask → a tensor of embeddings $(B, T, d_e)$.
-
-`../figures/s05_f05_text_pipeline.png` · route: generator
-
-</div>
+![bg contain The text pipeline: two reviews are tokenized, mapped to ids with an unknown-word id, padded into a 2 by 5 batch with its mask, and looked up in an embedding matrix to give a tensor of shape 2 by 5 by d_e](../figures/s05_f05_text_pipeline.png)
 
 ---
 
@@ -642,12 +638,12 @@ Distance in $E$ comes to mean "similar **for this task**".
 
 Reviews have 10 words or 1 000.
 
-- **pad** to the longest in the batch with `<pad>`, and keep a **mask**;
+- **pad** to the longest in the batch with `[PAD]`, and keep a **mask**;
 - the model must ignore the padding: masked mean, or `pack_padded_sequence` for the LSTM;
 - **truncate** long texts to a maximum length: a design choice to report;
 - group similar lengths in a batch to waste less compute.
 
-<span class="small">A classic silent bug: averaging embeddings including the padding. Short reviews get pulled toward the `<pad>` vector.</span>
+<span class="small">A classic silent bug: averaging embeddings including the padding. Short reviews get pulled toward the `[PAD]` vector.</span>
 
 ---
 
