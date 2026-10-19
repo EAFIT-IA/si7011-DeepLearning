@@ -180,15 +180,11 @@ Today: many-to-one in Parts 1–4, sequence-to-sequence in Part 5.
 
 ---
 
-<div class="placeholder">
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-**S05-F01 · Four task types on sequences**
-
-Many-to-one, aligned many-to-many, sequence-to-sequence, one-to-many: boxes for steps, arrows for what each output sees.
-
-`../figures/s05_f01_sequence_tasks.png` · route: generator
-
-</div>
+![bg contain Four task types on sequences: many-to-one, aligned many-to-many, sequence-to-sequence with an encoder and a decoder, and one-to-many](../figures/s05_f01_sequence_tasks.png)
 
 ---
 

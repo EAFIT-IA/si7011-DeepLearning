@@ -30,7 +30,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 
 | ID | Slide | Purpose | Filename | Route | Status |
 |---|---:|---|---|---|---|
-| **S05-F01** | V08 | Four task types on sequences | `s05_f01_sequence_tasks.png` | Generator | Pending |
+| **S05-F01** | V08 | Four task types on sequences | `s05_f01_sequence_tasks.png` | Generator | Included |
 | **S05-F02** | V10 | Jena: temperature series, three windows with their 24 h targets, train/val/test blocks, no window crossing a cut | `s05_f02_windows_split.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.1: `particion_jena.json`) | Pending |
 | **S05-F03** | V20 | $\lVert\partial L/\partial\mathbf x_t\rVert$ against $t$ for the trained RNN, log scale, mean over a validation batch | `s05_f03_rnn_gradient_time.png` | Script (notebook 5.2: `gradiente_tiempo_rnn.npz`) | Pending |
 | **S05-F04** | V27 | The LSTM cell with the additive memory line | `s05_f04_lstm_cell.png` | Generator | Pending |
