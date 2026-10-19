@@ -6,7 +6,7 @@ Session 05 focuses on the question:
 
 > **How does a network remember the past?**
 
-Slide numbers are those of the current deck source, [`../slides/S05_slides.marp.md`](../slides/S05_slides.marp.md), which has 65 slides: the 64 of [`S05_plan.md`](../../../course/plans/S05_plan.md) plus F11 after the Part 4 divider (so slides from V36 on are one number higher than in the plan). Pending figures and animations are shown in the deck as dashed placeholder boxes with their ID and planned filename. To integrate a figure, replace the placeholder `<div class="placeholder">…</div>` with:
+Slide numbers are those of the current deck source, [`../slides/S05_slides.marp.md`](../slides/S05_slides.marp.md), which has 69 slides: the 64 of [`S05_plan.md`](../../../course/plans/S05_plan.md) plus F11, F12, F13, F14 and F15, added after the plan (so slide numbers differ from the plan's). Pending figures and animations are shown in the deck as dashed placeholder boxes with their ID and planned filename. To integrate a figure, replace the placeholder `<div class="placeholder">…</div>` with:
 
 ```markdown
 <!-- _class: figure -->
@@ -32,15 +32,19 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 |---|---:|---|---|---|---|
 | **S05-F01** | V08 | Four task types on sequences | `s05_f01_sequence_tasks.png` | Generator | Included |
 | **S05-F02** | V10 | Jena: temperature series, three windows with their 24 h targets, train/val/test blocks, no window crossing a cut | `s05_f02_windows_split.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.1, section 3: `particion_jena.json`) | Included |
-| **S05-F03** | V20 | $\lVert\partial L/\partial\mathbf x_t\rVert$ against $t$ for the trained RNN, log scale, mean over a validation batch | `s05_f03_rnn_gradient_time.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.2, section 3: `gradiente_tiempo_rnn.npz`) | Included |
-| **S05-F04** | V27 | The LSTM cell with the additive memory line | `s05_f04_lstm_cell.png` | Generator + script: `fix_s05_f04_lstm_cell.py` (removes an $\mathbf h_t$ drawn out of the $\mathbf c_t$ line) | Included |
-| **S05-F05** | V37 | Text pipeline: text → tokens → ids → padded batch and mask → embeddings | `s05_f05_text_pipeline.png` | Generator | Included |
-| **S05-F06** | V41 | Bag of embeddings, 1-D CNN and LSTM over the same sentence | `s05_f06_three_text_models.png` | Script `make_s05_f06_three_text_models.py` (drawn, no data) | Included |
-| **S05-F07** | V43 | Six query words and their five nearest neighbors in the learned $E$ | `s05_f07_embedding_neighbors.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.4, section 8: `vecinos_embedding.json`) | Included |
-| **S05-F08** | V49 | Seq2seq with the single vector $\mathbf h_T$, on a date | `s05_f08_seq2seq.png` | Generator + script: `fix_s05_f08_seq2seq.py` (one input per decoder step) | Included |
-| **S05-F09** | V55 | Attention weights $\alpha_{\tau t}$ for three dates | `s05_f09_attention_alignment.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.5, section 6: `atencion_fechas.npz`) | Included |
-| **S05-F10** | V63 | Window, RNN, LSTM and attention: how much of step 1 reaches the prediction | `s05_f10_summary.png` | Generator + script: `fix_s05_f10_summary.py` (removes "T = 8"; RNN ribbon thin at step 1, thick at step 8, as F03) | Included |
-| **S05-F11** | V36 | $\lVert\partial L/\partial\mathbf x_t\rVert$ against $t$ for RNN, LSTM and GRU on Jena, log scale; hours where the RNN gradient is exactly 0 shaded | `s05_f11_gradient_rnn_lstm_gru.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.3, section 4: `gradiente_tiempo_lstm_gru.npz`) | Included |
+| **S05-F03** | V21 | $\lVert\partial L/\partial\mathbf x_t\rVert$ against $t$ for the trained RNN, log scale, mean over a validation batch | `s05_f03_rnn_gradient_time.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.2, section 3: `gradiente_tiempo_rnn.npz`) | Included |
+| **S05-F04** | V28 | The LSTM cell with the additive memory line | `s05_f04_lstm_cell.png` | Generator + script: `fix_s05_f04_lstm_cell.py` (removes an $\mathbf h_t$ drawn out of the $\mathbf c_t$ line) | Included |
+| **S05-F05** | V40 | Text pipeline: text → tokens → ids → padded batch and mask → embeddings | `s05_f05_text_pipeline.png` | Generator | Included |
+| **S05-F06** | V44 | Bag of embeddings, 1-D CNN and LSTM over the same sentence | `s05_f06_three_text_models.png` | Script `make_s05_f06_three_text_models.py` (drawn, no data) | Included |
+| **S05-F07** | V46 | Six query words and their five nearest neighbors in the learned $E$ | `s05_f07_embedding_neighbors.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.4, section 8: `vecinos_embedding.json`) | Included |
+| **S05-F08** | V52 | Seq2seq with the single vector $\mathbf h_T$, on a date | `s05_f08_seq2seq.png` | Generator + script: `fix_s05_f08_seq2seq.py` (one input per decoder step) | Included |
+| **S05-F09** | V59 | Attention weights $\alpha_{\tau t}$ for three dates | `s05_f09_attention_alignment.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.5, section 6: `atencion_fechas.npz`) | Included |
+| **S05-F10** | V68 | Window, RNN, LSTM and attention: how much of step 1 reaches the prediction | `s05_f10_summary.png` | Generator + script: `fix_s05_f10_summary.py` (removes "T = 8"; RNN ribbon thin at step 1, thick at step 8, as F03) | Included |
+| **S05-F11** | V38 | $\lVert\partial L/\partial\mathbf x_t\rVert$ against $t$ for RNN, LSTM and GRU on Jena, log scale; hours where the RNN gradient is exactly 0 shaded | `s05_f11_gradient_rnn_lstm_gru.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.3, section 4: `gradiente_tiempo_lstm_gru.npz`) | Included |
+| **S05-F12** | V12 | Three ways to leak the future, drawn; below, leak 1 measured on Jena (shuffled split vs temporal split vs baseline, validation and future) | `s05_f12_three_leaks.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.1, section 6: `resultados_jena_51.json`); panel 2 schematic | Included |
+| **S05-F13** | V62 | Accuracy per output character of the date, seq2seq without attention at $d$ = 24 … 128 and with attention at $d = 24$ | `s05_f13_bottleneck_by_character.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.5: `resultados_seq2seq.json`) | Included |
+| **S05-F14** | V54 | Teacher forcing: what the decoder receives in training (true previous character) and at inference (its own) | `s05_f14_teacher_forcing.png` | Script `make_s05_f14_teacher_forcing.py` (drawn, no data) | Included |
+| **S05-F15** | V32 | The GRU cell, same style as F04: $\mathbf h_t$ as the additive path, reset gate inside the candidate | `s05_f15_gru_cell.png` | Generator ([prompt](figure_prompts.md)) | Pending (placeholder in the deck) |
 
 ### Script specifications
 
@@ -55,8 +59,8 @@ Conventions of `escenas_s02.py`–`escenas_s04.py`: slide palette, on-screen tex
 
 | ID | Slide | What it shows | Rendered file | Status |
 |---|---:|---|---|---|
-| **S05-A01** | V16 | The RNN cell rolled up, then unrolled over 8 steps with the same $W_{hh}$ highlighted at every step; the gradient flows back from step 8 and its arrow thins step by step | `s05_a01_unrolling_bptt.mp4` | Included |
-| **S05-A02** | V29 | A value written into $\mathbf c_t$ at step 2, kept by $\mathbf f_t\approx 1$, read by $\mathbf o_t$ at step 7; the same input in a plain RNN fades | `s05_a02_lstm_memory.mp4` | Included |
-| **S05-A03** | V53 | Decoding a date: scores over the input words, softmax into $\alpha_{\tau t}$, context $\mathbf a_\tau$, emitted character; the weight matrix of F09 fills row by row | `s05_a03_seq2seq_attention.mp4` | Included |
+| **S05-A01** | V17 | The RNN cell rolled up, then unrolled over 8 steps with the same $W_{hh}$ highlighted at every step; the gradient flows back from step 8 and its arrow thins step by step | `s05_a01_unrolling_bptt.mp4` | Included |
+| **S05-A02** | V30 | A value written into $\mathbf c_t$ at step 2, kept by $\mathbf f_t\approx 1$, read by $\mathbf o_t$ at step 7; the same input in a plain RNN fades | `s05_a02_lstm_memory.mp4` | Included |
+| **S05-A03** | V57 | Decoding a date: scores over the input words, softmax into $\alpha_{\tau t}$, context $\mathbf a_\tau$, emitted character; the weight matrix of F09 fills row by row | `s05_a03_seq2seq_attention.mp4` | Included |
 
 A01 reads `gradiente_tiempo_rnn.npz` (notebook 5.2) and A03 reads `atencion_fechas.npz` (notebook 5.5), so the animations and F03/F09 show the same numbers. Render: `S01_VIDEO=1 manim -qh -o s05_a01_unrolling_bptt escenas_s05.py A01_UnrollingBPTT`, and the poster with `-s -o s05_a01_unrolling_bptt_poster`.

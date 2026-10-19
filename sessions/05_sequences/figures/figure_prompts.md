@@ -8,18 +8,19 @@
 4. Before delivering, check the image against the **review checklist** and the figure's own "Check" line. If any label, number or symbol differs from the prompt, regenerate.
 5. Do not edit the slides or `figures.md`; the course maintainer integrates each image after review.
 
-Slide numbers refer to the current deck, `../slides/S05_slides.marp.md`. Figures that show real data or a trained model (S05-F02, F03, F07, F09) are **not** in this file: they are produced by scripts, see `figures.md`.
+Slide numbers refer to the current deck, `../slides/S05_slides.marp.md`. Figures that show real data or a trained model (S05-F02, F03, F07, F09, F11, F12, F13), and the drawn F06 and F14, are **not** in this file: they are produced by scripts, see `figures.md`.
 
 ## Status
 
 | Figure | Concept | Slide | Status |
 |---|---|---:|---|
 | S05-F01 | Four task types on sequences | V08 | done |
-| S05-F04 | The LSTM cell | V27 | done, patched by script |
-| S05-F05 | The text pipeline | V37 | done |
-| S05-F06 | What each text model sees | V41 | replaced by script `make_s05_f06_three_text_models.py` |
-| S05-F08 | Sequence to sequence with one vector | V49 | done, patched by script |
-| S05-F10 | How each model reaches the past | V63 | done, patched by script |
+| S05-F04 | The LSTM cell | V28 | done, patched by script |
+| S05-F05 | The text pipeline | V40 | done |
+| S05-F06 | What each text model sees | V44 | replaced by script `make_s05_f06_three_text_models.py` |
+| S05-F08 | Sequence to sequence with one vector | V52 | done, patched by script |
+| S05-F10 | How each model reaches the past | V68 | done, patched by script |
+| S05-F15 | The GRU cell | V32 | **pending** |
 
 ## Common style block (prepend to every prompt)
 
@@ -55,7 +56,7 @@ Check: the counts of inputs and outputs are exactly as listed; the boxes in the 
 
 ---
 
-## S05-F04 · The LSTM cell (done, patched by script, slide 27)
+## S05-F04 · The LSTM cell (done, patched by script, slide 28)
 
 File: `s05_f04_lstm_cell.png`
 
@@ -75,7 +76,7 @@ Check: the orange line is straight, unbroken and carries exactly one $\odot$ and
 
 ---
 
-## S05-F05 · The text pipeline (done, slide 37)
+## S05-F05 · The text pipeline (done, slide 40)
 
 File: `s05_f05_text_pipeline.png`
 
@@ -91,7 +92,7 @@ Check: the integers match between stages 3 and 4; exactly four padding cells; th
 
 ---
 
-## S05-F06 · What each text model sees (done, slide 41)
+## S05-F06 · What each text model sees (done, slide 44)
 
 File: `s05_f06_three_text_models.png`
 
@@ -105,7 +106,7 @@ Check: the sentence and its punctuation are identical in the three rows; exactly
 
 ---
 
-## S05-F08 · Sequence to sequence with one vector (done, patched by script, slide 49)
+## S05-F08 · Sequence to sequence with one vector (done, patched by script, slide 52)
 
 File: `s05_f08_seq2seq.png`
 
@@ -120,7 +121,7 @@ Check: the input is exactly "diecinueve de octubre de 2026" as five chips; the o
 
 ---
 
-## S05-F10 · How each model reaches the past (done, patched by script, slide 63)
+## S05-F10 · How each model reaches the past (done, patched by script, slide 68)
 
 File: `s05_f10_summary.png`
 
@@ -134,3 +135,23 @@ Four horizontal rows, one per model, aligned on the same time axis of 8 steps, n
 Bottom strip, gray: "the window forgets, the RNN fades, the LSTM keeps, attention looks back".
 
 Check: all four rows share the same 8-step axis; the RNN ribbon grows monotonically from step 1 to step 8; the LSTM line has constant thickness; the attention row has exactly 8 lines, all ending at $\hat y$.
+
+---
+
+## S05-F15 · The GRU cell (pending, slide 32)
+
+File: `s05_f15_gru_cell.png`
+
+One GRU cell drawn as a large rounded rectangle, light-blue fill, in the center of the image, **in the same visual style as the LSTM cell of this deck** (same valve icons for the gates, same small circles for operations, same orange line). Original design: do not reproduce the common diagram with yellow layer boxes and pink pointwise circles. Gates in this figure: update gate $\mathbf u_t$ and reset gate $\mathbf r_t$; candidate $\tilde{\mathbf h}_t$. There is **no** $\mathbf c_t$ in this figure.
+
+1. **The memory line is the hidden state itself:** a thick, perfectly straight **orange horizontal line** crossing the top part of the cell from left to right. It enters at the left edge labeled $\mathbf h_{t-1}$ and leaves at the right edge labeled $\mathbf h_t$. On this line, in order from left to right, exactly two operations: a small circle with $\odot$ and then a small circle with $+$. Above the line, a small orange label: "additive path: $\mathbf h_t = (1 - \mathbf u_t) \odot \mathbf h_{t-1} + \mathbf u_t \odot \tilde{\mathbf h}_t$".
+2. **The gates:** two teal valve icons (a small rounded box with a slider inside), labeled $\mathbf r_t$ (left) and $\mathbf u_t$ (right), each with the small text "$\sigma(\cdot)$" under its label.
+   - $\mathbf u_t$ goes up through a small box "$1 - \cdot$" to the $\odot$ circle on the orange line, with the small label "keep".
+   - $\mathbf u_t$ also goes to a second small $\odot$ circle, where it meets the candidate box; the result goes up by a thin arrow to the $+$ circle on the orange line, with the small label "write".
+3. **The candidate:** a small blue box labeled $\tilde{\mathbf h}_t = \tanh(\cdot)$, between the two gates. Its input is a small bracket labeled $[\mathbf r_t \odot \mathbf h_{t-1}, \mathbf x_t]$: a thin gray arrow comes down from the orange line **before** the first $\odot$ circle into a small $\odot$ circle where it meets $\mathbf r_t$ (small label "reset"), and from there into that bracket.
+4. **Inputs:** $\mathbf x_t$ enters from below at the bottom left. A small bracket labeled $[\mathbf h_{t-1}, \mathbf x_t]$ (fed by a thin gray arrow from the orange line and by $\mathbf x_t$) branches by thin gray arrows to $\mathbf r_t$ and $\mathbf u_t$; $\mathbf x_t$ also goes to the bracket of the candidate.
+5. **Output:** $\mathbf h_t$ leaves at the right edge on the orange line and also goes up out of the top of the cell as a second arrow labeled $\mathbf h_t$.
+
+**Below the cell, a gray rounded strip:** "two gates, no separate cell: the additive path is $\mathbf h_t$ itself · three weight blocks instead of four, about 3/4 of the LSTM parameters".
+
+Check: the orange line is straight, unbroken and carries exactly one $\odot$ and one $+$; exactly two teal gates, labeled $\mathbf r_t$ and $\mathbf u_t$; no $\mathbf c_t$ and no output gate anywhere; the "$1 - \cdot$" box sits between $\mathbf u_t$ and the $\odot$ on the line; $\mathbf r_t$ acts on $\mathbf h_{t-1}$ only inside the candidate.

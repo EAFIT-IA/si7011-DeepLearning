@@ -224,6 +224,17 @@ Each one gives a validation score the test will not repeat.
 
 > The data contract of the S02–S04 integrators, now with time in it: **fit everything on the past only.**
 
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Three panels: overlapping windows assigned at random to train and validation; a series whose mean is computed with the future years; a window whose target falls after the cut. Below, the measured effect of the first one on Jena](../figures/s05_f12_three_leaks.png)
+
+<!-- Script make_s05_figuras_notebooks.py (F12), from resultados_jena_51.json of notebook 5.1. Shuffled split: validation 2.30 °C, better than the baseline (2.44); the same model on the future 2.57 °C, about the baseline there (2.62). Panel 2 is schematic: on Jena that leak is small (Tu turno of 5.1). -->
+
 ---
 
 # Prediction before experiment
@@ -519,6 +530,21 @@ $$
 
 Three blocks of weights instead of four: about **3/4** of the LSTM parameters. Often similar results; choose on validation, not by habit.
 
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+<div class="placeholder">
+
+**S05-F15 · The GRU cell** · `s05_f15_gru_cell.png` · Generator (prompt in `figure_prompts.md`)
+
+The hidden state as the additive path: $\mathbf h_t = (1 - \mathbf u_t) \odot \mathbf h_{t-1} + \mathbf u_t \odot \tilde{\mathbf h}_t$, with the reset gate inside the candidate. Same style as F04.
+
+</div>
+
 ---
 
 # Prediction before experiment
@@ -795,6 +821,17 @@ The encoder–decoder of Session 04, now in time. <span class="small">Sutskever,
 
 Decoding: greedy (take the most likely token); beam search keeps the $k$ best partial outputs.
 
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Two rows of six decoder steps. Training: every step receives the true previous character, so a wrong output stays at its step. Inference: every step receives its own previous output, so a wrong character is fed to the next step](../figures/s05_f14_teacher_forcing.png)
+
+<!-- Script make_s05_f14_teacher_forcing.py, drawn (no data). The example date is 2026-10-19; the error at step 3 is illustrative. -->
+
 ---
 
 # The bottleneck
@@ -895,9 +932,20 @@ Notebook 5.5, exact accuracy on 6 000 test sentences:
 | without attention | 0.4 % | 93 % |
 | with attention | **100 %** | — |
 
-- without attention, what is lost is the **day**: read first, written last;
+- without attention, the **day** goes first as $d$ shrinks (read first, written last); at $d = 24$ the month goes too;
 - with attention the decoder reaches **any input state directly**: path length 1 instead of $T$;
 - the weights read as an **alignment**, with care: attention picks **states** $\mathbf h_t$, not words, and the state at "de" already holds the day.
+
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Accuracy at each of the ten output characters of the date, for the encoder decoder without attention at five sizes of the vector and with attention at the smallest size](../figures/s05_f13_bottleneck_by_character.png)
+
+<!-- Script make_s05_figuras_notebooks.py (F13), from resultados_seq2seq.json of notebook 5.5. One run per model: d = 96 (100 %) above d = 128 (92.8 %) is run-to-run noise, not a trend. -->
 
 ---
 
