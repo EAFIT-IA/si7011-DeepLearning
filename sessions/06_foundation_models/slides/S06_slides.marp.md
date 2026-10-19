@@ -176,11 +176,11 @@ Compare, normalize, average. The weights depend on the **content** of the tokens
 
 <div class="placeholder">
 
-**S06-F13 · The same word, two meanings**
+**S06-F01 · The same word, two meanings**
 
 "banco" has the same embedding in "me senté en el banco" and "el banco cerró temprano"; after self-attention its two outputs differ: one is a bench, the other a bank.
 
-`../figures/s06_f13_same_word_two_meanings.png` · route: Generator (`figure_prompts.md`)
+`../figures/s06_f01_same_word_two_meanings.png` · route: Generator (`figure_prompts.md`)
 
 </div>
 
@@ -190,11 +190,11 @@ Compare, normalize, average. The weights depend on the **content** of the tokens
 
 <div class="placeholder">
 
-**S06-F14 · Self-attention without weights**
+**S06-F02 · Self-attention without weights**
 
 "banco" compares itself with every token ($\omega_{5j} = \mathbf x_5^\top\mathbf x_j$), the softmax turns the scores into weights, and the weights average the tokens. Without parameters, "banco" reads mostly itself (0.73).
 
-`../figures/s06_f14_attention_no_weights.png` · route: Generator (`figure_prompts.md`)
+`../figures/s06_f02_attention_no_weights.png` · route: Generator (`figure_prompts.md`)
 
 </div>
 
@@ -223,11 +223,11 @@ A **soft dictionary lookup**: compare the query with every key, return a mixture
 
 <div class="placeholder">
 
-**S06-F15 · Query, key and value**
+**S06-F03 · Query, key and value**
 
 The same three steps as the previous figure, now with $\mathbf q_5$, $\mathbf k_j$ and $\mathbf v_j$ from learned projections. "banco" now reads mostly "senté" (0.41).
 
-`../figures/s06_f15_query_key_value.png` · route: Generator (`figure_prompts.md`)
+`../figures/s06_f03_query_key_value.png` · route: Generator (`figure_prompts.md`)
 
 </div>
 
@@ -310,11 +310,11 @@ In code, heads are a reshape: `(B, T, d) → (B, H, T, d_k)`.
 
 <div class="placeholder">
 
-**S06-F01 · Multi-head attention**
+**S06-F04 · Multi-head attention**
 
 $X$ ($T\times d$) → $H$ heads, each with its own $Q, K, V$ ($T\times d_k$) and its own attention matrix $A$ ($T\times T$) → concatenate ($T\times Hd_k$) → $W_O$ → output ($T\times d$).
 
-`../figures/s06_f01_multihead.png` · route: Generator (`figure_prompts.md`)
+`../figures/s06_f04_multihead.png` · route: Generator (`figure_prompts.md`)
 
 </div>
 
@@ -390,11 +390,11 @@ Add a vector $\mathbf p_i$ for each position: $\ \mathbf x_i \leftarrow \mathbf 
 
 <div class="placeholder">
 
-**S06-F16 · Adding position**
+**S06-F05 · Adding position**
 
 Token vectors plus position vectors, column by column; without position, two orders of the same words give the same outputs, shuffled.
 
-`../figures/s06_f16_adding_position.png` · route: Generator (`figure_prompts.md`)
+`../figures/s06_f05_adding_position.png` · route: Generator (`figure_prompts.md`)
 
 </div>
 
@@ -404,11 +404,11 @@ Token vectors plus position vectors, column by column; without position, two ord
 
 <div class="placeholder">
 
-**S06-F02 · Masks and permutation**
+**S06-F06 · Masks and permutation**
 
 Attention matrices of one sentence with no mask, with a padding mask and with a causal mask; then the outputs before and after shuffling the tokens, without positional embeddings.
 
-`../figures/s06_f02_masks_permutation.png` · route: Script (notebook 6.1)
+`../figures/s06_f06_masks_permutation.png` · route: Script (notebook 6.1)
 
 </div>
 
@@ -507,11 +507,11 @@ GELU, from Session 02: $\ \varphi(z) = z\,\Phi(z)$.
 
 <div class="placeholder">
 
-**S06-F03 · The pre-norm Transformer block**
+**S06-F07 · The pre-norm Transformer block**
 
 The residual stream as a straight band from bottom to top; two side branches, LN → multi-head attention → +, and LN → MLP ($d \to 4d \to d$, GELU) → +. Inset: post-norm, with LN on the band.
 
-`../figures/s06_f03_block.png` · route: Generator (`figure_prompts.md`)
+`../figures/s06_f07_block.png` · route: Generator (`figure_prompts.md`)
 
 </div>
 
@@ -537,11 +537,11 @@ Tokens flow through one pre-norm block: LN → attention (tokens exchange inform
 
 <div class="placeholder">
 
-**S06-F17 · A whole GPT, from token ids to probabilities**
+**S06-F08 · A whole GPT, from token ids to probabilities**
 
 Token ids $(B,T)$ → embedding and position $(B,T,d)$ → $D$ blocks → LN → linear $W_U$ → logits $(B,T,\lvert V\rvert)$ → softmax over the vocabulary for the next token.
 
-`../figures/s06_f17_whole_gpt.png` · route: Generator (`figure_prompts.md`)
+`../figures/s06_f08_whole_gpt.png` · route: Generator (`figure_prompts.md`)
 
 </div>
 
@@ -588,11 +588,11 @@ The encoder-decoder is the seq2seq of Session 05 without recurrence: cross-atten
 
 <div class="placeholder">
 
-**S06-F04 · Encoder, decoder, encoder-decoder**
+**S06-F09 · Encoder, decoder, encoder-decoder**
 
 Three stacks with their masks: all-visible for the encoder, lower-triangular for the decoder, cross-attention from encoder to decoder in the third.
 
-`../figures/s06_f04_three_architectures.png` · route: Generator (`figure_prompts.md`)
+`../figures/s06_f09_three_architectures.png` · route: Generator (`figure_prompts.md`)
 
 </div>
 
@@ -694,11 +694,11 @@ Frequent words end up as one token; rare words split into two or three pieces. T
 
 <div class="placeholder">
 
-**S06-F05 · BPE**
+**S06-F10 · BPE**
 
 One Spanish sentence from characters to tokens through the first merges; vocabularies of 256, 2 000 and 8 000 tokens against the number of tokens per sentence.
 
-`../figures/s06_f05_bpe.png` · route: Script (notebook 6.3)
+`../figures/s06_f10_bpe.png` · route: Script (notebook 6.3)
 
 </div>
 
@@ -734,11 +734,11 @@ Session 04: images need about 75 % masked, text only 15 %. A word is much harder
 
 <div class="placeholder">
 
-**S06-F18 · How BERT hides words**
+**S06-F11 · How BERT hides words**
 
 Choose 15 % of the tokens; replace 80 % of them with [MASK], 10 % with a random word, keep 10 %; the encoder reads both sides and is scored only on the chosen tokens.
 
-`../figures/s06_f18_bert_masking.png` · route: Generator (`figure_prompts.md`)
+`../figures/s06_f11_bert_masking.png` · route: Generator (`figure_prompts.md`)
 
 </div>
 
@@ -763,11 +763,11 @@ loss = F.cross_entropy(
 
 <div class="placeholder">
 
-**S06-F19 · Training in parallel, generating one token at a time**
+**S06-F12 · Training in parallel, generating one token at a time**
 
 Training: one pass over `<s> me senté en el banco`, six targets shifted by one, six losses at once under the causal mask. Generation: three steps, each one appending the token just produced.
 
-`../figures/s06_f19_training_vs_generation.png` · route: Generator (`figure_prompts.md`)
+`../figures/s06_f12_training_vs_generation.png` · route: Generator (`figure_prompts.md`)
 
 </div>
 
@@ -823,11 +823,11 @@ Answer in notebook 6.3.
 
 <div class="placeholder">
 
-**S06-F06 · Training loss and samples**
+**S06-F13 · Training loss and samples**
 
 Training loss of the tiny GPT with three samples printed at the steps where they were taken.
 
-`../figures/s06_f06_gpt_samples.png` · route: Script (notebook 6.3)
+`../figures/s06_f13_gpt_samples.png` · route: Script (notebook 6.3)
 
 </div>
 
@@ -877,11 +877,11 @@ A straight line on log-log axes: **predictable** gains, with small exponents. Te
 
 <div class="placeholder">
 
-**S06-F07 · Scaling**
+**S06-F14 · Scaling**
 
 Test loss against training compute on log-log axes, from the published power-law fits; optionally, points from the small sweep of the companion notebook.
 
-`../figures/s06_f07_scaling.png` · route: Script (`make_s06_f07_scaling.py`)
+`../figures/s06_f14_scaling.png` · route: Script (`make_s06_f07_scaling.py`)
 
 </div>
 
@@ -927,11 +927,11 @@ Chinchilla, 70 B parameters on 1.4 T tokens, beat models four times larger train
 
 <div class="placeholder">
 
-**S06-F08 · CLIP zero-shot**
+**S06-F15 · CLIP zero-shot**
 
 One EuroSAT image against the text embeddings of the 10 class prompts: cosine similarity as bars, the predicted class highlighted.
 
-`../figures/s06_f08_clip_zeroshot.png` · route: Script (notebook 6.4)
+`../figures/s06_f15_clip_zeroshot.png` · route: Script (notebook 6.4)
 
 </div>
 
@@ -1036,11 +1036,11 @@ The three strategies of Sessions 03 and 04, plus one.
 
 <div class="placeholder">
 
-**S06-F09 · Four ways to use a pretrained model**
+**S06-F16 · Four ways to use a pretrained model**
 
 The same network four times: all frozen with a prompt; frozen with a trained linear head; all trained; frozen with small trained side modules.
 
-`../figures/s06_f09_four_ways.png` · route: Generator (`figure_prompts.md`)
+`../figures/s06_f16_four_ways.png` · route: Generator (`figure_prompts.md`)
 
 </div>
 
@@ -1098,11 +1098,11 @@ $$
 
 <div class="placeholder">
 
-**S06-F10 · From fine-tuning to LoRA, in three steps**
+**S06-F17 · From fine-tuning to LoRA, in three steps**
 
 ① fine-tuning updates $W$ with $\Delta W$ ($d^2$ values); ② the same written as two paths, $W_0\mathbf x + \Delta W\mathbf x$; ③ LoRA replaces $\Delta W$ with the thin factors $BA_r$ ($2dr$ values).
 
-`../figures/s06_f10_lora.png` · route: Generator (`figure_prompts.md`)
+`../figures/s06_f17_lora.png` · route: Generator (`figure_prompts.md`)
 
 </div>
 
@@ -1225,11 +1225,11 @@ J = L[mask[:, 1:].reshape(-1)].mean()      # one L_t per position, mean over the
 
 <div class="placeholder">
 
-**S06-F12 · The masked loss**
+**S06-F18 · The masked loss**
 
 One chat example as tokens colored by role (template, question, answer), with the per-token loss $L_t$ of the base model before fine-tuning; masked positions greyed; the masked mean against the unmasked mean.
 
-`../figures/s06_f12_masked_loss.png` · route: Script (notebook 6.6)
+`../figures/s06_f18_masked_loss.png` · route: Script (notebook 6.6)
 
 </div>
 
@@ -1355,11 +1355,11 @@ At home:
 
 <div class="placeholder">
 
-**S06-F11 · Accuracy against trainable parameters**
+**S06-F19 · Accuracy against trainable parameters**
 
 IMDB: the Session 05 models (bag of embeddings, 1-D CNN, LSTM) and the four strategies of notebook 6.5, accuracy against trainable parameters on a log axis.
 
-`../figures/s06_f11_summary.png` · route: Script (notebook 6.5)
+`../figures/s06_f19_summary.png` · route: Script (notebook 6.5)
 
 </div>
 
