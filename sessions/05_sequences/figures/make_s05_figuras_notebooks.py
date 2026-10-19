@@ -149,6 +149,11 @@ def f03():
     ax.set_xlabel('hour $t$ of the window  (the prediction is made at $t = T$)')
     ax.set_ylabel('$\\Vert \\partial L / \\partial \\mathbf{x}_t \\Vert$, relative to the last hour')
     ax.set_xlim(1, T); ax.grid(alpha=0.3, which='major')
+    ceros = np.where(z['g'] == 0)[0]
+    if len(ceros):                                                   # hours whose gradient is exactly 0 in float32
+        ax.axvspan(0.5, ceros[-1] + 1.5, color=GRAY, alpha=0.15, lw=0)
+        ax.text((ceros[-1] + 2) / 2, 0.5, f'first {len(ceros)} hours:\nexactly 0\nin float32', transform=ax.get_xaxis_transform(),
+                ha='center', va='center', color=NAVY, fontsize=14)
     top = ax.secondary_xaxis('top', functions=(lambda x: T - x, lambda x: T - x))
     top.set_xlabel('hours before the prediction', color=GRAY)
     ax.legend(frameon=False, loc='lower right')

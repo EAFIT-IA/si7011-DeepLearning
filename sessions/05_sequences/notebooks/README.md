@@ -4,7 +4,7 @@
 
 Notebooks 1 and 2 use **Jena Climate**: 14 weather variables every 10 minutes, 2009–2016, from the Max Planck Institute for Biogeochemistry. The task is the same in both: 5 days of hourly readings → temperature 24 hours later. Notebook 5 generates its own data (Spanish sentences that contain a date). All three run on a laptop CPU in a few minutes.
 
-**Before class, on Kaggle:** add the dataset [`mnassrib/jena-climate`](https://www.kaggle.com/datasets/mnassrib/jena-climate) with **Add Input** (notebooks 1 and 2). On Colab, the notebooks download it with your `KAGGLE_API_TOKEN` secret, the same one from Session 01; on your computer or on Lightning, put `jena_climate_2009_2016.csv` in a `data/` folder next to the notebook. Each notebook prints the source it used: check it.
+**Before class, on Kaggle:** add the dataset [`mnassrib/jena-climate`](https://www.kaggle.com/datasets/mnassrib/jena-climate) with **Add Input** (notebooks 1 and 2). The notebooks check the data before using it: they drop repeated timestamps, set the wind sensor error code (−9999) to 0 and skip windows that would jump a gap in the series. On Colab, the notebooks download it with your `KAGGLE_API_TOKEN` secret, the same one from Session 01; on your computer or on Lightning, put `jena_climate_2009_2016.csv` in a `data/` folder next to the notebook. Each notebook prints the source it used: check it.
 
 | # | Notebook | The question it answers |
 |---|---|---|
