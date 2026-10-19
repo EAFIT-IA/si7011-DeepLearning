@@ -765,15 +765,13 @@ The encoder–decoder of Session 04, now in time. <span class="small">Sutskever,
 
 ---
 
-<div class="placeholder">
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-**S05-F08 · Sequence to sequence**
+![bg contain Sequence to sequence: an encoder RNN reads diecinueve de octubre de 2026 and ends in one vector h_T, which starts a decoder RNN that writes 2026-10-19 character by character, each step receiving the previous character](../figures/s05_f08_seq2seq.png)
 
-Encoder RNN over "diecinueve de octubre de 2026", the single vector $\mathbf h_T$ highlighted, decoder RNN writing `2026-10-19` character by character.
-
-`../figures/s05_f08_seq2seq.png` · route: generator
-
-</div>
+<!-- Generated image, patched by fix_s05_f08_seq2seq.py: the generator gave every decoder step a second, curved input from the previous chip. With teacher forcing each step receives only y_{tau-1}. -->
 
 ---
 
