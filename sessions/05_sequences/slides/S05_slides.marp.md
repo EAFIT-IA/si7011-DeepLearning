@@ -793,6 +793,8 @@ Translation quality of the plain encoder–decoder **falls with the length** of 
 
 Part 2 again: the beginning of the input is many steps away from the end.
 
+Notebook 5.5: dates inside sentences of 7–27 words. What limits the plain encoder–decoder there is the **size** of $\mathbf h_T$.
+
 ---
 
 # Look back instead of remembering
@@ -839,33 +841,31 @@ The scaled dot product is the one that survives in **Session 06**.
 
 ---
 
-<div class="placeholder">
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-**S05-F09 · Attention as an alignment**
+![bg contain Attention weights for three sentences: rows are the ten output characters, columns the input words; the year digits look at the year, the month digits at the month, and the day digits often at the word de that follows the day](../figures/s05_f09_attention_alignment.png)
 
-The weights $\alpha_{\tau t}$ for three dates: output characters (rows) × input words (columns). The year digits look at the year, the month digits at the month name.
-
-`../figures/s05_f09_attention_alignment.png` · route: script (notebook 5.5)
-
-</div>
+<!-- Notebook 5.5, section 6: seq2seq with additive attention, d = 24, 100 % exact accuracy on the test sentences. The day digits often look at the "de" after the day: attention picks states h_t, and with a left-to-right GRU the state at that "de" already holds the day. -->
 
 ---
 
 # Prediction before experiment
 
-Spanish dates in words → ISO format. Seq2seq with and without attention, same size, same training.
+Spanish sentences with a date in words → ISO date. Seq2seq **without** attention, same data, same training; only the size $d$ of $\mathbf h_T$ changes.
 
 <div class="twocol">
 
 <div>
 
-Test on the **longest** written forms ("veintinueve de septiembre de mil novecientos noventa y ocho"). Which model degrades?
+With $d = 128$ it works. With $d = 24$, which part of the date is lost first: the **year**, the **month** or the **day**?
 
 </div>
 
 <div>
 
-When the decoder writes the two **month** digits, where will its attention be?
+Same $d = 24$, **with** attention. Better, worse, or the same?
 
 </div>
 
@@ -877,9 +877,16 @@ Answer in notebook 5.5.
 
 # What attention changed
 
-- the decoder reaches **any input step directly**: path length 1 instead of $T$;
-- the bottleneck vector disappears;
-- the weights read as an **alignment** — with the care of Session 03: a map is a clue, not an explanation.
+Notebook 5.5, exact accuracy on 6 000 test sentences:
+
+| | $d = 24$ | $d = 128$ |
+|---|---:|---:|
+| without attention | 0.4 % | 93 % |
+| with attention | **100 %** | — |
+
+- without attention, what is lost is the **day**: read first, written last;
+- with attention the decoder reaches **any input state directly**: path length 1 instead of $T$;
+- the weights read as an **alignment**, with care: attention picks **states** $\mathbf h_t$, not words, and the state at "de" already holds the day.
 
 ---
 
@@ -898,7 +905,7 @@ If every step can look at every other step directly…
 Worked notebooks:
 
 - [5.4 · Text and embeddings](../notebooks/sesion_05_4_texto_embeddings.ipynb): vocabulary from train, padding and masks, bag of embeddings vs 1-D CNN vs LSTM, shuffled words, neighbors in $E$ · GPU
-- [5.5 · Seq2seq and attention](../notebooks/sesion_05_5_seq2seq_atencion.ipynb): dates in words → ISO, with and without attention, accuracy vs length, the attention map · CPU
+- [5.5 · Seq2seq and attention](../notebooks/sesion_05_5_seq2seq_atencion.ipynb): dates in sentences → ISO, without attention at $d = 128$ and $d = 24$, with attention at $d = 24$, the attention map, how big $\mathbf h_T$ must be · CPU, ~7 min
 
 > Write down for each text model: parameters, test accuracy, accuracy with shuffled words.
 

@@ -38,7 +38,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | **S05-F06** | V41 | Bag of embeddings, 1-D CNN and LSTM over the same sentence | `s05_f06_three_text_models.png` | Script `make_s05_f06_three_text_models.py` (drawn, no data) | Included |
 | **S05-F07** | V43 | Six query words and their five nearest neighbors in the learned $E$ | `s05_f07_embedding_neighbors.png` | Script (notebook 5.4: `vecinos_embedding.json`) | Pending |
 | **S05-F08** | V49 | Seq2seq with the single vector $\mathbf h_T$, on a date | `s05_f08_seq2seq.png` | Generator + script: `fix_s05_f08_seq2seq.py` (one input per decoder step) | Included |
-| **S05-F09** | V55 | Attention weights $\alpha_{\tau t}$ for three dates | `s05_f09_attention_alignment.png` | Script (notebook 5.5: `atencion_fechas.npz`) | Pending |
+| **S05-F09** | V55 | Attention weights $\alpha_{\tau t}$ for three dates | `s05_f09_attention_alignment.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.5, section 6: `atencion_fechas.npz`) | Included |
 | **S05-F10** | V63 | Window, RNN, LSTM and attention: how much of step 1 reaches the prediction | `s05_f10_summary.png` | Generator + script: `fix_s05_f10_summary.py` (removes "T = 8"; RNN ribbon thin at step 1, thick at step 8, as F03) | Included |
 
 ### Script specifications
@@ -46,7 +46,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 - **F02.** Jena temperature, full record in light gray, the three blocks (train 50 %, validation 25 %, test 25 %) as colored bands. Three example windows of 120 h drawn as brackets on a zoomed inset with their target 24 h later marked as an orange dot; one forbidden window crossing the train/validation cut drawn in red with a cross. Cut indices from the notebook.
 - **F03.** One line, log-scale $y$, $t$ from 1 to 120 on $x$ (hours before the prediction on a secondary axis). Notebook 5.3 saves the same array for LSTM and GRU; if the slide in Part 3 needs the comparison, add a second panel with the three curves on the same axes rather than a new figure.
 - **F07.** Grid of 6 rows: the query word, then its 5 neighbors with their cosine similarity, colored by the sign of each word's weight in the final linear layer (positive / negative). Words chosen in the notebook, not by hand afterwards.
-- **F09.** Three heatmaps side by side, input words on $x$, output characters on $y$, same color scale, the three dates fixed in the notebook (one short, one with a long year in words, one with "primero").
+- **F09.** Three heatmaps side by side, input words on $x$, output characters on $y$, same color scale, the three sentences fixed in notebook 5.5 (one with "primero", one with the year in words, one with filler after the date). Rebuild after re-running the notebook: `python make_s05_figuras_notebooks.py ../notebooks .`
 
 ## Animations (Manim)
 

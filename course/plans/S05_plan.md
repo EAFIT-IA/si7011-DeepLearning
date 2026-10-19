@@ -30,7 +30,7 @@ Forward references updated in this branch: S02 slides (GELU, pre-norm block), no
 
 ## Decisions (proposals)
 
-1. **Two datasets, one per half.** Parts 1–3 use **Jena Climate** (temperature 24 h ahead from 14 variables every 10 min), already prepared in the old repo. Part 4 uses **IMDB** (50 000 English reviews, binary sentiment), because the sentiment of a review mostly depends on which words appear, which makes the word-order experiment informative. Part 5 uses a small synthetic task: converting Spanish dates written in words ("diecinueve de octubre de 2026") to ISO format (`2026-10-19`). It trains in a few minutes on CPU and its attention map is readable.
+1. **Two datasets, one per half.** Parts 1–3 use **Jena Climate** (temperature 24 h ahead from 14 variables every 10 min), already prepared in the old repo. Part 4 uses **IMDB** (50 000 English reviews, binary sentiment), because the sentiment of a review mostly depends on which words appear, which makes the word-order experiment informative. Part 5 uses a small synthetic task: Spanish sentences that contain a date in words ("el contrato se firmó el veintinueve de septiembre de mil novecientos noventa y ocho sin falta") converted to ISO format (`1998-09-29`). It trains in about a minute per model on CPU and its attention map is readable. Measured in notebook 5.5: without attention the decoder needs $d \approx 100$ (0.4 % exact at $d = 24$, 93 % at $d = 128$; between 48 and 96 the result depends on the seed); with attention $d = 24$ gives 100 %. Length is not what limits it here: trained on all lengths, the plain model does not degrade with length up to 27 words, and trained on short sentences only, the attention model extrapolates worse to longer ones.
 2. **Integrating exercise: Bike Sharing.** *How many hours ahead can you forecast bike demand better than the obvious baseline?* Hourly demand (UCI), the old exercise. Data contract, temporal split, windows without leakage, LSTM/GRU, multi-step horizon, MLflow, `forecast_raw`. Four TODOs as in S02–S04. S06 can come back to the same series with a zero-shot time-series foundation model (Chronos) and compare.
 3. **Attention ends the session, not the Transformer.** Part 5 introduces attention as the fix for the seq2seq bottleneck (Bahdanau, 2015). Self-attention, heads, masks and cost stay for S06. The last slide is the bridge: "what if we keep the attention and drop the recurrence?"
 4. **Homework.** Notebook 5.5 (seq2seq with attention) is short and could be in class; the proposal is to leave it as homework if Practice B runs long, since the slides show its result.
@@ -168,7 +168,7 @@ Prediction-before-experiment slides: V12, V21, V31, V44, V56.
 | V53 | Attention in motion | **S05-A03** (media) | A03 |
 | V54 | Score functions | Additive (a small MLP, Bahdanau), dot product $\mathbf s^\top\mathbf h$ and scaled dot product (Luong, 2015). The dot product is the one that survives in S06 | |
 | V55 | *(figure)* | **S05-F09** | F09 |
-| V56 | Prediction before experiment | Date conversion: seq2seq with and without attention, trained on short dates and tested on the longest written forms. Which one degrades? Where will the attention map light up for the month? | |
+| V56 | Prediction before experiment | Dates in sentences: seq2seq without attention at $d = 128$ and $d = 24$, then with attention at $d = 24$. Which part of the date is lost first without attention? Does attention fix it at the same $d$? (notebook 5.5) | |
 | V57 | What attention changed | The decoder reads any input position directly: path length 1 instead of $T$. The weights are interpretable as an alignment, with care (S03 F11) | |
 | V58 | Keep the attention, drop the recurrence? | Recurrence is still sequential: step $t$ waits for $t-1$, training does not parallelize along $T$. If each step can look at every other step, is the recurrence needed? Bridge to S06 | |
 | V59 | Practice B — Text and seq2seq | Notebooks 5.4 and 5.5 | |
@@ -224,7 +224,7 @@ Short, self-contained, one change per cell, Chollet DLwP style in PyTorch, comme
 | 5.2 | `sesion_05_2_rnn_bptt.ipynb` | An RNN cell as a Python loop, checked against `nn.RNN`; training on Jena; gradient norm vs $t$ (F03); clipping; window of 1 day vs 5 days | Jena Climate | GPU, ~10 min |
 | 5.3 | `sesion_05_3_lstm_gru.ipynb` | LSTM and GRU on the same windows; the same gradient plot; stacked; recurrent dropout; comparison table with 5.1–5.2 | Jena Climate | GPU, ~10 min |
 | 5.4 | `sesion_05_4_texto_embeddings.ipynb` | Tokenizer and vocabulary from train; padding and masks; bag of embeddings vs 1-D CNN vs LSTM; shuffled words; neighbors in $E$ (F07) | IMDB | GPU, ~15 min |
-| 5.5 | `sesion_05_5_seq2seq_atencion.ipynb` | Date conversion: seq2seq without attention, then with additive attention; accuracy vs input length; attention map (F09) | synthetic (generated in the notebook) | CPU, ~10 min |
+| 5.5 | `sesion_05_5_seq2seq_atencion.ipynb` | Dates in sentences → ISO: without attention at $d = 128$ and $d = 24$, accuracy per output position; with additive attention at $d = 24$; attention map (F09); $d$ sweep 48–96 | synthetic (generated in the notebook) | CPU, ~7 min |
 | 5.6 | `sesion_05_6_integrador_bike_sharing.ipynb` | Integrating exercise (decision 2) with MLflow | Bike Sharing | GPU |
 
 Proposed TODOs for 5.6, in the S03–S04 style:
