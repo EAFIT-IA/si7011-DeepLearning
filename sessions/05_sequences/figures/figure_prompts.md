@@ -127,10 +127,10 @@ File: `s05_f10_summary.png`
 Four horizontal rows, one per model, aligned on the same time axis of 8 steps, numbered 1 to 8 (step 1 at the left, step 8 at the right; do not write "$T = 8$": in this deck $T$ is the window length). In every row a small teal square at the far right labeled $\hat y$ is the prediction made at step 8. The question each row answers: how much of **step 1** is still available at the prediction.
 
 1. **Tag "window":** only steps 4–8 drawn as light-blue squares inside a bracket labeled "window of $T$ steps"; steps 1–3 drawn in gray with a small red cross, labeled "outside the window: lost".
-2. **Tag "RNN":** 8 identical blue boxes in a chain. An orange ribbon starts at step 1 and goes right toward $\hat y$, getting thinner at every step until it is a hairline at step 8. Small label: "fades at every step".
+2. **Tag "RNN":** 8 identical blue boxes in a chain. An orange ribbon runs along the chain whose thickness is the weight of each step in $\hat y$: a hairline at step 1, growing at every step, thickest at step 8. Small label: "recent steps dominate".
 3. **Tag "LSTM":** 8 identical blue boxes in a chain, with an orange straight line above them (the cell state) running from step 1 to step 8 with **constant thickness**, and small teal gate marks on it at each step. Small label: "kept by the gates".
 4. **Tag "attention":** 8 light-blue squares for the encoder states; from $\hat y$ (on the right), 8 thin orange curved lines go back directly to each of the 8 states, with different thicknesses (the line to step 1 clearly visible). Small label: "looks back directly, one weight per step".
 
 Bottom strip, gray: "the window forgets, the RNN fades, the LSTM keeps, attention looks back".
 
-Check: all four rows share the same 8-step axis; the RNN ribbon thins monotonically; the LSTM line has constant thickness; the attention row has exactly 8 lines, all ending at $\hat y$.
+Check: all four rows share the same 8-step axis; the RNN ribbon grows monotonically from step 1 to step 8; the LSTM line has constant thickness; the attention row has exactly 8 lines, all ending at $\hat y$.

@@ -946,9 +946,9 @@ Worked notebooks:
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain How each model reaches step 1 when it predicts at step 8: the window has lost it, the RNN signal fades step by step, the LSTM memory keeps it at constant strength, and attention looks back to every step directly](../figures/s05_f10_summary.png)
+![bg contain How much each step counts when the model predicts at step 8: the window has lost the first steps, in the RNN the recent steps dominate and step 1 barely counts, the LSTM memory keeps every step at constant strength, and attention looks back to every step directly](../figures/s05_f10_summary.png)
 
-<!-- Generated image, patched by fix_s05_f10_summary.py: removed a "T = 8" label that contradicted "window of T steps" (T is the window length in this deck). -->
+<!-- Generated image, patched by fix_s05_f10_summary.py: removed a "T = 8" label (T is the window length in this deck) and reversed the RNN ribbon, so its thickness reads as the weight of each step in y-hat, as the gradient of F03 and A01. The attention line thicknesses are an example of learned weights, not a rule. -->
 
 ---
 
