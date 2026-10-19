@@ -357,7 +357,7 @@ $$
 \text{GELU: }\ \phi(z)=z\,\Phi(z)
 $$
 
-<span class="small">$\Phi$: standard normal CDF. GELU is the default activation in Transformers (S05).</span>
+<span class="small">$\Phi$: standard normal CDF. GELU is the default activation in Transformers (S06).</span>
 
 
 ---
@@ -824,7 +824,7 @@ $$
 
 - the same computation in training and inference;
 - works with batch size 1 and with sequences of different lengths;
-- the standard choice in Transformers (S05).
+- the standard choice in Transformers (S06).
 
 
 ---
@@ -1107,7 +1107,7 @@ $$
 H(x)=x+F\big(\operatorname{LN}(x)\big)
 $$
 
-The identity path stays clean; this is the Transformer block of S05.
+The identity path stays clean; this is the Transformer block of S06.
 
 <!-- Notebook 4, section 4: same eta = 1e-2 with and without LayerNorm inside the block. Tu turno compares pre-norm and post-norm. -->
 

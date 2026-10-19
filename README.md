@@ -26,9 +26,9 @@ $$
 \rightarrow
 \text{represent}
 \rightarrow
-\text{pretrain}
+\text{remember}
 \rightarrow
-\text{adapt / evaluate / deploy}
+\text{pretrain / adapt}
 $$
 
 ## We will learn in this course
@@ -37,8 +37,8 @@ $$
 - **Training deep networks:** initialization, activation functions, SGD/Adam, regularization, normalization, residual connections, and training diagnostics.
 - **Deep learning for vision:** convolutional neural networks, residual networks, transfer learning, attention, and **Vision Transformers (ViT)**.
 - **Representation learning:** encoders and decoders, autoencoders, masked prediction, contrastive learning, embeddings, and self-supervised learning.
-- **Sequential and foundation models:** RNNs, LSTM/GRU, attention, Transformers, pretraining, scaling, and foundation models for language, vision, time series, and tabular data.
-- **Adaptation and deployment:** feature extraction, fine-tuning, PEFT/LoRA, distillation, quantization, distribution shift, evaluation, inference, and deployment.
+- **Sequences:** time series and text as sequences, RNNs, backpropagation through time, LSTM/GRU, embeddings, sequence-to-sequence models and attention.
+- **Transformers and foundation models:** self-attention, the Transformer block, pretraining, scaling, foundation models for language, vision and time series, and how to use them: zero-shot, frozen features and fine-tuning.
 - **Hands-on implementation:** using **PyTorch** and **Google Colab** to build, train, inspect, adapt, and evaluate deep learning models.
 
 ## Course structure
@@ -49,8 +49,8 @@ $$
 | **02 — Deep Training** | Why can we train deep neural networks? | Initialization, optimization, normalization, residual learning, generalization |
 | **03 — Architectures for Vision** | How does data structure shape the network? | CNN, ResNet, transfer learning, attention, ViT |
 | **04 — Representation Learning** | How can a network learn without explicit labels? | Autoencoders, masked modeling, contrastive learning, SSL |
-| **05 — Sequences & Foundation Models** | How do models learn context at scale? | RNN, LSTM/GRU, Transformer, pretraining, scaling, foundation models |
-| **06 — Adaptation, Evaluation & Deployment** | How do we turn pretrained models into reliable applications? | Fine-tuning, PEFT, OOD, evaluation, inference, quantization, deployment |
+| **05 — Sequences** | How does a network remember the past? | Windows and temporal splits, RNN, BPTT, LSTM/GRU, embeddings, seq2seq, attention |
+| **06 — Transformers & Foundation Models** | How do models learn context at scale? | Self-attention, Transformer, pretraining, scaling, foundation models, fine-tuning |
 
 Detailed course design: [`course/course_structure.md`](course/course_structure.md)
 
@@ -109,7 +109,7 @@ The course uses **three evaluation events aligned with pairs of sessions** and o
 |---|---:|---:|
 | **Evaluation Event 1 — Learning & Training** | S01–S02 | **20%** |
 | **Evaluation Event 2 — Architecture & Representation** | S03–S04 | **20%** |
-| **Evaluation Event 3 — Foundation Models & Adaptation** | S05–S06 | **25%** |
+| **Evaluation Event 3 — Sequences & Foundation Models** | S05–S06 | **25%** |
 | **Integrative Project** | transversal | **35%** |
 
 Each evaluation event is designed **after its corresponding pair of sessions has been completed**, so that the assessment reflects the concepts, experiments and level of depth actually developed in class.
@@ -135,8 +135,8 @@ SI7011-DeepLearning/
 │   ├── 02_deep_training/
 │   ├── 03_vision/
 │   ├── 04_representation/
-│   ├── 05_foundation_models/
-│   └── 06_adaptation_deployment/
+│   ├── 05_sequences/
+│   └── 06_foundation_models/
 ├── evaluations/
 │   └── event_1/
 ├── assignments/

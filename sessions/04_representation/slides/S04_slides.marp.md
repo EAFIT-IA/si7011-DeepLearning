@@ -567,7 +567,7 @@ $$
 
 Images are **redundant**: with 25 % masked, a hidden patch can be copied from its neighbors.
 
-Text is not: BERT masks only **15 %** of the words (Session 05).
+Text is not: BERT masks only **15 %** of the words (Session 06).
 
 Bonus: the encoder processes only 25 % of the patches, so pretraining is **several times faster** (about 3× in the MAE paper; 1.7× in notebook 4.3, where the decoder is not much smaller).
 
@@ -816,7 +816,7 @@ Symptom to watch: the variance of $\mathbf h$ across a batch goes to zero.
 | BYOL, DINO | two views of one image | slow teacher network |
 | CLIP | an image and its **caption** | negatives in the batch |
 
-CLIP is a **foundation model**: Session 05.
+CLIP is a **foundation model**: Session 06.
 
 ---
 

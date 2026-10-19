@@ -125,7 +125,7 @@ Prediction-before-experiment slides: V12, V19, V35, V47, V60.
 | V31 | Masked autoencoders | Patches as in S03 V56; mask 75 %; the encoder sees only the visible patches; a small decoder fills in the rest; the loss counts only masked patches | |
 | V32 | *(figure)* | **S04-F04** | F04 |
 | V33 | Masking in motion | **S04-A03** (media) | A03 |
-| V34 | Why mask so much? | Images are redundant: with 25 % masked, neighbors can be interpolated. Text needs only 15 % (BERT, S05). Encoding only 25 % of the patches also cuts compute by about 4× | |
+| V34 | Why mask so much? | Images are redundant: with 25 % masked, neighbors can be interpolated. Text needs only 15 % (BERT, S06). Encoding only 25 % of the patches also cuts compute by about 4× | |
 | V35 | Prediction before experiment | Tiny MAE on Fashion-MNIST with 25 % and 75 % masked. Which one gives the better probe? (notebook 4.3) | |
 | V36 | What masked prediction learns | Probe below fine-tuning for MAE features: the information is there, but not linearly arranged. Cite the MAE paper (ViT-L on ImageNet: about 10 points between probe and fine-tuning). In notebook 4.3 on Fashion-MNIST the gap is small (100 labels per class: probe 0.76, fine-tuning 0.78), and the notebook says so. Bridge to Part 4 | |
 
@@ -147,7 +147,7 @@ Prediction-before-experiment slides: V12, V19, V35, V47, V60.
 | V48 | Why a projection head? | The loss makes $\mathbf u$ invariant to the augmentations, so $\mathbf u$ throws information away. $\mathbf h$, one layer earlier, keeps more. Downstream we use $\mathbf h$ and discard $p$ | |
 | V49 | Negatives and batch size | More negatives, harder task, better features. SimCLR needs large batches; MoCo keeps a queue of past embeddings instead | |
 | V50 | Collapse | If every $\mathbf u$ is the same, two views always match. Negatives prevent this. Methods without negatives (BYOL, DINO) prevent it with asymmetry: a second network updated slowly and stop-gradient | |
-| V51 | The same idea, other pairs | MoCo, BYOL, DINO in one line each. CLIP: positives are an image and its caption. Bridge to S05 (foundation models) | |
+| V51 | The same idea, other pairs | MoCo, BYOL, DINO in one line each. CLIP: positives are an image and its caption. Bridge to S06 (foundation models) | |
 
 ## Part 5 · Evaluating representations (V52–V61)
 

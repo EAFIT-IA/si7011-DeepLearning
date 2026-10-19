@@ -8,7 +8,7 @@ The evaluation strategy follows the conceptual organization of the course rather
 |---|---:|---:|---|
 | **Evaluation Event 1 — Learning & Training** | S01–S02 | **20%** | learning loop, optimization, backpropagation, initialization, regularization, training diagnostics |
 | **Evaluation Event 2 — Architecture & Representation** | S03–S04 | **20%** | inductive bias, CNN/ViT, transfer learning, embeddings, reconstruction and self-supervised learning |
-| **Evaluation Event 3 — Foundation Models & Adaptation** | S05–S06 | **25%** | sequence modeling, attention, Transformers, pretrained/foundation models, adaptation, evaluation and inference |
+| **Evaluation Event 3 — Sequences & Foundation Models** | S05–S06 | **25%** | sequence modeling, recurrence, attention, Transformers, pretrained/foundation models and adaptation |
 | **Integrative Project** | transversal | **35%** | end-to-end formulation, modeling, experimentation, evaluation and deployment |
 
 ## Design principle
@@ -132,10 +132,10 @@ Justify:
 - experimental comparisons.
 
 ### S05
-Evaluate whether a pretrained or foundation model is relevant to the problem.
+If the data are sequential, justify the window, the temporal split and the sequence model against a baseline.
 
 ### S06
-Complete:
+Evaluate whether a pretrained or foundation model is relevant to the problem, and complete:
 
 - final evaluation;
 - error analysis;

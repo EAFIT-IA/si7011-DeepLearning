@@ -36,7 +36,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | 5 · From patches to attention | V62–V75 | Practice B (V75): notebooks 3.4–3.5 |
 | Closure | V76–V80 | Integrating exercise (V76), exit question (V80) |
 
-Self-attention gets one slide (V67); its full mechanics belong to Session 05.
+Self-attention gets one slide (V67); its full mechanics belong to Session 06.
 
 Slide numbers below are those of the current source; every figure is integrated.
 
