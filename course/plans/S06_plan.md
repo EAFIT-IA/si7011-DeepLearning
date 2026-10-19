@@ -48,7 +48,8 @@ S06 must keep these. Each row is a forward reference already in the slides or no
 | `course/course_structure.md` (branch `s05-plan`) | Topic list above |
 | `course/evaluation_strategy.md` | Event 3 covers S05–S06. Project, S06: "evaluate whether a pretrained or foundation model is relevant to the problem" |
 | S02–S05 | Pre-norm residual block, LayerNorm, GELU, AdamW + warmup + cosine (S02); patches, tokens, ViT, positional embedding, three transfer strategies (S03); masked prediction, InfoNCE, probes, label efficiency (S04); text pipeline, IMDB baselines, Bahdanau attention, the dates task (S05) |
-| jdmartinev/si7011-deeplearning, `Lecture06` | Transformer lecture, IMDB DistilBERT notebooks (full fine-tuning, feature extraction, LoRA, comparison), TweetEval exercise. Details in [Reusable material](#reusable-material-from-jdmartinevsi7011-deeplearning) |
+| MIT 6.S191, Lab 3 *Fine-Tune an LLM* ([MITDeepLearning/introtodeeplearning](https://github.com/MITDeepLearning/introtodeeplearning/tree/master/lab3), MIT License) | Base for the integrating exercise: chat template, loss masked to the answer, LoRA on a ~1 B decoder with a hand-written loop, held-out log-likelihood. Details in [Reusable material](#reusable-material-from-mit-6s191-lab-3) |
+| jdmartinev/si7011-deeplearning, `Lecture06` | Transformer lecture, IMDB DistilBERT notebooks (full fine-tuning, feature extraction, LoRA, comparison), TweetEval exercise (not used). Details in [Reusable material](#reusable-material-from-jdmartinevsi7011-deeplearning) |
 
 ## Decisions (proposals)
 
@@ -60,7 +61,11 @@ S06 must keep these. Each row is a forward reference already in the slides or no
 3. **Scaling is shown, not trained.** Fitting a scaling law needs a sweep over model sizes that does not fit in class. The slides use the published power laws (Kaplan et al., 2020; Hoffmann et al., 2022), redrawn by script. Optional: the companion notebook of decision 2 also trains 3–4 sizes and saves a `resultados_escalado.json`, so one slide shows the students' own small curve next to the published one.
 4. **Own training loop, Hugging Face only for weights and tokenizers.** S02–S05 use a plain PyTorch loop; the old repo used `Trainer`. Keeping the course loop makes the three adaptation strategies differ in one line (which parameters have `requires_grad`). `transformers` is used for `AutoModel`/`AutoTokenizer`, `peft` for the one LoRA cell, `open_clip` or `transformers` for CLIP, `chronos-forecasting` for Chronos.
 5. **LoRA gets one slide and one cell.** $W = W_0 + BA$ with rank $r$; the cell counts trainable parameters and trains for the same budget as full fine-tuning. No further PEFT methods.
-6. **Integrating exercise: is a foundation model worth it here?** The S06 question, applied to text. Proposal: **TweetEval emotion** (4 classes, English, about 3 300 training tweets), reusing the old exercise: data contract, the S05 LSTM as baseline, frozen DistilBERT + probe, full fine-tuning, LoRA, comparison under the same budget, MLflow, `classify_raw`. Four TODOs as in S02–S05. Alternative in [Open questions](#open-questions-for-the-instructor).
+6. **Integrating exercise: fine-tune a language model to answer in a style (adopted).** Adapted from MIT 6.S191 Lab 3. The S06 question becomes: *is it enough to ask a pretrained LLM for the style in the prompt, or does it have to be fine-tuned?* Three conditions on the same test questions: base model, base model with the style requested in the prompt, LoRA. The training loop and the next-token loss are the ones of notebook 6.3; the new pieces are the chat template and the mask that keeps the loss on the answer. Changes from the MIT lab:
+   - base model: a plain Transformer decoder that handles Spanish and fits a Kaggle T4 (proposal: Qwen2.5-0.5B-Instruct, to check license and time per step), instead of LFM2-1.2B, a hybrid of short convolutions and attention whose modules do not match the block of Part 2;
+   - metric: held-out masked NLL, computed with the loss of V64, as the graded number; the LLM judge (Gemini through OpenRouter) and Opik tracing become one optional cell (NVIDIA NIM free API), since they need accounts and keys;
+   - style: in Spanish, not Yoda (a protected character, and English). Proposal: the style of the corpus used in 6.3, so the tiny GPT trained from scratch and the adapted LLM can be read side by side. The styled answers are generated once offline (`course/s06_generar_estilo.ipynb`) and published as a Kaggle dataset, as MIT does with its `text_styles/*.txt`;
+   - MLflow and a `responder_raw` function, as in the S02–S05 integrators.
 
 ## Notation
 
@@ -79,6 +84,10 @@ Consistent with S01–S05 (φ is the activation, σ only the sigmoid, *L* the lo
 | $H$ | number of heads |
 | $\mathbf p_i$ | positional embedding of position $i$ |
 | $W_O$ | output projection after concatenating heads |
+| $Z\in\mathbb R^{T\times |V|}$ | logits of a language model, one row per position; $\mathbf z_t$ predicts token $w_{t+1}$ |
+| $L_t$ | next-token loss at position $t$, $-\log\operatorname{softmax}(\mathbf z_t)_{w_{t+1}}$ |
+| $m_t$ | loss mask: $1$ if token $w_{t+1}$ belongs to the answer, $0$ otherwise; $J = \sum_t m_t L_t / \sum_t m_t$ |
+| $\exp(J)$ | perplexity |
 | $N$ | number of parameters |
 | $D$ | number of training tokens |
 | $C \approx 6ND$ | training compute in FLOPs |
@@ -91,15 +100,17 @@ Consistent with S01–S05 (φ is the activation, σ only the sigmoid, *L* the lo
 | 00:00–00:55 | Theory A | Opening, Parts 1–2 (V01–V30) |
 | 00:55–01:45 | Practice A | V31 · notebooks 6.1–6.2 |
 | 01:45–01:55 | Break | |
-| 01:55–02:50 | Theory B | Parts 3–5 (V32–V63) |
-| 02:50–03:45 | Practice B | V64 · notebooks 6.3 and 6.5 (6.4 at home) |
-| 03:45–04:00 | Closure | V65–V69 |
+| 01:55–02:50 | Theory B | Parts 3–5 (V32–V69) |
+| 02:50–03:45 | Practice B | V70 · notebooks 6.3 and 6.5 (6.4 at home) |
+| 03:45–04:00 | Closure | V71–V75 |
 
 Theory A is dense but much of it is review: S03 showed the attention formula, S02 the block's parts, S05 the attention weights. Part 1 states what is new (heads, masks, cost) and moves on.
 
+Theory B now has 38 slides (V32–V69) because of the fine-tuning block V61–V66, which prepares the integrating exercise. If it runs long, V50 (time series and tables) and V53 (cost of size) can be cut to one line each, and V67 (comparing fairly) can move to the notebook.
+
 ## Deck structure
 
-69 slides (S02 78, S03 75, S04 66, S05 64).
+75 slides (S02 78, S03 75, S04 66, S05 64).
 
 | Part | Slides | Practice |
 |---|---|---|
@@ -108,10 +119,10 @@ Theory A is dense but much of it is review: S03 showed the attention formula, S0
 | 2 · The Transformer block | V19–V31 | Practice A (V31): notebooks 6.1–6.2 |
 | 3 · Pretraining | V32–V42 | |
 | 4 · Scale and foundation models | V43–V53 | |
-| 5 · Using a pretrained model | V54–V64 | Practice B (V64): notebooks 6.3–6.5 |
-| Closure | V65–V69 | Integrating exercise (V65), exit question (V69) |
+| 5 · Using a pretrained model | V54–V70 | Practice B (V70): notebooks 6.3–6.5 |
+| Closure | V71–V75 | Integrating exercise (V71), exit question (V75) |
 
-Prediction-before-experiment slides: V14, V28, V40, V52, V62.
+Prediction-before-experiment slides: V14, V28, V40, V52, V68.
 
 ---
 
@@ -193,7 +204,7 @@ Prediction-before-experiment slides: V14, V28, V40, V52, V62.
 | V52 | Prediction before experiment | EuroSAT: CLIP zero-shot vs CLIP features + linear probe vs the S04 SimCLR probe at 10 % of labels. Bike Sharing: Chronos zero-shot vs the S05 LSTM at 24 h. Which comes out ahead in each case? (notebook 6.4) | |
 | V53 | The cost of size | Training compute only the largest labs can pay; inference memory: parameters × bytes (a 7 B model in 16-bit is 14 GB). Most practitioners use foundation models, they do not train them. Bridge to Part 5 | |
 
-## Part 5 · Using a pretrained model (V54–V64)
+## Part 5 · Using a pretrained model (V54–V70)
 
 | # | Slide | Content | Visual |
 |---|---|---|---|
@@ -204,20 +215,27 @@ Prediction-before-experiment slides: V14, V28, V40, V52, V62.
 | V58 | Fine-tuning | All weights trainable, small learning rate ($10^{-5}$ to $5\cdot10^{-5}$), warmup, few epochs (the S03 fine-tuning recipe). Best when there are enough labels or the domain is far; costs memory for gradients and optimizer state of every weight | |
 | V59 | LoRA, in one slide | Freeze $W_0$, learn $\Delta W = BA_r$ with rank $r \ll d$: $2dr$ trainable values instead of $d^2$. For $d = 768$, $r = 8$: 2 % of the matrix. Merge after training, so inference costs nothing extra (Hu et al., 2021) | |
 | V60 | *(figure)* | **S06-F10** | F10 |
-| V61 | Comparing fairly | Same data split, same number of steps or the same compute, several seeds where cheap. Report trainable parameters, training time and memory next to accuracy. Data contract for text: tokenizer and maximum length are part of the model | |
-| V62 | Prediction before experiment | IMDB with 2 000 training reviews: S05 LSTM, frozen DistilBERT + probe, full fine-tuning, LoRA. Rank them by accuracy. Rank them by trainable parameters. Do the two rankings agree? (notebook 6.5) | |
-| V63 | When to use what | Few labels and a domain close to pretraining → frozen features. Enough labels or a distant domain → fine-tuning. Limited memory or many tasks → LoRA. No labels at all → zero-shot, checked against a baseline | |
-| V64 | Practice B — Pretraining and adaptation | Notebooks 6.3 and 6.5 in class; 6.4 at home | |
+| V61 | From a language model to an assistant | A pretrained LM continues text; it does not answer. Three stages: pretraining (Part 3), **supervised fine-tuning** on (question, answer) pairs, preference tuning (RLHF, DPO: one line). The **chat template** turns a pair into one token sequence with role markers. Fine-tuning a style is the SFT stage in miniature | |
+| V62 | The next-token loss, token by token | Logits $Z\in\mathbb R^{T\times|V|}$. Position $t$ predicts token $t+1$: compare `logits[:, :-1]` with `tokens[:, 1:]`. $L_t = -\log \operatorname{softmax}(\mathbf z_t)_{w_{t+1}}$, a cross-entropy over the vocabulary (S01). Worked example with 6 tokens: target, $p(\text{target})$, $L_t$ | |
+| V63 | The loss in motion | **S06-A04** (media) | A04 |
+| V64 | Loss only on the answer | Mask $m_t = 1$ if token $t+1$ belongs to the answer, $0$ for template and question: $J = \sum_t m_t L_t \big/ \sum_t m_t$. Without the mask the model also learns to predict the user's question, and the template tokens (nearly free to predict) dilute the gradient. Code: `F.cross_entropy(..., reduction="none")`, then `loss[mask].mean()` | |
+| V65 | *(figure)* | **S06-F12** | F12 |
+| V66 | Measuring a style | Held-out NLL: the same masked $J$ on test pairs, without gradients. $\exp(J)$ is the perplexity: "among how many tokens is the model choosing". Compare base, base with the style asked in the prompt, and LoRA, with the **same tokenizer** (NLL across tokenizers is not comparable). Optional: an LLM judge, which is cheaper to read and harder to trust | |
+| V67 | Comparing fairly | Same data split, same number of steps or the same compute, several seeds where cheap. Report trainable parameters, training time and memory next to accuracy. Data contract for text: tokenizer and maximum length are part of the model | |
+| V68 | Prediction before experiment | IMDB with 2 000 training reviews: S05 LSTM, frozen DistilBERT + probe, full fine-tuning, LoRA. Rank them by accuracy. Rank them by trainable parameters. Do the two rankings agree? (notebook 6.5) | |
+| V69 | When to use what | Few labels and a domain close to pretraining → frozen features. Enough labels or a distant domain → fine-tuning. Limited memory or many tasks → LoRA. No labels at all → zero-shot, checked against a baseline | |
+| V70 | Practice B — Pretraining and adaptation | Notebooks 6.3 and 6.5 in class; 6.4 at home | |
 
-## Closure (V65–V69)
+## Closure (V71–V75)
 
 | # | Slide | Content | Visual |
 |---|---|---|---|
-| V65 | Integrating exercise — Is a foundation model worth it? | See decision 6. Four TODOs, as in S02–S05 | |
-| V66 | The course in six questions | learn → train → structure → represent → remember → pretrain / adapt. One line per session: the idea each one added to the loop $x \rightarrow f_\theta(x) \rightarrow L \rightarrow \nabla_\theta L \rightarrow \theta'$ | |
-| V67 | What each choice assumes | Format of S03 V69, S04 V64, S05 V62: "assumes" and "pays with". Attention assumes any token may matter (pays with $T^2$); pretraining assumes the pretraining data resembles yours; LoRA assumes the update is low rank | |
-| V68 | *(figure)* | **S06-F11** | F11 |
-| V69 | Exit question | A clinic has 800 labeled Spanish clinical notes (3 classes) and one 16 GB GPU. Choose two and justify: an LSTM trained from scratch; a multilingual encoder frozen + probe; full fine-tuning of the same encoder; LoRA on a 7 B decoder; ask a chat LLM zero-shot and compare with a baseline on a held-out set | |
+| V71 | Integrating exercise — Is a foundation model worth it? | See decision 6. Four TODOs, as in S02–S05 | |
+| V72 | The course in six questions | learn → train → structure → represent → remember → pretrain / adapt. One line per session: the idea each one added to the loop $x \rightarrow f_\theta(x) \rightarrow L \rightarrow \nabla_\theta L \rightarrow \theta'$ | |
+| V73 | What each choice assumes | Format of S03 V69, S04 V64, S05 V62: "assumes" and "pays with". Attention assumes any token may matter (pays with $T^2$); pretraining assumes the pretraining data resembles yours; LoRA assumes the update is low rank | |
+| V74 | *(figure)* | **S06-F11** | F11 |
+| **S06-F12** | V65 | One chat example as tokens, colored by role (template, question, answer); bars with the per-token loss $L_t$ of the base model; masked positions greyed; the masked mean $J$ against the unmasked mean | `s06_f12_masked_loss.png` | Script (notebook 6.6, base model, before training) |
+| V75 | Exit question | A clinic has 800 labeled Spanish clinical notes (3 classes) and one 16 GB GPU. Choose two and justify: an LSTM trained from scratch; a multilingual encoder frozen + probe; full fine-tuning of the same encoder; LoRA on a 7 B decoder; ask a chat LLM zero-shot and compare with a baseline on a held-out set | |
 
 ---
 
@@ -237,7 +255,7 @@ Same routes as S03–S05: **Generator** (prompts in `figure_prompts.md`), **Scri
 | **S06-F08** | V49 | CLIP zero-shot: one EuroSAT image against the text embeddings of the 10 class prompts, similarities as bars | `s06_f08_clip_zeroshot.png` | Script (notebook 6.4) |
 | **S06-F09** | V56 | Four ways to use a pretrained model: which parameters are frozen, trained or added | `s06_f09_four_ways.png` | Generator |
 | **S06-F10** | V60 | LoRA: frozen $W_0$ beside $B$ and $A_r$, with the parameter counts | `s06_f10_lora.png` | Generator |
-| **S06-F11** | V68 | Summary: accuracy vs trainable parameters on IMDB for the S05 models and the four strategies of 6.5 | `s06_f11_summary.png` | Script (notebook 6.5: `resultados_adaptacion.json`) |
+| **S06-F11** | V74 | Summary: accuracy vs trainable parameters on IMDB for the S05 models and the four strategies of 6.5 | `s06_f11_summary.png` | Script (notebook 6.5: `resultados_adaptacion.json`) |
 
 ## Animations (Manim)
 
@@ -248,6 +266,7 @@ Only where motion changes understanding. Conventions of `escenas_s02.py`–`esce
 | **S06-A01** | V09 | A 5-token sentence. Each token emits $\mathbf q, \mathbf k, \mathbf v$; token 3 compares its $\mathbf q$ with every $\mathbf k$, scores become a softmax row, the row averages the $\mathbf v$'s; then all rows at once as $QK^\top$, and the causal mask greys out the upper triangle | Moves from one token's lookup (S05-A03) to the whole matrix in one product | `s06_a01_self_attention.mp4` |
 | **S06-A02** | V24 | Tokens flow through one block: LN → attention (tokens exchange information, arrows between columns) → add; LN → MLP (each column on its own) → add. The residual stream stays as a straight band | Separates "across tokens" from "per token" | `s06_a02_block.mp4` |
 | **S06-A03** | V38 | Autoregressive generation: the prompt goes in, the last position's logits become a distribution over the vocabulary, a token is sampled, appended, and the window shifts; then the same with low and high temperature | Generation is a loop over time; training is not | `s06_a03_generation.mp4` |
+| **S06-A04** | V63 | A short chat example as a row of tokens. The model outputs one distribution per position; each is shifted one step to face the next token; the probability of the true token is picked and becomes $L_t$ (a bar). Then the mask turns off the template and question bars, and the average is taken over the answer only. Last, the same sequence after LoRA: the answer bars shrink | Shows where the shift, the cross-entropy and the mask act, which the code hides in two lines | `s06_a04_masked_loss.mp4` |
 
 ## Notebooks
 
@@ -260,16 +279,18 @@ Short, self-contained, one change per cell, Chollet DLwP style in PyTorch, comme
 | 6.3 | `sesion_06_3_preentrenamiento_gpt.ipynb` | Train a BPE tokenizer (`tokenizers`) and compare vocabulary sizes (F05); tiny GPT with the block of 6.2 and the causal mask; train a few minutes live, then load the long checkpoint; samples at each stage (F06); greedy vs temperature vs top-$k$ | Spanish public-domain novel | GPU, ~15 min |
 | 6.4 | `sesion_06_4_modelos_fundacionales.ipynb` | CLIP zero-shot on EuroSAT with prompt templates (F08); CLIP image features + probe at 1 % and 10 % of the labels next to the S04 SimCLR and S03 ImageNet numbers; Chronos zero-shot on Bike Sharing at 1, 6, 12, 24 h against the commonsense baseline and the S05 LSTM | EuroSAT, Bike Sharing | GPU, ~15 min |
 | 6.5 | `sesion_06_5_adaptacion.ipynb` | DistilBERT on a 2 000-review IMDB subset, `max_len = 256`: frozen + probe on cached features, full fine-tuning, LoRA with `peft` ($r = 8$); same steps for all three; accuracy, trainable parameters, time and peak memory; table with the S05 5.4 models (F11) | IMDB | GPU, ~15 min |
-| 6.6 | `sesion_06_6_integrador_tweeteval.ipynb` | Integrating exercise (decision 6) with MLflow | TweetEval emotion | GPU |
+| 6.6 | `sesion_06_6_integrador_estilo_llm.ipynb` | Integrating exercise (decision 6): does a pretrained LLM need fine-tuning to answer in a style, or is the prompt enough? With MLflow; F12 from its first cells | styled Q&A pairs (Kaggle dataset, decision 6) | GPU (T4), ~25 min |
 
-Proposed TODOs for 6.6, in the S03–S05 style:
+Proposed TODOs for 6.6, in the S03–S05 style. Sections marked "(listo)": loading the model and tokenizer, generating answers with `chat`, the LoRA wrapper, the training loop (copied from 6.3).
 
-1. data contract and split for tweets: what the tokenizer receives, maximum length chosen from the length distribution, what `classify_raw` must reject (empty text, wrong language marker if any);
-2. frozen encoder + probe: cache the features and train the head, logged to MLflow;
-3. fine-tuning and LoRA under the same budget: complete the cell that sets which parameters train; report accuracy, macro-F1 (classes are unbalanced), trainable parameters and time;
-4. `classify_raw`, which loads the chosen model from MLflow, takes raw tweets, applies the contract and returns the class and its probability.
+1. **Template and mask** · 10 min: apply the chat template to a (question, answer) pair and build $m_t$ from the position where the answer starts; check it by decoding only the tokens with $m_t = 1$;
+2. **The masked loss** · 5 min: complete `perdida_respuesta(logits, tokens, mask)` from V62 and V64 (shift by one, `reduction="none"`, masked mean); the notebook checks it against the unmasked loss of `model(..., labels=...)` on an all-answer sequence;
+3. **Train and compare** · 15 min: LoRA run of fixed steps logged to MLflow (rank, trainable parameters, loss curve); held-out $J$ and perplexity for base, base + style in the prompt, LoRA; three generated answers per condition;
+4. **`responder_raw`** · 5 min: loads the LoRA adapter from MLflow, applies the template and the contract (non-empty question, maximum length in tokens) and returns the answer.
 
-Data loading follows the S03–S05 pattern: Kaggle dataset with *Add Input*, `kagglehub` with `KAGGLE_API_TOKEN` on Colab, local `data/` on Lightning. Pretrained weights (DistilBERT, CLIP, Chronos) come from the Hugging Face Hub; on Kaggle that needs *Internet on*, which must be stated in the README. Kaggle handles to choose for the novel, IMDB and TweetEval.
+**Predice** cells before TODO 3: will the held-out $J$ of the base model with the style in the prompt be closer to the base model or to LoRA?
+
+Data loading follows the S03–S05 pattern: Kaggle dataset with *Add Input*, `kagglehub` with `KAGGLE_API_TOKEN` on Colab, local `data/` on Lightning. Pretrained weights (DistilBERT, CLIP, Chronos, the 6.6 base model) come from the Hugging Face Hub; on Kaggle that needs *Internet on*, which must be stated in the README. Kaggle handles to choose for the novel, IMDB and the styled Q&A pairs of 6.6.
 
 ---
 
@@ -279,11 +300,25 @@ Data loading follows the S03–S05 pattern: Kaggle dataset with *Add Input*, `ka
 |---|---|---|---|
 | Transformer lecture | `Lecture06/Clase06b - Transformers.pdf` (37 pp.) | Narrative order for Parts 1–3 and V55–V59: attention from translation (pp. 7–8), self-attention without and with learned weights (pp. 9–14), QKV as retrieval (p. 12), multi-head as several conv filters (pp. 15–19), masked attention (pp. 20–25), positional encoding (p. 26), GPT (pp. 27–28), BERT (pp. 29–32), feature-based vs fine-tuning (p. 33), PEFT and LoRA (pp. 34–37) | Text only; Spanish → English deck. Diagrams come from external material (the original paper, blog figures): redrawn in F01, F03, F04, F09, F10 and A01. Add what is not there: $\sqrt{d_k}$, cost, pre-norm, parameter count, BPE, scaling, non-text foundation models |
 | IMDB DistilBERT notebooks | `Lecture06/notebooks/rnns/part-1-data` … `part-5-comparison` | Base for 6.5: tokenization and saving the tokenized dataset (part 1), freezing the encoder (part 3), `LoraConfig` and module inspection (part 4), comparison table, confusion matrices and examples where the models disagree (part 5) | Five notebooks with the same loading and `Trainer` code → one notebook, course loop, one change per section. Each part pushes to and reloads from the Hub: keep models in memory. Full IMDB at `max_len` 512 does not fit the class time: subset and 256 tokens. Add trainable parameters, time and peak memory to the table. Folder name `rnns` is misleading |
-| TweetEval exercise | `Lecture06/notebooks/excercise/tweeteval-part-1-data` … `part-5-lora` | Base for 6.6: dataset loading and EDA, tokenizer comparison (TODO 2.1), metrics (macro-F1), DistilBERT vs BERTweet, LoRA | Same `Trainer` → course loop change. Six notebooks → one with four TODOs and the data contract of S02–S05. BERTweet vs DistilBERT can be a *Tu turno* or dropped. Part 6 (FastAPI deployment) is not used: deployment is out of scope; `classify_raw` replaces it |
+| TweetEval exercise | `Lecture06/notebooks/excercise/tweeteval-part-1-data` … `part-5-lora` | **Not used** now that the integrating exercise is the LLM one. Its tokenizer comparison (TODO 2.1) can become a *Tu turno* in 6.3 | |
 | Deployment notebooks | `Lecture06/notebooks/*/part-6-deployment.ipynb`, `client.py` | **Not used.** Serving is no longer covered | |
 | Hugging Face tutorial | `Lecture06/hf_transformers_tutorial.pdf` | Optional student reference for `AutoModel` / `AutoTokenizer` | Link only |
 
 Not in the old repo: self-attention from scratch, cost measurement, the block and parameter count, Transformer on the dates task, BPE training, a GPT trained from scratch, scaling, CLIP, Chronos. Notebooks 6.1–6.4 are new.
+
+## Reusable material from MIT 6.S191 Lab 3
+
+`lab3/LLM_Finetuning.ipynb`, its solution and `mitdeeplearning/lab3.py` in [MITDeepLearning/introtodeeplearning](https://github.com/MITDeepLearning/introtodeeplearning) (MIT License: keep the copyright notice in the adapted notebook). Data: 2 048 questions of `databricks/databricks-dolly-15k` (CC BY-SA 3.0) with answers rewritten in a style, stored as `data/text_styles/{style}.txt`; the next 2 048 questions are the test set.
+
+| Piece | Use in 6.6 | Changes needed |
+|---|---|---|
+| Templating and tokenization (§1.1) | Template with and without answer; inspecting BPE tokens of a real LLM (link to V33) | Use the tokenizer's own `apply_chat_template` instead of a hand-written string |
+| `chat` with sampling (§1.3.1) | "(listo)" helper, temperature as in V39 | None |
+| LoRA with `peft` (§1.3.2) | "(listo)", plus the trainable-parameter count against $2dr$ (V59) | `target_modules` for the chosen model |
+| `forward_and_compute_loss` (§1.3.3) | Becomes TODO 2 | Shift by one made explicit (the lab hides it) and notation of V62–V64 |
+| Training loop (§1.3.4): Lion, 200 steps, batch 1, context 512 | Replaced by the loop of 6.3 with AdamW | Batch > 1 with padding mask, MLflow logging |
+| LLM judge and Opik (§2.2–2.5) | One optional cell | NIM instead of OpenRouter; no Opik |
+| Final log-likelihood on a fixed text (§2.6) | Generalized to held-out $J$ on the test pairs | Same metric for the three conditions |
 
 ## Link to Evaluation Event 3 (S05–S06)
 
@@ -292,11 +327,12 @@ Concepts S06 adds, phrased as decisions to justify:
 - explaining from an attention matrix which mask was used, and why a model without position cannot tell two orderings apart;
 - estimating the parameters and the attention cost of a configuration, and the effect of doubling $T$ or $d$;
 - choosing between zero-shot, frozen features, fine-tuning and LoRA from the number of labels, the domain and the memory available, and backing the choice with a baseline;
-- reading a comparison table where the most accurate strategy is not the cheapest, and deciding which to use.
+- reading a comparison table where the most accurate strategy is not the cheapest, and deciding which to use;
+- explaining which tokens a fine-tuning loss counts and why, and why NLL from two different tokenizers cannot be compared.
 
 ## Open questions for the instructor
 
-1. **Integrating exercise.** TweetEval emotion (proposal: reuses the old exercise, English) or a Spanish text task with a multilingual encoder? Or Bike Sharing again, now asking whether Chronos beats the S05 LSTM (cheaper, ties S05 and S06 into one Event 3 deliverable, but adaptation is then not practiced in the exercise)?
+1. **Style and base model for 6.6.** Which style in Spanish (proposal: the 6.3 corpus), and which base model after measuring time per step on a T4 (proposal: Qwen2.5-0.5B-Instruct).
 2. **Event 3 Part B.** Event 1 used the S02 integrator. Does Event 3 use the S05 integrator, the S06 one, or one combined deliverable?
 3. **Corpus for 6.3.** A Spanish novel from Project Gutenberg (*Don Quijote*, about 2 M characters) or a Colombian public-domain text? Needs a Kaggle dataset handle.
 4. **6.4 in class or at home.** The proposal keeps 6.3 and 6.5 in class. If 6.4 is in class instead of 6.3, students see foundation models used but no pretraining run.
