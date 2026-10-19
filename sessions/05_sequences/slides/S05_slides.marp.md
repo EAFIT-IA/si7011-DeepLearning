@@ -942,15 +942,13 @@ Worked notebooks:
 
 ---
 
-<div class="placeholder">
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-**S05-F10 · How each model reaches the past**
+![bg contain How each model reaches step 1 when it predicts at step 8: the window has lost it, the RNN signal fades step by step, the LSTM memory keeps it at constant strength, and attention looks back to every step directly](../figures/s05_f10_summary.png)
 
-Window, RNN, LSTM and attention side by side: how much of step 1 is still available when the model makes its prediction at step $T$.
-
-`../figures/s05_f10_summary.png` · route: generator
-
-</div>
+<!-- Generated image, patched by fix_s05_f10_summary.py: removed a "T = 8" label that contradicted "window of T steps" (T is the window length in this deck). -->
 
 ---
 

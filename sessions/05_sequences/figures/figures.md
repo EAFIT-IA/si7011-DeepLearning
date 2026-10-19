@@ -39,7 +39,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | **S05-F07** | V43 | Six query words and their five nearest neighbors in the learned $E$ | `s05_f07_embedding_neighbors.png` | Script (notebook 5.4: `vecinos_embedding.json`) | Pending |
 | **S05-F08** | V49 | Seq2seq with the single vector $\mathbf h_T$, on a date | `s05_f08_seq2seq.png` | Generator + script: `fix_s05_f08_seq2seq.py` (one input per decoder step) | Included |
 | **S05-F09** | V55 | Attention weights $\alpha_{\tau t}$ for three dates | `s05_f09_attention_alignment.png` | Script (notebook 5.5: `atencion_fechas.npz`) | Pending |
-| **S05-F10** | V63 | Window, RNN, LSTM and attention: how much of step 1 reaches the prediction | `s05_f10_summary.png` | Generator | Pending |
+| **S05-F10** | V63 | Window, RNN, LSTM and attention: how much of step 1 reaches the prediction | `s05_f10_summary.png` | Generator + script: `fix_s05_f10_summary.py` (removes "T = 8") | Included |
 
 ### Script specifications
 

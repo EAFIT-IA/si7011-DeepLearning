@@ -19,7 +19,7 @@ Slide numbers refer to the current deck, `../slides/S05_slides.marp.md`. Figures
 | S05-F05 | The text pipeline | V37 | done |
 | S05-F06 | What each text model sees | V41 | replaced by script `make_s05_f06_three_text_models.py` |
 | S05-F08 | Sequence to sequence with one vector | V49 | done, patched by script |
-| S05-F10 | How each model reaches the past | V63 | pending |
+| S05-F10 | How each model reaches the past | V63 | done, patched by script |
 
 ## Common style block (prepend to every prompt)
 
@@ -120,11 +120,11 @@ Check: the input is exactly "diecinueve de octubre de 2026" as five chips; the o
 
 ---
 
-## S05-F10 · How each model reaches the past (pending, slide 63)
+## S05-F10 · How each model reaches the past (done, patched by script, slide 63)
 
 File: `s05_f10_summary.png`
 
-Four horizontal rows, one per model, aligned on the same time axis of 8 steps (step 1 at the left, step $T = 8$ at the right). In every row a small teal square at the far right labeled $\hat y$ is the prediction made at step 8. The question each row answers: how much of **step 1** is still available at the prediction.
+Four horizontal rows, one per model, aligned on the same time axis of 8 steps, numbered 1 to 8 (step 1 at the left, step 8 at the right; do not write "$T = 8$": in this deck $T$ is the window length). In every row a small teal square at the far right labeled $\hat y$ is the prediction made at step 8. The question each row answers: how much of **step 1** is still available at the prediction.
 
 1. **Tag "window":** only steps 4–8 drawn as light-blue squares inside a bracket labeled "window of $T$ steps"; steps 1–3 drawn in gray with a small red cross, labeled "outside the window: lost".
 2. **Tag "RNN":** 8 identical blue boxes in a chain. An orange ribbon starts at step 1 and goes right toward $\hat y$, getting thinner at every step until it is a hairline at step 8. Small label: "fades at every step".
