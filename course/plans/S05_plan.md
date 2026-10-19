@@ -104,7 +104,7 @@ Prediction-before-experiment slides: V12, V21, V31, V44, V56.
 | V09 | From a series to examples | Sliding window: $T$ past steps → value $H_{\text{fut}}$ steps ahead. Jena: one reading every 10 min, sampled every hour, $T = 120$ hours, target 24 h ahead | |
 | V10 | *(figure)* | **S05-F02** | F02 |
 | V11 | Three ways to leak the future | Shuffling before the split; normalizing with statistics of the whole series; windows that cross the cut. Each one gives a validation score the test will not repeat. Data-contract callback (S02–S04 integrators) | |
-| V12 | Prediction before experiment | Jena: commonsense baseline ("tomorrow at this hour = today at this hour") against a flattened MLP over 120 h × 14 variables. Which one wins on validation MAE? Answer in notebook 5.1 | |
+| V12 | Prediction before experiment | Jena: commonsense baseline ("the temperature in 24 h equals the temperature now") against a flattened MLP over 120 h × 14 variables. Which one wins on validation MAE? Answer in notebook 5.1 | |
 | V13 | Why not an MLP or a CNN? | Flattened MLP: parameters grow with $T$, no sharing along time, order is only a position in a vector. 1-D convolution: shares weights (S03) but sees a fixed receptive field. Wanted: same weights at each step and a summary of everything before | |
 
 ## Part 2 · Recurrence and its gradients (V14–V24)
@@ -118,7 +118,7 @@ Prediction-before-experiment slides: V12, V21, V31, V44, V56.
 | V18 | Backpropagation through time | The unrolled graph is a deep network with tied weights. $\dfrac{\partial \mathbf h_T}{\partial \mathbf h_t} = \prod_{k=t+1}^{T} \operatorname{diag}\!\big(\varphi'(\cdot)\big)\,W_{hh}$. The product of Jacobians of S02, with the **same** matrix repeated | |
 | V19 | Vanishing and exploding | Largest singular value of $W_{hh}$ times $\max\varphi'$ below 1: the signal from step $t$ fades geometrically; above 1: it can explode. With tanh, $\varphi' \le 1$, so fading is the usual case | |
 | V20 | *(figure)* | **S05-F03** | F03 |
-| V21 | Prediction before experiment | Same Jena setup with a 16-unit RNN. Does it beat the baseline? And with a window of 5 days instead of 20 hours: does it improve? | |
+| V21 | Prediction before experiment | Same Jena setup with a 16-unit RNN. Does it beat the baseline? And with a window of 1 day instead of 5: better, worse or the same? | |
 | V22 | Gradient clipping | Rescale $\nabla_\theta L$ when its norm exceeds a threshold: `clip_grad_norm_`. It stops explosions; it does nothing for fading. Callback to S02 diagnostics | |
 | V23 | Truncated BPTT | Backpropagate only $k$ steps; carry $\mathbf h$ forward detached. Cheaper, and it limits by design how far back the network can learn | |
 | V24 | What we need | A path along time where the gradient is not multiplied by $W_{hh}$ at every step. S02 had the answer for depth: an additive (residual) path | |
@@ -221,7 +221,7 @@ Short, self-contained, one change per cell, Chollet DLwP style in PyTorch, comme
 | # | Notebook | Question | Data | Time |
 |---|---|---|---|---|
 | 5.1 | `sesion_05_1_series_ventanas.ipynb` | Windows, temporal split and the three leaks (shown, then fixed); commonsense baseline; flattened MLP; 1-D CNN (F02) | Jena Climate | CPU/GPU, ~8 min |
-| 5.2 | `sesion_05_2_rnn_bptt.ipynb` | An RNN cell as a Python loop, checked against `nn.RNN`; training on Jena; gradient norm vs $t$ (F03); clipping; window of 20 h vs 5 days | Jena Climate | GPU, ~10 min |
+| 5.2 | `sesion_05_2_rnn_bptt.ipynb` | An RNN cell as a Python loop, checked against `nn.RNN`; training on Jena; gradient norm vs $t$ (F03); clipping; window of 1 day vs 5 days | Jena Climate | GPU, ~10 min |
 | 5.3 | `sesion_05_3_lstm_gru.ipynb` | LSTM and GRU on the same windows; the same gradient plot; stacked; recurrent dropout; comparison table with 5.1–5.2 | Jena Climate | GPU, ~10 min |
 | 5.4 | `sesion_05_4_texto_embeddings.ipynb` | Tokenizer and vocabulary from train; padding and masks; bag of embeddings vs 1-D CNN vs LSTM; shuffled words; neighbors in $E$ (F07) | IMDB | GPU, ~15 min |
 | 5.5 | `sesion_05_5_seq2seq_atencion.ipynb` | Date conversion: seq2seq without attention, then with additive attention; accuracy vs input length; attention map (F09) | synthetic (generated in the notebook) | CPU, ~10 min |
