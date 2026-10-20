@@ -26,7 +26,23 @@ Son dos cosas: **responder unas preguntas** en clase y **completar un notebook**
 
 1. Resuelvan los 4 TODO y ejecuten el notebook de principio a fin (tres corridas: la línea base, su receta y una que cambia una sola cosa).
 2. Respondan las 5 preguntas de la sección 11 en el mismo notebook, con números de sus corridas.
-3. **Entreguen el `.ipynb` ejecutado**, con las salidas visibles y los nombres de los dos integrantes en la primera celda.
+3. Súbanlo, ejecutado y con las salidas visibles, a `evento1/sesion_02_6_integrador_covertype.ipynb` en el **repositorio de la pareja**.
+
+**Entrega: un solo repositorio de GitHub por pareja para todo el curso.** Cada evento va en su carpeta:
+
+```text
+si7011-<apellido1>-<apellido2>/
+├── README.md      # nombres de los dos integrantes
+├── evento1/
+│   └── sesion_02_6_integrador_covertype.ipynb
+├── evento2/
+│   └── sesion_03_6_integrador_eurosat.ipynb
+└── …
+```
+
+- **Privado**, con el profesor como colaborador (`jdmartinev`). Lo crean una vez, en el evento 1, y lo reutilizan.
+- No suban los datos ni los checkpoints, solo el notebook.
+- Se califica el último commit antes de la fecha límite.
 
 | Criterio | Peso |
 |---|---:|
