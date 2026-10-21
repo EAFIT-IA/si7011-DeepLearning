@@ -483,17 +483,13 @@ GELU, from Session 02: $\ \varphi(z) = z\,\Phi(z)$.
 
 ---
 
-# The block
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain The pre-norm Transformer block: the residual stream runs straight from X at the bottom to the output; one branch goes LN, multi-head attention, back into the stream with a plus; a second branch goes LN, MLP (d to 4d to d, GELU, each token on its own), back with a plus. Inset: the original post-norm block, where LN sits on the residual path after each plus](../figures/s06_f07_block.png)
 
-**S06-F07 · The pre-norm Transformer block**
-
-The residual stream as a straight band from bottom to top; two side branches, LN → multi-head attention → +, and LN → MLP ($d \to 4d \to d$, GELU) → +. Inset: post-norm, with LN on the band.
-
-`../figures/s06_f07_block.png` · route: Generator (`figure_prompts.md`)
-
-</div>
+<!-- Generated image, patched by fix_s06_f07_block.py: the two update formulas were garbled, the input was a lowercase x, and the post-norm inset placed attention on the residual path; the inset is redrawn. Point at the blue band: in pre-norm nothing sits on it, so the gradient has an identity path through every block (Session 02). In post-norm, an LN sits on it after every block. -->
 
 ---
 

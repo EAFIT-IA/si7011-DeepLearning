@@ -257,7 +257,7 @@ Same routes as S03–S05: **Generator** (prompts in `figure_prompts.md`), **Scri
 | **S06-F04** | V15 | Multi-head attention: $X$ → $H$ heads with their own $Q, K, V$ → concatenate → $W_O$; shapes $(T, d) \to H\times(T, d_k) \to (T, d)$ | `s06_f04_multihead.png` | Generator + script patch |
 | **S06-F05** | V19 | $\mathbf x_i + \mathbf p_i$ column by column; two orders with and without position | `s06_f05_adding_position.png` | Script (`make_s06_f01_f05_tokens.py`, drawn) |
 | **S06-F06** | V20 | Attention matrices of one sentence: no mask, padding mask, causal mask; plus outputs before and after shuffling the tokens without position | `s06_f06_masks_permutation.png` | Script (notebook 6.1) |
-| **S06-F07** | V27 | The pre-norm Transformer block with the residual path drawn as the straight line of S02 | `s06_f07_block.png` | Generator |
+| **S06-F07** | V27 | The pre-norm Transformer block with the residual path drawn as the straight line of S02 | `s06_f07_block.png` | Generator + script patch |
 | **S06-F08** | V29 | A whole GPT with shapes, from token ids to next-token probabilities | `s06_f08_whole_gpt.png` | Generator |
 | **S06-F09** | V32 | Encoder, decoder, encoder-decoder side by side, with the mask each one uses | `s06_f09_three_architectures.png` | Generator |
 | **S06-F10** | V39 | BPE on one Spanish sentence: characters → merges → tokens; vocabulary sizes 256 / 2 000 / 8 000 vs sequence length | `s06_f10_bpe.png` | Script (notebook 6.3) |

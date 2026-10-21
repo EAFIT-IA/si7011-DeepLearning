@@ -15,7 +15,7 @@ Slide numbers refer to the current deck, `../slides/S06_slides.marp.md`. This fi
 | Figure | Concept | Slide | Status |
 |---|---|---:|---|
 | S06-F04 | Multi-head attention with shapes | V15 | done, patched by script |
-| S06-F07 | The pre-norm Transformer block | V27 | pending |
+| S06-F07 | The pre-norm Transformer block | V27 | done, patched by script |
 | S06-F08 | A whole GPT, from token ids to probabilities | V29 | pending |
 | S06-F09 | Encoder, decoder, encoder-decoder | V32 | pending |
 | S06-F11 | How BERT hides words | V42 | pending |
@@ -61,7 +61,7 @@ Check: the formula has the square root, $\sqrt{d_k}$; the concatenation is verti
 
 ---
 
-## S06-F07 · The pre-norm Transformer block (pending, slide 27)
+## S06-F07 · The pre-norm Transformer block (done, patched by script, slide 27)
 
 File: `s06_f07_block.png`
 
@@ -78,9 +78,9 @@ To the right of the block, two short annotations aligned with each branch:
 
 At the far left of the band, a vertical bracket covering the whole block labeled "$\times$ number of blocks" in small type.
 
-Small inset at the bottom right, gray outline, titled "post-norm (original)": a mini version where "LN" sits **after** each "+" on the band itself, so the band is interrupted twice; caption under the inset: "LN on the residual path".
+Small inset at the bottom right, gray outline, titled "post-norm (original)": a mini version of the same block, bottom to top: $X$ → the attention branch rejoins the band at a "+" → **then** an "LN" box sitting **on** the band → the MLP branch rejoins at a second "+" → **then** a second "LN" on the band → output. Attention and MLP stay in side branches, as in the main block; only the LN boxes move onto the band. Caption under the inset: "LN on the residual path".
 
-Check: in the main block the blue band is never interrupted (no box sits on it, only the two "+" joins); LN is before attention and before the MLP; attention is orange and the MLP teal; the inset is clearly smaller and grayer than the main block.
+Check: the input is labeled $X$ (capital); the formulas contain only the symbols given; in the inset, attention and MLP are side branches and only the two LN boxes sit on the band; in the main block the blue band is never interrupted (no box sits on it, only the two "+" joins); LN is before attention and before the MLP; attention is orange and the MLP teal; the inset is clearly smaller and grayer than the main block.
 
 ---
 
