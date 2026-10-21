@@ -556,17 +556,13 @@ The encoder-decoder is the seq2seq of Session 05 without recurrence: cross-atten
 
 ---
 
-# Three architectures, side by side
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain Three architectures. Encoder: two blocks read "the movie was not bad" with no mask, every token sees every token; BERT, ViT. Decoder: two blocks read the same words under a causal mask and output the next word of each, "movie was not bad !"; GPT. Encoder-decoder: an encoder reads "la película no está mal", a decoder reads "<s> the movie is not" and outputs "the movie is not bad", with cross-attention from the encoder to the decoder; original Transformer, T5](../figures/s06_f09_three_architectures.png)
 
-**S06-F09 · Encoder, decoder, encoder-decoder**
-
-Three stacks with their masks: all-visible for the encoder, lower-triangular for the decoder, cross-attention from encoder to decoder in the third.
-
-`../figures/s06_f09_three_architectures.png` · route: Generator (`figure_prompts.md`)
-
-</div>
+<!-- Generated image, used as is. Count the causal mask with the class: row i has i orange cells. The decoder outputs are its inputs shifted left by one: that shift is the whole training signal of Part 3. The encoder-decoder is the seq2seq of Session 05 with attention everywhere and no recurrence; cross-attention is the Bahdanau attention. -->
 
 ---
 

@@ -17,7 +17,7 @@ Slide numbers refer to the current deck, `../slides/S06_slides.marp.md`. This fi
 | S06-F04 | Multi-head attention with shapes | V15 | done, patched by script |
 | S06-F07 | The pre-norm Transformer block | V27 | done, patched by script |
 | S06-F08 | A whole GPT, from token ids to probabilities | V29 | done, patched by script |
-| S06-F09 | Encoder, decoder, encoder-decoder | V32 | pending |
+| S06-F09 | Encoder, decoder, encoder-decoder | V32 | done |
 | S06-F11 | How BERT hides words | V42 | pending |
 | S06-F12 | Training in parallel, generating one token at a time | V44 | pending |
 | S06-F16 | Four ways to use a pretrained model | V63 | pending |
@@ -152,7 +152,7 @@ Every stage has its shape label; all five token-id arrows go into the token embe
 
 ---
 
-## S06-F09 · Encoder, decoder, encoder-decoder (pending, slide 32)
+## S06-F09 · Encoder, decoder, encoder-decoder (done, slide 32)
 
 File: `s06_f09_three_architectures.png`
 
@@ -173,17 +173,15 @@ Originality: no logos, no photographs, no reproduction of a figure from a paper,
 
 FIGURE
 
-Three columns of equal width, each with a teal tag at the top-left, a small diagram and two lines of text below. In every column, words are written ONE WORD PER SQUARE, in a row from left to right.
+Three columns of equal width, each with a teal tag at the top-left, a small diagram and two lines of text below.
 
-1. Tag "encoder": a stack of two BLUE blocks, each labeled "block". Under the stack, a row of 5 blue input squares, one word each: "me", "senté", "en", "el", "banco". Above the stack, a row of 5 blue output squares with no text. To the right of the stack, a small 5 × 5 mask grid with ALL 25 cells filled orange, and the caption "no mask: every token sees every token". Two lines of text below the column: "understand an input" and "BERT, ViT".
-
-2. Tag "decoder": a stack of two TEAL blocks, each labeled "block". Under the stack, a row of 5 input squares, one word each: "me", "senté", "en", "el", "banco". Above the stack, a row of 5 output squares holding the NEXT word for each input, shifted by one: "senté", "en", "el", "banco", "." (each output square sits directly above the input it was predicted from). To the right of the stack, a 5 × 5 mask grid where the diagonal and the lower triangle are orange (15 cells) and the upper triangle is gray with a small red cross in each of its 10 cells; caption "causal mask: token $i$ sees $j \le i$". Two lines of text below the column: "generate, one token at a time" and "GPT".
-
-3. Tag "encoder-decoder": on the left, a BLUE encoder stack of two blocks reading 5 squares, one word each: "me", "senté", "en", "el", "banco". On the right, a TEAL decoder stack of two blocks reading 5 squares, one word each: "<s>", "I", "sat", "on", "the", and producing above it 5 squares, one word each: "I", "sat", "on", "the", "bench". One orange arrow labeled "cross-attention" goes from the top of the encoder stack into the side of the decoder stack. Two lines of text below the column: "input sequence → output sequence" and "original Transformer, T5".
+1. Tag "encoder": a stack of two blue blocks labeled "block"; under them a row of 5 blue token squares labeled "the movie was not bad"; above them a row of 5 output squares. To the right, a small 5 × 5 attention mask grid with all cells filled orange and the caption "no mask: every token sees every token". Text below: "understand an input" · "BERT, ViT".
+2. Tag "decoder": the same two-block stack; under it 5 token squares "the movie was not bad"; above it 5 output squares labeled with the next token, shifted by one: "movie", "was", "not", "bad", "!". To the right, a 5 × 5 mask grid where the lower triangle and the diagonal are orange and the upper triangle is gray with small red crosses; caption "causal mask: token $i$ sees $j \le i$". Text below: "generate, one token at a time" · "GPT".
+3. Tag "encoder-decoder": a blue encoder stack on the left reading 5 squares, one word each: "la", "película", "no", "está", "mal"; a teal decoder stack on the right reading 5 squares "<s>", "the", "movie", "is", "not" and producing 5 squares "the", "movie", "is", "not", "bad"; an orange arrow labeled "cross-attention" goes from the top of the encoder stack into the decoder stack. Text below: "input sequence → output sequence" · "original Transformer, T5".
 
 CHECK BEFORE DELIVERING
 
-Every square holds exactly one word; the encoder mask has all 25 cells orange; the decoder mask has 15 orange cells (diagonal and below) and 10 gray cells with red crosses (above the diagonal); in column 2 the outputs are the inputs shifted left by one, ending with "."; in column 3 the decoder outputs are its inputs shifted left by one, ending with "bench"; cross-attention appears only in column 3; encoders are blue and decoders teal; the Spanish words keep their accent: "senté".
+The decoder mask is lower-triangular including the diagonal; the encoder mask is all orange; the decoder outputs are the inputs shifted left by one; cross-attention appears only in column 3; the Spanish words are copied exactly with the accent in "película" and "está".
 ```
 
 ---
