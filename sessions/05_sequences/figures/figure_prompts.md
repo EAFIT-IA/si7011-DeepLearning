@@ -8,19 +8,19 @@
 4. Before delivering, check the image against the **review checklist** and the figure's own "Check" line. If any label, number or symbol differs from the prompt, regenerate.
 5. Do not edit the slides or `figures.md`; the course maintainer integrates each image after review.
 
-Slide numbers refer to the current deck, `../slides/S05_slides.marp.md`. Figures that show real data or a trained model (S05-F02, F03, F07, F09, F11, F12, F13), and the drawn F06 and F14, are **not** in this file: they are produced by scripts, see `figures.md`.
+Slide numbers refer to the current deck, `../slides/S05_slides.marp.md`. Figures that show real data or a trained model (S05-F02, F03, F07, F09, F11, F12, F13), and the drawn F06, F14, F16, F17 and F18, are **not** in this file: they are produced by scripts, see `figures.md`.
 
 ## Status
 
 | Figure | Concept | Slide | Status |
 |---|---|---:|---|
 | S05-F01 | Four task types on sequences | V08 | done |
-| S05-F04 | The LSTM cell | V28 | done, patched by script |
-| S05-F05 | The text pipeline | V40 | done |
-| S05-F06 | What each text model sees | V44 | replaced by script `make_s05_f06_three_text_models.py` |
-| S05-F08 | Sequence to sequence with one vector | V52 | done, patched by script |
-| S05-F10 | How each model reaches the past | V68 | done, patched by script |
-| S05-F15 | The GRU cell | V32 | done, patched by script |
+| S05-F04 | The LSTM cell | V29 | done, patched by script |
+| S05-F05 | The text pipeline | V43 | done |
+| S05-F06 | What each text model sees | V47 | replaced by script `make_s05_f06_three_text_models.py` |
+| S05-F08 | Sequence to sequence with one vector | V55 | done, patched by script |
+| S05-F10 | How each model reaches the past | V71 | done, patched by script |
+| S05-F15 | The GRU cell | V33 | done, patched by script |
 
 ## Common style block (prepend to every prompt)
 
@@ -56,7 +56,7 @@ Check: the counts of inputs and outputs are exactly as listed; the boxes in the 
 
 ---
 
-## S05-F04 · The LSTM cell (done, patched by script, slide 28)
+## S05-F04 · The LSTM cell (done, patched by script, slide 29)
 
 File: `s05_f04_lstm_cell.png`
 
@@ -76,7 +76,7 @@ Check: the orange line is straight, unbroken and carries exactly one $\odot$ and
 
 ---
 
-## S05-F05 · The text pipeline (done, slide 40)
+## S05-F05 · The text pipeline (done, slide 43)
 
 File: `s05_f05_text_pipeline.png`
 
@@ -92,7 +92,7 @@ Check: the integers match between stages 3 and 4; exactly four padding cells; th
 
 ---
 
-## S05-F06 · What each text model sees (done, slide 44)
+## S05-F06 · What each text model sees (done, slide 47)
 
 File: `s05_f06_three_text_models.png`
 
@@ -106,7 +106,7 @@ Check: the sentence and its punctuation are identical in the three rows; exactly
 
 ---
 
-## S05-F08 · Sequence to sequence with one vector (done, patched by script, slide 52)
+## S05-F08 · Sequence to sequence with one vector (done, patched by script, slide 55)
 
 File: `s05_f08_seq2seq.png`
 
@@ -121,7 +121,7 @@ Check: the input is exactly "diecinueve de octubre de 2026" as five chips; the o
 
 ---
 
-## S05-F10 · How each model reaches the past (done, patched by script, slide 68)
+## S05-F10 · How each model reaches the past (done, patched by script, slide 71)
 
 File: `s05_f10_summary.png`
 
@@ -138,7 +138,7 @@ Check: all four rows share the same 8-step axis; the RNN ribbon grows monotonica
 
 ---
 
-## S05-F15 · The GRU cell (done, patched by script, slide 32)
+## S05-F15 · The GRU cell (done, patched by script, slide 33)
 
 File: `s05_f15_gru_cell.png`
 
