@@ -178,7 +178,7 @@ Compare, normalize, average. The weights depend on the **content** of the tokens
 
 **S06-F01 · The same word, two meanings**
 
-"banco" has the same embedding in "me senté en el banco" and "el banco cerró temprano"; after self-attention its two outputs differ: one is a bench, the other a bank.
+"banco" has the same embedding in "me senté en el banco" and "deposité dinero en el banco": same word, same position, same "en el" before it. After self-attention its two outputs differ: one is a bench, the other a bank.
 
 `../figures/s06_f01_same_word_two_meanings.png` · route: Generator (`figure_prompts.md`)
 

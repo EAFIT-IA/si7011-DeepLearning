@@ -53,20 +53,26 @@ The figures of Part 1 (F01, F02, F03, F04, F05) are a **sequence**: they use the
 
 File: `s06_f01_same_word_two_meanings.png`
 
-Two horizontal rows, one sentence each, with the same layout.
+Two horizontal rows, one sentence each, with **exactly the same layout**: five token columns per row, in five fixed column positions shared by both rows, so that each word of the bottom row sits directly under a word of the top row.
 
-1. **Top row:** five blue token columns for "me", "senté", "en", "el", "banco".
-2. **Bottom row:** four blue token columns for "el", "banco", "cerró", "temprano".
+1. **Top row:** five blue token columns, from left to right: "me", "senté", "en", "el", "banco".
+2. **Bottom row:** five blue token columns, from left to right: "deposité", "dinero", "en", "el", "banco".
 
-The column of "banco" is **identical** in both rows (same 4 cell shades), and a thin gray dashed bracket joins the two "banco" columns with the label "same embedding $\mathbf e_{\text{banco}}$".
+Every column has its word written under it. There are **exactly five columns in each row and no unlabeled column**.
 
-To the right of each row, an arrow labeled "self-attention" leads to one output column for "banco":
-- top row: the output column is drawn in a **different** shade mix, with a small label "bench"; thin orange curved arrows go from "senté" (thick) and "en" (thin) into the "banco" of the top row;
-- bottom row: the output column has another shade mix, with the label "bank"; thin orange curved arrows go from "cerró" (thick) and "temprano" (thin) into the "banco" of the bottom row.
+"banco" is the **fifth (last) column in both rows**, one directly above the other. These two "banco" columns are **identical copies** (the same 4 cell shades, in the same order). A thin gray dashed bracket joins exactly these two columns, with the label "same embedding $\mathbf e_{\text{banco}}$" (bold upright **e**, subscript "banco").
+
+Orange curved arrows, above each row, all ending on the "banco" column of that row:
+- top row: one **thick** arrow from "senté" and one **thin** arrow from "en";
+- bottom row: one **thick** arrow from "deposité" and one **thin** arrow from "dinero".
+
+To the right of each row, an arrow labeled "self-attention" leads to one output column, with "banco" under it:
+- top row: the output column has a **different** shade mix from the input "banco", with the label "bench" to its right;
+- bottom row: the output column has another shade mix, different from both the input and the top output, with the label "bank" to its right.
 
 Bottom strip, gray: "the input vector is the same; the output depends on the other tokens".
 
-Check: the two input "banco" columns are pixel-identical; the two output columns differ from each other and from the input; the labels "bench" and "bank" are in English; the Spanish words are copied exactly ("senté", "cerró").
+Check: each row has exactly five labeled columns and no extra column; "banco" is the last column of both rows and the two "banco" input columns are identical; the dashed bracket and all orange arrows end on those "banco" columns; the two output columns differ from each other and from the input; "bench" and "bank" are in English; the Spanish words are copied exactly ("senté", "deposité").
 
 ---
 
