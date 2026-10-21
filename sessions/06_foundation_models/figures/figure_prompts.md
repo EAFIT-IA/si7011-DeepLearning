@@ -51,7 +51,7 @@ File: `s06_f04_multihead.png`
 Left to right, four stages.
 
 1. **Left:** one blue rectangle labeled $X$ with the shape label "$T \times d$" under it.
-2. **Center-left:** three arrows fan out from $X$ to three stacked lanes labeled "head 1", "head 2", "head $H$" (with a vertical "⋮" between head 2 and head $H$). In each lane: three small orange rectangles side by side labeled $Q$, $K$, $V$ with the shape "$T \times d_k$" under them, then a small square orange heat map labeled $A$ with shape "$T \times T$", then one small orange rectangle labeled "head output" with shape "$T \times d_k$". Next to the arrow that enters each lane write "$W_Q, W_K, W_V$" in small type, and over the heat map the formula $\operatorname{softmax}\!\big(QK^\top/\sqrt{d_k}\big)$ (only in head 1, to avoid clutter). The three heat maps must show **different** patterns (one diagonal, one with a bright column, one diffuse) so the heads look different.
+2. **Center-left:** three arrows fan out from $X$ to three stacked lanes labeled "head 1", "head 2", "head $H$" (with a vertical "⋮" between head 2 and head $H$). In each lane: three small orange rectangles side by side labeled $Q$, $K$, $V$ with the shape "$T \times d_k$" under them, then a small square orange heat map labeled $A$ with shape "$T \times T$", then one small orange rectangle labeled "head output" with shape "$T \times d_k$". Next to the arrow that enters each lane write "$W_Q, W_K, W_V$" in small type, and over the heat map the formula $\mathrm{softmax}\!\big(QK^\top/\sqrt{d_k}\big)$ (only in head 1, to avoid clutter). The three heat maps must show **different** patterns (one diagonal, one with a bright column, one diffuse) so the heads look different.
 3. **Center-right:** the three head outputs join into one wide rectangle labeled "concatenate" with shape "$T \times H d_k$".
 4. **Right:** an arrow labeled $W_O$ to a blue rectangle labeled "output" with shape "$T \times d$".
 
@@ -73,8 +73,8 @@ From the band, two side branches go out to the right and come back, each through
 2. **Upper branch:** a light gray box "LN" → a teal box "MLP" with a small subtitle "$d \rightarrow 4d \rightarrow d$, GELU" and a second subtitle "each token on its own" → returns to the band at a second "+".
 
 To the right of the block, two short annotations aligned with each branch:
-- next to the attention branch: "$X \leftarrow X + \operatorname{MHA}(\operatorname{LN}(X))$";
-- next to the MLP branch: "$X \leftarrow X + \operatorname{MLP}(\operatorname{LN}(X))$".
+- next to the attention branch: "$X \leftarrow X + \mathrm{MHA}(\mathrm{LN}(X))$";
+- next to the MLP branch: "$X \leftarrow X + \mathrm{MLP}(\mathrm{LN}(X))$".
 
 At the far left of the band, a vertical bracket covering the whole block labeled "$\times$ number of blocks" in small type.
 

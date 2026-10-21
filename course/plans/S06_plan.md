@@ -80,13 +80,13 @@ Consistent with S01–S05 (φ is the activation, σ only the sigmoid, *L* the lo
 | $W_Q, W_K, W_V$ | projection matrices; $Q = XW_Q$, $K = XW_K$, $V = XW_V$ |
 | $d_k$ | width of queries and keys per head |
 | $S = QK^\top/\sqrt{d_k}$ | attention scores |
-| $A = \operatorname{softmax}(S + M)$ | attention weights, row-wise; $A_{ij}$ is how much token $i$ reads from token $j$ (the $\alpha_{\tau t}$ of S05) |
+| $A = \mathrm{softmax}(S + M)$ | attention weights, row-wise; $A_{ij}$ is how much token $i$ reads from token $j$ (the $\alpha_{\tau t}$ of S05) |
 | $M$ | mask: $0$ where allowed, $-\infty$ where not (causal or padding) |
 | $H$ | number of heads |
 | $\mathbf p_i$ | positional embedding of position $i$ |
 | $W_O$ | output projection after concatenating heads |
 | $Z\in\mathbb R^{T\times |V|}$ | logits of a language model, one row per position; $\mathbf z_t$ predicts token $w_{t+1}$ |
-| $L_t$ | next-token loss at position $t$, $-\log\operatorname{softmax}(\mathbf z_t)_{w_{t+1}}$ |
+| $L_t$ | next-token loss at position $t$, $-\log\mathrm{softmax}(\mathbf z_t)_{w_{t+1}}$ |
 | $m_t$ | loss mask: $1$ if token $w_{t+1}$ belongs to the answer, $0$ otherwise; $J = \sum_t m_t L_t / \sum_t m_t$ |
 | $\exp(J)$ | perplexity |
 | $N$ | number of parameters |
@@ -146,12 +146,12 @@ Prediction-before-experiment slides: V17, V33, V47, V59, V75.
 | V08 | *(figure)* | **S06-F02** | F02 |
 | V09 | Query, key, value | Without parameters each token mostly reads itself (F02: 0.73) and the similarity is fixed. Three learned projections: $Q = XW_Q$, $K = XW_K$, $V = XW_V$. What I am looking for, what I offer to be found by, what I hand over. A soft dictionary lookup | |
 | V10 | *(figure)* | **S06-F03** | F03 |
-| V11 | Scaled dot-product attention | $\operatorname{Attention}(Q,K,V) = \operatorname{softmax}\!\big(QK^\top/\sqrt{d_k}\big)V$. The dot product of S05 V54, now in matrix form: one matrix product gives all $T^2$ scores at once | |
+| V11 | Scaled dot-product attention | $\mathrm{Attention}(Q,K,V) = \mathrm{softmax}\!\big(QK^\top/\sqrt{d_k}\big)V$. The dot product of S05 V54, now in matrix form: one matrix product gives all $T^2$ scores at once | |
 | V12 | Self-attention in motion | **S06-A01** (media) | A01 |
 | V13 | Why divide by $\sqrt{d_k}$ | With unit-variance entries, $\mathbf q^\top\mathbf k$ has variance $d_k$. Large scores saturate the softmax: one weight near 1, gradients near 0. The same variance argument as initialization in S02 | |
 | V14 | Multi-head attention | $H$ heads of width $d_k = d/H$, each with its own $W_Q, W_K, W_V$; concatenate and project with $W_O$. Same cost as one wide head. Several relations at once, like several kernels in a conv layer (S03) | |
 | V15 | *(figure)* | **S06-F04** | F04 |
-| V16 | Masks | $A = \operatorname{softmax}(S + M)$ with $M_{ij} = -\infty$ where $i$ must not read $j$. **Padding mask**: ignore `[PAD]` tokens (S05 V39). **Causal mask**: token $i$ reads only $j \le i$, so the model cannot look at the future | |
+| V16 | Masks | $A = \mathrm{softmax}(S + M)$ with $M_{ij} = -\infty$ where $i$ must not read $j$. **Padding mask**: ignore `[PAD]` tokens (S05 V39). **Causal mask**: token $i$ reads only $j \le i$, so the model cannot look at the future | |
 | V17 | Prediction before experiment | Shuffle the tokens of a sentence and feed them to a self-attention layer **without** positional information. What happens to the outputs? And with the causal mask on? Answer in notebook 6.1 | |
 | V18 | Order has to be added | Without position, attention is permutation-equivariant (S03 permutation test, S05 V44 shuffled words). Add $\mathbf p_i$ to each token: learned (S03, ViT) or sinusoidal (Vaswani et al., 2017). Modern LLMs rotate $Q$ and $K$ by position instead (RoPE): one line | |
 | V19 | *(figure)* | **S06-F05** | F05 |
@@ -164,9 +164,9 @@ Prediction-before-experiment slides: V17, V33, V47, V59, V75.
 | # | Slide | Content | Visual |
 |---|---|---|---|
 | V23 | Part 2 · The Transformer block | Divider. Recap: attention mixes tokens; by itself it is a weighted average, close to linear in $V$ | |
-| V24 | Two sublayers | $X \leftarrow X + \operatorname{MHA}(\operatorname{LN}(X))$, then $X \leftarrow X + \operatorname{MLP}(\operatorname{LN}(X))$. Attention mixes **across** tokens; the MLP transforms **each** token on its own. Everything else is from S02 | |
+| V24 | Two sublayers | $X \leftarrow X + \mathrm{MHA}(\mathrm{LN}(X))$, then $X \leftarrow X + \mathrm{MLP}(\mathrm{LN}(X))$. Attention mixes **across** tokens; the MLP transforms **each** token on its own. Everything else is from S02 | |
 | V25 | Pre-norm and the clean residual path | LayerNorm (S02: normalizes each token, not the batch) before each sublayer. The identity path stays clean from input to output, as promised in S02. Post-norm (the original paper) needs warmup to train deep | |
-| V26 | The MLP and GELU | $\operatorname{MLP}(\mathbf x) = W_2\,\varphi(W_1\mathbf x)$ with $W_1\in\mathbb R^{4d\times d}$ and φ = GELU (S02). Two thirds of the parameters of a block are here | |
+| V26 | The MLP and GELU | $\mathrm{MLP}(\mathbf x) = W_2\,\varphi(W_1\mathbf x)$ with $W_1\in\mathbb R^{4d\times d}$ and φ = GELU (S02). Two thirds of the parameters of a block are here | |
 | V27 | *(figure)* | **S06-F07** | F07 |
 | V28 | The block in motion | **S06-A02** (media) | A02 |
 | V29 | A whole GPT | **S06-F08**: token ids → embedding + position → $D$ blocks → LN → $W_U$ → softmax, with the shape at every stage. Before counting its parameters | F08 |
@@ -223,7 +223,7 @@ Prediction-before-experiment slides: V17, V33, V47, V59, V75.
 | V66 | LoRA, in one slide | Freeze $W_0$, learn $\Delta W = BA_r$ with rank $r \ll d$: $2dr$ trainable values instead of $d^2$. For $d = 768$, $r = 8$: 2 % of the matrix. Merge after training, so inference costs nothing extra (Hu et al., 2021) | |
 | V67 | *(figure)* | **S06-F17** | F17 |
 | V68 | From a language model to an assistant | A pretrained LM continues text; it does not answer. Three stages: pretraining (Part 3), **supervised fine-tuning** on (question, answer) pairs, preference tuning (RLHF, DPO: one line). The **chat template** turns a pair into one token sequence with role markers. Fine-tuning a style is the SFT stage in miniature | |
-| V69 | The next-token loss, token by token | Logits $Z\in\mathbb R^{T\times|V|}$. Position $t$ predicts token $t+1$: compare `logits[:, :-1]` with `tokens[:, 1:]`. $L_t = -\log \operatorname{softmax}(\mathbf z_t)_{w_{t+1}}$, a cross-entropy over the vocabulary (S01). Worked example with 6 tokens: target, $p(\text{target})$, $L_t$ | |
+| V69 | The next-token loss, token by token | Logits $Z\in\mathbb R^{T\times|V|}$. Position $t$ predicts token $t+1$: compare `logits[:, :-1]` with `tokens[:, 1:]`. $L_t = -\log \mathrm{softmax}(\mathbf z_t)_{w_{t+1}}$, a cross-entropy over the vocabulary (S01). Worked example with 6 tokens: target, $p(\text{target})$, $L_t$ | |
 | V70 | The loss in motion | **S06-A04** (media) | A04 |
 | V71 | Loss only on the answer | Mask $m_t = 1$ if token $t+1$ belongs to the answer, $0$ for template and question: $J = \sum_t m_t L_t \big/ \sum_t m_t$. Without the mask the model also learns to predict the user's question, and the template tokens (nearly free to predict) dilute the gradient. Code: `F.cross_entropy(..., reduction="none")`, then `loss[mask].mean()` | |
 | V72 | *(figure)* | **S06-F18** | F18 |

@@ -115,7 +115,7 @@ Prediction-before-experiment slides: V12, V21, V31, V44, V56.
 | V15 | The recurrent cell | $\mathbf h_t = \varphi(W_{xh}\mathbf x_t + W_{hh}\mathbf h_{t-1} + \mathbf b)$. The same weights at every step: weight sharing along time. $\mathbf h_t$ summarizes $\mathbf x_{1:t}$ in a fixed-size vector | |
 | V16 | Unrolling through time | **S05-A01** (media) | A01 |
 | V17 | Shapes in PyTorch | `nn.RNN(input_size, hidden_size, batch_first=True)`: input $(B, T, d_x)$, output $(B, T, d_h)$ and final state. Many-to-one takes `out[:, -1]`. Written as a Python loop in notebook 5.2 and checked against `nn.RNN` | |
-| V18 | Backpropagation through time | The unrolled graph is a deep network with tied weights. $\dfrac{\partial \mathbf h_T}{\partial \mathbf h_t} = \prod_{k=t+1}^{T} \operatorname{diag}\!\big(\varphi'(\cdot)\big)\,W_{hh}$. The product of Jacobians of S02, with the **same** matrix repeated | |
+| V18 | Backpropagation through time | The unrolled graph is a deep network with tied weights. $\dfrac{\partial \mathbf h_T}{\partial \mathbf h_t} = \prod_{k=t+1}^{T} \mathrm{diag}\!\big(\varphi'(\cdot)\big)\,W_{hh}$. The product of Jacobians of S02, with the **same** matrix repeated | |
 | V19 | Vanishing and exploding | Largest singular value of $W_{hh}$ times $\max\varphi'$ below 1: the signal from step $t$ fades geometrically; above 1: it can explode. With tanh, $\varphi' \le 1$, so fading is the usual case | |
 | V20 | *(figure)* | **S05-F03** | F03 |
 | V21 | Prediction before experiment | Same Jena setup with a 16-unit RNN. Does it beat the baseline? And with a window of 1 day instead of 5: better, worse or the same? | |
@@ -164,7 +164,7 @@ Prediction-before-experiment slides: V12, V21, V31, V44, V56.
 | V49 | *(figure)* | **S05-F08** | F08 |
 | V50 | Teacher forcing | Training: the decoder gets the true previous token. Inference: it gets its own prediction, so errors accumulate (exposure bias). Greedy decoding; beam search in one line | |
 | V51 | The bottleneck | Everything the decoder knows passes through $\mathbf h_T$. Performance falls with input length (Cho et al., 2014) | |
-| V52 | Look back instead of remembering | At each output step, score every encoder state, normalize with softmax, average: $\alpha_{\tau t} = \operatorname{softmax}_t\big(\operatorname{score}(\mathbf s_{\tau-1}, \mathbf h_t)\big)$, $\mathbf a_\tau = \sum_t \alpha_{\tau t}\mathbf h_t$ (Bahdanau et al., 2015) | |
+| V52 | Look back instead of remembering | At each output step, score every encoder state, normalize with softmax, average: $\alpha_{\tau t} = \mathrm{softmax}_t\big(\mathrm{score}(\mathbf s_{\tau-1}, \mathbf h_t)\big)$, $\mathbf a_\tau = \sum_t \alpha_{\tau t}\mathbf h_t$ (Bahdanau et al., 2015) | |
 | V53 | Attention in motion | **S05-A03** (media) | A03 |
 | V54 | Score functions | Additive (a small MLP, Bahdanau), dot product $\mathbf s^\top\mathbf h$ and scaled dot product (Luong, 2015). The dot product is the one that survives in S06 | |
 | V55 | *(figure)* | **S05-F09** | F09 |
