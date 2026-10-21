@@ -767,21 +767,17 @@ Prompt:
 
 Answer in notebook 6.3, section 3.
 
-<!-- Expected (to confirm in notebook 6.3 on a Kaggle T4): the web has many dialogues, so the base model often starts a sensible answer; it does not know where the answer ends, and keeps writing another "Usuario:" turn, a list, or a repetition until the 120-token limit. Continuing text and answering are different tasks: that is what SFT changes (Part 5). -->
+<!-- Measured in notebook 6.3 (Kaggle T4, greedy, 120 tokens): it answers, it does not stop. "¿Qué es un átomo?" gives one sentence about protons and electrons repeated until the limit; two other questions repeat too; "Dame tres ideas..." even starts like an assistant ("¡Claro! Aquí tienes..."). Of 12 held-out questions it stopped by itself on 3. Continuing text and answering are different tasks: that is what SFT changes (Part 5). -->
 
 ---
 
-# A base model, asked a question
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain Qwen2.5-0.5B base, before any fine-tuning, greedy, three questions in the chat template. "¿Qué es un átomo?": one sentence about protons and electrons, repeated until the 120-token limit. "Dame tres ideas para ahorrar agua en casa": starts like an assistant, "¡Claro! Aquí tienes algunas ideas", with strange advice, cut at the limit. "¿Cuál es la diferencia entre el clima y el tiempo atmosférico?": one sentence repeated, cut at the limit. None of the three stops](../figures/s06_f13_base_model_answers.png)
 
-**S06-F13 · A base model, asked a question**
-
-Three questions in the chat template and the greedy continuation of Qwen2.5-0.5B base, each marked as stopped (produced `<|endoftext|>`) or cut at the 120-token limit.
-
-`../figures/s06_f13_base_model_answers.png` · route: Script (notebook 6.3)
-
-</div>
+<!-- Measured in notebook 6.3 (Kaggle T4). The base model often starts a sensible answer, and sometimes even sounds like an assistant ("¡Claro! Aquí tienes...": Qwen's pretraining data contains chat-like text), but it does not know where an answer ends: it repeats itself until the limit. Of 12 held-out Dolly questions, it stopped by itself on 3. -->
 
 ---
 
@@ -1160,17 +1156,13 @@ J = L[mask[:, 1:].reshape(-1)].mean()      # one L_t per position, mean over the
 
 ---
 
-# Per-token loss of a real model
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain Per-token loss of Qwen2.5-0.5B base on one Dolly pair, "Enumera cinco títulos de Mary Shelley", answer "Frankenstein, El último hombre, Lodore, El inmortal, Maurice", each bar on the token it predicts. Template tokens grey, question tokens blue, answer tokens and end token orange; masked positions faded. Mean over all 33 positions 4.56; masked J over the 17 answer positions 3.98](../figures/s06_f18_masked_loss.png)
 
-**S06-F18 · The masked loss**
-
-One chat example as tokens colored by role (template, question, answer), with the per-token loss $L_t$ of Qwen2.5-0.5B base on one Dolly pair, before fine-tuning; masked positions greyed; the masked mean against the unmasked mean.
-
-`../figures/s06_f18_masked_loss.png` · route: Script (notebook 6.3)
-
-</div>
+<!-- Measured in notebook 6.3. The largest bars are the question ("Enum", "Mary", up to 11 nats: nobody can guess what will be asked) and the newline that opens the template (14 nats, its first appearance; slide 69 made it almost free, which holds once the template is familiar). Inside the answer, "Frankenstein" is hard (9.3) and "enstein" free; each new title starts high; "Maurice" costs 12.4 and the end token 3.9. Without the mask the mean is 4.56, pulled up by the question; with the mask, J = 3.98. -->
 
 ---
 
@@ -1184,7 +1176,7 @@ One chat example as tokens colored by role (template, question, answer), with th
 
 Answer in notebook 6.3, sections 7–8.
 
-<!-- Expected (to confirm on a Kaggle T4): the NLL drops mostly in the first 50 steps, the format (where an answer starts and ends, the register of Dolly) is learned fast; the base model rarely stops by itself, the tuned one almost always does. 250 steps and 2 M values do not add facts: wrong facts of the base model stay wrong, now in a confident answer format. -->
+<!-- Measured in notebook 6.3 (Kaggle T4: 97 s of training, 9.0 GB peak, 2 162 688 trainable values). Held-out masked NLL 2.054 → 1.905 (perplexity 7.8 → 6.7), 83 % of the drop in the first 50 of 250 steps (1.931 at step 50). Stops by itself on 3 of 12 held-out questions before, 8 of 12 after. Format, not facts: after SFT "Clasifica estos animales..." comes back as a clean list (perro: mamífero, águila: aves...) and every answer ends, but "tres ideas para ahorrar agua" repeats the same odd idea three times, and the átomo answer is no more correct than before, only shorter. -->
 
 ---
 
