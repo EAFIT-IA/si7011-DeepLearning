@@ -75,7 +75,7 @@ Back in class (Practice B, after 6.3). It needs a T4 and **Internet on** (Distil
 
 ## S06: the styled dataset of the integrating exercise
 
-The integrator 6.6 reads `dolly_quijote_es.csv` from the Kaggle dataset `juanmartinezv4399/si7011-s06-dolly-quijote`, which does not exist yet. To produce it, use [`s06_generar_estilo.ipynb`](s06_generar_estilo.ipynb):
+The integrator 6.6 reads `dolly_quijote_es.csv` from the Kaggle dataset `juanmartinezv4399/si7011-s06-dolly-quijote`, published on 2026-10-21 ([link](https://www.kaggle.com/datasets/juanmartinezv4399/si7011-s06-dolly-quijote)). To regenerate it, use [`s06_generar_estilo.ipynb`](s06_generar_estilo.ipynb):
 
 1. Open it on Kaggle; *Settings*: GPU T4 and **Internet on** (it downloads Dolly-es and Qwen2.5-7B-Instruct, loaded in 4 bits with `bitsandbytes`).
 2. **Save Version → Save & Run All (Commit)**. Estimate: about 40 minutes for 1 200 answers.
