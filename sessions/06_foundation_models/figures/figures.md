@@ -55,7 +55,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 
 | ID | Slide | What it shows | Filename | Status |
 |---|---:|---|---|---|
-| **S06-A01** | V12 | One token's query against every key, a softmax row, the weighted average of values; then all rows as $QK^\top$ and the causal mask | `s06_a01_self_attention.mp4` | Pending |
-| **S06-A02** | V28 | Tokens through one pre-norm block: attention mixes columns, the MLP acts on each column, the residual stream stays straight | `s06_a02_block.mp4` | Pending |
-| **S06-A03** | V45 | Autoregressive generation with sampling; low and high temperature | `s06_a03_generation.mp4` | Pending |
-| **S06-A04** | V70 | The masked next-token loss: shift by one, probability of the true token, $L_t$ bars, mask, mean over the answer; the bars after LoRA | `s06_a04_masked_loss.mp4` | Pending |
+| **S06-A01** | V12 | One token's query against every key, a softmax row, the weighted average of values; then all rows as $QK^\top$ and the causal mask | `s06_a01_self_attention.mp4` | Included |
+| **S06-A02** | V28 | Tokens through one pre-norm block: attention mixes columns, the MLP acts on each column, the residual stream stays straight | `s06_a02_block.mp4` | Included |
+| **S06-A03** | V45 | Autoregressive generation with sampling; low and high temperature | `s06_a03_generation.mp4` | Included |
+| **S06-A04** | V70 | The masked next-token loss: shift by one, probability of the true token, $L_t$ bars, mask, mean over the answer; the bars after LoRA | `s06_a04_masked_loss.mp4` | Included |

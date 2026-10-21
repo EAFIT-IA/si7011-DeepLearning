@@ -179,13 +179,14 @@ class A01_SelfAttention(EscenaBase):
 
         # 1. comparar
         puntajes = [-1.0, 1.2, -0.2, -0.2, 1.0]
-        lineas = VGroup(*[Line(qc.get_top() + UP * 0.35, k.get_top() + UP * 0.35, stroke_color=GRIS_TXT,
-                               stroke_width=1.5) for k in ks])
+        lineas = VGroup(*[ArcBetweenPoints(qc.get_top() + UP * 0.32, k.get_top() + UP * 0.32,
+                                           angle=0.12 + 0.05 * (4 - j), stroke_color=GRIS_TXT, stroke_width=1.6)
+                          for j, k in enumerate(ks)])
         cajas = VGroup()
         for x, s in zip(xs, puntajes):
             n = T(f"{s:.1f}".replace("-", "−"), font_size=22)
             b = SurroundingRectangle(n, buff=0.09, corner_radius=0.06, stroke_color=GRIS_CLARO, stroke_width=1.5)
-            cajas.add(VGroup(b, n).move_to([x, y_tok + 2.55, 0]))
+            cajas.add(VGroup(b, n).move_to([x, y_tok + 3.05, 0]))
         f1 = M(r"\text{score}_j = \mathbf q_5^{\top}\mathbf k_j / \sqrt{d_k}", font_size=30).move_to([3.9, 1.55, 0])
         self.play(Create(lineas), FadeIn(f1))
         self.play(FadeIn(cajas, lag_ratio=0.15))
@@ -272,16 +273,15 @@ class A02_Block(EscenaBase):
         W1, W2 = rng.normal(0, 0.8, (4, 16)), rng.normal(0, 0.4, (16, 4))
         gelu = lambda z: 0.5 * z * (1 + np.tanh(0.79788 * (z + 0.044715 * z ** 3)))
         X2 = X1 + gelu(layer_norm(X1) @ W1) @ W2                         # X ← X + MLP(LN(X))
-        lo, hi = min(X0.min(), X1.min(), X2.min()), max(X0.max(), X1.max(), X2.max())
-        norm = lambda X: (X - lo) / (hi - lo)
+        norm = lambda X: 0.5 + 0.5 * np.tanh(0.9 * X)                   # colores comparables entre etapas
 
-        xs = np.linspace(-4.6, -0.2, 5)
-        y = -1.9
-        cols = VGroup(*[columna(v).move_to([x, y, 0]) for x, v in zip(xs, norm(X0))])
-        pal = VGroup(*[T(w, font_size=21).next_to(c, DOWN, buff=0.12) for c, w in zip(cols, FRASE)])
-        banda = RoundedRectangle(corner_radius=0.2, width=5.4, height=5.9, stroke_width=0, fill_color=AZ_FILL,
-                                 fill_opacity=0.55).move_to([-2.4, 0.15, 0])
-        etq = T("residual stream: one vector per token", font_size=20, color=AZUL).next_to(banda, UP, buff=0.08)
+        xs = np.linspace(-4.8, -0.4, 5)
+        y = -0.55
+        cols = VGroup(*[columna(v, ancho=0.62, alto=2.2).move_to([x, y, 0]) for x, v in zip(xs, norm(X0))])
+        pal = VGroup(*[T(w, font_size=22).next_to(c, DOWN, buff=0.14) for c, w in zip(cols, FRASE)])
+        banda = RoundedRectangle(corner_radius=0.2, width=5.6, height=4.6, stroke_width=0, fill_color=AZ_FILL,
+                                 fill_opacity=0.55).move_to([-2.6, -0.35, 0])
+        etq = T("residual stream: one vector per token", font_size=19, color=AZUL).next_to(banda, DOWN, buff=0.1)
         self.play(FadeIn(banda), FadeIn(etq), FadeIn(cols, lag_ratio=0.1), FadeIn(pal))
         self.pausa()
 
@@ -306,7 +306,7 @@ class A02_Block(EscenaBase):
                                           angle=-0.9 if j < i else 0.9, color=NARANJA,
                                           stroke_width=1 + 6 * A[i, j], tip_length=0.14))
         self.play(LaggedStart(*[Create(a) for a in arcos], lag_ratio=0.08), run_time=1.6)
-        mezcla = T("attention mixes information ACROSS tokens", font_size=22, color=NARANJA).move_to([-2.4, 3.0, 0])
+        mezcla = T("attention mixes information ACROSS tokens", font_size=22, color=NARANJA).move_to([-2.6, 2.55, 0])
         self.play(FadeIn(mezcla))
         self.play(marca.animate.move_to(cajas[2]), *sum([recolorear(c, v) for c, v in zip(cols, norm(X1))], []),
                   FadeOut(arcos), run_time=1.4)
@@ -317,15 +317,15 @@ class A02_Block(EscenaBase):
         self.play(*[c[0].animate.set_opacity(0.55) for c in cols], run_time=0.5)
         self.play(*[c[0].animate.set_opacity(1) for c in cols], run_time=0.5)
         self.play(marca.animate.move_to(cajas[4]))
-        mlps = VGroup(*[caja(0.62, 0.42, VE_FILL, TEAL).next_to(c, UP, buff=0.3) for c in cols])
+        mlps = VGroup(*[caja(0.7, 0.42, VE_FILL, TEAL).next_to(c, UP, buff=0.25) for c in cols])
         mlpl = VGroup(*[T("MLP", font_size=14, color=TEAL).move_to(b) for b in mlps])
-        sola = T("the MLP transforms EACH token on its own", font_size=22, color=TEAL).move_to([-2.4, 3.0, 0])
+        sola = T("the MLP transforms EACH token on its own", font_size=22, color=TEAL).move_to([-2.6, 2.55, 0])
         self.play(FadeIn(mlps), FadeIn(mlpl), FadeIn(sola))
         self.play(*[Indicate(b, color=TEAL, scale_factor=1.15) for b in mlps], run_time=1.0)
         self.play(marca.animate.move_to(cajas[5]), *sum([recolorear(c, v) for c, v in zip(cols, norm(X2))], []),
                   FadeOut(mlps), FadeOut(mlpl), run_time=1.4)
         self.pausa()
-        fin = M(r"\text{output: still } (T, d)\text{, ready for the next block}", font_size=28).to_edge(DOWN, buff=0.3)
+        fin = M(r"\text{output: still } (T, d)\text{, ready for the next block}", font_size=28).move_to([2.6, -3.2, 0])
         self.play(FadeOut(marca), FadeIn(fin))
         self.pausa(2.5)
 
@@ -373,7 +373,7 @@ class A03_Generation(EscenaBase):
         dist = barras_dist(c1, p1).move_to([3.0, 0.4, 0])
         dl = M(r"p(w_{T+1}\mid w_{\le T})", font_size=30).next_to(dist, UP, buff=0.35)
         flecha_out = Arrow(modelo.get_right(), dist.get_left() + LEFT * 0.9, buff=0.1, color=NAVY, stroke_width=3)
-        sololast = T("logits of the last position → softmax", font_size=18, color=GRIS_TXT).next_to(flecha_out, DOWN, buff=0.08)
+        sololast = T("last position → softmax", font_size=18, color=GRIS_TXT).next_to(flecha_out, UP, buff=0.05).shift(RIGHT * 0.3)
         self.play(GrowArrow(flecha_out), FadeIn(sololast), FadeIn(dl), FadeIn(dist, lag_ratio=0.15))
         self.pausa()
         elegido = SurroundingRectangle(dist[0], buff=0.06, stroke_color=NARANJA, stroke_width=3)
@@ -472,11 +472,11 @@ class A04_MaskedLoss(EscenaBase):
 
         def linea(valor, color, texto):
             y = base_y + valor * escala
-            l = DashedLine([chips[1].get_left()[0] - 0.2, y, 0], [chips[-1].get_right()[0] + 0.1, y, 0],
+            l = DashedLine([chips[1].get_left()[0] - 0.1, y, 0], [chips[-1].get_right()[0] + 0.1, y, 0],
                            color=color, stroke_width=2.5, dash_length=0.12)
-            return VGroup(l, T(texto, font_size=19, color=color).next_to(l, RIGHT, buff=0.1).shift(LEFT * 1.6 + UP * 0.22))
+            return VGroup(l, T(texto, font_size=19, color=color).next_to(l, LEFT, buff=0.12))
 
-        todo = linea(L.mean(), GRIS_TXT, f"mean of all: {L.mean():.2f}")
+        todo = linea(L.mean(), GRIS_TXT, f"all: {L.mean():.2f}")
         self.play(Create(todo))
         aviso = T('the largest loss is on "átomo?": the user\'s question', font_size=20, color=ROJO).move_to([0, 1.85, 0])
         self.play(FadeIn(aviso), Indicate(barras[3], color=ROJO))

@@ -246,15 +246,14 @@ Y = A @ V                                       # (T, d_k)
 
 # Self-attention in motion
 
-<div class="placeholder">
+<video controls preload="none" poster="../figures/s06_a01_self_attention_poster.png" aria-label="Self-attention in motion">
+  <source src="../figures/s06_a01_self_attention.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s06_a01_self_attention_poster.png" alt="Static view of Self-attention in motion">
 
-**S06-A01 · Self-attention**
+[Open animation](../figures/s06_a01_self_attention.mp4)
 
-A 5-token sentence. Each token emits $\mathbf q, \mathbf k, \mathbf v$; token 3 compares its $\mathbf q$ with every $\mathbf k$, the scores become a softmax row, the row averages the $\mathbf v$'s. Then all rows at once as $QK^\top$, and the causal mask greys out the upper triangle.
-
-`../figures/s06_a01_self_attention.mp4` · route: Manim (`escenas_s06.py`)
-
-</div>
+<!-- "banco" compares its query with every key (scores -1.0, 1.2, -0.2, -0.2, 1.0, those of F03), softmax gives 0.05, 0.41, 0.10, 0.10, 0.34, and the weights average the values. Then every row at once as one T x T matrix, and the causal mask turns off the upper triangle and renormalizes each row. W_Q, W_K, W_V are random in the scene: it shows the mechanism, not a trained model. Rendered with escenas_s06.py. -->
 
 ---
 
@@ -493,15 +492,14 @@ GELU, from Session 02: $\ \varphi(z) = z\,\Phi(z)$.
 
 # The block in motion
 
-<div class="placeholder">
+<video controls preload="none" poster="../figures/s06_a02_block_poster.png" aria-label="The block in motion">
+  <source src="../figures/s06_a02_block.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s06_a02_block_poster.png" alt="Static view of The block in motion">
 
-**S06-A02 · One block**
+[Open animation](../figures/s06_a02_block.mp4)
 
-Tokens flow through one pre-norm block: LN → attention (tokens exchange information, arrows between columns) → add; LN → MLP (each column on its own) → add. The residual stream stays a straight band.
-
-`../figures/s06_a02_block.mp4` · route: Manim (`escenas_s06.py`)
-
-</div>
+<!-- Five token vectors in the residual stream. LN, then attention: arrows between columns (only weights above 0.12 drawn) and every column changes. LN, then MLP: one small box per column, no arrows between them. The same (T, d) comes out. Random weights; colors squashed with tanh so the three stages are comparable. Rendered with escenas_s06.py. -->
 
 ---
 
@@ -733,15 +731,14 @@ loss = F.cross_entropy(
 
 # Generating text
 
-<div class="placeholder">
+<video controls preload="none" poster="../figures/s06_a03_generation_poster.png" aria-label="Generating text">
+  <source src="../figures/s06_a03_generation.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s06_a03_generation_poster.png" alt="Static view of Generating text">
 
-**S06-A03 · Autoregressive generation**
+[Open animation](../figures/s06_a03_generation.mp4)
 
-The prompt goes in; the logits of the last position become a distribution over the vocabulary; a token is sampled and appended; the window shifts. Then the same with low and high temperature.
-
-`../figures/s06_a03_generation.mp4` · route: Manim (`escenas_s06.py`)
-
-</div>
+<!-- Prompt "me senté en el": a distribution over the next token (banco 0.46, illustrative), sample, append, the window grows; the next distribution is that of F08 (y 0.31, de 0.22 ...). Then the same logits at tau = 0.5 (banco 0.73) and tau = 1.6 (0.35): temperature only rescales the logits. Rendered with escenas_s06.py. -->
 
 ---
 
@@ -1114,15 +1111,14 @@ A cross-entropy over the vocabulary at every position (Session 01).
 
 # The loss in motion
 
-<div class="placeholder">
+<video controls preload="none" poster="../figures/s06_a04_masked_loss_poster.png" aria-label="The loss in motion">
+  <source src="../figures/s06_a04_masked_loss.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s06_a04_masked_loss_poster.png" alt="Static view of The loss in motion">
 
-**S06-A04 · The masked next-token loss**
+[Open animation](../figures/s06_a04_masked_loss.mp4)
 
-A short chat example as a row of tokens. One distribution per position, shifted one step to face the next token; the probability of the true token becomes a bar $L_t$. The mask turns off the template and question bars, and the mean is taken over the answer. Last, the same sequence after LoRA: the answer bars shrink.
-
-`../figures/s06_a04_masked_loss.mp4` · route: Manim (`escenas_s06.py`)
-
-</div>
+<!-- The example of the previous slide. Each position predicts the next token; L_t = -log p(target) as bars over the target. Mean over all 8: 1.74, dominated by "átomo?", a word of the question. The mask greys template and question: J = 2.17. After LoRA (illustrative probabilities 0.40, 0.60, 0.80) the answer bars shrink to J = 0.55. Rendered with escenas_s06.py. -->
 
 ---
 
