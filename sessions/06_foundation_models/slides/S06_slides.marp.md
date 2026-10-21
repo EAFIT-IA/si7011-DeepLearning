@@ -350,7 +350,7 @@ A self-attention layer **without** positional information. Feed it a sentence, t
 
 Answer in notebook 6.1.
 
-<!-- Expected (to confirm in notebook 6.1): without a mask the outputs are the same vectors, shuffled the same way (permutation equivariance: the Session 03 permutation test). With the causal mask they change, because the set of tokens each position can read depends on the order; but only through which tokens are visible, not through where they are. -->
+<!-- Measured in notebook 6.1, section 6: without a mask the outputs are the same vectors, shuffled the same way (torch.allclose: True; the Session 03 permutation test). With the causal mask they change (False), because which tokens each position can read depends on the order; but only through which tokens are visible, not through where they are. With x + p they change too: the output of "banco" moves by 0.50 between the two orders, against 0.0000 without position (slide 20, F06). -->
 
 ---
 
@@ -380,17 +380,13 @@ Add a vector $\mathbf p_i$ for each position: $\ \mathbf x_i \leftarrow \mathbf 
 
 ---
 
-# Masks and position, measured
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain Measured in notebook 6.1. Top: the attention matrix of one head for "me senté en el banco" plus two padding tokens, with no mask, with a padding mask (the two [PAD] columns get weight 0) and with padding plus causal mask (everything above the diagonal gets weight 0; "me" can only read itself). Bottom: the output of "banco" for the sentence and for the same tokens shuffled; without position the two outputs are identical, difference 0.0000; with position they differ, 0.4989](../figures/s06_f06_masks_permutation.png)
 
-**S06-F06 · Masks and permutation**
-
-Attention matrices of one sentence with no mask, with a padding mask and with a causal mask; then the outputs before and after shuffling the tokens, without positional embeddings.
-
-`../figures/s06_f06_masks_permutation.png` · route: Script (notebook 6.1)
-
-</div>
+<!-- Drawn by make_s06_figuras_notebooks.py from atencion_mascaras.npz (notebook 6.1, sections 5-6). This is the answer to the prediction two slides back. -->
 
 ---
 
@@ -833,17 +829,13 @@ A straight line on log-log axes: **predictable** gains, with small exponents. Te
 
 ---
 
-# Loss against compute
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain Predicted test loss against training compute on log-log axes. Each blue curve is one model size, 100 M, 1 B, 10 B and 100 B parameters, trained on more and more tokens: each flattens at its own plateau. The orange curve is the best model size for each compute budget, at 18 to 24 tokens per parameter. Gopher, 280 B parameters on 0.3 T tokens, and Chinchilla, 70 B on 1.4 T, used almost the same compute; Chinchilla has the lower loss, 1.97 against 2.00. The irreducible loss is 1.82](../figures/s06_f14_scaling.png)
 
-**S06-F14 · Scaling**
-
-Test loss against training compute on log-log axes, from the published power-law fits; optionally, points from the small sweep of the companion notebook.
-
-`../figures/s06_f14_scaling.png` · route: Script (`make_s06_f07_scaling.py`)
-
-</div>
+<!-- Drawn by make_s06_f14_scaling.py from the published fit L(N, D) = E + A/N^alpha + B/D^beta with C = 6ND (Hoffmann et al. 2022, coefficients re-estimated by Besiroglu et al. 2024; the original approach-3 fit gives 40-100 tokens per parameter, inconsistent with the paper's other two approaches). Read it in three steps: a fixed model flattens (more data stops helping a small model); the envelope is the straight-ish power law of the previous slide; Gopher sits above the envelope because it is too big for its data. -->
 
 ---
 
