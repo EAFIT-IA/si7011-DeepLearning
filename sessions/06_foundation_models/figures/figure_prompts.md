@@ -20,7 +20,7 @@ Slide numbers refer to the current deck, `../slides/S06_slides.marp.md`. This fi
 | S06-F09 | Encoder, decoder, encoder-decoder | V32 | done |
 | S06-F11 | How BERT hides words | V42 | done, patched by script |
 | S06-F12 | Training in parallel, generating one token at a time | V44 | done |
-| S06-F16 | Four ways to use a pretrained model | V63 | pending |
+| S06-F16 | Four ways to use a pretrained model | V63 | done |
 | S06-F17 | From fine-tuning to LoRA, in three steps | V67 | pending |
 
 ## Review checklist (every image)
@@ -264,7 +264,7 @@ The left targets are the inputs shifted by one; the left mask is lower-triangula
 
 ---
 
-## S06-F16 · Four ways to use a pretrained model (pending, slide 63)
+## S06-F16 · Four ways to use a pretrained model (done, slide 63)
 
 File: `s06_f16_four_ways.png`
 

@@ -992,17 +992,13 @@ The three strategies of Sessions 03 and 04, plus one.
 
 ---
 
-# Four ways, side by side
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain Four ways to use a pretrained network, from fewer to more parameters trained. Zero-shot: every layer frozen, no head, a prompt such as "a photo of a {class}" through a text encoder; trains nothing. Frozen features plus probe: every layer frozen, a trained linear head; features computed once. Fine-tuning: every layer and the head trained, with a small learning rate. PEFT with LoRA: every layer frozen with a small added module BA_r beside each, and a trained head; base weights unchanged](../figures/s06_f16_four_ways.png)
 
-**S06-F16 · Four ways to use a pretrained model**
-
-The same network four times: all frozen with a prompt; frozen with a trained linear head; all trained; frozen with small trained side modules.
-
-`../figures/s06_f16_four_ways.png` · route: Generator (`figure_prompts.md`)
-
-</div>
+<!-- Generated image, used as is. The arrow spans the first three; LoRA sits outside it on purpose: it trains few parameters but changes every layer, which frozen features cannot do. Ask which of the four needs a copy of the whole model per task (only fine-tuning). -->
 
 ---
 
