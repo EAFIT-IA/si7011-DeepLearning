@@ -5,6 +5,7 @@ Produces (1672x941 each):
   s06_f06_masks_permutation.png   from notebook 6.1, sections 5-6 (atencion_mascaras.npz)
   s06_f13_base_model_answers.png  from notebook 6.3, section 3 (resultados_sft.json)
   s06_f18_masked_loss.png         from notebook 6.3, section 5 (resultados_sft.json)
+  s06_f15_clip_zeroshot.png       from notebook 6.4, optional (clip_zeroshot.npz)
   s06_f19_summary.png             from notebook 6.5 (resultados_adaptacion.json)
 F10 has its own script (make_s06_f10_bpe.py), with no notebook behind it.
 A figure whose input file is missing is skipped with a message. Optional third argument: the
@@ -211,7 +212,41 @@ def f19():
     print('wrote s06_f19_summary.png')
 
 
+def f15():
+    """CLIP zero-shot on one EuroSAT image (notebook 6.4, optional)."""
+    ruta = NB / 'clip_zeroshot.npz'
+    if not ruta.exists():
+        print('skip f15: no', ruta); return
+    z = np.load(ruta)
+    clases, sim, prob, v = [str(c) for c in z['clases']], z['similitud'], z['prob'], int(z['verdadera'])
+    fig = plt.figure(figsize=(16.72, 9.41), dpi=100)
+    a0 = fig.add_axes([0.04, 0.22, 0.3, 0.55])
+    a0.imshow(z['imagen'], interpolation='nearest'); a0.axis('off')
+    a0.set_title(f'EuroSAT, true class: {clases[v]}', fontsize=17, color=NAVY)
+    a1 = fig.add_axes([0.53, 0.1, 0.36, 0.78])
+    orden = np.argsort(sim)
+    k = int(np.argmax(sim))
+    col = [ORANGE if i == k else (TEAL if i == v else '#b9c4d2') for i in orden]
+    x0, rango = sim.min() - 0.01, sim.max() - sim.min() + 0.01
+    a1.barh(range(len(orden)), sim[orden] - x0, left=x0, color=col)
+    a1.set_yticks(range(len(orden)), [clases[i] for i in orden], fontsize=14)
+    a1.set_xlim(x0, sim.max() + 0.45 * rango)
+    for j, i in enumerate(orden):
+        a1.text(sim[i] + 0.02 * rango, j, f'{sim[i]:.3f}  (p = {prob[i]:.2f})', va='center', fontsize=12, color=NAVY)
+    a1.set_title('text per class: "a satellite photo of {class}."', fontsize=15, color=GRAY)
+    a1.set_xlabel('cosine similarity, image vs class text')
+    for sp in ('top', 'right'):
+        a1.spines[sp].set_visible(False)
+    fig.text(0.04, 0.08, f'prediction: {clases[k]}' + (' (correct)' if k == v else ' (wrong)'), fontsize=18,
+             color=ORANGE, weight='bold')
+    fig.text(0.04, 0.03, 'CLIP ViT-B/32, no training on EuroSAT · p = softmax(100 cos) · notebook 6.4', fontsize=13,
+             color=GRAY)
+    fig.savefig(OUT / 's06_f15_clip_zeroshot.png', dpi=100)
+    plt.close(fig)
+    print('wrote s06_f15_clip_zeroshot.png')
+
+
 if __name__ == '__main__':
-    for nombre, f in [('f06', f06), ('f13', f13), ('f18', f18), ('f19', f19)]:
+    for nombre, f in [('f06', f06), ('f13', f13), ('f15', f15), ('f18', f18), ('f19', f19)]:
         if SOLO is None or nombre in SOLO:
             f()

@@ -917,7 +917,7 @@ The **baseline still has to be beaten** (Session 05: the commonsense forecast). 
 
 - CLIP zero-shot
 - CLIP features + linear probe, 10 % of the labels
-- SimCLR probe from Session 04, 10 % of the labels
+- ImageNet ResNet-18 probe (Session 03), 10 % of the labels; and your SimCLR probe (Session 04)
 
 </div>
 
@@ -925,9 +925,9 @@ The **baseline still has to be beaten** (Session 05: the commonsense forecast). 
 
 **Bike Sharing, 24 h ahead**
 
-- commonsense baseline
-- LSTM from the Session 05 exercise
-- Chronos zero-shot
+- commonsense baseline: the same hour yesterday
+- Chronos zero-shot, history only
+- your LSTM from the Session 05 exercise, with weather
 
 </div>
 
@@ -935,7 +935,7 @@ The **baseline still has to be beaten** (Session 05: the commonsense forecast). 
 
 Which one comes out ahead in each case? Answer in notebook 6.4 (optional, at home).
 
-<!-- Expected (to confirm in notebook 6.4): CLIP zero-shot is weak on EuroSAT (satellite images are rare in web captions) while a probe on the same CLIP features is strong: the information is in the features, the prompts do not reach it. Chronos zero-shot should beat the commonsense baseline; whether it beats the trained LSTM is the open question. -->
+<!-- Expected (to confirm in notebook 6.4): CLIP zero-shot is weak on EuroSAT (satellite images are rare in web captions) while a probe on the same CLIP features is strong: the information is in the features, the prompts do not reach it. Chronos zero-shot should beat the commonsense baseline; whether it beats the trained LSTM is the open question (the LSTM sees weather and holidays, Chronos only the series). -->
 
 ---
 
@@ -1266,7 +1266,7 @@ Optional, at home:
 
 # Integrating exercise — Does it need fine-tuning?
 
-[6.6 · Integrating exercise](../notebooks/sesion_06_6_integrador_estilo_llm.ipynb) · a pretrained LLM that must answer in a given style
+[6.6 · Integrating exercise](../notebooks/sesion_06_6_integrador_estilo_llm.ipynb) · a pretrained LLM that must answer in the Spanish of *Don Quijote*
 
 - a model that already converses (Qwen2.5-0.5B **Instruct**): 6.3 showed where that comes from;
 - the template, the mask $m_t$ and LoRA of 6.3, now on answers written in one style;

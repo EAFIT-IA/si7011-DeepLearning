@@ -45,7 +45,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | **S06-F12** | V44 | Training in parallel, generating one token at a time | `s06_f12_training_vs_generation.png` | Generator | Included |
 | **S06-F13** | V48 | A base model, asked a question: Qwen2.5-0.5B base on three prompts, stopped or cut at the limit | `s06_f13_base_model_answers.png` | Script `make_s06_figuras_notebooks.py` (notebook 6.3: `resultados_sft.json`) | Pending (run 6.3 on a T4) |
 | **S06-F14** | V52 | Test loss vs compute, log-log, from the published power-law fits; optional points from the companion run | `s06_f14_scaling.png` | Script `make_s06_f14_scaling.py` (published fit, re-estimated by Besiroglu et al. 2024) | Included |
-| **S06-F15** | V56 | CLIP zero-shot on one EuroSAT image: similarity to the 10 class prompts | `s06_f15_clip_zeroshot.png` | Script (notebook 6.4, optional at home: `clip_zeroshot.json`) | Pending |
+| **S06-F15** | V56 | CLIP zero-shot on one EuroSAT image: similarity to the 10 class prompts | `s06_f15_clip_zeroshot.png` | Script `make_s06_figuras_notebooks.py` (notebook 6.4, optional: `clip_zeroshot.npz`) | Pending (run 6.4 once) |
 | **S06-F16** | V63 | Four ways to use a pretrained model: frozen, trained and added parameters | `s06_f16_four_ways.png` | Generator | Included |
 | **S06-F17** | V67 | From fine-tuning to LoRA in three steps, with the parameter counts | `s06_f17_lora.png` | Generator | Included |
 | **S06-F18** | V72 | One Dolly pair as tokens colored by role, per-token loss of Qwen2.5-0.5B base, masked positions faded, masked vs unmasked mean | `s06_f18_masked_loss.png` | Script `make_s06_figuras_notebooks.py` (notebook 6.3: `resultados_sft.json`) | Pending (run 6.3 on a T4) |
