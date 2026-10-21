@@ -47,7 +47,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | **S06-F14** | V52 | Test loss vs compute, log-log, from the published power-law fits; optional points from the companion run | `s06_f14_scaling.png` | Script (`make_s06_f07_scaling.py`; optional `resultados_escalado.json`) | Pending |
 | **S06-F15** | V56 | CLIP zero-shot on one EuroSAT image: similarity to the 10 class prompts | `s06_f15_clip_zeroshot.png` | Script (notebook 6.4: `clip_zeroshot.json`) | Pending |
 | **S06-F16** | V63 | Four ways to use a pretrained model: frozen, trained and added parameters | `s06_f16_four_ways.png` | Generator | Included |
-| **S06-F17** | V67 | From fine-tuning to LoRA in three steps, with the parameter counts | `s06_f17_lora.png` | Generator | Pending |
+| **S06-F17** | V67 | From fine-tuning to LoRA in three steps, with the parameter counts | `s06_f17_lora.png` | Generator | Included |
 | **S06-F18** | V72 | One chat example as tokens colored by role, per-token loss of the base model, masked positions greyed, masked vs unmasked mean | `s06_f18_masked_loss.png` | Script (notebook 6.6: `perdida_por_token.json`) | Pending |
 | **S06-F19** | V81 | Accuracy vs trainable parameters on IMDB: S05 models and the four strategies of 6.5 | `s06_f19_summary.png` | Script (notebook 6.5: `resultados_adaptacion.json`) | Pending |
 

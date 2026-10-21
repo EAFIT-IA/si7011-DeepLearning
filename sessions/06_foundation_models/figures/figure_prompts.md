@@ -21,7 +21,7 @@ Slide numbers refer to the current deck, `../slides/S06_slides.marp.md`. This fi
 | S06-F11 | How BERT hides words | V42 | done, patched by script |
 | S06-F12 | Training in parallel, generating one token at a time | V44 | done |
 | S06-F16 | Four ways to use a pretrained model | V63 | done |
-| S06-F17 | From fine-tuning to LoRA, in three steps | V67 | pending |
+| S06-F17 | From fine-tuning to LoRA, in three steps | V67 | done |
 
 ## Review checklist (every image)
 
@@ -303,7 +303,7 @@ Padlocks only on gray parts; panel 1 has no head; panel 4 has orange-outlined si
 
 ---
 
-## S06-F17 · From fine-tuning to LoRA, in three steps (pending, slide 67)
+## S06-F17 · From fine-tuning to LoRA, in three steps (done, slide 67)
 
 File: `s06_f17_lora.png`
 

@@ -1050,17 +1050,13 @@ $$
 
 ---
 
-# LoRA, drawn
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain From fine-tuning to LoRA in three steps. 1, fine-tuning: y = W x with W, d by d, updated by W plus Delta W from backpropagation; d squared trained values. 2, the same in two paths: y = W_0 x + Delta W x, with W_0 frozen and Delta W trained, both d by d; still d squared trained values. 3, LoRA: Delta W replaced by B A_r, with A_r of r by d and B of d by r, through an r by 1 vector; 2 d r trained values. With d = 768 and r = 8, 2dr = 12 288 versus d squared = 589 824, 2 percent; after training W = W_0 + B A_r, no extra cost at inference](../figures/s06_f17_lora.png)
 
-**S06-F17 · From fine-tuning to LoRA, in three steps**
-
-① fine-tuning updates $W$ with $\Delta W$ ($d^2$ values); ② the same written as two paths, $W_0\mathbf x + \Delta W\mathbf x$; ③ LoRA replaces $\Delta W$ with the thin factors $BA_r$ ($2dr$ values).
-
-`../figures/s06_f17_lora.png` · route: Generator (`figure_prompts.md`)
-
-</div>
+<!-- Generated image, used as is. Step 2 changes nothing in the computation, only how it is written: that rewriting is what makes step 3 possible. Ask why B starts at zero (the first forward pass is exactly the pretrained model). -->
 
 ---
 
