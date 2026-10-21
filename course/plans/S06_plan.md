@@ -261,7 +261,7 @@ Same routes as S03–S05: **Generator** (prompts in `figure_prompts.md`), **Scri
 | **S06-F08** | V29 | A whole GPT with shapes, from token ids to next-token probabilities | `s06_f08_whole_gpt.png` | Generator + script patch |
 | **S06-F09** | V32 | Encoder, decoder, encoder-decoder side by side, with the mask each one uses | `s06_f09_three_architectures.png` | Generator |
 | **S06-F10** | V39 | BPE on one Spanish sentence: characters → merges → tokens; vocabulary sizes 256 / 2 000 / 8 000 vs sequence length | `s06_f10_bpe.png` | Script (notebook 6.3) |
-| **S06-F11** | V42 | BERT masking: 15 % chosen, 80/10/10, both-side context, loss on the chosen token | `s06_f11_bert_masking.png` | Generator |
+| **S06-F11** | V42 | BERT masking: 15 % chosen, 80/10/10, both-side context, loss on the chosen token | `s06_f11_bert_masking.png` | Generator + script patch |
 | **S06-F12** | V44 | Training (one pass, shifted targets, causal mask) vs generation (three growing steps) | `s06_f12_training_vs_generation.png` | Generator |
 | **S06-F13** | V48 | Training loss of the tiny GPT with three samples printed at their steps | `s06_f13_gpt_samples.png` | Script (notebook 6.3) |
 | **S06-F14** | V52 | Test loss vs compute on log-log axes from the published power-law fits; optional points from `resultados_escalado.json` | `s06_f14_scaling.png` | Script |

@@ -698,17 +698,13 @@ Session 04: images need about 75 % masked, text only 15 %. A word is much harder
 
 ---
 
-# How BERT hides words
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain How BERT hides words, in four steps: 1, the input "me senté en el banco"; 2, 15 percent of the tokens are chosen, here "senté"; 3, the chosen token becomes [MASK] 80 percent of the time, a random word such as "perro" 10 percent, and stays "senté" 10 percent; 4, the sentence with [MASK] goes into an encoder with no mask, attention brings left and right context to the [MASK] position, and the prediction "senté ?" there is the only place where the loss is computed](../figures/s06_f11_bert_masking.png)
 
-**S06-F11 · How BERT hides words**
-
-Choose 15 % of the tokens; replace 80 % of them with [MASK], 10 % with a random word, keep 10 %; the encoder reads both sides and is scored only on the chosen tokens.
-
-`../figures/s06_f11_bert_masking.png` · route: Generator (`figure_prompts.md`)
-
-</div>
+<!-- Generated image, patched by fix_s06_f11_bert_masking.py: panel 4 was upside down (the encoder below the tokens, arrows going into the tokens); it is redrawn bottom to top. Ask: why replace 10 % with a random word and keep 10 % unchanged? Because at fine-tuning there is no [MASK]: the model must not learn that only [MASK] positions matter (the bottom strip). -->
 
 ---
 

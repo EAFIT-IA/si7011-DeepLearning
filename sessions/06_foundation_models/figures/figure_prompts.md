@@ -18,7 +18,7 @@ Slide numbers refer to the current deck, `../slides/S06_slides.marp.md`. This fi
 | S06-F07 | The pre-norm Transformer block | V27 | done, patched by script |
 | S06-F08 | A whole GPT, from token ids to probabilities | V29 | done, patched by script |
 | S06-F09 | Encoder, decoder, encoder-decoder | V32 | done |
-| S06-F11 | How BERT hides words | V42 | pending |
+| S06-F11 | How BERT hides words | V42 | done, patched by script |
 | S06-F12 | Training in parallel, generating one token at a time | V44 | pending |
 | S06-F16 | Four ways to use a pretrained model | V63 | pending |
 | S06-F17 | From fine-tuning to LoRA, in three steps | V67 | pending |
@@ -186,7 +186,7 @@ The decoder mask is lower-triangular including the diagonal; the encoder mask is
 
 ---
 
-## S06-F11 · How BERT hides words (pending, slide 42)
+## S06-F11 · How BERT hides words (done, patched by script, slide 42)
 
 File: `s06_f11_bert_masking.png`
 
@@ -215,7 +215,7 @@ Left to right, four stages.
    - "80 %" → the chip becomes a gray chip "[MASK]";
    - "10 %" → the chip becomes a red-outlined chip "perro" (a random word);
    - "10 %" → the chip stays "senté".
-4. Predict: the 80 % branch continues into the row "me", "[MASK]", "en", "el", "banco" entering a blue box "encoder (no mask: reads both sides)". Two orange arrows converge on the "[MASK]" position inside the box: one from "me" (labeled "left context") and one from "en el banco" (labeled "right context"). Out of the box, at the "[MASK]" position only, a teal chip "senté ?" with the label "loss only on the chosen token".
+4. Predict, drawn BOTTOM TO TOP: at the bottom, the row "me", "[MASK]", "en", "el", "banco" with an arrow from each chip UP into a blue box "encoder (no mask: reads both sides)" above it. Inside the encoder, orange arrows go from the other positions to the [MASK] position: one from the left labeled "left context", three from the right labeled "right context". Above the encoder, from the [MASK] position only, an arrow up to a teal chip "senté ?", with the label "loss only on the chosen token" above it.
 
 Bottom strip, gray: "the model cannot tell which tokens were chosen, so it must keep a good representation of every token".
 
