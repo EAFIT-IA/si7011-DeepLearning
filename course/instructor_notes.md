@@ -68,3 +68,8 @@ cd sessions/06_foundation_models/figures && python make_s06_figuras_notebooks.py
 ```
 
 3. Replace the F13 and F18 placeholders (slides 48 and 72) and write the measured answers in the notes of the prediction slides 47 and 73.
+
+## S06: running notebook 6.5 (DistilBERT on IMDB)
+
+Back in class (Practice B, after 6.3). It needs a T4 and **Internet on** (DistilBERT and `stanfordnlp/imdb` from Hugging Face; without Internet for the data, *Add Input* `lakshmi25npathi/imdb-dataset-of-50k-movie-reviews`, but the model still needs Internet). It trains its own LSTM baseline, so it does not depend on notebook 5.4. Committed without outputs; before class run it once (estimate: about 10 minutes), commit the executed copy with `resultados_adaptacion.json`, write the measured answer in the note of slide 76 and draw F19 (slide 82) with `python make_s06_figuras_notebooks.py ../notebooks . f19`.
+

@@ -49,7 +49,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | **S06-F16** | V63 | Four ways to use a pretrained model: frozen, trained and added parameters | `s06_f16_four_ways.png` | Generator | Included |
 | **S06-F17** | V67 | From fine-tuning to LoRA in three steps, with the parameter counts | `s06_f17_lora.png` | Generator | Included |
 | **S06-F18** | V72 | One Dolly pair as tokens colored by role, per-token loss of Qwen2.5-0.5B base, masked positions faded, masked vs unmasked mean | `s06_f18_masked_loss.png` | Script `make_s06_figuras_notebooks.py` (notebook 6.3: `resultados_sft.json`) | Pending (run 6.3 on a T4) |
-| **S06-F19** | V82 | Accuracy vs trainable parameters on IMDB: S05 models and the four strategies of 6.5 | `s06_f19_summary.png` | Script (notebook 6.5, optional at home: `resultados_adaptacion.json`) | Pending; open question in the plan |
+| **S06-F19** | V82 | Test accuracy vs trainable parameters on IMDB (2 000 reviews): LSTM from scratch and the three DistilBERT strategies of 6.5 | `s06_f19_summary.png` | Script (notebook 6.5: `resultados_adaptacion.json`) | Pending (run 6.5 on a T4) |
 
 ## Animations (Manim)
 

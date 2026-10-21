@@ -102,7 +102,7 @@ Consistent with S01–S05 (φ is the activation, σ only the sigmoid, *L* the lo
 | 00:55–01:45 | Practice A | V36 · notebooks 6.1–6.2 |
 | 01:45–01:55 | Break | |
 | 01:55–02:50 | Theory B | Parts 3–5 (V37–V77) |
-| 02:50–03:45 | Practice B | V78 · notebook 6.3 (6.4 and 6.5 optional, at home) |
+| 02:50–03:45 | Practice B | V78 · notebooks 6.3 and 6.5 (6.4 optional, at home) |
 | 03:45–04:00 | Closure | V79–V83 |
 
 Theory A is dense but much of it is review: S03 showed the attention formula, S02 the block's parts, S05 the attention weights. Part 1 states what is new (heads, masks, cost) and moves on.
@@ -120,7 +120,7 @@ Theory B now has 41 slides (V37–V77) because of the fine-tuning block V68–V7
 | 2 · The Transformer block | V23–V36 | Practice A (V36): notebooks 6.1–6.2 |
 | 3 · Pretraining | V37–V49 | |
 | 4 · Scale and foundation models | V50–V60 | |
-| 5 · Using a pretrained model | V61–V78 | Practice B (V78): notebook 6.3 in class; 6.4 and 6.5 optional |
+| 5 · Using a pretrained model | V61–V78 | Practice B (V78): notebooks 6.3 and 6.5 in class; 6.4 optional |
 | Closure | V79–V83 | Integrating exercise (V79), exit question (V83) |
 
 Prediction-before-experiment slides: V17, V33, V47, V59, V73, V76.
@@ -230,9 +230,9 @@ Prediction-before-experiment slides: V17, V33, V47, V59, V73, V76.
 | V73 | Prediction before experiment | Notebook 6.3: LoRA $r = 16$ on $W_Q, W_K, W_V, W_O$ (2.16 M values, 0.44 %), 2 000 Dolly pairs, 250 steps. Held-out NLL from what to what? On how many of 12 questions does the model stop by itself, before and after? New facts or a new format? | |
 | V74 | Measuring a style | Held-out NLL: the same masked $J$ on test pairs, without gradients. $\exp(J)$ is the perplexity: "among how many tokens is the model choosing". Compare base, base with the style asked in the prompt, and LoRA, with the **same tokenizer** (NLL across tokenizers is not comparable). Optional: an LLM judge, which is cheaper to read and harder to trust | |
 | V75 | Comparing fairly | Same data split, same number of steps or the same compute, several seeds where cheap. Report trainable parameters, training time and memory next to accuracy. Data contract for text: tokenizer and maximum length are part of the model | |
-| V76 | Prediction before experiment | IMDB with 2 000 training reviews: S05 LSTM, frozen DistilBERT + probe, full fine-tuning, LoRA. Rank them by accuracy. Rank them by trainable parameters. Do the two rankings agree? (notebook 6.5, optional at home) | |
+| V76 | Prediction before experiment | IMDB with 2 000 training reviews: S05 LSTM, frozen DistilBERT + probe, full fine-tuning, LoRA. Rank them by accuracy. Rank them by trainable parameters. Do the two rankings agree? (notebook 6.5) | |
 | V77 | When to use what | Few labels and a domain close to pretraining → frozen features. Enough labels or a distant domain → fine-tuning. Limited memory or many tasks → LoRA. No labels at all → zero-shot, checked against a baseline | |
-| V78 | Practice B — From language model to assistant | Notebook 6.3 in class; 6.4 and 6.5 optional, at home | |
+| V78 | Practice B — Adapting pretrained models | Notebooks 6.3 and 6.5 in class; 6.4 optional, at home | |
 
 ## Closure (V79–V83)
 
@@ -270,7 +270,7 @@ Same routes as S03–S05: **Generator** (prompts in `figure_prompts.md`), **Scri
 | **S06-F16** | V63 | Four ways to use a pretrained model: which parameters are frozen, trained or added | `s06_f16_four_ways.png` | Generator |
 | **S06-F17** | V67 | From fine-tuning to LoRA in three panels: $W + \Delta W$; $W_0\mathbf x + \Delta W\mathbf x$; $W_0\mathbf x + BA_r\mathbf x$, with the parameter counts (the progression of the previous course) | `s06_f17_lora.png` | Generator |
 | **S06-F18** | V72 | One Dolly pair as tokens colored by role (template, question, answer); bars with the per-token loss $L_t$ of Qwen2.5-0.5B base; masked positions faded; the masked mean $J$ against the unmasked mean | `s06_f18_masked_loss.png` | Script (notebook 6.3: `resultados_sft.json`) |
-| **S06-F19** | V82 | Summary: accuracy vs trainable parameters on IMDB for the S05 models and the four strategies of 6.5 | `s06_f19_summary.png` | Script (notebook 6.5: `resultados_adaptacion.json`). 6.5 is now optional: keep only if the instructor runs it once, otherwise replace with a text summary |
+| **S06-F19** | V82 | Summary: test accuracy vs trainable parameters on IMDB (2 000 reviews) for the LSTM from scratch and the three DistilBERT strategies of 6.5 | `s06_f19_summary.png` | Script (notebook 6.5: `resultados_adaptacion.json`) |
 
 ## Animations (Manim)
 
@@ -293,7 +293,7 @@ Short, self-contained, one change per cell, Chollet DLwP style in PyTorch, comme
 | 6.2 | `sesion_06_2_bloque_transformer.ipynb` | Build the pre-norm block; count parameters against $12d^2$; encoder-decoder Transformer on the dates task of 5.5 (same data generator, same metrics); against the S05 result; without positional embeddings; post-norm without warmup at 6 layers | synthetic (generator of 5.5) | CPU/GPU, ~10 min |
 | 6.3 | `sesion_06_3_ajuste_supervisado.ipynb` | From language model to assistant: Qwen2.5-0.5B base asked questions before training (F13); its tokenizer on Spanish; plain-text chat template with the role of each token; masked loss by hand vs `labels = -100` (F18); LoRA by hand on $W_Q, W_K, W_V, W_O$ ($r = 16$); one epoch on 2 000 pairs; held-out NLL and the same questions before and after; how often it stops by itself; merging $W_0 + BA_r$ | Dolly-15k, Spanish split, no-context pairs (Hugging Face; Kaggle: Internet on) | GPU (T4), ~15 min |
 | 6.4 | `sesion_06_4_modelos_fundacionales.ipynb` | **Optional, at home.** CLIP zero-shot on EuroSAT with prompt templates (F15); CLIP image features + probe at 1 % and 10 % of the labels next to the S04 SimCLR and S03 ImageNet numbers; Chronos zero-shot on Bike Sharing at 1, 6, 12, 24 h against the commonsense baseline and the S05 LSTM | EuroSAT, Bike Sharing | GPU, ~15 min |
-| 6.5 | `sesion_06_5_adaptacion.ipynb` | **Optional, at home.** DistilBERT on a 2 000-review IMDB subset, `max_len = 256`: frozen + probe on cached features, full fine-tuning, LoRA with `peft` ($r = 8$); same steps for all three; accuracy, trainable parameters, time and peak memory; table with the S05 5.4 models (F19) | IMDB | GPU, ~15 min |
+| 6.5 | `sesion_06_5_adaptacion.ipynb` | **In class (restored).** What pretrained DistilBERT knows: `[MASK]` completions and "bank" in three contexts (input vs output similarity, F01 with a trained model). Then IMDB with 2 000 training reviews, `max_len = 256`, DistilBERT tokens for every model: LSTM from scratch (S05 recipe, so it does not depend on 5.4), frozen + probe on cached `[CLS]` features, full fine-tuning, LoRA with `peft` ($r = 8$ on `q_lin`, `v_lin`); same loop for all; test accuracy, trainable parameters, time and peak memory (F19); reviews where probe and fine-tuning disagree | IMDB | GPU (T4), ~10 min |
 | 6.6 | `sesion_06_6_integrador_estilo_llm.ipynb` | Integrating exercise (decision 6): does a pretrained LLM need fine-tuning to answer in a style, or is the prompt enough? With MLflow | styled Q&A pairs (Kaggle dataset, decision 6) | GPU (T4), ~25 min |
 
 Proposed TODOs for 6.6, in the S03–S05 style. Sections marked "(listo)": loading the model and tokenizer, generating answers with `chat`, the LoRA wrapper and the training loop (both from 6.3).
@@ -350,5 +350,5 @@ Concepts S06 adds, phrased as decisions to justify:
 1. **Style and base model for 6.6.** Which style in Spanish (proposal: the Spanish of *Don Quijote*), and which base model after measuring time per step on a T4 (proposal: Qwen2.5-0.5B-Instruct, the Instruct version of the 6.3 base model).
 2. **Event 3 Part B.** Event 1 used the S02 integrator. Does Event 3 use the S05 integrator, the S06 one, or one combined deliverable?
 3. **6.3 on a T4.** Not run here (no GPU, no Hugging Face access from this environment). To confirm on Kaggle: time (estimate 10–15 min), peak memory with batch 8 and `T_MAX = 384`, and the measured answers of V47 and V73; then draw F13 and F18 with `make_s06_figuras_notebooks.py`.
-4. **6.4 and 6.5 at home (decided).** Practice B is only 6.3. Both stay as optional notebooks; their prediction slides (V59, V76) and F15 and F19 depend on whether they are built.
+4. **6.4 at home, 6.5 in class (decided).** Practice B is 6.3 and 6.5. 6.4 stays optional; its prediction slide (V59) and F15 depend on whether it is built.
 5. **Project.** `evaluation_strategy.md` still asks the project for an "inference pipeline" and "deployment or executable demonstration" in S06. With deployment out of the course, should that become the `*_raw` function pattern the integrators already use?

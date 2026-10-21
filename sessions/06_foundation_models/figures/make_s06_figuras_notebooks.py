@@ -5,6 +5,7 @@ Produces (1672x941 each):
   s06_f06_masks_permutation.png   from notebook 6.1, sections 5-6 (atencion_mascaras.npz)
   s06_f13_base_model_answers.png  from notebook 6.3, section 3 (resultados_sft.json)
   s06_f18_masked_loss.png         from notebook 6.3, section 5 (resultados_sft.json)
+  s06_f19_summary.png             from notebook 6.5 (resultados_adaptacion.json)
 F10 has its own script (make_s06_f10_bpe.py), with no notebook behind it.
 A figure whose input file is missing is skipped with a message. Optional third argument: the
 list of figures to draw, e.g. "f13,f18".
@@ -170,7 +171,47 @@ def f18():
     print('wrote s06_f18_masked_loss.png')
 
 
+def f19():
+    """Test accuracy against trainable parameters on IMDB (notebook 6.5)."""
+    ruta = NB / 'resultados_adaptacion.json'
+    if not ruta.exists():
+        print('skip f19: no', ruta); return
+    z = json.load(open(ruta, encoding='utf-8'))
+    fig = plt.figure(figsize=(16.72, 9.41), dpi=100)
+    ax = fig.add_axes([0.08, 0.13, 0.6, 0.78])
+    colores = [GRAY, TEAL, BLUE, ORANGE]
+    nombres = {'LSTM desde cero': 'LSTM from scratch', 'DistilBERT congelado + sonda': 'DistilBERT frozen + probe',
+               'DistilBERT ajustado completo': 'DistilBERT fine-tuned', 'DistilBERT + LoRA': 'DistilBERT + LoRA'}
+    for k, r in enumerate(z['filas']):
+        c = colores[k % len(colores)]
+        ax.scatter(r['entrenables'], r['acc_test'], s=260, color=c, zorder=3, edgecolor='white', lw=2)
+        ax.annotate(f"{nombres.get(r['modelo'], r['modelo'])}\n{r['acc_test']:.1%}", (r['entrenables'], r['acc_test']),
+                    xytext=(14, -6), textcoords='offset points', fontsize=15, color=c, weight='bold', va='top')
+    ax.set_xscale('log')
+    ax.set_xlabel('trainable parameters (log scale)'); ax.set_ylabel('test accuracy')
+    ax.yaxis.set_major_formatter(mpl.ticker.PercentFormatter(1.0, decimals=0))
+    lo = min(r['acc_test'] for r in z['filas'])
+    ax.set_ylim(max(0.45, lo - 0.06), 1.0)
+    xs = [r['entrenables'] for r in z['filas']]
+    ax.set_xlim(min(xs) / 4, max(xs) * 40)
+    for sp in ('top', 'right'):
+        ax.spines[sp].set_visible(False)
+    ax.grid(alpha=0.3)
+    y = 0.88
+    fig.text(0.72, y, 'time  ·  peak memory', fontsize=15, color=GRAY)
+    for k, r in enumerate(z['filas']):
+        y -= 0.075
+        mem = '' if r['memoria_gb'] != r['memoria_gb'] else f" · {r['memoria_gb']:.1f} GB"
+        fig.text(0.72, y, f"{nombres.get(r['modelo'], r['modelo'])}: {r['segundos']:.0f} s{mem}", fontsize=14.5,
+                 color=colores[k % len(colores)])
+    fig.text(0.08, 0.03, f"IMDB, {z['n_train']:,} training reviews, {z['n_test']:,} test reviews, "
+             f"{z['max_len']} tokens · notebook 6.5", fontsize=13, color=GRAY)
+    fig.savefig(OUT / 's06_f19_summary.png', dpi=100)
+    plt.close(fig)
+    print('wrote s06_f19_summary.png')
+
+
 if __name__ == '__main__':
-    for nombre, f in [('f06', f06), ('f13', f13), ('f18', f18)]:
+    for nombre, f in [('f06', f06), ('f13', f13), ('f18', f18), ('f19', f19)]:
         if SOLO is None or nombre in SOLO:
             f()

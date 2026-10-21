@@ -1229,7 +1229,7 @@ IMDB with **2 000** training reviews.
 
 Rank them by accuracy. Rank them by trainable parameters. Do the two rankings agree?
 
-Answer in notebook 6.5 (optional, at home).
+Answer in notebook 6.5.
 
 <!-- Expected (to confirm in notebook 6.5): every pretrained variant beats the LSTM trained on 2 000 reviews; fine-tuning and LoRA close to each other; frozen + probe behind them, with by far the fewest trainable parameters (the head only). The two rankings do not agree. -->
 
@@ -1248,18 +1248,19 @@ Always with a **baseline** in the first row of the table.
 
 ---
 
-# Practice B — From language model to assistant
+# Practice B — Adapting pretrained models
 
-In class, GPU (Kaggle T4, about 15 minutes):
+In class, GPU (Kaggle T4, about 15 + 10 minutes):
 
-- [6.3 · Supervised fine-tuning](../notebooks/sesion_06_3_ajuste_supervisado.ipynb): Qwen2.5-0.5B base on 2 000 Spanish pairs of Dolly-15k; the chat template and the role of each token; the masked loss by hand, checked against the library's; LoRA by hand; the same questions before and after
+- [6.3 · Supervised fine-tuning](../notebooks/sesion_06_3_ajuste_supervisado.ipynb): Qwen2.5-0.5B base on 2 000 Spanish pairs of Dolly-15k; chat template, masked loss and LoRA by hand; the same questions before and after
+
+- [6.5 · A pretrained BERT](../notebooks/sesion_06_5_adaptacion.ipynb): what DistilBERT learned (`[MASK]`, "bank" in context); IMDB with 2 000 reviews: LSTM from scratch, DistilBERT frozen + probe, fine-tuned, and with LoRA; accuracy, trainable parameters, time and memory
 
 Optional, at home:
 
 - [6.4 · Foundation models](../notebooks/sesion_06_4_modelos_fundacionales.ipynb): CLIP on EuroSAT, Chronos on Bike Sharing
-- [6.5 · Adapting a pretrained model](../notebooks/sesion_06_5_adaptacion.ipynb): IMDB with DistilBERT frozen, fine-tuned and with LoRA; accuracy, trainable parameters, time and memory
 
-> Write down for 6.3: held-out NLL before and after, and on how many of the 12 questions the model stops by itself.
+> Write down for 6.3: held-out NLL before and after, and on how many of the 12 questions the model stops by itself. For 6.5: one row per model.
 
 ---
 
@@ -1310,7 +1311,7 @@ Optional, at home:
 
 **S06-F19 · Accuracy against trainable parameters**
 
-IMDB: the Session 05 models (bag of embeddings, 1-D CNN, LSTM) and the four strategies of notebook 6.5, accuracy against trainable parameters on a log axis.
+IMDB with 2 000 reviews: the LSTM from scratch and the three DistilBERT strategies of notebook 6.5, test accuracy against trainable parameters on a log axis.
 
 `../figures/s06_f19_summary.png` · route: Script (notebook 6.5)
 
