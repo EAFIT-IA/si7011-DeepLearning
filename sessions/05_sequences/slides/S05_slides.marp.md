@@ -425,6 +425,17 @@ h = h.detach()   # the next chunk starts from h, but no gradient flows back into
 
 Cheaper in memory, and it limits **by design** how far back the network can learn.
 
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Twelve steps in three chunks of four: the state goes forward across each cut, the gradient of each chunk loss flows back only inside its chunk](../figures/s05_f16_truncated_bptt.png)
+
+<!-- Script make_s05_f16_f18_parte3.py, drawn (no data). -->
+
 ---
 
 # What we need
@@ -576,6 +587,17 @@ Bidirectional reads the **whole input** before predicting:
 - text classification: fine, the review is complete;
 - forecasting: fine *inside* the window, never beyond its end.
 
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Two panels: two stacked recurrent layers, and a bidirectional layer with a forward and a backward row over a window that ends now, the future never being an input](../figures/s05_f17_stacked_bidirectional.png)
+
+<!-- Script make_s05_f16_f18_parte3.py, drawn (no data). -->
+
 ---
 
 # Regularizing recurrent networks
@@ -586,6 +608,17 @@ Bidirectional reads the **whole input** before predicting:
 - gradient clipping, always on.
 
 <span class="small">`nn.LSTM(dropout=p)` applies dropout only between stacked layers, not on the recurrent connection.</span>
+
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Six hidden states with six units each: with the same dropout mask at every step a unit stays on along the whole sequence; with a new mask at every step its path is cut](../figures/s05_f18_recurrent_dropout.png)
+
+<!-- Script make_s05_f16_f18_parte3.py, drawn (no data). (1 - 0.2)^5 = 0.33, (1 - 0.2)^24 = 0.005. -->
 
 ---
 
