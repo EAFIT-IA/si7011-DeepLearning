@@ -53,3 +53,22 @@ To produce or redo them, use [`s04_entrenar_simclr.ipynb`](s04_entrenar_simclr.i
 4. Download the finished `.pt` files from the *Output* tab and upload them as a **new version** of the model (same framework and variation), so the handle does not change.
 
 The S04 integrating-exercise solutions are not in the repository.
+
+## S06: the GPT checkpoint model
+
+Section 6 of notebook 6.3 loads `gpt_quijote.pt` from the **Kaggle model** `juanmartinezv4399/si7011-s06-gpt-quijote`, framework/variation `pyTorch/default` (`CKPT_HANDLE` and `CKPT_VARIANTE` in the notebook). The file holds the model, its config, its training history and the **tokenizer** (as a JSON string): notebook 6.3 switches to that tokenizer when it loads the checkpoint. Without the file, the notebook continues with the model trained in its section 5.
+
+To produce it, use [`s06_entrenar_gpt.ipynb`](s06_entrenar_gpt.ipynb), which copies the text, tokenizer, model and loop cells of notebook 6.3 and only changes the number of steps (`PASOS_LARGO = 30000`):
+
+1. Open it on Kaggle; *Settings*: GPU and **Internet on** (it downloads *Don Quijote*, Project Gutenberg book 2000), or *Add Input* a dataset that contains `pg2000.txt`.
+2. **Save Version → Save & Run All (Commit)**. It saves `gpt_quijote_parcial.pt` every 2 000 steps and stops before `MAX_HORAS`; to resume, add the previous version's output as input and run again.
+3. Download `gpt_quijote.pt` from *Output* and upload it as the model above (same framework and variation for later versions).
+
+Notebook 6.3 is committed **without outputs**: run it once on Kaggle with GPU and the checkpoint, commit the executed copy, and rebuild figures F10 and F13 from the JSON files it saves next to it:
+
+```bash
+cd sessions/06_foundation_models/figures && python make_s06_figuras_notebooks.py ../notebooks . f10,f13
+```
+
+Then replace the F10 and F13 placeholders (slides 39 and 48) and fill in the measured answer of the prediction slide 47.
+

@@ -348,6 +348,6 @@ Concepts S06 adds, phrased as decisions to justify:
 
 1. **Style and base model for 6.6.** Which style in Spanish (proposal: the 6.3 corpus), and which base model after measuring time per step on a T4 (proposal: Qwen2.5-0.5B-Instruct).
 2. **Event 3 Part B.** Event 1 used the S02 integrator. Does Event 3 use the S05 integrator, the S06 one, or one combined deliverable?
-3. **Corpus for 6.3.** A Spanish novel from Project Gutenberg (*Don Quijote*, about 2 M characters) or a Colombian public-domain text? Needs a Kaggle dataset handle.
+3. **Corpus for 6.3.** Going with *Don Quijote* (Project Gutenberg book 2000), downloaded by the notebook (Kaggle: Internet on). Can be swapped for another public-domain text by changing `GUTENBERG` and the file pattern in section 1.
 4. **6.4 in class or at home.** The proposal keeps 6.3 and 6.5 in class. If 6.4 is in class instead of 6.3, students see foundation models used but no pretraining run.
 5. **Project.** `evaluation_strategy.md` still asks the project for an "inference pipeline" and "deployment or executable demonstration" in S06. With deployment out of the course, should that become the `*_raw` function pattern the integrators already use?
