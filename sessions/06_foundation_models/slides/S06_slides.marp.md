@@ -648,21 +648,17 @@ Worked notebooks, one change per cell:
 
 **Byte-pair encoding:** start from bytes; count adjacent pairs in the training text; merge the most frequent pair into a new token; repeat until the vocabulary has the chosen size.
 
-Frequent words end up as one token; rare words split into two or three pieces. Trained in notebook 6.3, where the actual splits of the novel are printed.
+Frequent words end up as one token; rare words split into two or three pieces. Notebook 6.3 prints how the tokenizer of a real model (Qwen2.5, about 151 000 tokens) splits Spanish.
 
 ---
 
-# BPE on a Spanish sentence
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain BPE on the sentence "Me senté en el banco del parque a leer el periódico". By hand, with merges counted on the text of the course notebooks: 41 symbols with 0 merges, 37 with 10, 27 with 30, 24 with 60. Byte-level BPE trained with the tokenizers library: 0.98, 2.49 and 3.39 characters per token with vocabularies of 256, 1 000 and 4 000; with 4 000 the sentence takes 19 tokens](../figures/s06_f10_bpe.png)
 
-**S06-F10 · BPE**
-
-One Spanish sentence from characters to tokens through the first merges; vocabularies of 256, 2 000 and 8 000 tokens against the number of tokens per sentence.
-
-`../figures/s06_f10_bpe.png` · route: Script (notebook 6.3)
-
-</div>
+<!-- Script figure (make_s06_f10_bpe.py). The corpus is the Spanish text of the course notebooks, 148 000 characters, so the figure needs no download. Frequent words of that corpus (de, que, el, del, leer) become one token; "banco" and "periódico" split because the corpus is small and about deep learning. Below 1 character per token at 256: é and ó take two bytes each. Notebook 6.3 shows the same idea with the 151 000 tokens of Qwen2.5. -->
 
 ---
 
@@ -760,27 +756,30 @@ Low $\tau$: safe and repetitive. High $\tau$: varied and incoherent.
 
 # Prediction before experiment
 
-A tiny GPT, about 2 M parameters, trained on a Spanish novel with the block of notebook 6.2.
+**Qwen2.5-0.5B, the base model:** 494 M parameters, pretrained on about 18 trillion tokens with the next-token loss and nothing else.
 
-Samples after **200 steps**, after **2 000 steps**, and from the long checkpoint.
+Prompt:
 
-**Spelling, words, syntax, meaning:** which one appears first, and which one never arrives at this size?
+`Usuario: ¿Qué es un átomo?⏎Asistente:`
 
-Answer in notebook 6.3.
+- Does it answer the question?
+- Does it **stop** after answering?
 
-<!-- Expected (to confirm in notebook 6.3): first the frequencies of tokens and spaces, then real words and punctuation, then local syntax (articles before nouns, agreement). Meaning over more than a sentence does not arrive at this size. -->
+Answer in notebook 6.3, section 3.
+
+<!-- Expected (to confirm in notebook 6.3 on a Kaggle T4): the web has many dialogues, so the base model often starts a sensible answer; it does not know where the answer ends, and keeps writing another "Usuario:" turn, a list, or a repetition until the 120-token limit. Continuing text and answering are different tasks: that is what SFT changes (Part 5). -->
 
 ---
 
-# A tiny GPT, learning
+# A base model, asked a question
 
 <div class="placeholder">
 
-**S06-F13 · Training loss and samples**
+**S06-F13 · A base model, asked a question**
 
-Training loss of the tiny GPT with three samples printed at the steps where they were taken.
+Three questions in the chat template and the greedy continuation of Qwen2.5-0.5B base, each marked as stopped (produced `<|endoftext|>`) or cut at the 120-token limit.
 
-`../figures/s06_f13_gpt_samples.png` · route: Script (notebook 6.3)
+`../figures/s06_f13_base_model_answers.png` · route: Script (notebook 6.3)
 
 </div>
 
@@ -934,7 +933,7 @@ The **baseline still has to be beaten** (Session 05: the commonsense forecast). 
 
 </div>
 
-Which one comes out ahead in each case? Answer in notebook 6.4.
+Which one comes out ahead in each case? Answer in notebook 6.4 (optional, at home).
 
 <!-- Expected (to confirm in notebook 6.4): CLIP zero-shot is weak on EuroSAT (satellite images are rare in web captions) while a probe on the same CLIP features is strong: the information is in the features, the prompts do not reach it. Chronos zero-shot should beat the commonsense baseline; whether it beats the trained LSTM is the open question. -->
 
@@ -1063,7 +1062,7 @@ A **chat template** turns a pair into one sequence of tokens with role markers:
 
 `<user> ¿Qué es un átomo? <assistant> Partícula mínima <end>`
 
-The integrating exercise is stage 2 in miniature: teach a style.
+**Notebook 6.3** is stage 2 in miniature: a base model and 2 000 Spanish (question, answer) pairs. The integrating exercise then teaches a **style**.
 
 ---
 
@@ -1104,7 +1103,7 @@ A cross-entropy over the vocabulary at every position (Session 01).
 
 </div>
 
-<!-- Illustrative probabilities, chosen to show the pattern of a base model: the template token after the question is almost free (0.02), the question word "átomo?" is hard to guess (4.61), the styled answer is new to the model. Real templates use model-specific markers; the notebook prints the ones of its model. -->
+<!-- Illustrative probabilities, chosen to show the pattern of a base model: the template token after the question is almost free (0.02), the question word "átomo?" is hard to guess (4.61), the styled answer is new to the model. Real templates use model-specific markers; notebook 6.3 uses plain text, "Usuario:" and "Asistente:", and prints the role of every token. -->
 ---
 
 <!-- _class: media -->
@@ -1167,11 +1166,25 @@ J = L[mask[:, 1:].reshape(-1)].mean()      # one L_t per position, mean over the
 
 **S06-F18 · The masked loss**
 
-One chat example as tokens colored by role (template, question, answer), with the per-token loss $L_t$ of the base model before fine-tuning; masked positions greyed; the masked mean against the unmasked mean.
+One chat example as tokens colored by role (template, question, answer), with the per-token loss $L_t$ of Qwen2.5-0.5B base on one Dolly pair, before fine-tuning; masked positions greyed; the masked mean against the unmasked mean.
 
-`../figures/s06_f18_masked_loss.png` · route: Script (notebook 6.6)
+`../figures/s06_f18_masked_loss.png` · route: Script (notebook 6.3)
 
 </div>
+
+---
+
+# Prediction before experiment
+
+**Notebook 6.3:** Qwen2.5-0.5B base; LoRA with $r = 16$ on $W_Q, W_K, W_V, W_O$ of its 24 blocks, **2.16 M trainable values, 0.44 %**; 2 000 Dolly pairs in Spanish; one epoch, 250 steps.
+
+- Held-out masked NLL: from what to what?
+- Of 12 held-out questions, on how many does the model **stop** by itself, before and after?
+- Does it learn new facts, or a new format?
+
+Answer in notebook 6.3, sections 7–8.
+
+<!-- Expected (to confirm on a Kaggle T4): the NLL drops mostly in the first 50 steps, the format (where an answer starts and ends, the register of Dolly) is learned fast; the base model rarely stops by itself, the tuned one almost always does. 250 steps and 2 M values do not add facts: wrong facts of the base model stay wrong, now in a confident answer format. -->
 
 ---
 
@@ -1216,7 +1229,7 @@ IMDB with **2 000** training reviews.
 
 Rank them by accuracy. Rank them by trainable parameters. Do the two rankings agree?
 
-Answer in notebook 6.5.
+Answer in notebook 6.5 (optional, at home).
 
 <!-- Expected (to confirm in notebook 6.5): every pretrained variant beats the LSTM trained on 2 000 reviews; fine-tuning and LoRA close to each other; frozen + probe behind them, with by far the fewest trainable parameters (the head only). The two rankings do not agree. -->
 
@@ -1235,18 +1248,18 @@ Always with a **baseline** in the first row of the table.
 
 ---
 
-# Practice B — Pretraining and adaptation
+# Practice B — From language model to assistant
 
-In class, one change per cell, GPU:
+In class, GPU (Kaggle T4, about 15 minutes):
 
-- [6.3 · Pretraining a tiny GPT](../notebooks/sesion_06_3_preentrenamiento_gpt.ipynb): a BPE tokenizer; a GPT with the block of 6.2; a few minutes of training, then the long checkpoint; samples; sampling rules
-- [6.5 · Adapting a pretrained model](../notebooks/sesion_06_5_adaptacion.ipynb): IMDB with DistilBERT frozen, fine-tuned and with LoRA; accuracy, trainable parameters, time and memory
+- [6.3 · Supervised fine-tuning](../notebooks/sesion_06_3_ajuste_supervisado.ipynb): Qwen2.5-0.5B base on 2 000 Spanish pairs of Dolly-15k; the chat template and the role of each token; the masked loss by hand, checked against the library's; LoRA by hand; the same questions before and after
 
-At home:
+Optional, at home:
 
 - [6.4 · Foundation models](../notebooks/sesion_06_4_modelos_fundacionales.ipynb): CLIP on EuroSAT, Chronos on Bike Sharing
+- [6.5 · Adapting a pretrained model](../notebooks/sesion_06_5_adaptacion.ipynb): IMDB with DistilBERT frozen, fine-tuned and with LoRA; accuracy, trainable parameters, time and memory
 
-> Write down for 6.5 one row per model: accuracy, trainable parameters, time, peak memory.
+> Write down for 6.3: held-out NLL before and after, and on how many of the 12 questions the model stops by itself.
 
 ---
 
@@ -1254,9 +1267,9 @@ At home:
 
 [6.6 · Integrating exercise](../notebooks/sesion_06_6_integrador_estilo_llm.ipynb) · a pretrained LLM that must answer in a given style
 
-- the chat template and the **mask** $m_t$ that keeps the loss on the answer;
-- the masked loss of the slides, checked against the library's;
-- LoRA under a fixed budget, logged to **MLflow**; held-out NLL for base, base with the style in the prompt, and LoRA;
+- a model that already converses (Qwen2.5-0.5B **Instruct**): 6.3 showed where that comes from;
+- the template, the mask $m_t$ and LoRA of 6.3, now on answers written in one style;
+- a fixed budget logged to **MLflow**; held-out NLL for base, base with the style in the prompt, and LoRA;
 - `responder_raw`: an answer from a raw question that respects the contract.
 
 > Is asking for the style in the prompt enough, or does the model have to be fine-tuned?

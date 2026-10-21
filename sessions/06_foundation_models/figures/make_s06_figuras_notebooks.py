@@ -3,10 +3,11 @@
 Run from this folder:  python make_s06_figuras_notebooks.py ../notebooks .
 Produces (1672x941 each):
   s06_f06_masks_permutation.png   from notebook 6.1, sections 5-6 (atencion_mascaras.npz)
-  s06_f10_bpe.png                 from notebook 6.3, sections 2-3 (bpe_vocabularios.json)
-  s06_f13_gpt_samples.png         from notebook 6.3, sections 5-6 (muestras_gpt.json)
+  s06_f13_base_model_answers.png  from notebook 6.3, section 3 (resultados_sft.json)
+  s06_f18_masked_loss.png         from notebook 6.3, section 5 (resultados_sft.json)
+F10 has its own script (make_s06_f10_bpe.py), with no notebook behind it.
 A figure whose input file is missing is skipped with a message. Optional third argument: the
-list of figures to draw, e.g. "f10,f13".
+list of figures to draw, e.g. "f13,f18".
 """
 import json
 import textwrap
@@ -95,114 +96,81 @@ def f06():
     print('wrote s06_f06_masks_permutation.png')
 
 
-def _fusionar(simbolos, par):
-    out, i = [], 0
-    while i < len(simbolos):
-        if i < len(simbolos) - 1 and (simbolos[i], simbolos[i + 1]) == par:
-            out.append(simbolos[i] + simbolos[i + 1]); i += 2
-        else:
-            out.append(simbolos[i]); i += 1
-    return out
-
-
-def _chips(ax, y, piezas, x0=0.0, alto=0.55, fs=15, color=BLUE, fill='#e4eefc', gap=0.06):
-    """Draw tokens as chips on a line (data units: 1 = one character width); returns the end x."""
-    x = x0
-    for p in piezas:
-        w = max(len(p), 1) * 0.62 + 0.3
-        ax.add_patch(plt.Rectangle((x, y - alto / 2), w, alto, facecolor=fill, edgecolor=color, lw=1.2))
-        ax.text(x + w / 2, y, p.replace(' ', '·'), ha='center', va='center', fontsize=fs, color=NAVY)
-        x += w + gap
-    return x
-
-
-def f10():
-    ruta = NB / 'bpe_vocabularios.json'
+def _sft():
+    ruta = NB / 'resultados_sft.json'
     if not ruta.exists():
-        print('skip f10: no', ruta); return
-    z = json.load(open(ruta, encoding='utf-8'))
-    frase, fusiones = z['frase'], [tuple(p) for p in z['fusiones_mini']]
-    fig = plt.figure(figsize=(16.72, 9.41), dpi=100)
-    ax = fig.add_axes([0.03, 0.40, 0.94, 0.55]); ax.axis('off')
-    ax.set_xlim(0, 80); ax.set_ylim(-0.6, 5.0)
-    filas = [0, 10, 30, 60]
-    for r, k in enumerate(filas):
-        piezas = []
-        for w in frase.split():
-            s = list(w)
-            for par in fusiones[:k]:
-                s = _fusionar(s, par)
-            piezas += s
-        y = 4.2 - r * 1.25
-        ax.text(0, y, f'{k} merges', ha='left', va='center', fontsize=16, color=GRAY)
-        fin = _chips(ax, y, piezas, x0=7.5, fs=13)
-        ax.text(fin + 0.4, y, f'{len(piezas)} symbols', ha='left', va='center', fontsize=16, color=ORANGE, weight='bold')
-    ax.text(0, 4.95, 'BPE by hand on the first sentence of Don Quijote (spaces split words here)', fontsize=15, color=GRAY)
-    # bottom: library BPE, vocabulary size vs characters per token
-    V = sorted(int(k) for k in z['vocabularios'])
-    cpt = [z['vocabularios'][str(v)]['chars_por_token'] for v in V]
-    ax2 = fig.add_axes([0.06, 0.08, 0.36, 0.26])
-    ax2.bar(range(len(V)), cpt, color=TEAL, width=0.6)
-    for i, c in enumerate(cpt):
-        ax2.text(i, c + 0.08, f'{c:.2f}', ha='center', va='bottom', fontsize=14, color=NAVY)
-    ax2.set_xticks(range(len(V)), [f'|V| = {v:,}' for v in V], fontsize=13)
-    ax2.set_ylabel('characters per token\n(validation text)', fontsize=13)
-    for sp in ('top', 'right'):
-        ax2.spines[sp].set_visible(False)
-    ax3 = fig.add_axes([0.47, 0.06, 0.5, 0.28]); ax3.axis('off')
-    ax3.set_xlim(0, 50); ax3.set_ylim(-1.5, 1.6)
-    v_ref = 4000 if '4000' in z['vocabularios'] else V[-1]
-    piezas = z['vocabularios'][str(v_ref)]['frase']
-    ax3.text(0, 1.25, f'byte-level BPE, |V| = {v_ref:,}: {len(piezas)} tokens  (· = a space glued to the token)',
-             fontsize=14, color=GRAY)
-    fila, x0 = [], 0
-    lineas = [[]]
-    for p in piezas:                                   # wrap into two lines
-        if sum(len(q) * 0.62 + 0.36 for q in lineas[-1]) + len(p) * 0.62 > 48:
-            lineas.append([])
-        lineas[-1].append(p)
-    for r, l in enumerate(lineas[:3]):
-        _chips(ax3, 0.55 - r * 0.8, l, x0=0, fs=13, color=TEAL, fill='#dff4ef', alto=0.5)
-    fig.savefig(OUT / 's06_f10_bpe.png', dpi=100)
-    plt.close(fig)
-    print('wrote s06_f10_bpe.png')
+        print('skip: no', ruta); return None
+    return json.load(open(ruta, encoding='utf-8'))
 
 
 def f13():
-    ruta = NB / 'muestras_gpt.json'
-    if not ruta.exists():
-        print('skip f13: no', ruta); return
-    z = json.load(open(ruta, encoding='utf-8'))
+    """A base model, asked a question: the continuations of section 3 of notebook 6.3."""
+    z = _sft()
+    if z is None:
+        return
     fig = plt.figure(figsize=(16.72, 9.41), dpi=100)
-    ax = fig.add_axes([0.07, 0.12, 0.42, 0.78])
-    ax.plot(z['pasos'], z['train'], color=BLUE, lw=2.5, label='training')
-    ax.plot(z['pasos'], z['val'], color=ORANGE, lw=2.5, label='validation (last chapters)')
-    ax.axhline(z['ln_V'], color=GRAY, ls='--', lw=1.5)
-    ax.text(z['pasos'][-1], z['ln_V'] + 0.08, 'ln|V|: random guessing', ha='right', va='bottom', fontsize=13, color=GRAY)
-    ax.set_xlabel('training step'); ax.set_ylabel('cross-entropy (nats / token)')
-    ax.legend(frameon=False, fontsize=14, loc='upper right', bbox_to_anchor=(1, 0.9))
+    preguntas = list(z['antes'])[:3]
+    for k, q in enumerate(preguntas):
+        texto, paro = z['antes'][q]
+        y = 0.93 - k * 0.305
+        fig.text(0.05, y, f'Usuario: {q} ⏎ Asistente:', fontsize=17, color=BLUE, weight='bold', va='top',
+                 family='DejaVu Sans Mono')
+        cuerpo = textwrap.shorten(texto.replace('\n', ' ⏎ '), 330, placeholder=' …')
+        fig.text(0.05, y - 0.055, textwrap.fill(cuerpo, 118), fontsize=14.5, color=NAVY, va='top', style='italic',
+                 linespacing=1.35)
+        estado = 'stopped: produced <|endoftext|>' if paro else 'did not stop: cut at the 120-token limit'
+        n = len(textwrap.fill(cuerpo, 118).split('\n'))
+        fig.text(0.05, y - 0.07 - 0.034 * n, estado, fontsize=14, color=TEAL if paro else RED, weight='bold', va='top')
+    fig.text(0.05, 0.03, f"{z['modelo']}, the base model before any fine-tuning · greedy · notebook 6.3, section 3",
+             fontsize=13, color=GRAY)
+    fig.savefig(OUT / 's06_f13_base_model_answers.png', dpi=100)
+    plt.close(fig)
+    print('wrote s06_f13_base_model_answers.png')
+
+
+def f18():
+    """Per-token loss of the base model on one validation pair, coloured by role, masked positions faded."""
+    z = _sft()
+    if z is None:
+        return
+    pt = z['por_token']
+    piezas, papel, L = pt['piezas'], pt['papel'], np.array(pt['L'])
+    objetivo, rol = piezas[1:], np.array(papel[1:])                # L_t belongs to the target w_{t+1}
+    colores = {0: GRAY, 1: BLUE, 2: ORANGE}
+    fig = plt.figure(figsize=(16.72, 9.41), dpi=100)
+    ax = fig.add_axes([0.06, 0.25, 0.9, 0.6])
+    x = np.arange(len(L))
+    for r in (0, 1, 2):
+        sel = rol == r
+        ax.bar(x[sel], L[sel], color=colores[r], alpha=1.0 if r == 2 else 0.35, width=0.75,
+               edgecolor=colores[r], lw=1.2)
+    m = rol == 2
+    J, J_todo = L[m].mean(), L.mean()
+    ax.axhline(J_todo, color=GRAY, ls='--', lw=1.8)
+    ax.axhline(J, color=ORANGE, lw=2.2)
+    fig.text(0.06, 0.885, f'- - -  mean over all {len(L)} positions: {J_todo:.2f}', fontsize=15, color=GRAY)
+    fig.text(0.39, 0.885, f'——  masked J, answer only ({m.sum()} positions): {J:.2f}', fontsize=15, color=ORANGE,
+             weight='bold')
+    ax.set_xticks(x, [p.replace('\n', '⏎').replace(' ', '·') for p in objetivo], rotation=60, ha='right',
+                  fontsize=12)
+    for t, r in zip(ax.get_xticklabels(), rol):
+        t.set_color(colores[r])
+    ax.set_xlim(-0.6, len(L) - 0.4)
+    ax.set_ylabel('$L_t = -\\log p(w_{t+1})$  (nats)')
     for sp in ('top', 'right'):
         ax.spines[sp].set_visible(False)
-    muestras = [(f'after {k} steps', v) for k, v in sorted(z['muestras'].items(), key=lambda kv: int(kv[0]))]
-    if z.get('largo'):
-        muestras.append((f"long checkpoint, {z['largo']['pasos']:,} steps", z['largo']['muestra']))
-    for k, (t, v) in enumerate(muestras):
-        y = 0.86 - k * 0.29
-        fig.text(0.54, y, t, fontsize=16, color=ORANGE if k < len(muestras) - 1 else TEAL, weight='bold', va='top')
-        fig.text(0.54, y - 0.045, textwrap.fill(v.replace('\n', ' '), 62), fontsize=14.5, color=NAVY, va='top',
-                 style='italic', linespacing=1.3)
-    for k, (paso, _) in enumerate(sorted(z['muestras'].items(), key=lambda kv: int(kv[0]))):
-        p = int(paso)
-        if p in z['pasos']:
-            i = z['pasos'].index(p)
-            ax.plot(p, z['val'][i], 'o', ms=10, color=ORANGE, mec='white', mew=2, zorder=5)
-    fig.text(0.54, 0.035, 'prompt: "En un lugar de la Mancha" · temperature 0.8 · notebook 6.3', fontsize=12, color=GRAY)
-    fig.savefig(OUT / 's06_f13_gpt_samples.png', dpi=100)
+    ax.grid(axis='y', alpha=0.3)
+    for k, (r, nombre) in enumerate([(0, 'template, m = 0'), (1, 'question, m = 0'), (2, 'answer and <|endoftext|>, m = 1')]):
+        fig.text(0.06 + k * 0.22, 0.93, '■ ' + nombre, color=colores[r], fontsize=15,
+                 weight='bold' if r == 2 else 'normal', alpha=1.0 if r == 2 else 0.8)
+    fig.text(0.06, 0.03, f"{z['modelo']} before fine-tuning, one Dolly validation pair; each bar sits on the token "
+             'it predicts · notebook 6.3, section 5', fontsize=13, color=GRAY)
+    fig.savefig(OUT / 's06_f18_masked_loss.png', dpi=100)
     plt.close(fig)
-    print('wrote s06_f13_gpt_samples.png')
+    print('wrote s06_f18_masked_loss.png')
 
 
 if __name__ == '__main__':
-    for nombre, f in [('f06', f06), ('f10', f10), ('f13', f13)]:
+    for nombre, f in [('f06', f06), ('f13', f13), ('f18', f18)]:
         if SOLO is None or nombre in SOLO:
             f()

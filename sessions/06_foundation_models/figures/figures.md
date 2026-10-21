@@ -6,7 +6,7 @@ Session 06 focuses on the question:
 
 > **What if we keep the attention and drop the recurrence?**
 
-Slide numbers are those of the current deck source, [`../slides/S06_slides.marp.md`](../slides/S06_slides.marp.md), which matches the 82-slide numbering of [`S06_plan.md`](../../../course/plans/S06_plan.md). Pending figures and animations are shown in the deck as dashed placeholder boxes with their ID and planned filename. To integrate a figure, replace the placeholder slide with:
+Slide numbers are those of the current deck source, [`../slides/S06_slides.marp.md`](../slides/S06_slides.marp.md), which matches the 83-slide numbering of [`S06_plan.md`](../../../course/plans/S06_plan.md). Pending figures and animations are shown in the deck as dashed placeholder boxes with their ID and planned filename. To integrate a figure, replace the placeholder slide with:
 
 ```markdown
 <!-- _class: figure -->
@@ -40,16 +40,16 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | **S06-F07** | V27 | The pre-norm Transformer block with the residual stream as a straight band; post-norm inset | `s06_f07_block.png` | Generator + script: `fix_s06_f07_block.py` (formulas, $X$, post-norm inset redrawn) | Included |
 | **S06-F08** | V29 | A whole GPT, from token ids to probabilities | `s06_f08_whole_gpt.png` | Generator + script: `fix_s06_f08_whole_gpt.py` (all ids into the token embedding) | Included |
 | **S06-F09** | V32 | Encoder, decoder, encoder-decoder, with the mask each one uses | `s06_f09_three_architectures.png` | Generator | Included |
-| **S06-F10** | V39 | BPE on one Spanish sentence; vocabulary size vs sequence length | `s06_f10_bpe.png` | Script (notebook 6.3: `bpe_vocabularios.json`) | Pending |
+| **S06-F10** | V39 | BPE on one Spanish sentence by hand (0, 10, 30, 60 merges); byte-level BPE at 256 / 1 000 / 4 000 tokens, characters per token | `s06_f10_bpe.png` | Script `make_s06_f10_bpe.py` (corpus: the Spanish text of the course notebooks, no download) | Included |
 | **S06-F11** | V42 | How BERT hides words | `s06_f11_bert_masking.png` | Generator + script: `fix_s06_f11_bert_masking.py` (panel 4 redrawn bottom to top) | Included |
 | **S06-F12** | V44 | Training in parallel, generating one token at a time | `s06_f12_training_vs_generation.png` | Generator | Included |
-| **S06-F13** | V48 | Training loss of the tiny GPT with three samples at their steps | `s06_f13_gpt_samples.png` | Script (notebook 6.3: `muestras_gpt.json`) | Pending |
+| **S06-F13** | V48 | A base model, asked a question: Qwen2.5-0.5B base on three prompts, stopped or cut at the limit | `s06_f13_base_model_answers.png` | Script `make_s06_figuras_notebooks.py` (notebook 6.3: `resultados_sft.json`) | Pending (run 6.3 on a T4) |
 | **S06-F14** | V52 | Test loss vs compute, log-log, from the published power-law fits; optional points from the companion run | `s06_f14_scaling.png` | Script `make_s06_f14_scaling.py` (published fit, re-estimated by Besiroglu et al. 2024) | Included |
-| **S06-F15** | V56 | CLIP zero-shot on one EuroSAT image: similarity to the 10 class prompts | `s06_f15_clip_zeroshot.png` | Script (notebook 6.4: `clip_zeroshot.json`) | Pending |
+| **S06-F15** | V56 | CLIP zero-shot on one EuroSAT image: similarity to the 10 class prompts | `s06_f15_clip_zeroshot.png` | Script (notebook 6.4, optional at home: `clip_zeroshot.json`) | Pending |
 | **S06-F16** | V63 | Four ways to use a pretrained model: frozen, trained and added parameters | `s06_f16_four_ways.png` | Generator | Included |
 | **S06-F17** | V67 | From fine-tuning to LoRA in three steps, with the parameter counts | `s06_f17_lora.png` | Generator | Included |
-| **S06-F18** | V72 | One chat example as tokens colored by role, per-token loss of the base model, masked positions greyed, masked vs unmasked mean | `s06_f18_masked_loss.png` | Script (notebook 6.6: `perdida_por_token.json`) | Pending |
-| **S06-F19** | V81 | Accuracy vs trainable parameters on IMDB: S05 models and the four strategies of 6.5 | `s06_f19_summary.png` | Script (notebook 6.5: `resultados_adaptacion.json`) | Pending |
+| **S06-F18** | V72 | One Dolly pair as tokens colored by role, per-token loss of Qwen2.5-0.5B base, masked positions faded, masked vs unmasked mean | `s06_f18_masked_loss.png` | Script `make_s06_figuras_notebooks.py` (notebook 6.3: `resultados_sft.json`) | Pending (run 6.3 on a T4) |
+| **S06-F19** | V82 | Accuracy vs trainable parameters on IMDB: S05 models and the four strategies of 6.5 | `s06_f19_summary.png` | Script (notebook 6.5, optional at home: `resultados_adaptacion.json`) | Pending; open question in the plan |
 
 ## Animations (Manim)
 
