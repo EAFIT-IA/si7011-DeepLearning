@@ -588,7 +588,7 @@ The **dates task** of Session 05: Spanish sentences with a date in words → ISO
 
 Answer in notebook 6.2.
 
-<!-- Expected (to confirm in notebook 6.2): the Transformer is faster per epoch on GPU because the encoder runs all positions at once. Without positional embeddings the encoder sees a bag of words: "veintinueve de septiembre" and "septiembre de veintinueve" look the same, so day and month get confused. -->
+<!-- Measured in notebook 6.2 (CPU, 2 cores; the S05 model retrained on the same machine): both reach ~100 % exact at epoch 2 (S05 0.998, Transformer 0.999). Per epoch the Transformer was SLOWER here, 38 s vs 16 s: it has 15x the parameters (246 k vs 16 k), sentences are at most 27 tokens, and a CPU barely parallelizes. Use it: the advantage of slide 22 is how time grows with T on parallel hardware, not this number. Without positional embeddings: 66 % exact, errors on digits 3-4 of the year ("1 9 8 3" and "1 9 3 8" are the same set of tokens); the dashes stay perfect because the causal mask tells the decoder how many tokens precede it. Post-norm, 6 layers, no warmup, lr 3e-3: 0.6 % exact after epoch 1 vs 99.7 % for pre-norm (98.4 % after epoch 2). -->
 
 ---
 
