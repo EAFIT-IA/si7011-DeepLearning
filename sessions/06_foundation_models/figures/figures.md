@@ -24,17 +24,18 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 
 - **Generator** — conceptual diagrams with exact labels: prompts in [figure_prompts.md](figure_prompts.md).
 - **Script** — figures that show real data or a trained model: a `make_s06_*.py` script in this folder (matplotlib, fixed seeds), reading the JSON or `.npz` that the notebook saves, so the slide and the notebook always agree.
+- **Script, drawn** — diagrams that need exact numbers or identical repeated elements, which the generator gets wrong: the token-column series of Part 1 (F01, F02, F03, F05) in `make_s06_f01_f05_tokens.py`. Scores are illustrative; weights, averages and outputs are computed in the script.
 - **Manim** — animations in `escenas_s06.py`, with the conventions of `escenas_s02.py`–`escenas_s05.py`.
 
 ## Figures
 
 | ID | Slide | Purpose | Filename | Route | Status |
 |---|---:|---|---|---|---|
-| **S06-F01** | V07 | The same word, two meanings: "banco" in two sentences | `s06_f01_same_word_two_meanings.png` | Generator | Pending |
-| **S06-F02** | V08 | Self-attention without weights for one token | `s06_f02_attention_no_weights.png` | Generator | Pending |
-| **S06-F03** | V10 | Query, key and value for the same token (same layout as F02) | `s06_f03_query_key_value.png` | Generator | Pending |
+| **S06-F01** | V07 | The same word, two meanings: "banco" in two sentences | `s06_f01_same_word_two_meanings.png` | Script `make_s06_f01_f05_tokens.py` (drawn, illustrative scores) | Included |
+| **S06-F02** | V08 | Self-attention without weights for one token | `s06_f02_attention_no_weights.png` | Script `make_s06_f01_f05_tokens.py` (drawn, illustrative scores) | Included |
+| **S06-F03** | V10 | Query, key and value for the same token (same layout as F02) | `s06_f03_query_key_value.png` | Script `make_s06_f01_f05_tokens.py` (drawn, illustrative scores) | Included |
 | **S06-F04** | V15 | Multi-head attention: $X$ → $H$ heads with their own $Q, K, V$ → concatenate → $W_O$, with shapes | `s06_f04_multihead.png` | Generator | Pending |
-| **S06-F05** | V19 | Adding position | `s06_f05_adding_position.png` | Generator | Pending |
+| **S06-F05** | V19 | Adding position | `s06_f05_adding_position.png` | Script `make_s06_f01_f05_tokens.py` (drawn, illustrative scores) | Included |
 | **S06-F06** | V20 | Attention matrices of one sentence (no mask, padding mask, causal mask) and outputs before and after shuffling the tokens without position | `s06_f06_masks_permutation.png` | Script (notebook 6.1: `atencion_mascaras.npz`) | Pending |
 | **S06-F07** | V27 | The pre-norm Transformer block with the residual stream as a straight band; post-norm inset | `s06_f07_block.png` | Generator | Pending |
 | **S06-F08** | V29 | A whole GPT, from token ids to probabilities | `s06_f08_whole_gpt.png` | Generator | Pending |

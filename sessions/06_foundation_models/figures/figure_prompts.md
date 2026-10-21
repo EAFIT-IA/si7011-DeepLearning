@@ -8,17 +8,13 @@
 4. Before delivering, check the image against the **review checklist** and the figure's own "Check" line. If any label, number or symbol differs from the prompt, regenerate.
 5. Do not edit the slides or `figures.md`; the course maintainer integrates each image after review.
 
-Slide numbers refer to the current deck, `../slides/S06_slides.marp.md`. Figures that show real data or a trained model (S06-F06, F10, F13, F14, F15, F18, F19) are **not** in this file: they are produced by scripts, see `figures.md`.
+Slide numbers refer to the current deck, `../slides/S06_slides.marp.md`. This file holds **only** the figures made with the image generator. Not here: the animations (Manim, `escenas_s06.py`); the figures drawn from the notebooks' results (F06, F10, F13, F14, F15, F18, F19); and the token-column series of Part 1 (F01, F02, F03, F05), drawn by `make_s06_f01_f05_tokens.py` because it needs identical columns and exact numbers. See `figures.md`.
 
 ## Status
 
 | Figure | Concept | Slide | Status |
 |---|---|---:|---|
-| S06-F01 | The same word, two meanings | V07 | pending |
-| S06-F02 | Self-attention without weights, for one token | V08 | pending |
-| S06-F03 | Query, key and value, for the same token | V10 | pending |
 | S06-F04 | Multi-head attention with shapes | V15 | pending |
-| S06-F05 | Adding position | V19 | pending |
 | S06-F07 | The pre-norm Transformer block | V27 | pending |
 | S06-F08 | A whole GPT, from token ids to probabilities | V29 | pending |
 | S06-F09 | Encoder, decoder, encoder-decoder | V32 | pending |
@@ -27,7 +23,6 @@ Slide numbers refer to the current deck, `../slides/S06_slides.marp.md`. Figures
 | S06-F16 | Four ways to use a pretrained model | V63 | pending |
 | S06-F17 | From fine-tuning to LoRA, in three steps | V67 | pending |
 
-The figures of Part 1 (F01, F02, F03, F04, F05) are a **sequence**: they use the same sentence, the same token drawings and the same left-to-right layout, so that each one differs from the previous one only in the step it adds. Generate them in that order and keep them visually consistent.
 
 ## Common style block (prepend to every prompt)
 
@@ -35,7 +30,7 @@ The figures of Part 1 (F01, F02, F03, F04, F05) are a **sequence**: they use the
 >
 > Notation (use it exactly): token representations $X$, with one **row per token**; number of tokens $T$; model width $d$; queries, keys, values $Q$, $K$, $V$; projections $W_Q$, $W_K$, $W_V$, $W_O$; width per head $d_k$; number of heads $H$; attention weights $A$; mask $M$; LayerNorm written "LN"; feed-forward network written "MLP"; activation written GELU; frozen pretrained weight $W_0$; LoRA factors $B$ and $A_r$; rank $r$. Never use $\sigma$ for anything except the sigmoid; the generic activation is $\varphi$. Write the loss as a plain italic $L$, never calligraphic $\mathcal L$. Data flows **bottom to top** inside a Transformer block (input at the bottom, output at the top), and **left to right** everywhere else.
 >
-> Running example (used by every figure that shows tokens): the Spanish sentence "me senté en el banco", five tokens "me", "senté", "en", "el", "banco", each drawn as a **small vertical column of 4 colored cells** (a token vector) with the word in italics under it. "banco" is always the last token and the one being followed. Numbers given in a prompt are the only numbers in the image.
+> Running example (for figures that show words): the Spanish sentence "me senté en el banco", five tokens "me", "senté", "en", "el", "banco", the same sentence used by the scripted figures of Part 1 (F01–F05). Numbers given in a prompt are the only numbers in the image.
 >
 > Palette: blue #1f6fb4 (token representations, the residual stream, encoders), orange #d9631e (everything that belongs to attention: $Q$, $K$, $V$, attention weights, cross-attention), teal #167d78 (MLP, output heads, decoders, parameters that are **trained**), gray #8a94a3 (frozen or inactive parts, masked positions), red #c0392b (errors, forbidden connections), navy text #14213d.
 
@@ -46,65 +41,6 @@ The figures of Part 1 (F01, F02, F03, F04, F05) are a **sequence**: they use the
 - Every matrix carries its shape label (for example "$T \times d$"); the exact proportions of the rectangles do not matter.
 - Attention parts are orange; trained parameters teal; frozen parameters gray with a small padlock.
 - No logos, no photographs, no reproduction of a figure from a paper, a blog or another course (in particular, **not** the Transformer diagram of Vaswani et al. 2017 with its pink and blue stacked blocks and "N×" bracket, not Jay Alammar's illustrated Transformer figures, not Sebastian Raschka's self-attention, multi-head and LoRA figures (green token bars, pink $K$ and green $V$ blocks, purple stacked heads, the gray "forward pass with updated model" panels), and not the LoRA figure of Hu et al. 2021 with the blue $W$ and orange $A$, $B$ trapezoids). The **order of ideas** may follow a standard explanation; the drawing must be our own.
-
----
-
-## S06-F01 · The same word, two meanings (pending, slide 7)
-
-File: `s06_f01_same_word_two_meanings.png`
-
-Two horizontal rows, one sentence each, with **exactly the same layout**: five token columns per row, in five fixed column positions shared by both rows, so that each word of the bottom row sits directly under a word of the top row.
-
-1. **Top row:** five blue token columns, from left to right: "me", "senté", "en", "el", "banco".
-2. **Bottom row:** five blue token columns, from left to right: "deposité", "dinero", "en", "el", "banco".
-
-Every column has its word written under it. There are **exactly five columns in each row and no unlabeled column**.
-
-"banco" is the **fifth (last) column in both rows**, one directly above the other. These two "banco" columns are **identical copies** (the same 4 cell shades, in the same order). A thin gray dashed bracket joins exactly these two columns, with the label "same embedding $\mathbf e_{\text{banco}}$" (bold upright **e**, subscript "banco").
-
-Orange curved arrows, above each row, all ending on the "banco" column of that row:
-- top row: one **thick** arrow from "senté" and one **thin** arrow from "en";
-- bottom row: one **thick** arrow from "deposité" and one **thin** arrow from "dinero".
-
-To the right of each row, an arrow labeled "self-attention" leads to one output column, with "banco" under it:
-- top row: the output column has a **different** shade mix from the input "banco", with the label "bench" to its right;
-- bottom row: the output column has another shade mix, different from both the input and the top output, with the label "bank" to its right.
-
-Bottom strip, gray: "the input vector is the same; the output depends on the other tokens".
-
-Check: each row has exactly five labeled columns and no extra column; "banco" is the last column of both rows and the two "banco" input columns are identical; the dashed bracket and all orange arrows end on those "banco" columns; the two output columns differ from each other and from the input; "bench" and "bank" are in English; the Spanish words are copied exactly ("senté", "deposité").
-
----
-
-## S06-F02 · Self-attention without weights, for one token (pending, slide 8)
-
-File: `s06_f02_attention_no_weights.png`
-
-Three panels left to right, separated by thin vertical rules, each with a small number in a circle at its top-left: ①, ②, ③. The five token columns of the running example sit along the bottom of the figure, under all three panels, as a shared input row; the column of "banco" has a thin navy outline: it is the token being followed.
-
-1. **Panel ① "compare":** from the "banco" column, five thin gray lines go to each of the five columns (including itself). Above each column, a small white box with its score: $\omega_{5j} = \mathbf x_5^\top \mathbf x_j$, written once as a label over the row of boxes. The five scores, in order: **0.0, 0.8, 0.6, 0.6, 2.9**.
-2. **Panel ② "normalize":** the same five positions, now with five vertical orange bars whose heights are the weights after softmax. Under each bar its value: **0.04, 0.09, 0.07, 0.07, 0.73**. A small label: "$A_{5j} = \operatorname{softmax}_j(\omega_{5j})$, sum = 1".
-3. **Panel ③ "average":** each of the five token columns is drawn again, scaled in **opacity** by its weight (the "banco" column almost solid, the others faint), with a small "×0.04", "×0.09", "×0.07", "×0.07", "×0.73" next to each; they flow with "+" signs into one output column labeled $\mathbf y_5$, mostly the color of "banco".
-
-Bottom strip, red outline: "no parameters: every token is most similar to itself, so $\mathbf y_5$ is almost $\mathbf x_5$".
-
-Check: exactly these five scores and five weights, in this order; the largest bar is over "banco"; no $W$ matrices appear anywhere in this figure.
-
----
-
-## S06-F03 · Query, key and value, for the same token (pending, slide 10)
-
-File: `s06_f03_query_key_value.png`
-
-**Same layout as S06-F02** (three numbered panels over the shared row of five token columns) so the two figures can be compared side by side. The difference: each token column now splits into **three small orange columns** just above it, labeled $\mathbf k_j$ and $\mathbf v_j$ for every token, and for "banco" also $\mathbf q_5$ (outlined in navy). Along the left edge, three small labels with arrows show where they come from: "$\mathbf q = W_Q\mathbf x$", "$\mathbf k = W_K\mathbf x$", "$\mathbf v = W_V\mathbf x$" (these three $W$'s in teal: they are trained).
-
-1. **Panel ① "compare":** lines from $\mathbf q_5$ to each $\mathbf k_j$; above the row the label "$\mathbf q_5^\top \mathbf k_j / \sqrt{d_k}$"; the five scores: **−1.0, 1.2, −0.2, −0.2, 1.0**.
-2. **Panel ② "normalize":** five orange bars with values **0.05, 0.41, 0.10, 0.10, 0.34**; the tallest bar is over "senté".
-3. **Panel ③ "average":** the five $\mathbf v_j$ columns scaled in opacity by their weights ("×0.05", "×0.41", "×0.10", "×0.10", "×0.34"), summed into the output column $\mathbf y_5$.
-
-Bottom strip, teal outline: "learned projections: \"banco\" can now look mostly at \"senté\"".
-
-Check: exactly these scores and weights; the tallest bar is over "senté", not over "banco"; $\mathbf q$ appears only for "banco"; the panel layout matches S06-F02.
 
 ---
 
@@ -122,24 +58,6 @@ Left to right, four stages.
 Bottom strip, gray, full width: "$d_k = d / H$: same parameters and cost as one head of width $d$".
 
 Check: exactly three lanes drawn (head 1, head 2, head $H$); every rectangle carries its shape label; input and output are both $T \times d$; the three heat maps differ.
-
----
-
-## S06-F05 · Adding position (pending, slide 19)
-
-File: `s06_f05_adding_position.png`
-
-Left two thirds: three rows of five columns, one column per token of the running example, aligned vertically:
-
-1. **bottom row, blue:** the token vectors $\mathbf x_1, \dots, \mathbf x_5$, words under them;
-2. **middle row, light purple-gray:** five position vectors $\mathbf p_1, \dots, \mathbf p_5$, each with a **different** pattern of shades, and a "+" sign between the bottom and middle rows;
-3. **top row:** the sums $\mathbf x_i + \mathbf p_i$, with an "=" sign; each top column visibly mixes the colors of the two below it.
-
-Right third, a small comparison in two mini-panels stacked:
-- top mini-panel, label "without $\mathbf p_i$": the five words in two orders ("me senté en el banco" and "banco el en senté me"), both pointing with an arrow to the **same** set of five output columns, labeled "same outputs, shuffled";
-- bottom mini-panel, label "with $\mathbf p_i$": the same two orders pointing to two **different** sets of output columns, labeled "different outputs".
-
-Check: the five position vectors all differ; the "+" and "=" signs are between the rows; in the right panel only the "without" case shows the same outputs.
 
 ---
 

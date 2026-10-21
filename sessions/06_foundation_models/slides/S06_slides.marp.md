@@ -172,31 +172,23 @@ Compare, normalize, average. The weights depend on the **content** of the tokens
 
 ---
 
-# The same word, two meanings
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain "banco" has the same embedding in "me senté en el banco" and "deposité dinero en el banco"; after self-attention its output is a bench in the first sentence and a bank in the second](../figures/s06_f01_same_word_two_meanings.png)
 
-**S06-F01 · The same word, two meanings**
-
-"banco" has the same embedding in "me senté en el banco" and "deposité dinero en el banco": same word, same position, same "en el" before it. After self-attention its two outputs differ: one is a bench, the other a bank.
-
-`../figures/s06_f01_same_word_two_meanings.png` · route: Generator (`figure_prompts.md`)
-
-</div>
+<!-- Drawn by make_s06_f01_f05_tokens.py. The output columns are the weighted averages of the token vectors with the weights of F03 (0.05, 0.41, 0.10, 0.10, 0.34) and with 0.38, 0.12, 0.08, 0.08, 0.34 for the second sentence. Ask: what makes the two outputs differ, if the input vector is the same? -->
 
 ---
 
-# Attention without weights, for one token
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain Self-attention without parameters for the token banco: compare with every token (scores 0.0, 0.8, 0.6, 0.6, 2.9), softmax (0.04, 0.09, 0.07, 0.07, 0.73), weighted average; y5 is almost x5](../figures/s06_f02_attention_no_weights.png)
 
-**S06-F02 · Self-attention without weights**
-
-"banco" compares itself with every token ($\omega_{5j} = \mathbf x_5^\top\mathbf x_j$), the softmax turns the scores into weights, and the weights average the tokens. Without parameters, "banco" reads mostly itself (0.73).
-
-`../figures/s06_f02_attention_no_weights.png` · route: Generator (`figure_prompts.md`)
-
-</div>
+<!-- Illustrative scores; the weights are their softmax and y5 is computed from the drawn vectors. The point: x_i·x_i is usually the largest score, so without parameters each token mostly reads itself. -->
 
 ---
 
@@ -219,17 +211,13 @@ A **soft dictionary lookup**: compare the query with every key, return a mixture
 
 ---
 
-# Query, key and value, for the same token
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain The same three steps with learned projections: q5 against every key (scores -1.0, 1.2, -0.2, -0.2, 1.0), softmax (0.05, 0.41, 0.10, 0.10, 0.34), weighted average of the values; banco now looks mostly at senté](../figures/s06_f03_query_key_value.png)
 
-**S06-F03 · Query, key and value**
-
-The same three steps as the previous figure, now with $\mathbf q_5$, $\mathbf k_j$ and $\mathbf v_j$ from learned projections. "banco" now reads mostly "senté" (0.41).
-
-`../figures/s06_f03_query_key_value.png` · route: Generator (`figure_prompts.md`)
-
-</div>
+<!-- Same layout as the previous figure, to compare them side by side. Illustrative scores; weights and y5 are computed. W_Q, W_K, W_V are random in the script: the figure shows the mechanism, not a trained model. -->
 
 ---
 
@@ -386,17 +374,13 @@ Add a vector $\mathbf p_i$ for each position: $\ \mathbf x_i \leftarrow \mathbf 
 
 ---
 
-# Adding position
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain Token vectors plus position vectors give the input to attention; without position, banco gets the same output in "me senté en el banco" and in "banco el en senté me"; with position the two outputs differ](../figures/s06_f05_adding_position.png)
 
-**S06-F05 · Adding position**
-
-Token vectors plus position vectors, column by column; without position, two orders of the same words give the same outputs, shuffled.
-
-`../figures/s06_f05_adding_position.png` · route: Generator (`figure_prompts.md`)
-
-</div>
+<!-- The right half is real parameter-free self-attention, softmax(X X^T) X, computed in the script on the drawn vectors: without p the outputs of the shuffled sentence are the same vectors shuffled (asserted in the script); with p they are not. -->
 
 ---
 
