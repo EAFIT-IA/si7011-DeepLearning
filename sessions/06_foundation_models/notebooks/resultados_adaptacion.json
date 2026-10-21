@@ -1,0 +1,44 @@
+{
+ "modelo_base": "distilbert-base-uncased",
+ "n_train": 2000,
+ "n_test": 2000,
+ "max_len": 256,
+ "filas": [
+  {
+   "modelo": "LSTM desde cero",
+   "acc_val": 0.7680000066757202,
+   "acc_test": 0.7764999866485596,
+   "entrenables": 4171522,
+   "total": 4171522,
+   "segundos": 5.55235481262207,
+   "memoria_gb": 0.24122381210327148
+  },
+  {
+   "modelo": "DistilBERT congelado + sonda",
+   "acc_val": 0.8420000076293945,
+   "acc_test": 0.8424999713897705,
+   "entrenables": 1538,
+   "total": 66364418,
+   "segundos": 6.902514457702637,
+   "memoria_gb": 2.075655937194824
+  },
+  {
+   "modelo": "DistilBERT ajustado completo",
+   "acc_val": 0.8759999871253967,
+   "acc_test": 0.890999972820282,
+   "entrenables": 66364418,
+   "total": 66364418,
+   "segundos": 42.14999175071716,
+   "memoria_gb": 3.3847923278808594
+  },
+  {
+   "modelo": "DistilBERT + LoRA",
+   "acc_val": 0.878000020980835,
+   "acc_test": 0.8889999985694885,
+   "entrenables": 148994,
+   "total": 66511874,
+   "segundos": 31.099380254745483,
+   "memoria_gb": 2.680769920349121
+  }
+ ]
+}

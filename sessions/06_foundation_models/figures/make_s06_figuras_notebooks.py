@@ -191,8 +191,9 @@ def f19():
     ax.set_xscale('log')
     ax.set_xlabel('trainable parameters (log scale)'); ax.set_ylabel('test accuracy')
     ax.yaxis.set_major_formatter(mpl.ticker.PercentFormatter(1.0, decimals=0))
+    ax.yaxis.set_major_locator(mpl.ticker.MultipleLocator(0.05))
     lo = min(r['acc_test'] for r in z['filas'])
-    ax.set_ylim(max(0.45, lo - 0.06), 1.0)
+    ax.set_ylim(max(0.45, lo - 0.06), min(1.0, max(r['acc_test'] for r in z['filas']) + 0.04))
     xs = [r['entrenables'] for r in z['filas']]
     ax.set_xlim(min(xs) / 4, max(xs) * 40)
     for sp in ('top', 'right'):

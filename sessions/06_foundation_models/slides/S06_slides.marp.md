@@ -1231,7 +1231,7 @@ Rank them by accuracy. Rank them by trainable parameters. Do the two rankings ag
 
 Answer in notebook 6.5.
 
-<!-- Expected (to confirm in notebook 6.5): every pretrained variant beats the LSTM trained on 2 000 reviews; fine-tuning and LoRA close to each other; frozen + probe behind them, with by far the fewest trainable parameters (the head only). The two rankings do not agree. -->
+<!-- Measured in notebook 6.5 (Kaggle T4, 2 000 test reviews): LSTM 77.6 %, 4.2 M trainable; DistilBERT frozen + probe 84.2 %, 1 538 trainable; fine-tuned 89.1 %, 66.4 M; LoRA 88.9 %, 149 k (0.22 %). By accuracy: fine-tuning ≈ LoRA > probe > LSTM. By trainable parameters: probe < LoRA < LSTM < fine-tuning. The rankings do not agree, and the LSTM trains 28 times more parameters than LoRA while losing by 11 points. Time 6 / 7 / 42 / 31 s; peak memory 0.2 / 2.1 / 3.4 / 2.7 GB. -->
 
 ---
 
@@ -1305,17 +1305,13 @@ Optional, at home:
 
 ---
 
-# Summary
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain Test accuracy against trainable parameters on IMDB with 2 000 training reviews, log scale. DistilBERT frozen plus probe: 1 538 trainable parameters, 84.2 percent. DistilBERT with LoRA: 149 thousand, 88.9 percent. LSTM from scratch: 4.2 million, 77.6 percent. DistilBERT fine-tuned: 66 million, 89.1 percent. Time and peak memory: LSTM 6 s and 0.2 GB, probe 7 s and 2.1 GB, fine-tuning 42 s and 3.4 GB, LoRA 31 s and 2.7 GB](../figures/s06_f19_summary.png)
 
-**S06-F19 · Accuracy against trainable parameters**
-
-IMDB with 2 000 reviews: the LSTM from scratch and the three DistilBERT strategies of notebook 6.5, test accuracy against trainable parameters on a log axis.
-
-`../figures/s06_f19_summary.png` · route: Script (notebook 6.5)
-
-</div>
+<!-- Measured in notebook 6.5 (Kaggle T4). The summary of Part 5 in one picture: pretraining is worth 7 to 11 points over the LSTM with 2 000 labels; LoRA gets within 0.2 points of full fine-tuning with 0.22 % of its trainable parameters; the probe is the cheapest and 5 points behind. The LSTM trains more parameters than LoRA and is the worst: the number of trainable parameters is not what buys accuracy, the pretrained weights are. -->
 
 ---
 
