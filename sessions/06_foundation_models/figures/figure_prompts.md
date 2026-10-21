@@ -14,7 +14,7 @@ Slide numbers refer to the current deck, `../slides/S06_slides.marp.md`. This fi
 
 | Figure | Concept | Slide | Status |
 |---|---|---:|---|
-| S06-F04 | Multi-head attention with shapes | V15 | pending |
+| S06-F04 | Multi-head attention with shapes | V15 | done, patched by script |
 | S06-F07 | The pre-norm Transformer block | V27 | pending |
 | S06-F08 | A whole GPT, from token ids to probabilities | V29 | pending |
 | S06-F09 | Encoder, decoder, encoder-decoder | V32 | pending |
@@ -44,7 +44,7 @@ Slide numbers refer to the current deck, `../slides/S06_slides.marp.md`. This fi
 
 ---
 
-## S06-F04 · Multi-head attention with shapes (pending, slide 15)
+## S06-F04 · Multi-head attention with shapes (done, patched by script, slide 15)
 
 File: `s06_f04_multihead.png`
 
@@ -52,12 +52,12 @@ Left to right, four stages.
 
 1. **Left:** one blue rectangle labeled $X$ with the shape label "$T \times d$" under it.
 2. **Center-left:** three arrows fan out from $X$ to three stacked lanes labeled "head 1", "head 2", "head $H$" (with a vertical "⋮" between head 2 and head $H$). In each lane: three small orange rectangles side by side labeled $Q$, $K$, $V$ with the shape "$T \times d_k$" under them, then a small square orange heat map labeled $A$ with shape "$T \times T$", then one small orange rectangle labeled "head output" with shape "$T \times d_k$". Next to the arrow that enters each lane write "$W_Q, W_K, W_V$" in small type, and over the heat map the formula $\mathrm{softmax}\!\big(QK^\top/\sqrt{d_k}\big)$ (only in head 1, to avoid clutter). The three heat maps must show **different** patterns (one diagonal, one with a bright column, one diffuse) so the heads look different.
-3. **Center-right:** the three head outputs join into one wide rectangle labeled "concatenate" with shape "$T \times H d_k$".
+3. **Center-right:** the three head outputs join into one rectangle labeled "concatenate" with shape "$T \times H d_k$", drawn as **three vertical strips side by side** labeled "1", "2", "$H$" (concatenation along the features, not stacked rows).
 4. **Right:** an arrow labeled $W_O$ to a blue rectangle labeled "output" with shape "$T \times d$".
 
 Bottom strip, gray, full width: "$d_k = d / H$: same parameters and cost as one head of width $d$".
 
-Check: exactly three lanes drawn (head 1, head 2, head $H$); every rectangle carries its shape label; input and output are both $T \times d$; the three heat maps differ.
+Check: the formula has the square root, $\sqrt{d_k}$; the concatenation is vertical strips side by side; exactly three lanes drawn (head 1, head 2, head $H$); every rectangle carries its shape label; input and output are both $T \times d$; the three heat maps differ.
 
 ---
 

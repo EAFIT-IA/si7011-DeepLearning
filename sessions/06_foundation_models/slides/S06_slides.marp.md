@@ -294,17 +294,13 @@ In code, heads are a reshape: `(B, T, d) → (B, H, T, d_k)`.
 
 ---
 
-# Multi-head attention, with shapes
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain Multi-head attention: X (T by d) goes into H heads, each with its own W_Q, W_K, W_V, its own Q, K, V (T by d_k) and its own attention matrix A (T by T, a different pattern in each head); the H head outputs are concatenated side by side (T by H d_k) and projected by W_O back to T by d](../figures/s06_f04_multihead.png)
 
-**S06-F04 · Multi-head attention**
-
-$X$ ($T\times d$) → $H$ heads, each with its own $Q, K, V$ ($T\times d_k$) and its own attention matrix $A$ ($T\times T$) → concatenate ($T\times Hd_k$) → $W_O$ → output ($T\times d$).
-
-`../figures/s06_f04_multihead.png` · route: Generator (`figure_prompts.md`)
-
-</div>
+<!-- Generated image, patched by fix_s06_f04_multihead.py: the generator wrote softmax(QK^T/d_k) without the square root, and drew the concatenation as three stacked horizontal bands (which reads as stacking rows); it is now three vertical strips 1, 2, H, side by side along the features. Point at the three different attention patterns: each head learns its own relation. -->
 
 ---
 

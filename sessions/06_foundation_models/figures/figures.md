@@ -34,7 +34,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | **S06-F01** | V07 | The same word, two meanings: "banco" in two sentences | `s06_f01_same_word_two_meanings.png` | Script `make_s06_f01_f05_tokens.py` (drawn, illustrative scores) | Included |
 | **S06-F02** | V08 | Self-attention without weights for one token | `s06_f02_attention_no_weights.png` | Script `make_s06_f01_f05_tokens.py` (drawn, illustrative scores) | Included |
 | **S06-F03** | V10 | Query, key and value for the same token (same layout as F02) | `s06_f03_query_key_value.png` | Script `make_s06_f01_f05_tokens.py` (drawn, illustrative scores) | Included |
-| **S06-F04** | V15 | Multi-head attention: $X$ → $H$ heads with their own $Q, K, V$ → concatenate → $W_O$, with shapes | `s06_f04_multihead.png` | Generator | Pending |
+| **S06-F04** | V15 | Multi-head attention: $X$ → $H$ heads with their own $Q, K, V$ → concatenate → $W_O$, with shapes | `s06_f04_multihead.png` | Generator + script: `fix_s06_f04_multihead.py` (adds the $\sqrt{d_k}$; concatenation as vertical strips) | Included |
 | **S06-F05** | V19 | Adding position | `s06_f05_adding_position.png` | Script `make_s06_f01_f05_tokens.py` (drawn, illustrative scores) | Included |
 | **S06-F06** | V20 | Attention matrices of one sentence (no mask, padding mask, causal mask) and outputs before and after shuffling the tokens without position | `s06_f06_masks_permutation.png` | Script (notebook 6.1: `atencion_mascaras.npz`) | Pending |
 | **S06-F07** | V27 | The pre-norm Transformer block with the residual stream as a straight band; post-norm inset | `s06_f07_block.png` | Generator | Pending |

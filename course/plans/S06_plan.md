@@ -254,7 +254,7 @@ Same routes as S03–S05: **Generator** (prompts in `figure_prompts.md`), **Scri
 | **S06-F01** | V07 | "banco" with the same embedding in two sentences and two different outputs after self-attention | `s06_f01_same_word_two_meanings.png` | Script (`make_s06_f01_f05_tokens.py`, drawn) |
 | **S06-F02** | V08 | Self-attention without weights for one token: scores, softmax, weighted average (banco reads itself, 0.73) | `s06_f02_attention_no_weights.png` | Script (`make_s06_f01_f05_tokens.py`, drawn) |
 | **S06-F03** | V10 | The same three steps with $\mathbf q, \mathbf k, \mathbf v$ (banco reads "senté", 0.41); same layout as F02 | `s06_f03_query_key_value.png` | Script (`make_s06_f01_f05_tokens.py`, drawn) |
-| **S06-F04** | V15 | Multi-head attention: $X$ → $H$ heads with their own $Q, K, V$ → concatenate → $W_O$; shapes $(T, d) \to H\times(T, d_k) \to (T, d)$ | `s06_f04_multihead.png` | Generator |
+| **S06-F04** | V15 | Multi-head attention: $X$ → $H$ heads with their own $Q, K, V$ → concatenate → $W_O$; shapes $(T, d) \to H\times(T, d_k) \to (T, d)$ | `s06_f04_multihead.png` | Generator + script patch |
 | **S06-F05** | V19 | $\mathbf x_i + \mathbf p_i$ column by column; two orders with and without position | `s06_f05_adding_position.png` | Script (`make_s06_f01_f05_tokens.py`, drawn) |
 | **S06-F06** | V20 | Attention matrices of one sentence: no mask, padding mask, causal mask; plus outputs before and after shuffling the tokens without position | `s06_f06_masks_permutation.png` | Script (notebook 6.1) |
 | **S06-F07** | V27 | The pre-norm Transformer block with the residual path drawn as the straight line of S02 | `s06_f07_block.png` | Generator |
