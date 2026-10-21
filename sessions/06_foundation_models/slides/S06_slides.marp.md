@@ -723,17 +723,13 @@ loss = F.cross_entropy(
 
 ---
 
-# Training vs generation
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain Left, training in one forward pass: the decoder reads "<s> me senté en el banco" under a 6 by 6 causal mask and is scored against the same sentence shifted by one, "me senté en el banco <end>", with one loss L_t per position, six at once. Right, generation one token per step: "<s>" gives "me"; "<s> me" gives "senté"; "<s> me senté" gives "en"; each output becomes the last input of the next step](../figures/s06_f12_training_vs_generation.png)
 
-**S06-F12 · Training in parallel, generating one token at a time**
-
-Training: one pass over `<s> me senté en el banco`, six targets shifted by one, six losses at once under the causal mask. Generation: three steps, each one appending the token just produced.
-
-`../figures/s06_f12_training_vs_generation.png` · route: Generator (`figure_prompts.md`)
-
-</div>
+<!-- Generated image, used as is. Read the mask row by row: row t has t orange cells, so prediction t never sees the token it must predict. Training: one pass, T losses. Generation: T passes, one token each, which is why generation is slow and training is not (next slide: the animation). -->
 
 ---
 

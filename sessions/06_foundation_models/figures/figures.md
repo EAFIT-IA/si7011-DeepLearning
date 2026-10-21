@@ -42,7 +42,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | **S06-F09** | V32 | Encoder, decoder, encoder-decoder, with the mask each one uses | `s06_f09_three_architectures.png` | Generator | Included |
 | **S06-F10** | V39 | BPE on one Spanish sentence; vocabulary size vs sequence length | `s06_f10_bpe.png` | Script (notebook 6.3: `bpe_vocabularios.json`) | Pending |
 | **S06-F11** | V42 | How BERT hides words | `s06_f11_bert_masking.png` | Generator + script: `fix_s06_f11_bert_masking.py` (panel 4 redrawn bottom to top) | Included |
-| **S06-F12** | V44 | Training in parallel, generating one token at a time | `s06_f12_training_vs_generation.png` | Generator | Pending |
+| **S06-F12** | V44 | Training in parallel, generating one token at a time | `s06_f12_training_vs_generation.png` | Generator | Included |
 | **S06-F13** | V48 | Training loss of the tiny GPT with three samples at their steps | `s06_f13_gpt_samples.png` | Script (notebook 6.3: `muestras_gpt.json`) | Pending |
 | **S06-F14** | V52 | Test loss vs compute, log-log, from the published power-law fits; optional points from the companion run | `s06_f14_scaling.png` | Script (`make_s06_f07_scaling.py`; optional `resultados_escalado.json`) | Pending |
 | **S06-F15** | V56 | CLIP zero-shot on one EuroSAT image: similarity to the 10 class prompts | `s06_f15_clip_zeroshot.png` | Script (notebook 6.4: `clip_zeroshot.json`) | Pending |

@@ -19,7 +19,7 @@ Slide numbers refer to the current deck, `../slides/S06_slides.marp.md`. This fi
 | S06-F08 | A whole GPT, from token ids to probabilities | V29 | done, patched by script |
 | S06-F09 | Encoder, decoder, encoder-decoder | V32 | done |
 | S06-F11 | How BERT hides words | V42 | done, patched by script |
-| S06-F12 | Training in parallel, generating one token at a time | V44 | pending |
+| S06-F12 | Training in parallel, generating one token at a time | V44 | done |
 | S06-F16 | Four ways to use a pretrained model | V63 | pending |
 | S06-F17 | From fine-tuning to LoRA, in three steps | V67 | pending |
 
@@ -226,7 +226,7 @@ The three percentages are 80, 10, 10; the random word is "perro"; context arrive
 
 ---
 
-## S06-F12 · Training in parallel, generating one token at a time (pending, slide 44)
+## S06-F12 · Training in parallel, generating one token at a time (done, slide 44)
 
 File: `s06_f12_training_vs_generation.png`
 
