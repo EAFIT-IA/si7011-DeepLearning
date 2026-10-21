@@ -16,7 +16,7 @@ Slide numbers refer to the current deck, `../slides/S06_slides.marp.md`. This fi
 |---|---|---:|---|
 | S06-F04 | Multi-head attention with shapes | V15 | done, patched by script |
 | S06-F07 | The pre-norm Transformer block | V27 | done, patched by script |
-| S06-F08 | A whole GPT, from token ids to probabilities | V29 | pending |
+| S06-F08 | A whole GPT, from token ids to probabilities | V29 | done, patched by script |
 | S06-F09 | Encoder, decoder, encoder-decoder | V32 | pending |
 | S06-F11 | How BERT hides words | V42 | pending |
 | S06-F12 | Training in parallel, generating one token at a time | V44 | pending |
@@ -113,7 +113,7 @@ The input is labeled $X$ (capital); the formulas contain only the symbols given;
 
 ---
 
-## S06-F08 · A whole GPT, from token ids to probabilities (pending, slide 29)
+## S06-F08 · A whole GPT, from token ids to probabilities (done, patched by script, slide 29)
 
 File: `s06_f08_whole_gpt.png`
 
@@ -136,8 +136,8 @@ FIGURE
 
 One vertical stack in the center, drawn bottom to top, each stage a rounded box, with its output shape written to its right in a gray monospace label. From bottom to top:
 
-1. a row of five small integer chips: "17", "903", "41", "8", "2210" with the words "me", "senté", "en", "el", "banco" under them in italics; shape label "$(B, T)$ token ids";
-2. blue box "token embedding $E$" with a small note "lookup: row $w$ of $E$, $\lvert V\rvert \times d$"; beside it a light purple-gray box "position embedding" joined with a "+"; shape label "$(B, T, d)$";
+1. a row of five small integer chips: "17", "903", "41", "8", "2210" with the words "me", "senté", "en", "el", "banco" under them in italics; shape label "$(B, T)$ token ids". ALL FIVE chips send their arrow into the token embedding box (next stage); none goes into the position embedding box;
+2. blue box "token embedding $E$" with a small note "lookup: row $w$ of $E$, $\lvert V\rvert \times d$"; beside it a light purple-gray box "position embedding" with the small note "lookup: row $t$, one per position", joined with a "+" (it has no arrow from the chips: it depends on the position, not on the token); shape label "$(B, T, d)$";
 3. a tall blue box containing three thin stacked copies of the pre-norm Transformer block (each one drawn as a mini blue band with an orange "attention" chip and a teal "MLP" chip beside it), with a vertical bracket "$\times D$ blocks"; shape label "$(B, T, d)$";
 4. gray box "LN"; shape label "$(B, T, d)$";
 5. teal box "linear $W_U$, $d \times \lvert V\rvert$"; shape label "$(B, T, \lvert V\rvert)$ logits";
@@ -147,7 +147,7 @@ On the left side of the stack, a thin dashed gray curve from the "linear $W_U$" 
 
 CHECK BEFORE DELIVERING
 
-Every stage has its shape label; the stack goes bottom to top; the block stack carries "$\times D$"; only one bar chart, for the last position; the numbers are exactly as written.
+Every stage has its shape label; all five token-id arrows go into the token embedding; the stack goes bottom to top; the block stack carries "$\times D$"; only one bar chart, for the last position; the numbers are exactly as written.
 ```
 
 ---

@@ -509,17 +509,13 @@ Tokens flow through one pre-norm block: LN → attention (tokens exchange inform
 
 ---
 
-# A whole GPT
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain A whole GPT from bottom to top: token ids (B, T) for "me senté en el banco" go into the token embedding E, plus a position embedding, giving (B, T, d); D Transformer blocks keep (B, T, d); a final LN; a linear layer W_U gives logits (B, T, |V|); a softmax gives, for the last position, the probabilities of the next token: y 0.31, de 0.22, period 0.18, a 0.09, comma 0.06. A dashed line says W_U is often the same matrix as E](../figures/s06_f08_whole_gpt.png)
 
-**S06-F08 · A whole GPT, from token ids to probabilities**
-
-Token ids $(B,T)$ → embedding and position $(B,T,d)$ → $D$ blocks → LN → linear $W_U$ → logits $(B,T,\lvert V\rvert)$ → softmax over the vocabulary for the next token.
-
-`../figures/s06_f08_whole_gpt.png` · route: Generator (`figure_prompts.md`)
-
-</div>
+<!-- Generated image, patched by fix_s06_f08_whole_gpt.py: the generator sent the ids of "el" and "banco" into the position embedding; every id goes to the token embedding, and the position table is indexed by t. Walk the shapes from bottom to top; the next slide counts the parameters of each box. Probabilities are illustrative. -->
 
 ---
 

@@ -38,7 +38,7 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | **S06-F05** | V19 | Adding position | `s06_f05_adding_position.png` | Script `make_s06_f01_f05_tokens.py` (drawn, illustrative scores) | Included |
 | **S06-F06** | V20 | Attention matrices of one sentence (no mask, padding mask, causal mask) and outputs before and after shuffling the tokens without position | `s06_f06_masks_permutation.png` | Script (notebook 6.1: `atencion_mascaras.npz`) | Pending |
 | **S06-F07** | V27 | The pre-norm Transformer block with the residual stream as a straight band; post-norm inset | `s06_f07_block.png` | Generator + script: `fix_s06_f07_block.py` (formulas, $X$, post-norm inset redrawn) | Included |
-| **S06-F08** | V29 | A whole GPT, from token ids to probabilities | `s06_f08_whole_gpt.png` | Generator | Pending |
+| **S06-F08** | V29 | A whole GPT, from token ids to probabilities | `s06_f08_whole_gpt.png` | Generator + script: `fix_s06_f08_whole_gpt.py` (all ids into the token embedding) | Included |
 | **S06-F09** | V32 | Encoder, decoder, encoder-decoder, with the mask each one uses | `s06_f09_three_architectures.png` | Generator | Pending |
 | **S06-F10** | V39 | BPE on one Spanish sentence; vocabulary size vs sequence length | `s06_f10_bpe.png` | Script (notebook 6.3: `bpe_vocabularios.json`) | Pending |
 | **S06-F11** | V42 | How BERT hides words | `s06_f11_bert_masking.png` | Generator | Pending |
