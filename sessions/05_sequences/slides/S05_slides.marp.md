@@ -576,6 +576,16 @@ Does the gradient-vs-time plot of F03 change **shape**, or only height?
 
 ---
 
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Gradient norm of the loss with respect to each input hour on Jena, log scale, for RNN, LSTM and GRU: the RNN falls in a straight line to exactly zero, while the LSTM and the GRU flatten out around one thousandth of the last hour](../figures/s05_f11_gradient_rnn_lstm_gru.png)
+
+<!-- Notebook 5.3, section 4. Validation MAE: RNN 2.33, LSTM 2.32, GRU 2.30 °C; LSTM with 1 day of input 2.30 °C. The gradient reaches five days back, but this task does not need it: the additive path matters when the task depends on the far past (Parts 4 and 5). -->
+
+---
+
 # Stacked and bidirectional
 
 **Stacked**: $\mathbf h_t$ of layer 1 is $\mathbf x_t$ of layer 2. `nn.LSTM(..., num_layers=2)`.
@@ -646,16 +656,6 @@ Worked notebooks, one change per cell, GPU recommended:
 
 ---
 
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-![bg contain Gradient norm of the loss with respect to each input hour on Jena, log scale, for RNN, LSTM and GRU: the RNN falls in a straight line to exactly zero, while the LSTM and the GRU flatten out around one thousandth of the last hour](../figures/s05_f11_gradient_rnn_lstm_gru.png)
-
-<!-- Notebook 5.3, section 4. Validation MAE: RNN 2.33, LSTM 2.32, GRU 2.30 °C; LSTM with 1 day of input 2.30 °C. The gradient reaches five days back, but this task does not need it: the additive path matters when the task depends on the far past (Parts 4 and 5). -->
-
----
-
 # From text to integers
 
 1. **Tokenize**: split the text into units.
@@ -690,6 +690,16 @@ $$
 - or initialized from word2vec or GloVe, trained on other text.
 
 Distance in $E$ comes to mean "similar **for this task**".
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain An embedding is a row lookup. Top: the one-hot vector of "good" times E, an 8 by 4 matrix, gives row 3 of E, e_good; the product never runs, nn.Embedding reads the row directly. In notebook 5.4, V is 20 002 and d_e 64, 1.28 million values, almost all the parameters of the bag of embeddings. Bottom: the sentence not good but very fun becomes the ids 4 3 7 6 5, which gather five rows of the same E into a 5 by 4 matrix; in a batch, B by T ids give B by T by d_e; in backward only those rows receive gradient](../figures/s05_f19_embedding_lookup.png)
+
+<!-- Script make_s05_f19_embedding_lookup.py, drawn (random E, seed 5; the [PAD] row is zero, padding_idx). Point to make: E is a weight matrix like any other, but each step only touches the rows of the words in the batch, so rare words learn slowly, and that is one reason pretrained embeddings (GloVe, slide 49) help. -->
 
 ---
 
