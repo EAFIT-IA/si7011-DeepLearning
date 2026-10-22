@@ -40,14 +40,14 @@ Figures keep white backgrounds, academic visual style, preserved proportions and
 | **S05-F08** | V55 | Seq2seq with the single vector $\mathbf h_T$, on a date | `s05_f08_seq2seq.png` | Generator + script: `fix_s05_f08_seq2seq.py` (one input per decoder step) | Included |
 | **S05-F09** | V62 | Attention weights $\alpha_{\tau t}$ for three dates | `s05_f09_attention_alignment.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.5, section 6: `atencion_fechas.npz`) | Included |
 | **S05-F10** | V71 | Window, RNN, LSTM and attention: how much of step 1 reaches the prediction | `s05_f10_summary.png` | Generator + script: `fix_s05_f10_summary.py` (removes "T = 8"; RNN ribbon thin at step 1, thick at step 8, as F03) | Included |
-| **S05-F11** | V41 | $\lVert\partial L/\partial\mathbf x_t\rVert$ against $t$ for RNN, LSTM and GRU on Jena, log scale; hours where the RNN gradient is exactly 0 shaded | `s05_f11_gradient_rnn_lstm_gru.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.3, section 4: `gradiente_tiempo_lstm_gru.npz`) | Included |
+| **S05-F11** | V35 | $\lVert\partial L/\partial\mathbf x_t\rVert$ against $t$ for RNN, LSTM and GRU on Jena, log scale; hours where the RNN gradient is exactly 0 shaded | `s05_f11_gradient_rnn_lstm_gru.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.3, section 4: `gradiente_tiempo_lstm_gru.npz`) | Included |
 | **S05-F12** | V12 | Three ways to leak the future, drawn; below, leak 1 measured on Jena (shuffled split vs temporal split vs baseline, validation and future) | `s05_f12_three_leaks.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.1, section 6: `resultados_jena_51.json`); panel 2 schematic | Included |
 | **S05-F13** | V65 | Accuracy per output character of the date, seq2seq without attention at $d$ = 24 … 128 and with attention at $d = 24$ | `s05_f13_bottleneck_by_character.png` | Script `make_s05_figuras_notebooks.py` (notebook 5.5: `resultados_seq2seq.json`) | Included |
 | **S05-F14** | V57 | Teacher forcing: what the decoder receives in training (true previous character) and at inference (its own) | `s05_f14_teacher_forcing.png` | Script `make_s05_f14_teacher_forcing.py` (drawn, no data) | Included |
 | **S05-F15** | V33 | The GRU cell, same style as F04: $\mathbf h_t$ as the additive path, reset gate inside the candidate | `s05_f15_gru_cell.png` | Generator + script: `fix_s05_f15_gru_cell.py` (reset gate rewired: $\mathbf r_t \odot \mathbf h_{t-1}$ feeds the candidate, not $\mathbf r_t$) | Included |
 | **S05-F16** | V25 | Truncated BPTT: the state crosses each `detach()`, the gradient of each chunk stays inside it | `s05_f16_truncated_bptt.png` | Script `make_s05_f16_f18_parte3.py` (drawn, no data) | Included |
-| **S05-F17** | V36 | Stacked layers; a bidirectional layer over a window that ends now | `s05_f17_stacked_bidirectional.png` | Script `make_s05_f16_f18_parte3.py` (drawn, no data) | Included |
-| **S05-F18** | V38 | Recurrent dropout: the same mask at every step vs a new mask per step, with $(1-p)^k$ | `s05_f18_recurrent_dropout.png` | Script `make_s05_f16_f18_parte3.py` (drawn, no data) | Included |
+| **S05-F17** | V37 | Stacked layers; a bidirectional layer over a window that ends now | `s05_f17_stacked_bidirectional.png` | Script `make_s05_f16_f18_parte3.py` (drawn, no data) | Included |
+| **S05-F18** | V39 | Recurrent dropout: the same mask at every step vs a new mask per step, with $(1-p)^k$ | `s05_f18_recurrent_dropout.png` | Script `make_s05_f16_f18_parte3.py` (drawn, no data) | Included |
 
 ### Script specifications
 

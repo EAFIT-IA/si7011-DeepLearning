@@ -576,6 +576,16 @@ Does the gradient-vs-time plot of F03 change **shape**, or only height?
 
 ---
 
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Gradient norm of the loss with respect to each input hour on Jena, log scale, for RNN, LSTM and GRU: the RNN falls in a straight line to exactly zero, while the LSTM and the GRU flatten out around one thousandth of the last hour](../figures/s05_f11_gradient_rnn_lstm_gru.png)
+
+<!-- Notebook 5.3, section 4. Validation MAE: RNN 2.33, LSTM 2.32, GRU 2.30 °C; LSTM with 1 day of input 2.30 °C. The gradient reaches five days back, but this task does not need it: the additive path matters when the task depends on the far past (Parts 4 and 5). -->
+
+---
+
 # Stacked and bidirectional
 
 **Stacked**: $\mathbf h_t$ of layer 1 is $\mathbf x_t$ of layer 2. `nn.LSTM(..., num_layers=2)`.
@@ -643,16 +653,6 @@ Worked notebooks, one change per cell, GPU recommended:
 5. Sequence to sequence — and the first form of attention
 
 > Part 3: an additive path keeps the signal over long windows. Now the steps are **words**.
-
----
-
-<!-- _class: figure -->
-<!-- _paginate: false -->
-<!-- _footer: "" -->
-
-![bg contain Gradient norm of the loss with respect to each input hour on Jena, log scale, for RNN, LSTM and GRU: the RNN falls in a straight line to exactly zero, while the LSTM and the GRU flatten out around one thousandth of the last hour](../figures/s05_f11_gradient_rnn_lstm_gru.png)
-
-<!-- Notebook 5.3, section 4. Validation MAE: RNN 2.33, LSTM 2.32, GRU 2.30 °C; LSTM with 1 day of input 2.30 °C. The gradient reaches five days back, but this task does not need it: the additive path matters when the task depends on the far past (Parts 4 and 5). -->
 
 ---
 
