@@ -6,3 +6,4 @@ best.pt
 
 # Local copies of datasets next to the notebooks
 sessions/*/notebooks/data/
+__pycache__/

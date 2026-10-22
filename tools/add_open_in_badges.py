@@ -15,6 +15,8 @@ LIGHTNING_STUDIO = {
 KAGGLE = {
     'sessions/01_learning/notebooks/sesion_01_pytorch_60min.ipynb':
         'https://www.kaggle.com/code/juanmartinezv4399/si7011-sesion-01-pytorch-60min-ipynb',
+    'sessions/06_foundation_models/notebooks/sesion_06_1_autoatencion.ipynb':
+        'https://www.kaggle.com/code/juanmartinezv4399/sesion-06-1-autoatencion',
 }
 
 

@@ -327,7 +327,7 @@ Keep the current two-panel layout (left: "Single learning loop (shallow model)" 
 
 File: `s02_f02_signal_propagation.png`
 
-Keep the current layout: top band with the network and $a_l=\mathrm{ReLU}(W_l a_{l-1})$, $(W_l)_{ij}\sim\mathcal N(0,\,c\cdot 2/n_\text{in})$; a 3 × 5 grid of histograms (rows $c=0.5$, $c=1$ (He), $c=2$; columns input $x$, layer 1, layer 5, layer 10, layer 30); right-side labels; bottom banner. Fix the numbers so they follow $\operatorname{std}(a_l)\approx 0.82\,c^{l/2}$:
+Keep the current layout: top band with the network and $a_l=\mathrm{ReLU}(W_l a_{l-1})$, $(W_l)_{ij}\sim\mathcal N(0,\,c\cdot 2/n_\text{in})$; a 3 × 5 grid of histograms (rows $c=0.5$, $c=1$ (He), $c=2$; columns input $x$, layer 1, layer 5, layer 10, layer 30); right-side labels; bottom banner. Fix the numbers so they follow $\mathrm{std}(a_l)\approx 0.82\,c^{l/2}$:
 
 1. Input column: label every input histogram **"std(x) = 1.0"** (not std($a_l$)).
 2. Row $c=0.5$: layer 1 "std($a_l$) = 0.58", layer 5 "0.15", layer 10 "0.026", layer 30 "2.5 · 10⁻⁵". x-axis ranges: [0, 2], [0, 0.5], [0, 0.1], [0, 10⁻⁴].

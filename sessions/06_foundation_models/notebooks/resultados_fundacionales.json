@@ -1,0 +1,106 @@
+{
+ "eurosat": {
+  "zero_shot": {
+   "nombre de la carpeta": 0.3646913468837738,
+   "una foto de ...": 0.37432098388671875,
+   "una foto satelital de ...": 0.4081481397151947
+  },
+  "tabla": [
+   {
+    "encoder": "CLIP zero-shot",
+    "etiquetas": "0 %",
+    "accuracy": 0.4081481397151947
+   },
+   {
+    "encoder": "CLIP (imagen) + sonda",
+    "etiquetas": "1%",
+    "accuracy": 0.8596707979838053
+   },
+   {
+    "encoder": "CLIP (imagen) + sonda",
+    "etiquetas": "10%",
+    "accuracy": 0.9301234682401022
+   },
+   {
+    "encoder": "ResNet-18 ImageNet + sonda",
+    "etiquetas": "1%",
+    "accuracy": 0.7962962985038757
+   },
+   {
+    "encoder": "ResNet-18 ImageNet + sonda",
+    "etiquetas": "10%",
+    "accuracy": 0.8776954611142477
+   }
+  ]
+ },
+ "bike": {
+  "protocolo": "ventanas, cortes y horizontes del integrador 5.6",
+  "contexto": 512,
+  "validacion": [
+   {
+    "horizonte (h)": 1,
+    "persistencia": 96.01,
+    "misma hora de ayer": 84.06,
+    "Chronos-Bolt zero-shot": 29.9,
+    "mejora sobre la mejor base": 0.6443
+   },
+   {
+    "horizonte (h)": 6,
+    "persistencia": 298.88,
+    "misma hora de ayer": 83.93,
+    "Chronos-Bolt zero-shot": 41.9,
+    "mejora sobre la mejor base": 0.5008
+   },
+   {
+    "horizonte (h)": 12,
+    "persistencia": 310.73,
+    "misma hora de ayer": 83.42,
+    "Chronos-Bolt zero-shot": 43.48,
+    "mejora sobre la mejor base": 0.4788
+   },
+   {
+    "horizonte (h)": 24,
+    "persistencia": 82.9,
+    "misma hora de ayer": 82.9,
+    "Chronos-Bolt zero-shot": 42.32,
+    "mejora sobre la mejor base": 0.4895
+   }
+  ],
+  "prueba": [
+   {
+    "horizonte (h)": 1,
+    "persistencia": 78.97,
+    "misma hora de ayer": 75.95,
+    "Chronos-Bolt zero-shot": 26.4,
+    "mejora sobre la mejor base": 0.6524
+   },
+   {
+    "horizonte (h)": 6,
+    "persistencia": 239.53,
+    "misma hora de ayer": 76.01,
+    "Chronos-Bolt zero-shot": 41.77,
+    "mejora sobre la mejor base": 0.4505
+   },
+   {
+    "horizonte (h)": 12,
+    "persistencia": 270.52,
+    "misma hora de ayer": 76.07,
+    "Chronos-Bolt zero-shot": 43.09,
+    "mejora sobre la mejor base": 0.4335
+   },
+   {
+    "horizonte (h)": 24,
+    "persistencia": 77.09,
+    "misma hora de ayer": 77.09,
+    "Chronos-Bolt zero-shot": 45.87,
+    "mejora sobre la mejor base": 0.405
+   }
+  ],
+  "cobertura_10_90_prueba": 0.83,
+  "ventanas": {
+   "validacion": 2113,
+   "prueba": 1671
+  },
+  "nota": "copiado de la salida impresa del notebook (2 decimales); corrida en CPU"
+ }
+}

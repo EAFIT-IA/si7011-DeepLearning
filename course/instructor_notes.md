@@ -57,3 +57,35 @@ The S04 integrating-exercise solutions are not in the repository.
 ## S05
 
 F02, F03, F07, F09, F11, F12, F13 and animations A01, A03 read files saved by notebooks 5.1–5.5 (`particion_jena.json`, `resultados_jena_51.json`, `resultados_seq2seq.json`, `gradiente_tiempo_*.npz`, `vecinos_embedding.json`, `atencion_fechas.npz`). After re-running a notebook: `cd sessions/05_sequences/figures && python make_s05_figuras_notebooks.py ../notebooks .`, re-render A01/A03 (commands in `figures.md`) and the PDF. Notebook 5.5 is an optional homework. The S05 integrating-exercise (5.6) solutions are not in the repository; the reference run (GRU 32, 12 epochs) gives validation MAE 37 / 51 / 52 / 58 bikes per hour at 1 / 6 / 12 / 24 h against 84 / 84 / 83 / 83 for the best baseline.
+
+## S06: running notebook 6.3 (SFT)
+
+Notebook 6.3 fine-tunes **Qwen2.5-0.5B** (the base model, not Instruct) on 2 000 no-context pairs of Dolly-15k in Spanish (`argilla/databricks-dolly-15k-curated-multilingual`, split `es`), with a hand-written masked loss and LoRA. There is no checkpoint to publish: the whole notebook runs in class. Both the model (about 1 GB) and the data come from Hugging Face, so on Kaggle the students need **Internet on** in *Settings*, plus a GPU (T4).
+
+It is committed **without outputs** (it was not run on a GPU when written). Before class:
+
+1. Run it once on Kaggle with a T4 and note the time and peak memory it prints (estimate: 10–15 minutes; batch 8, `T_MAX = 384`). If memory is short, lower `B` to 4.
+2. Commit the executed copy and `resultados_sft.json` next to it, then draw F13 and F18:
+
+```bash
+cd sessions/06_foundation_models/figures && python make_s06_figuras_notebooks.py ../notebooks . f13,f18
+```
+
+3. Replace the F13 and F18 placeholders (slides 48 and 72) and write the measured answers in the notes of the prediction slides 47 and 73.
+
+## S06: running notebook 6.5 (DistilBERT on IMDB)
+
+Back in class (Practice B, after 6.3). It needs a T4 and **Internet on** (DistilBERT and `stanfordnlp/imdb` from Hugging Face; without Internet for the data, *Add Input* `lakshmi25npathi/imdb-dataset-of-50k-movie-reviews`, but the model still needs Internet). It trains its own LSTM baseline, so it does not depend on notebook 5.4. Committed without outputs; before class run it once (estimate: about 10 minutes), commit the executed copy with `resultados_adaptacion.json`, write the measured answer in the note of slide 76 and draw F19 (slide 82) with `python make_s06_figuras_notebooks.py ../notebooks . f19`.
+
+## S06: the styled dataset of the integrating exercise
+
+The integrator 6.6 reads `dolly_quijote_es.csv` from the Kaggle dataset `juanmartinezv4399/si7011-s06-dolly-quijote`, published on 2026-10-21 ([link](https://www.kaggle.com/datasets/juanmartinezv4399/si7011-s06-dolly-quijote)). To regenerate it, use [`s06_generar_estilo.ipynb`](s06_generar_estilo.ipynb):
+
+1. Open it on Kaggle; *Settings*: GPU T4 and **Internet on** (it downloads Dolly-es and Qwen2.5-7B-Instruct, loaded in 4 bits with `bitsandbytes`).
+2. **Save Version → Save & Run All (Commit)**. Estimate: about 45 minutes for 1 500 answers; it keeps only answers with at least two period phrases.
+3. Read the samples it prints at the end; then download `dolly_quijote_es.csv` from *Output* and publish it as the dataset above, public, CC BY-SA 3.0 (Dolly's license).
+
+The questions are positions 2 200–3 699 of the same filtered and shuffled Dolly-es that notebook 6.3 uses (positions 0–2 199), so the two never share a question. Then run 6.6 once with the solutions (kept outside the repository, like the S04 ones) to confirm the time and the ordering of the three conditions.
+
+Notebook 6.4 is optional homework. It is committed executed (Kaggle T4), with `resultados_fundacionales.json`; F15 (slide 56) is drawn from that file. If a rerun also saves `clip_zeroshot.npz`, `python make_s06_figuras_notebooks.py ../notebooks . f15` draws the one-image version instead.
+
