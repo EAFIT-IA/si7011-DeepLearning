@@ -78,10 +78,10 @@ Back in class (Practice B, after 6.3). It needs a T4 and **Internet on** (Distil
 The integrator 6.6 reads `dolly_quijote_es.csv` from the Kaggle dataset `juanmartinezv4399/si7011-s06-dolly-quijote`, published on 2026-10-21 ([link](https://www.kaggle.com/datasets/juanmartinezv4399/si7011-s06-dolly-quijote)). To regenerate it, use [`s06_generar_estilo.ipynb`](s06_generar_estilo.ipynb):
 
 1. Open it on Kaggle; *Settings*: GPU T4 and **Internet on** (it downloads Dolly-es and Qwen2.5-7B-Instruct, loaded in 4 bits with `bitsandbytes`).
-2. **Save Version → Save & Run All (Commit)**. Estimate: about 40 minutes for 1 200 answers.
+2. **Save Version → Save & Run All (Commit)**. Estimate: about 45 minutes for 1 500 answers; it keeps only answers with at least two period phrases.
 3. Read the samples it prints at the end; then download `dolly_quijote_es.csv` from *Output* and publish it as the dataset above, public, CC BY-SA 3.0 (Dolly's license).
 
-The questions are positions 2 200–3 399 of the same filtered and shuffled Dolly-es that notebook 6.3 uses (positions 0–2 199), so the two never share a question. Then run 6.6 once with the solutions (kept outside the repository, like the S04 ones) to confirm the time and the ordering of the three conditions.
+The questions are positions 2 200–3 699 of the same filtered and shuffled Dolly-es that notebook 6.3 uses (positions 0–2 199), so the two never share a question. Then run 6.6 once with the solutions (kept outside the repository, like the S04 ones) to confirm the time and the ordering of the three conditions.
 
 Notebook 6.4 is optional homework; to draw F15 (slide 56), run it once and then `python make_s06_figuras_notebooks.py ../notebooks . f15`.
 
