@@ -213,11 +213,52 @@ def f19():
     print('wrote s06_f19_summary.png')
 
 
+def f15_resumen():
+    """F15 without the per-image file: the EuroSAT table of notebook 6.4 (resultados_fundacionales.json)."""
+    ruta = NB / 'resultados_fundacionales.json'
+    if not ruta.exists():
+        print('skip f15: no clip_zeroshot.npz nor', ruta); return
+    z = json.load(open(ruta, encoding='utf-8'))['eurosat']
+    zs, tabla = z['zero_shot'], z['tabla']
+    get = lambda enc, et: next(r['accuracy'] for r in tabla if r['encoder'] == enc and r['etiquetas'] == et)
+    filas = [('folder name: "AnnualCrop"', zs['nombre de la carpeta'], GRAY, 'zero-shot, 0 labels'),
+             ('"a photo of annual crop land."', zs['una foto de ...'], GRAY, None),
+             ('"a satellite photo of annual crop land."', zs['una foto satelital de ...'], ORANGE, None),
+             ('ImageNet ResNet-18 + probe, 1 %', get('ResNet-18 ImageNet + sonda', '1%'), '#9fb7cf', 'linear probe'),
+             ('ImageNet ResNet-18 + probe, 10 %', get('ResNet-18 ImageNet + sonda', '10%'), '#9fb7cf', None),
+             ('CLIP image features + probe, 1 %', get('CLIP (imagen) + sonda', '1%'), TEAL, None),
+             ('CLIP image features + probe, 10 %', get('CLIP (imagen) + sonda', '10%'), TEAL, None)]
+    fig = plt.figure(figsize=(16.72, 9.41), dpi=100)
+    ax = fig.add_axes([0.36, 0.12, 0.58, 0.78])
+    y = np.arange(len(filas))[::-1].astype(float)
+    y[3:] -= 0.6                                                # a gap between the two groups
+    for yi, (nombre, acc, col, grupo) in zip(y, filas):
+        ax.barh(yi, acc, color=col, height=0.7)
+        ax.text(acc + 0.01, yi, f'{acc:.1%}', va='center', fontsize=16, color=NAVY, weight='bold')
+    ax.set_yticks(y, [f[0] for f in filas], fontsize=14.5)
+    ax.axvline(0.1, color=RED, ls='--', lw=1.5)
+    ax.text(0.105, y[0] + 0.55, 'chance: 10 %', color=RED, fontsize=13, va='bottom')
+    ax.set_xlim(0, 1.0)
+    ax.xaxis.set_major_formatter(mpl.ticker.PercentFormatter(1.0, decimals=0))
+    ax.set_xlabel('validation accuracy, EuroSAT (10 classes)')
+    for sp in ('top', 'right'):
+        ax.spines[sp].set_visible(False)
+    ax.grid(axis='x', alpha=0.3)
+    fig.text(0.02, 0.93, 'CLIP zero-shot: one text per class, no training', fontsize=16, color=ORANGE, weight='bold')
+    fig.text(0.02, 0.555, 'Frozen features + a linear probe, 1 % or 10 % of the labels', fontsize=16, color=TEAL,
+             weight='bold')
+    fig.text(0.02, 0.03, 'CLIP ViT-B/32 · probes averaged over 3 seeds · split of the S03/S04 integrators · notebook 6.4',
+             fontsize=13, color=GRAY)
+    fig.savefig(OUT / 's06_f15_clip_zeroshot.png', dpi=100)
+    plt.close(fig)
+    print('wrote s06_f15_clip_zeroshot.png (summary from resultados_fundacionales.json)')
+
+
 def f15():
     """CLIP zero-shot on one EuroSAT image (notebook 6.4, optional)."""
     ruta = NB / 'clip_zeroshot.npz'
     if not ruta.exists():
-        print('skip f15: no', ruta); return
+        return f15_resumen()
     z = np.load(ruta)
     clases, sim, prob, v = [str(c) for c in z['clases']], z['similitud'], z['prob'], int(z['verdadera'])
     fig = plt.figure(figsize=(16.72, 9.41), dpi=100)

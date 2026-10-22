@@ -867,17 +867,13 @@ Chinchilla, 70 B parameters on 1.4 T tokens, beat models four times larger train
 
 ---
 
-# CLIP zero-shot on EuroSAT
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-<div class="placeholder">
+![bg contain CLIP zero-shot on EuroSAT, validation accuracy, chance 10 percent. One text per class, no training: the folder names 36.5 percent, "a photo of ..." 37.4 percent, "a satellite photo of ..." 40.8 percent. Frozen features with a linear probe: ImageNet ResNet-18 with 1 and 10 percent of the labels 79.6 and 87.8 percent; CLIP image features with 1 and 10 percent of the labels 86.0 and 93.0 percent](../figures/s06_f15_clip_zeroshot.png)
 
-**S06-F15 · CLIP zero-shot**
-
-One EuroSAT image against the text embeddings of the 10 class prompts: cosine similarity as bars, the predicted class highlighted.
-
-`../figures/s06_f15_clip_zeroshot.png` · route: Script (notebook 6.4)
-
-</div>
+<!-- Measured in notebook 6.4 (Kaggle T4). Zero-shot is four times chance with no labels, and the wording of the class text moves it by 4 points: prompt engineering, which already uses validation labels. A linear probe on the very same CLIP image features with 1 % of the labels (about 190 images) jumps to 86 %: the information is in the features; the class texts do not reach it, because satellite photos are rare among web captions. CLIP features also beat ImageNet ones at both label fractions. -->
 
 ---
 
