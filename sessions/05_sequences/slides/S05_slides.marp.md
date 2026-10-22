@@ -693,6 +693,16 @@ Distance in $E$ comes to mean "similar **for this task**".
 
 ---
 
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain An embedding is a row lookup. Top: the one-hot vector of "good" times E, an 8 by 4 matrix, gives row 3 of E, e_good; the product never runs, nn.Embedding reads the row directly. In notebook 5.4, V is 20 002 and d_e 64, 1.28 million values, almost all the parameters of the bag of embeddings. Bottom: the sentence not good but very fun becomes the ids 4 3 7 6 5, which gather five rows of the same E into a 5 by 4 matrix; in a batch, B by T ids give B by T by d_e; in backward only those rows receive gradient](../figures/s05_f19_embedding_lookup.png)
+
+<!-- Script make_s05_f19_embedding_lookup.py, drawn (random E, seed 5; the [PAD] row is zero, padding_idx). Point to make: E is a weight matrix like any other, but each step only touches the rows of the words in the batch, so rare words learn slowly, and that is one reason pretrained embeddings (GloVe, slide 49) help. -->
+
+---
+
 # Batches of different lengths
 
 Reviews have 10 words or 1 000.
