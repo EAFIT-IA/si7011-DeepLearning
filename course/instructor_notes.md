@@ -83,5 +83,5 @@ The integrator 6.6 reads `dolly_quijote_es.csv` from the Kaggle dataset `juanmar
 
 The questions are positions 2 200–3 699 of the same filtered and shuffled Dolly-es that notebook 6.3 uses (positions 0–2 199), so the two never share a question. Then run 6.6 once with the solutions (kept outside the repository, like the S04 ones) to confirm the time and the ordering of the three conditions.
 
-Notebook 6.4 is optional homework; to draw F15 (slide 56), run it once and then `python make_s06_figuras_notebooks.py ../notebooks . f15`.
+Notebook 6.4 is optional homework. It is committed executed (Kaggle T4), with `resultados_fundacionales.json`; F15 (slide 56) is drawn from that file. If a rerun also saves `clip_zeroshot.npz`, `python make_s06_figuras_notebooks.py ../notebooks . f15` draws the one-image version instead.
 
