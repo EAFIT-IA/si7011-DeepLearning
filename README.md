@@ -99,7 +99,7 @@ How can a network learn useful representations without labels? Autoencoders and 
 
 ## Evaluation
 
-- [Evaluation strategy](course/evaluation_strategy.md) · [Evaluation Event 1 (S01–S02)](evaluations/event_1/README.md)
+- [Evaluation strategy](course/evaluation_strategy.md) · [Evaluation Event 1 (S01–S02)](evaluations/event_1/README.md) · [Evaluation Event 2 (S03)](evaluations/event_2/README.md)
 
 ## Evaluation
 

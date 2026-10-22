@@ -1,0 +1,200 @@
+[
+ {
+  "palabra": "excellent",
+  "puntaje": 66.87478637695312,
+  "vecinos": [
+   [
+    "simple",
+    0.69
+   ],
+   [
+    "loved",
+    0.69
+   ],
+   [
+    "great",
+    0.69
+   ],
+   [
+    "best",
+    0.68
+   ],
+   [
+    "superb",
+    0.68
+   ]
+  ],
+  "signo": {
+   "simple": 1,
+   "loved": 1,
+   "great": 1,
+   "best": 1,
+   "superb": 1
+  }
+ },
+ {
+  "palabra": "terrible",
+  "puntaje": -58.04534149169922,
+  "vecinos": [
+   [
+    "worse",
+    0.72
+   ],
+   [
+    "worst",
+    0.67
+   ],
+   [
+    "holiday",
+    0.67
+   ],
+   [
+    "stupid",
+    0.64
+   ],
+   [
+    "embarrassing",
+    0.63
+   ]
+  ],
+  "signo": {
+   "worse": -1,
+   "worst": -1,
+   "holiday": -1,
+   "stupid": -1,
+   "embarrassing": -1
+  }
+ },
+ {
+  "palabra": "boring",
+  "puntaje": -74.61168670654297,
+  "vecinos": [
+   [
+    "worst",
+    0.75
+   ],
+   [
+    "ridiculous",
+    0.7
+   ],
+   [
+    "transparent",
+    0.69
+   ],
+   [
+    "disappointment",
+    0.66
+   ],
+   [
+    "fails",
+    0.65
+   ]
+  ],
+  "signo": {
+   "worst": -1,
+   "ridiculous": -1,
+   "transparent": -1,
+   "disappointment": -1,
+   "fails": -1
+  }
+ },
+ {
+  "palabra": "beautiful",
+  "puntaje": 40.47636413574219,
+  "vecinos": [
+   [
+    "great",
+    0.6
+   ],
+   [
+    "complex",
+    0.59
+   ],
+   [
+    "favorite",
+    0.58
+   ],
+   [
+    "captures",
+    0.58
+   ],
+   [
+    "tears",
+    0.58
+   ]
+  ],
+  "signo": {
+   "great": 1,
+   "complex": 1,
+   "favorite": 1,
+   "captures": 1,
+   "tears": 1
+  }
+ },
+ {
+  "palabra": "waste",
+  "puntaje": -70.94505310058594,
+  "vecinos": [
+   [
+    "worse",
+    0.75
+   ],
+   [
+    "worst",
+    0.7
+   ],
+   [
+    "awful",
+    0.68
+   ],
+   [
+    "poorly",
+    0.68
+   ],
+   [
+    "bad",
+    0.68
+   ]
+  ],
+  "signo": {
+   "worse": -1,
+   "worst": -1,
+   "awful": -1,
+   "poorly": -1,
+   "bad": -1
+  }
+ },
+ {
+  "palabra": "actor",
+  "puntaje": -25.270170211791992,
+  "vecinos": [
+   [
+    "resurrection",
+    0.52
+   ],
+   [
+    "wrong",
+    0.5
+   ],
+   [
+    "been",
+    0.49
+   ],
+   [
+    "leonard's",
+    0.48
+   ],
+   [
+    "sirk",
+    0.48
+   ]
+  ],
+  "signo": {
+   "resurrection": -1,
+   "wrong": -1,
+   "been": -1,
+   "leonard's": -1,
+   "sirk": 1
+  }
+ }
+]

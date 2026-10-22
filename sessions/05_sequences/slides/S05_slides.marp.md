@@ -224,6 +224,17 @@ Each one gives a validation score the test will not repeat.
 
 > The data contract of the S02–S04 integrators, now with time in it: **fit everything on the past only.**
 
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Three panels: overlapping windows assigned at random to train and validation; a series whose mean is computed with the future years; a window whose target falls after the cut. Below, the measured effect of the first one on Jena](../figures/s05_f12_three_leaks.png)
+
+<!-- Script make_s05_figuras_notebooks.py (F12), from resultados_jena_51.json of notebook 5.1. Shuffled split: validation 2.30 °C, better than the baseline (2.44); the same model on the future 2.57 °C, about the baseline there (2.62). Panel 2 is schematic: on Jena that leak is small (Tu turno of 5.1). -->
+
 ---
 
 # Prediction before experiment
@@ -294,15 +305,14 @@ Parameters do not depend on $T$.
 
 # Unrolling through time
 
-<div class="placeholder">
+<video controls preload="none" poster="../figures/s05_a01_unrolling_bptt_poster.png" aria-label="Unrolling through time">
+  <source src="../figures/s05_a01_unrolling_bptt.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s05_a01_unrolling_bptt_poster.png" alt="Static view of Unrolling through time">
 
-**S05-A01 · Unrolling and backpropagation through time**
+[Open animation](../figures/s05_a01_unrolling_bptt.mp4)
 
-The cell rolled up, then unrolled over 8 steps with the same $W_{hh}$ highlighted at every step; the gradient flows back from step 8 and its arrow thins step by step.
-
-`../figures/s05_a01_unrolling_bptt.mp4` · route: Manim (`escenas_s05.py`)
-
-</div>
+<!-- The cell rolled up, then unrolled over 8 steps with the same W_hh; the gradient flows back from step 8 and weakens step by step. Magnitudes: trained RNN of notebook 5.2, last 8 hours (1, 0.3, 0.1, … 0.01). -->
 
 ---
 
@@ -415,6 +425,17 @@ h = h.detach()   # the next chunk starts from h, but no gradient flows back into
 
 Cheaper in memory, and it limits **by design** how far back the network can learn.
 
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Twelve steps in three chunks of four: the state goes forward across each cut, the gradient of each chunk loss flows back only inside its chunk](../figures/s05_f16_truncated_bptt.png)
+
+<!-- Script make_s05_f16_f18_parte3.py, drawn (no data). -->
+
 ---
 
 # What we need
@@ -496,15 +517,14 @@ A gate is a **learned multiplier that depends on the input**. Common trick: forg
 
 # The memory in motion
 
-<div class="placeholder">
+<video controls preload="none" poster="../figures/s05_a02_lstm_memory_poster.png" aria-label="The memory in motion">
+  <source src="../figures/s05_a02_lstm_memory.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s05_a02_lstm_memory_poster.png" alt="Static view of The memory in motion">
 
-**S05-A02 · Writing, keeping and reading a memory**
+[Open animation](../figures/s05_a02_lstm_memory.mp4)
 
-A value written into $\mathbf c_t$ at step 2, kept by $\mathbf f_t \approx 1$, read by $\mathbf o_t$ at step 7. The same input in a plain RNN fades step after step.
-
-`../figures/s05_a02_lstm_memory.mp4` · route: Manim (`escenas_s05.py`)
-
-</div>
+<!-- A value enters at step 2. In the RNN it fades at every step; in the LSTM the input gate writes it into c_t, the forget gate (≈ 1) keeps it and the output gate reads it at step 7. Illustrative values. -->
 
 ---
 
@@ -520,6 +540,17 @@ $$
 - reset gate $\mathbf r_t$: how much of $\mathbf h_{t-1}$ enters the candidate $\tilde{\mathbf h}_t$.
 
 Three blocks of weights instead of four: about **3/4** of the LSTM parameters. Often similar results; choose on validation, not by habit.
+
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain GRU cell: the hidden state runs as a straight orange line with one product and one sum; the update gate keeps one minus u of the old state and writes u times the candidate; the reset gate multiplies the old state inside the candidate](../figures/s05_f15_gru_cell.png)
+
+<!-- Generated image, patched by fix_s05_f15_gru_cell.py: the generator sent the reset product into r_t; now r_t multiplies h_{t-1} and the result feeds the candidate. -->
 
 ---
 
@@ -556,6 +587,17 @@ Bidirectional reads the **whole input** before predicting:
 - text classification: fine, the review is complete;
 - forecasting: fine *inside* the window, never beyond its end.
 
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Two panels: two stacked recurrent layers, and a bidirectional layer with a forward and a backward row over a window that ends now, the future never being an input](../figures/s05_f17_stacked_bidirectional.png)
+
+<!-- Script make_s05_f16_f18_parte3.py, drawn (no data). -->
+
 ---
 
 # Regularizing recurrent networks
@@ -567,6 +609,17 @@ Bidirectional reads the **whole input** before predicting:
 
 <span class="small">`nn.LSTM(dropout=p)` applies dropout only between stacked layers, not on the recurrent connection.</span>
 
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Six hidden states with six units each: with the same dropout mask at every step a unit stays on along the whole sequence; with a new mask at every step its path is cut](../figures/s05_f18_recurrent_dropout.png)
+
+<!-- Script make_s05_f16_f18_parte3.py, drawn (no data). (1 - 0.2)^5 = 0.33, (1 - 0.2)^24 = 0.005. -->
+
 ---
 
 # Practice A — Recurrent networks on Jena
@@ -575,7 +628,7 @@ Worked notebooks, one change per cell, GPU recommended:
 
 - [5.1 · Series and windows](../notebooks/sesion_05_1_series_ventanas.ipynb): the three leaks, shown and fixed; baseline; flattened MLP; 1-D CNN
 - [5.2 · RNN and BPTT](../notebooks/sesion_05_2_rnn_bptt.ipynb): the cell as a loop, gradient vs $t$, clipping, 1 day vs 5 days
-- [5.3 · LSTM and GRU](../notebooks/sesion_05_3_lstm_gru.ipynb): same windows, same plot, stacking, recurrent dropout
+- [5.3 · LSTM and GRU](../notebooks/sesion_05_3_lstm_gru.ipynb): the LSTM cell as a loop, same windows, the gradient plot for the three cells, 1 day vs 5 days, stacking
 
 > Keep one table: model, parameters, validation MAE, MAE minus baseline.
 
@@ -590,6 +643,16 @@ Worked notebooks, one change per cell, GPU recommended:
 5. Sequence to sequence — and the first form of attention
 
 > Part 3: an additive path keeps the signal over long windows. Now the steps are **words**.
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Gradient norm of the loss with respect to each input hour on Jena, log scale, for RNN, LSTM and GRU: the RNN falls in a straight line to exactly zero, while the LSTM and the GRU flatten out around one thousandth of the last hour](../figures/s05_f11_gradient_rnn_lstm_gru.png)
+
+<!-- Notebook 5.3, section 4. Validation MAE: RNN 2.33, LSTM 2.32, GRU 2.30 °C; LSTM with 1 day of input 2.30 °C. The gradient reaches five days back, but this task does not need it: the additive path matters when the task depends on the far past (Parts 4 and 5). -->
 
 ---
 
@@ -671,17 +734,17 @@ The neighbors are grouped by **polarity**, not by meaning: an adjective of prais
 
 An embedding is useful **for its task** (Session 04).
 
+Pretrained GloVe instead (notebook 5.4, section 9): *actor* → actress, comedian; *boring* → tedious, dull, funny. Neighbors by **meaning**. Frozen, with 101 trainable parameters: 75.3 %; fine-tuned: 85.9 %.
+
 ---
 
-<div class="placeholder">
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
 
-**S05-F07 · Nearest neighbors in the learned embedding**
+![bg contain Five nearest neighbors in the learned embedding for six words after training on IMDB sentiment: excellent sits with loved, great, best and superb; terrible with worse, worst and stupid; the neutral word actor gets neighbors with nothing in common](../figures/s05_f07_embedding_neighbors.png)
 
-Six query words and their five nearest neighbors in $E$ after training on IMDB.
-
-`../figures/s05_f07_embedding_neighbors.png` · route: script (notebook 5.4)
-
-</div>
+<!-- Notebook 5.4, section 8: E of the bag-of-embeddings model (d = 64, 20 002 tokens). Colour: sign of w·e_w in the output layer. -->
 
 ---
 
@@ -714,6 +777,14 @@ Answer in notebook 5.4.
 ---
 
 # When order matters
+
+Notebook 5.4, IMDB test set (25 000 reviews):
+
+| | accuracy | words shuffled |
+|---|---:|---:|
+| bag of embeddings | **85.4 %** | 85.4 % |
+| 1-D CNN | 84.1 % | 79.6 % |
+| LSTM (3 epochs) | 82.6 % | 80.7 % |
 
 Sentiment is close to a bag of words: which words appear says most of it.
 
@@ -779,6 +850,17 @@ The encoder–decoder of Session 04, now in time. <span class="small">Sutskever,
 
 Decoding: greedy (take the most likely token); beam search keeps the $k$ best partial outputs.
 
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Two rows of six decoder steps. Training: every step receives the true previous character, so a wrong output stays at its step. Inference: every step receives its own previous output, so a wrong character is fed to the next step](../figures/s05_f14_teacher_forcing.png)
+
+<!-- Script make_s05_f14_teacher_forcing.py, drawn (no data). The example date is 2026-10-19; the error at step 3 is illustrative. -->
+
 ---
 
 # The bottleneck
@@ -813,15 +895,14 @@ The context $\mathbf a_\tau$ changes at every output step and enters the decoder
 
 # Attention in motion
 
-<div class="placeholder">
+<video controls preload="none" poster="../figures/s05_a03_seq2seq_attention_poster.png" aria-label="Attention in motion">
+  <source src="../figures/s05_a03_seq2seq_attention.mp4" type="video/mp4">
+</video>
+<img class="print-poster" src="../figures/s05_a03_seq2seq_attention_poster.png" alt="Static view of Attention in motion">
 
-**S05-A03 · Decoding a date with attention**
+[Open animation](../figures/s05_a03_seq2seq_attention.mp4)
 
-At each output character: scores over the input words, softmax into $\alpha_{\tau t}$, the weighted sum $\mathbf a_\tau$, the emitted character. The matrix of weights fills row by row.
-
-`../figures/s05_a03_seq2seq_attention.mp4` · route: Manim (`escenas_s05.py`)
-
-</div>
+<!-- Decoding "el diecinueve de octubre de 2 0 2 6 en la sala dos" into 2026-10-19 with the weights of notebook 5.5 (the third panel of F09), row by row. -->
 
 ---
 
@@ -880,9 +961,20 @@ Notebook 5.5, exact accuracy on 6 000 test sentences:
 | without attention | 0.4 % | 93 % |
 | with attention | **100 %** | — |
 
-- without attention, what is lost is the **day**: read first, written last;
+- without attention, the **day** goes first as $d$ shrinks (read first, written last); at $d = 24$ the month goes too;
 - with attention the decoder reaches **any input state directly**: path length 1 instead of $T$;
 - the weights read as an **alignment**, with care: attention picks **states** $\mathbf h_t$, not words, and the state at "de" already holds the day.
+
+
+---
+
+<!-- _class: figure -->
+<!-- _paginate: false -->
+<!-- _footer: "" -->
+
+![bg contain Accuracy at each of the ten output characters of the date, for the encoder decoder without attention at five sizes of the vector and with attention at the smallest size](../figures/s05_f13_bottleneck_by_character.png)
+
+<!-- Script make_s05_figuras_notebooks.py (F13), from resultados_seq2seq.json of notebook 5.5. One run per model: d = 96 (100 %) above d = 128 (92.8 %) is run-to-run noise, not a trend. -->
 
 ---
 
@@ -898,10 +990,10 @@ If every step can look at every other step directly…
 
 # Practice B — Text and sequence to sequence
 
-Worked notebooks:
+Worked notebook in class, and an optional one at home:
 
 - [5.4 · Text and embeddings](../notebooks/sesion_05_4_texto_embeddings.ipynb): vocabulary from train, padding and masks, bag of embeddings vs 1-D CNN vs LSTM, shuffled words, neighbors in $E$ · GPU
-- [5.5 · Seq2seq and attention](../notebooks/sesion_05_5_seq2seq_atencion.ipynb): dates in sentences → ISO, without attention at $d = 128$ and $d = 24$, with attention at $d = 24$, the attention map, how big $\mathbf h_T$ must be · CPU, ~7 min
+- *Optional, at home:* [5.5 · Seq2seq and attention](../notebooks/sesion_05_5_seq2seq_atencion.ipynb): dates in sentences → ISO, without attention at $d = 128$ and $d = 24$, with attention at $d = 24$, the attention map, how big $\mathbf h_T$ must be · CPU, ~7 min
 
 > Write down for each text model: parameters, test accuracy, accuracy with shuffled words.
 
@@ -913,7 +1005,7 @@ Worked notebooks:
 
 - temporal split and windows **without leakage**;
 - your recurrent model (LSTM or GRU), logged to **MLflow**;
-- MAE at 1, 6, 12 and 24 hours ahead, against the baseline;
+- MAE at 1, 6, 12 and 24 hours ahead, against two baselines: *the same as now* and *the same hour yesterday*;
 - `forecast_raw`: a forecast from raw hourly records that rejects those that break the contract.
 
 > How many hours ahead does your network still beat the obvious answer?

@@ -23,7 +23,7 @@ For S02–S05, replace `01_learning/slides/S01` with `02_deep_training/slides/S0
 | S02 | [`figures.md`](../sessions/02_deep_training/figures/figures.md) | [`figure_prompts.md`](../sessions/02_deep_training/figures/figure_prompts.md) (image-generator prompts), `escenas_s02.py` |
 | S03 | [`figures.md`](../sessions/03_vision/figures/figures.md) | [`figure_prompts.md`](../sessions/03_vision/figures/figure_prompts.md), `escenas_s03.py`, `make_s03_*.py` and `fix_s03_f14_cnn_panel.py` (see below) |
 | S04 | [`figures.md`](../sessions/04_representation/figures/figures.md) | [`figure_prompts.md`](../sessions/04_representation/figures/figure_prompts.md), `escenas_s04.py`, `make_s04_a01_latent_snapshots.py`, `fix_s04_f04_f06.py`; slide plan in [`S04_plan.md`](plans/S04_plan.md) |
-| S05 | [`figures.md`](../sessions/05_sequences/figures/figures.md) | [`figure_prompts.md`](../sessions/05_sequences/figures/figure_prompts.md); slide plan in [`S05_plan.md`](plans/S05_plan.md) |
+| S05 | [`figures.md`](../sessions/05_sequences/figures/figures.md) | [`figure_prompts.md`](../sessions/05_sequences/figures/figure_prompts.md), `escenas_s05.py`, `make_s05_figuras_notebooks.py` (F02, F03, F07, F09, F11, F12, F13 from notebook outputs), `make_s05_f06_three_text_models.py`, `make_s05_f14_teacher_forcing.py`, `make_s05_f16_f18_parte3.py`, `fix_s05_f04_lstm_cell.py`, `fix_s05_f08_seq2seq.py`, `fix_s05_f10_summary.py`, `fix_s05_f15_gru_cell.py`; slide plan in [`S05_plan.md`](plans/S05_plan.md) |
 
 If an animation is added or renamed, update the table in that session's `slides/README.md`.
 
@@ -53,6 +53,10 @@ To produce or redo them, use [`s04_entrenar_simclr.ipynb`](s04_entrenar_simclr.i
 4. Download the finished `.pt` files from the *Output* tab and upload them as a **new version** of the model (same framework and variation), so the handle does not change.
 
 The S04 integrating-exercise solutions are not in the repository.
+
+## S05
+
+F02, F03, F07, F09, F11, F12, F13 and animations A01, A03 read files saved by notebooks 5.1–5.5 (`particion_jena.json`, `resultados_jena_51.json`, `resultados_seq2seq.json`, `gradiente_tiempo_*.npz`, `vecinos_embedding.json`, `atencion_fechas.npz`). After re-running a notebook: `cd sessions/05_sequences/figures && python make_s05_figuras_notebooks.py ../notebooks .`, re-render A01/A03 (commands in `figures.md`) and the PDF. Notebook 5.5 is an optional homework. The S05 integrating-exercise (5.6) solutions are not in the repository; the reference run (GRU 32, 12 epochs) gives validation MAE 37 / 51 / 52 / 58 bikes per hour at 1 / 6 / 12 / 24 h against 84 / 84 / 83 / 83 for the best baseline.
 
 ## S06: running notebook 6.3 (SFT)
 

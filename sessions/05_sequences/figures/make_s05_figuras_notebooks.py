@@ -9,6 +9,9 @@ Run from this folder after running the notebooks:
 | F03    | gradiente_tiempo_rnn.npz   (notebook 5.2)              |
 | F07    | vecinos_embedding.json     (notebook 5.4)              |
 | F09    | atencion_fechas.npz        (notebook 5.5, section 6)   |
+| F11    | gradiente_tiempo_lstm_gru.npz (notebook 5.3, section 4) |
+| F12    | resultados_jena_51.json    (notebook 5.1, section 6)   |
+| F13    | resultados_seq2seq.json    (notebook 5.5)              |
 
 A figure whose input file is missing is skipped with a notice.
 """
@@ -42,6 +45,38 @@ def save(fig, name):
     fig.savefig(OUT / name, dpi=DPI)
     plt.close(fig)
     print('saved', OUT / name)
+
+
+# ---------------------------------------------------------------- F07 · neighbors in the embedding
+def f07():
+    p = need('vecinos_embedding.json')
+    if p is None:
+        return
+    d = json.load(open(p))
+    # list of {"palabra", "puntaje" (w·e_w), "vecinos": [[word, cos], ...5], "signo": {word: +1/-1}}
+    from matplotlib.patches import FancyBboxPatch
+    fig = plt.figure(figsize=(W, H)); ax = fig.add_axes([0, 0, 1, 1]); ax.axis('off')
+    ax.set_xlim(0, W); ax.set_ylim(0, H)
+    POS, NEG = (BLUE, '#e3eefa'), (RED, '#fbe5e2')
+    x_q, x0, dx, cw, ch = 0.55, 3.35, 2.6, 2.35, 0.82
+    ax.text(x0 + 2 * dx + cw / 2, H - 0.62, 'five nearest neighbors in the learned embedding $E$  (cosine similarity)',
+            ha='center', fontsize=17, color=GRAY)
+    n = len(d)
+    for i, row in enumerate(d):
+        y = H - 1.55 - i * (H - 2.3) / n
+        col = POS if row.get('puntaje', 0) > 0 else NEG
+        ax.text(x_q, y, row['palabra'], fontsize=26, weight='bold', color=col[0], va='center')
+        for j, (w, c) in enumerate(row['vecinos']):
+            cc = POS if row['signo'].get(w, 0) > 0 else NEG
+            x = x0 + j * dx
+            ax.add_patch(FancyBboxPatch((x, y - ch / 2), cw, ch, boxstyle='round,pad=0.02,rounding_size=0.12',
+                                        fc=cc[1], ec=cc[0], lw=1.4))
+            ax.text(x + cw / 2, y + 0.12, w, ha='center', va='center', fontsize=17 if len(w) < 12 else 14, color=NAVY)
+            ax.text(x + cw / 2, y - 0.22, f'{c:.2f}', ha='center', va='center', fontsize=13, color=GRAY)
+    ax.text(W / 2, 0.35, 'color = sign of the word in the output layer, $\\mathbf{w}^\\top \\mathbf{e}_w$:   '
+            'blue pushes toward "positive", red toward "negative"  ·  bag of embeddings, notebook 5.4',
+            ha='center', fontsize=14, color=GRAY)
+    save(fig, 's05_f07_embedding_neighbors.png')
 
 
 # ---------------------------------------------------------------- F09 · attention as an alignment
@@ -160,24 +195,162 @@ def f03():
     save(fig, 's05_f03_rnn_gradient_time.png')
 
 
-# ---------------------------------------------------------------- F07 · neighbors in the embedding
-def f07():
-    p = need('vecinos_embedding.json')
+# ---------------------------------------------------------------- F11 · gradient through time, RNN vs LSTM vs GRU
+def f11():
+    p = need('gradiente_tiempo_lstm_gru.npz')
     if p is None:
         return
-    d = json.load(open(p))
-    # expected: list of {"palabra": str, "vecinos": [[str, cos], ...5], "signo": {word: +1/-1}}
-    fig, ax = plt.subplots(figsize=(W, H)); ax.axis('off')
-    n = len(d)
-    for i, row in enumerate(d):
-        y = 1 - (i + 0.5) / n
-        ax.text(0.02, y, row['palabra'], fontsize=22, weight='bold', color=NAVY, va='center')
-        for j, (w, c) in enumerate(row['vecinos']):
-            col = BLUE if row['signo'].get(w, 0) > 0 else RED
-            ax.text(0.22 + j * 0.155, y, f'{w}\n{c:.2f}', fontsize=17, color=col, va='center', ha='left')
-    save(fig, 's05_f07_embedding_neighbors.png')
+    z = np.load(p)
+    fig, ax = plt.subplots(figsize=(W, H))
+    fig.subplots_adjust(left=0.09, right=0.97, top=0.89, bottom=0.11)
+    T = len(z['g_rnn']); t = np.arange(1, T + 1)
+    for key, c, lab in (('g_rnn', BLUE, 'RNN'), ('g_lstm', ORANGE, 'LSTM'), ('g_gru', TEAL, 'GRU')):
+        g = z[key]
+        ax.semilogy(t, np.where(g > 0, g / g[-1], np.nan), color=c, lw=3.5, label=lab)
+    ceros = np.where(z['g_rnn'] == 0)[0]
+    if len(ceros):
+        ax.axvspan(0.5, ceros[-1] + 1.5, color=GRAY, alpha=0.15, lw=0)
+        ax.text((ceros[-1] + 2) / 2, 0.5, f'RNN: first {len(ceros)} hours\nexactly 0', transform=ax.get_xaxis_transform(),
+                ha='center', va='center', color=NAVY, fontsize=14)
+    ax.set_xlabel('hour $t$ of the window  (the prediction is made at $t = T$)')
+    ax.set_ylabel('$\\Vert \\partial L / \\partial \\mathbf{x}_t \\Vert$, relative to the last hour')
+    ax.set_xlim(1, T); ax.grid(alpha=0.3)
+    top = ax.secondary_xaxis('top', functions=(lambda x: T - x, lambda x: T - x))
+    top.set_xlabel('hours before the prediction', color=GRAY)
+    ax.legend(frameon=False, loc='lower right', fontsize=17)
+    save(fig, 's05_f11_gradient_rnn_lstm_gru.png')
+
+
+# ---------------------------------------------------------------- F12 · three ways to leak the future
+def f12():
+    p = need('resultados_jena_51.json')
+    if p is None:
+        return
+    r = json.load(open(p))
+    if 'test' not in r.get('mlp_barajado', {}):
+        print('skip F12: re-run notebook 5.1 (resultados_jena_51.json lacks mlp_barajado.test)')
+        return
+    from matplotlib.patches import FancyBboxPatch
+    fig = plt.figure(figsize=(W, H)); ax = fig.add_axes([0, 0, 1, 1]); ax.axis('off')
+    ax.set_xlim(0, W); ax.set_ylim(0, H)
+    cols = [0.35, 5.92, 11.49]; cw = 4.9
+    titles = ['1 · shuffle, then split', '2 · normalize with all of it', '3 · cross a cut']
+    notes = ['neighboring windows share 119 of 120 hours:\none lands in train, its twin in validation',
+             '$\\mu$ and $\\sigma$ of the future years enter\nthe inputs the model trains on',
+             'the input lives in train,\nthe target in validation']
+    for x0, t, n in zip(cols, titles, notes):
+        ax.add_patch(FancyBboxPatch((x0, 3.05), cw, 6.0, boxstyle='round,pad=0.02,rounding_size=0.15',
+                                    fc='white', ec='#c9d3e0', lw=1.3))
+        ax.text(x0 + 0.25, 8.62, t, fontsize=19, weight='bold', color=NAVY, va='center')
+        ax.text(x0 + cw / 2, 3.62, n, fontsize=14, color=NAVY, ha='center', va='center', linespacing=1.3)
+
+    # panel 1: overlapping windows, randomly assigned
+    x0 = cols[0]; rng = np.random.default_rng(3)
+    lab = ['train', 'val', 'train', 'train', 'val', 'train', 'val']
+    for k, l in enumerate(lab):
+        y = 7.75 - k * 0.47
+        a = x0 + 0.45 + k * 0.22
+        c = BLUE if l == 'train' else TEAL
+        ax.plot([a, a + 3.0], [y, y], color=c, lw=9, solid_capstyle='butt')
+        ax.text(a + 3.12, y, l, color=c, fontsize=13, va='center')
+    ax.annotate('', xy=(x0 + 0.45, 4.35), xytext=(x0 + cw - 0.3, 4.35),
+                arrowprops=dict(arrowstyle='<-', color=GRAY, lw=1.3))
+    ax.text(x0 + cw - 0.3, 4.55, 'time', color=GRAY, fontsize=12, ha='right')
+
+    # panel 2: schematic series with a trend; mean of train vs mean of all
+    x0 = cols[1]; xs = np.linspace(0, 1, 300)
+    ys = 0.55 * xs + 0.12 * np.sin(2 * np.pi * 6 * xs) + 0.03 * np.random.default_rng(0).standard_normal(300)
+    X = x0 + 0.4 + xs * (cw - 0.8); Y = 5.0 + ys * 3.2
+    cut = x0 + 0.4 + 0.5 * (cw - 0.8)
+    ax.axvspan(0, 0, color='w')
+    ax.fill_between([x0 + 0.4, cut], 4.55, 7.95, color=BLUE, alpha=0.08, lw=0)
+    ax.fill_between([cut, x0 + cw - 0.4], 4.55, 7.95, color=ORANGE, alpha=0.08, lw=0)
+    ax.text((x0 + 0.4 + cut) / 2, 7.75, 'train', color=BLUE, fontsize=13, ha='center')
+    ax.text((cut + x0 + cw - 0.4) / 2, 7.75, 'validation · test', color=ORANGE, fontsize=13, ha='center')
+    ax.plot(X, Y, color=GRAY, lw=1.6)
+    m_tr, m_all = Y[xs <= 0.5].mean(), Y.mean()
+    ax.plot([x0 + 0.4, cut], [m_tr, m_tr], color=BLUE, lw=2.6, ls='--')
+    ax.text(x0 + 0.45, 5.0 - 0.05, '$\\mu$ of train: correct', color=BLUE, fontsize=13, va='top',
+            bbox=dict(fc='white', ec='none', alpha=0.85, pad=1))
+    ax.plot([x0 + 0.4, x0 + cw - 0.4], [m_all, m_all], color=RED, lw=2.6, ls=':')
+    ax.text(x0 + 0.45, 7.35, '$\\mu$ of all: leaks', color=RED, fontsize=13, ha='left',
+            bbox=dict(fc='white', ec='none', alpha=0.85, pad=1))
+    ax.annotate('', xy=(x0 + 1.2, m_all + 0.05), xytext=(x0 + 1.2, 7.25), arrowprops=dict(arrowstyle='->', color=RED, lw=1.2))
+    ax.text(x0 + cw / 2, 4.32, 'schematic series with a trend', color=GRAY, fontsize=11.5, ha='center', style='italic')
+
+    # panel 3: the cut
+    x0 = cols[2]; cut = x0 + 2.9
+    ax.fill_between([x0 + 0.3, cut], 4.4, 7.95, color=BLUE, alpha=0.08, lw=0)
+    ax.fill_between([cut, x0 + cw - 0.3], 4.4, 7.95, color=TEAL, alpha=0.08, lw=0)
+    ax.plot([cut, cut], [4.4, 7.95], color=NAVY, lw=1.6, ls='--')
+    ax.text((x0 + 0.3 + cut) / 2, 7.7, 'train', color=BLUE, fontsize=13, ha='center')
+    ax.text((cut + x0 + cw - 0.3) / 2, 7.7, 'validation', color=TEAL, fontsize=13, ha='center')
+    for y, a, ok in ((6.75, x0 + 0.45, True), (5.35, x0 + 1.55, False)):
+        c = BLUE if ok else RED
+        b = a + 1.25
+        tg = b + 0.75
+        ax.plot([a, b], [y, y], color=c, lw=9, solid_capstyle='butt')
+        ax.plot([b, tg], [y, y], color=ORANGE if ok else RED, lw=1.4, ls=':')
+        ax.plot([tg], [y], 'o' if ok else 'X', color=ORANGE if ok else RED, ms=13)
+        ax.text(a, y - 0.42, 'allowed' if ok else 'not allowed', color=c, fontsize=12.5)
+
+    # bottom: leak 1 measured
+    ax.text(0.35, 2.55, 'Leak 1, measured  ·  flattened MLP on Jena, notebook 5.1  ·  MAE in °C, lower is better',
+            fontsize=15, color=NAVY, weight='bold')
+    lo, hi = 2.2, 2.75
+    xa, xb = 4.1, W - 0.6
+    sx = lambda v: xa + (v - lo) / (hi - lo) * (xb - xa)
+    rows = [(1.75, 'validation  (what you report)', [(r['mlp_barajado']['val_barajada'], 'shuffled split', RED),
+                                                     (r['mlp']['val'], 'temporal split', BLUE),
+                                                     (r['base']['val'], 'baseline', GRAY)]),
+            (0.85, 'the future  (what you get)', [(r['mlp_barajado']['test'], 'shuffled split', RED),
+                                                  (r['mlp']['test'], 'temporal split', BLUE),
+                                                  (r['base']['test'], 'baseline', GRAY)])]
+    for y, name, pts in rows:
+        ax.plot([xa, xb], [y, y], color='#dfe5ee', lw=1.2)
+        ax.text(0.35, y, name, fontsize=14, color=NAVY, va='center')
+        for k, (v, l, c) in enumerate(pts):
+            ax.plot([sx(v)], [y], 'o', color=c, ms=13 if c != GRAY else 11, mfc=c if c != GRAY else 'white', mew=2)
+            up = (k == 2) if y < 1.3 else (k != 1)
+            ax.text(sx(v), y + (0.3 if up else -0.36), f'{l} {v:.2f}', color=c, fontsize=12.5, ha='center', va='center')
+    for v in np.arange(2.2, 2.76, 0.1):
+        ax.text(sx(v), 0.25, f'{v:.1f}', color=GRAY, fontsize=11, ha='center')
+    save(fig, 's05_f12_three_leaks.png')
+
+
+# ---------------------------------------------------------------- F13 · which characters a small h_T loses
+def f13():
+    p = need('resultados_seq2seq.json')
+    if p is None:
+        return
+    r = json.load(open(p))
+    fig, ax = plt.subplots(figsize=(W, H))
+    fig.subplots_adjust(left=0.08, right=0.97, top=0.86, bottom=0.14)
+    chars = list('2026-10-19'); pos = np.arange(10)
+    for a, b, c, lab in ((-0.5, 3.5, BLUE, 'year'), (4.5, 6.5, TEAL, 'month'), (7.5, 9.5, ORANGE, 'day')):
+        ax.axvspan(a, b, color=c, alpha=0.07, lw=0)
+        ax.text((a + b) / 2, 1.075, lab, color=c, ha='center', fontsize=17, weight='bold')
+    claves = [k for k in r if k.startswith('sin atención')]
+    claves.sort(key=lambda k: int(k.split('d=')[1]))
+    ramp = mpl.colormaps['Blues'](np.linspace(0.95, 0.4, len(claves)))
+    for k, c in zip(claves, ramp):
+        d = int(k.split('d=')[1])
+        ax.plot(pos, r[k]['por_posicion'], 'o-', color=c, lw=2.6, ms=8,
+                label=f'without attention, $d = {d}$  ·  exact {100 * r[k]["exacto"]:.1f} %')
+    k = 'con atención, d=24'
+    ax.plot(pos, r[k]['por_posicion'], 's-', color=ORANGE, lw=3.5, ms=9,
+            label=f'with attention, $d = 24$  ·  exact {100 * r[k]["exacto"]:.1f} %')
+    ax.set_xticks(pos, chars, fontsize=22, family='DejaVu Sans Mono')
+    ax.set_xlabel('output character  $\\tau$  (the example date 2026-10-19)', labelpad=10)
+    ax.set_ylabel('accuracy at this character')
+    ax.set_ylim(0, 1.04); ax.set_xlim(-0.5, 9.5); ax.grid(alpha=0.3)
+    ax.yaxis.set_major_formatter(mpl.ticker.PercentFormatter(1.0))
+    ax.legend(frameon=True, facecolor='white', edgecolor='#dfe5ee', framealpha=0.95, loc='lower left', fontsize=13.5)
+    fig.text(0.08, 0.035, 'Notebook 5.5, 6 000 test sentences, one training run per model. As $\\mathbf{h}_T$ shrinks, the day goes first'
+             ' (read first, written last); at $d = 24$ the month goes too.', fontsize=13.5, color=GRAY)
+    save(fig, 's05_f13_bottleneck_by_character.png')
 
 
 if __name__ == '__main__':
-    for f in (f02, f03, f07, f09):
+    for f in (f02, f03, f07, f09, f11, f12, f13):
         f()
