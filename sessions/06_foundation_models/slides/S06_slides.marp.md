@@ -931,7 +931,7 @@ The **baseline still has to be beaten** (Session 05: the commonsense forecast). 
 
 Which one comes out ahead in each case? Answer in notebook 6.4 (optional, at home).
 
-<!-- Expected (to confirm in notebook 6.4): CLIP zero-shot is weak on EuroSAT (satellite images are rare in web captions) while a probe on the same CLIP features is strong: the information is in the features, the prompts do not reach it. Chronos zero-shot should beat the commonsense baseline; whether it beats the trained LSTM is the open question (the LSTM sees weather and holidays, Chronos only the series). -->
+<!-- Measured in notebook 6.4 (Kaggle T4, validation split of S03/S04). EuroSAT: CLIP zero-shot 36.5 % with the folder names, 37.4 % with "a photo of ...", 40.8 % with "a satellite photo of ..." (chance 10 %). A linear probe on the same CLIP image features: 86.0 % with 1 % of the labels, 93.0 % with 10 %; ImageNet ResNet-18 probe: 79.6 % and 87.8 %. The information is in the CLIP features; the class texts do not reach it. Compare with the students' S04 SimCLR table. Bike Sharing, 145 forecasts of 24 h from each midnight of the last 20 %: mean MAE over the 24 hours, same hour yesterday 79.5, same hour last week 67.2, Chronos-Bolt-small zero-shot 47.7, better at every horizon (h = 12: 98.7 / 65.5 / 51.7). Its 10-90 % interval contains the truth 80 % of the time, exactly as promised. Chronos sees only the series; the S05 LSTM also had weather and holidays. -->
 
 ---
 
