@@ -34,88 +34,73 @@
   ]
  },
  "bike": {
-  "mae_por_horizonte": {
-   "misma hora de ayer": [
-    38.70307540893555,
-    31.98583221435547,
-    24.42721176147461,
-    12.696179389953613,
-    4.663932800292969,
-    12.064492225646973,
-    42.88630294799805,
-    138.25814819335938,
-    197.26449584960938,
-    67.5535888671875,
-    81.75992584228516,
-    98.70418548583984,
-    116.27605438232422,
-    119.5030746459961,
-    118.31631469726562,
-    112.67436981201172,
-    87.89450073242188,
-    147.0387725830078,
-    150.9623565673828,
-    98.62068939208984,
-    66.19309997558594,
-    53.2462272644043,
-    44.577823638916016,
-    40.96458435058594
-   ],
-   "misma hora hace una semana": [
-    25.972042083740234,
-    16.980056762695312,
-    11.98117446899414,
-    7.96160364151001,
-    4.8592729568481445,
-    9.406523704528809,
-    28.1591796875,
-    94.77874755859375,
-    134.46730041503906,
-    72.04547882080078,
-    52.15470504760742,
-    65.54669189453125,
-    91.73867797851562,
-    90.66169738769531,
-    90.67493438720703,
-    95.77092742919922,
-    108.25312805175781,
-    152.37669372558594,
-    144.78993225097656,
-    104.1824722290039,
-    69.93363952636719,
-    55.68480682373047,
-    47.20838928222656,
-    36.951725006103516
-   ],
-   "Chronos-Bolt zero-shot (mediana)": [
-    15.707071304321289,
-    15.016870498657227,
-    12.560033798217773,
-    9.659521102905273,
-    6.7217488288879395,
-    7.314342975616455,
-    20.04068946838379,
-    61.07789611816406,
-    90.51575469970703,
-    45.68581771850586,
-    44.40056228637695,
-    51.65794372558594,
-    63.964027404785156,
-    66.85221862792969,
-    67.57624816894531,
-    68.45111846923828,
-    72.97314453125,
-    100.02201843261719,
-    98.34953308105469,
-    67.80913543701172,
-    51.925453186035156,
-    43.39058303833008,
-    35.864776611328125,
-    27.2518310546875
-   ]
+  "protocolo": "ventanas, cortes y horizontes del integrador 5.6",
+  "contexto": 512,
+  "validacion": [
+   {
+    "horizonte (h)": 1,
+    "persistencia": 96.01,
+    "misma hora de ayer": 84.06,
+    "Chronos-Bolt zero-shot": 29.9,
+    "mejora sobre la mejor base": 0.6443
+   },
+   {
+    "horizonte (h)": 6,
+    "persistencia": 298.88,
+    "misma hora de ayer": 83.93,
+    "Chronos-Bolt zero-shot": 41.9,
+    "mejora sobre la mejor base": 0.5008
+   },
+   {
+    "horizonte (h)": 12,
+    "persistencia": 310.73,
+    "misma hora de ayer": 83.42,
+    "Chronos-Bolt zero-shot": 43.48,
+    "mejora sobre la mejor base": 0.4788
+   },
+   {
+    "horizonte (h)": 24,
+    "persistencia": 82.9,
+    "misma hora de ayer": 82.9,
+    "Chronos-Bolt zero-shot": 42.32,
+    "mejora sobre la mejor base": 0.4895
+   }
+  ],
+  "prueba": [
+   {
+    "horizonte (h)": 1,
+    "persistencia": 78.97,
+    "misma hora de ayer": 75.95,
+    "Chronos-Bolt zero-shot": 26.4,
+    "mejora sobre la mejor base": 0.6524
+   },
+   {
+    "horizonte (h)": 6,
+    "persistencia": 239.53,
+    "misma hora de ayer": 76.01,
+    "Chronos-Bolt zero-shot": 41.77,
+    "mejora sobre la mejor base": 0.4505
+   },
+   {
+    "horizonte (h)": 12,
+    "persistencia": 270.52,
+    "misma hora de ayer": 76.07,
+    "Chronos-Bolt zero-shot": 43.09,
+    "mejora sobre la mejor base": 0.4335
+   },
+   {
+    "horizonte (h)": 24,
+    "persistencia": 77.09,
+    "misma hora de ayer": 77.09,
+    "Chronos-Bolt zero-shot": 45.87,
+    "mejora sobre la mejor base": 0.405
+   }
+  ],
+  "cobertura_10_90_prueba": 0.83,
+  "ventanas": {
+   "validacion": 2113,
+   "prueba": 1671
   },
-  "cobertura_10_90": 0.8037356321839081,
-  "origenes": 145,
-  "contexto": 512
+  "nota": "copiado de la salida impresa del notebook (2 decimales); corrida en CPU"
  }
 }
