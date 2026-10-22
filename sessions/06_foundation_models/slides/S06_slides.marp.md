@@ -927,7 +927,7 @@ The **baseline still has to be beaten** (Session 05: the commonsense forecast). 
 
 Which one comes out ahead in each case? Answer in notebook 6.4 (optional, at home).
 
-<!-- Measured in notebook 6.4 (Kaggle T4, validation split of S03/S04). EuroSAT: CLIP zero-shot 36.5 % with the folder names, 37.4 % with "a photo of ...", 40.8 % with "a satellite photo of ..." (chance 10 %). A linear probe on the same CLIP image features: 86.0 % with 1 % of the labels, 93.0 % with 10 %; ImageNet ResNet-18 probe: 79.6 % and 87.8 %. The information is in the CLIP features; the class texts do not reach it. Compare with the students' S04 SimCLR table. Bike Sharing, 145 forecasts of 24 h from each midnight of the last 20 %: mean MAE over the 24 hours, same hour yesterday 79.5, same hour last week 67.2, Chronos-Bolt-small zero-shot 47.7, better at every horizon (h = 12: 98.7 / 65.5 / 51.7). Its 10-90 % interval contains the truth 80 % of the time, exactly as promised. Chronos sees only the series; the S05 LSTM also had weather and holidays. -->
+<!-- Measured in notebook 6.4 (Kaggle T4, validation split of S03/S04). EuroSAT: CLIP zero-shot 36.5 % with the folder names, 37.4 % with "a photo of ...", 40.8 % with "a satellite photo of ..." (chance 10 %). A linear probe on the same CLIP image features: 86.0 % with 1 % of the labels, 93.0 % with 10 %; ImageNet ResNet-18 probe: 79.6 % and 87.8 %. The information is in the CLIP features; the class texts do not reach it. Compare with the students' S04 SimCLR table. Bike Sharing: notebook 6.4 now uses the windows, cuts and horizons of the S05 integrator (5.6), so Chronos sits in the same table as the students' networks; to be re-measured. A first run with one forecast per midnight of the last 20 % gave mean MAE 79.5 (same hour yesterday), 67.2 (same hour last week), 47.7 (Chronos-Bolt-small zero-shot), interval coverage 80 %. Reference of the 5.6 solution (GRU 32, weather and calendar, validation): MAE 37 / 51 / 52 / 58 at 1 / 6 / 12 / 24 h against 84 / 84 / 83 / 83 for the best baseline. -->
 
 ---
 
@@ -1219,7 +1219,7 @@ Rank them by accuracy. Rank them by trainable parameters. Do the two rankings ag
 
 Answer in notebook 6.5.
 
-<!-- Measured in notebook 6.5 (Kaggle T4, 2 000 test reviews): LSTM 77.6 %, 4.2 M trainable; DistilBERT frozen + probe 84.2 %, 1 538 trainable; fine-tuned 89.1 %, 66.4 M; LoRA 88.9 %, 149 k (0.22 %). By accuracy: fine-tuning ≈ LoRA > probe > LSTM. By trainable parameters: probe < LoRA < LSTM < fine-tuning. The rankings do not agree, and the LSTM trains 28 times more parameters than LoRA while losing by 11 points. Time 6 / 7 / 42 / 31 s; peak memory 0.2 / 2.1 / 3.4 / 2.7 GB. -->
+<!-- Measured in notebook 6.5 (Kaggle T4, 2 000 test reviews): LSTM 77.6 %, 4.2 M trainable; DistilBERT frozen + probe 84.2 %, 1 538 trainable; fine-tuned 89.1 %, 66.4 M; LoRA 88.9 %, 149 k (0.22 %). By accuracy: fine-tuning ≈ LoRA > probe > LSTM. By trainable parameters: probe < LoRA < LSTM < fine-tuning. The rankings do not agree, and the LSTM trains 28 times more parameters than LoRA while losing by 11 points. Time 6 / 7 / 42 / 31 s; peak memory 0.2 / 2.1 / 3.4 / 2.7 GB. For scale, Session 05 (notebook 5.4) with 20 000 training reviews: bag of embeddings 85.4 %, 1-D CNN 84.1 %, LSTM 82.6 %; DistilBERT with a tenth of the labels is above all of them. -->
 
 ---
 
@@ -1297,9 +1297,9 @@ Optional, at home:
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Test accuracy against trainable parameters on IMDB with 2 000 training reviews, log scale. DistilBERT frozen plus probe: 1 538 trainable parameters, 84.2 percent. DistilBERT with LoRA: 149 thousand, 88.9 percent. LSTM from scratch: 4.2 million, 77.6 percent. DistilBERT fine-tuned: 66 million, 89.1 percent. Time and peak memory: LSTM 6 s and 0.2 GB, probe 7 s and 2.1 GB, fine-tuning 42 s and 3.4 GB, LoRA 31 s and 2.7 GB](../figures/s06_f19_summary.png)
+![bg contain Test accuracy against trainable parameters on IMDB with 2 000 training reviews, log scale. DistilBERT frozen plus probe: 1 538 trainable parameters, 84.2 percent. DistilBERT with LoRA: 149 thousand, 88.9 percent. LSTM from scratch: 4.2 million, 77.6 percent. DistilBERT fine-tuned: 66 million, 89.1 percent. Hollow, for reference: the Session 05 models trained on 20 000 reviews, bag of embeddings 85.4, 1-D CNN 84.1, LSTM 82.6 percent, about 1.3 million parameters each. Time and peak memory: LSTM 6 s and 0.2 GB, probe 7 s and 2.1 GB, fine-tuning 42 s and 3.4 GB, LoRA 31 s and 2.7 GB](../figures/s06_f19_summary.png)
 
-<!-- Measured in notebook 6.5 (Kaggle T4). The summary of Part 5 in one picture: pretraining is worth 7 to 11 points over the LSTM with 2 000 labels; LoRA gets within 0.2 points of full fine-tuning with 0.22 % of its trainable parameters; the probe is the cheapest and 5 points behind. The LSTM trains more parameters than LoRA and is the worst: the number of trainable parameters is not what buys accuracy, the pretrained weights are. -->
+<!-- Measured in notebook 6.5 (Kaggle T4). The summary of Part 5 in one picture: pretraining is worth 7 to 11 points over the LSTM with 2 000 labels; LoRA gets within 0.2 points of full fine-tuning with 0.22 % of its trainable parameters; the probe is the cheapest and 5 points behind. The LSTM trains more parameters than LoRA and is the worst: the number of trainable parameters is not what buys accuracy, the pretrained weights are. Hollow diamonds: the Session 05 models of notebook 5.4, trained on 10 times more labels (20 000 reviews) and tested on the full 25 000; fine-tuned DistilBERT and LoRA with 2 000 labels beat all three by 3.5 to 6.5 points (different test samples, so read it as a few points, not to the decimal). -->
 
 ---
 
