@@ -777,7 +777,7 @@ Answer in notebook 6.3, section 3.
 
 ![bg contain Qwen2.5-0.5B base, before any fine-tuning, greedy, three questions in the chat template. "¿Qué es un átomo?": one sentence about protons and electrons, repeated until the 120-token limit. "Dame tres ideas para ahorrar agua en casa": starts like an assistant, "¡Claro! Aquí tienes algunas ideas", with strange advice, cut at the limit. "¿Cuál es la diferencia entre el clima y el tiempo atmosférico?": one sentence repeated, cut at the limit. None of the three stops](../figures/s06_f13_base_model_answers.png)
 
-<!-- Measured in notebook 6.3 (Kaggle T4). The base model often starts a sensible answer, and sometimes even sounds like an assistant ("¡Claro! Aquí tienes...": Qwen's pretraining data contains chat-like text), but it does not know where an answer ends: it repeats itself until the limit. Of 12 held-out Dolly questions, it stopped by itself on 3. -->
+<!-- Measured in notebook 6.3 (Kaggle T4). The base model often starts a sensible answer, and sometimes even sounds like an assistant ("¡Claro! Aquí tienes...": Qwen's pretraining data contains chat-like text), but it does not know where an answer ends: it repeats itself until the limit. Of 12 held-out Dolly questions, it stopped by itself on 2. The átomo answer even drifts into Chinese ("电子", electron) before correcting itself. -->
 
 ---
 
@@ -1158,9 +1158,9 @@ J = L[mask[:, 1:].reshape(-1)].mean()      # one L_t per position, mean over the
 <!-- _paginate: false -->
 <!-- _footer: "" -->
 
-![bg contain Per-token loss of Qwen2.5-0.5B base on one Dolly pair, "Enumera cinco títulos de Mary Shelley", answer "Frankenstein, El último hombre, Lodore, El inmortal, Maurice", each bar on the token it predicts. Template tokens grey, question tokens blue, answer tokens and end token orange; masked positions faded. Mean over all 33 positions 4.56; masked J over the 17 answer positions 3.98](../figures/s06_f18_masked_loss.png)
+![bg contain Per-token loss of Qwen2.5-0.5B base on one Dolly pair, "¿Qué hace la Constitución?", answer "Protege los derechos básicos de los estadounidenses", each bar on the token it predicts. Template tokens grey, question tokens blue, answer tokens and end token orange. Mean over all 26 positions 3.36; masked J over the 13 answer positions 2.82](../figures/s06_f18_masked_loss.png)
 
-<!-- Measured in notebook 6.3. The largest bars are the question ("Enum", "Mary", up to 11 nats: nobody can guess what will be asked) and the newline that opens the template (14 nats, its first appearance; slide 69 made it almost free, which holds once the template is familiar). Inside the answer, "Frankenstein" is hard (9.3) and "enstein" free; each new title starts high; "Maurice" costs 12.4 and the end token 3.9. Without the mask the mean is 4.56, pulled up by the question; with the mask, J = 3.98. -->
+<!-- Measured in notebook 6.3. The question is expensive (" Constit" 8.4 nats: nobody can guess what will be asked, but "ución" is then free) and so is the newline that opens the template (8.6, its first appearance; slide 69 made it almost free, which holds once the template is familiar). Inside the answer the first word is the hardest (" Prote" 10.1: many ways to start), the rest of a word is free ("ge", "icos", "oun id enses" near 0), " estad" costs 7.6 and the end token 6.4: the base model does not expect the answer to end there. Without the mask the mean is 3.36, pulled up by the question; with the mask, J = 2.82. -->
 
 ---
 
@@ -1174,7 +1174,7 @@ J = L[mask[:, 1:].reshape(-1)].mean()      # one L_t per position, mean over the
 
 Answer in notebook 6.3, sections 7–8.
 
-<!-- Measured in notebook 6.3 (Kaggle T4: 97 s of training, 9.0 GB peak, 2 162 688 trainable values). Held-out masked NLL 2.054 → 1.905 (perplexity 7.8 → 6.7), 83 % of the drop in the first 50 of 250 steps (1.931 at step 50). Stops by itself on 3 of 12 held-out questions before, 8 of 12 after. Format, not facts: after SFT "Clasifica estos animales..." comes back as a clean list (perro: mamífero, águila: aves...) and every answer ends, but "tres ideas para ahorrar agua" repeats the same odd idea three times, and the átomo answer is no more correct than before, only shorter. -->
+<!-- Measured in notebook 6.3 with TRL's SFTTrainer (Kaggle T4: 118 s of training, 2.3 GB peak, 2 162 688 trainable values, 0.44 %). Held-out masked NLL 2.060 → 1.903 (perplexity 7.8 → 6.7), 85 % of the drop in the first 50 of 250 steps (1.926 at step 50). Stops by itself on 2 of 12 held-out questions before, 9 of 12 after. Format, not facts: "Clasifica estos animales..." comes back as a clean list, but it says "Ballena: aves" and "Gorrion: mamífero"; "tres ideas para ahorrar agua" gives three short items, two of them the same odd idea; the clima answer still repeats until the limit. The átomo answer is no more correct than before, only shorter and it ends. -->
 
 ---
 
