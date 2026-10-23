@@ -60,7 +60,7 @@ F02, F03, F07, F09, F11, F12, F13 and animations A01, A03 read files saved by no
 
 ## S06: running notebook 6.3 (SFT)
 
-Notebook 6.3 fine-tunes **Qwen2.5-0.5B** (the base model, not Instruct) on 2 000 no-context pairs of Dolly-15k in Spanish (`argilla/databricks-dolly-15k-curated-multilingual`, split `es`), with a hand-written masked loss and LoRA. There is no checkpoint to publish: the whole notebook runs in class. Both the model (about 1 GB) and the data come from Hugging Face, so on Kaggle the students need **Internet on** in *Settings*, plus a GPU (T4).
+Notebook 6.3 fine-tunes **Qwen2.5-0.5B** (the base model, not Instruct) on 2 000 no-context pairs of Dolly-15k in Spanish (`argilla/databricks-dolly-15k-curated-multilingual`, split `es`), with TRL's `SFTTrainer` and LoRA from `peft` (TRL is installed by the notebook, pinned to 1.16.0). There is no checkpoint to publish: the whole notebook runs in class. Both the model (about 1 GB) and the data come from Hugging Face, so on Kaggle the students need **Internet on** in *Settings*, plus a GPU (T4).
 
 It is committed **without outputs** (it was not run on a GPU when written). Before class:
 

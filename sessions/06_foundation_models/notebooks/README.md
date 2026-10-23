@@ -4,15 +4,15 @@
 
 Notebook 1 builds self-attention from scratch and needs no data. Notebook 2 trains a Transformer on the dates task of Session 05 (notebook 5.5): the sentences are generated in the notebook, so there is nothing to download either. Notebook 1 runs in under a minute on a laptop CPU; notebook 2 takes a few minutes with a GPU (Kaggle or Colab) and about 20 minutes on CPU.
 
-Notebook 3 turns a pretrained language model into an assistant: it fine-tunes Qwen2.5-0.5B (base) on 2 000 Spanish question-answer pairs of Dolly-15k, with the masked loss and LoRA of the slides written by hand. **Use a GPU** (Kaggle T4, about 15 minutes) and turn on **Internet** in *Settings*: the model and the data are downloaded from Hugging Face.
+Notebook 3 turns a pretrained language model into an assistant: it fine-tunes Qwen2.5-0.5B (base) on 2 000 Spanish question-answer pairs of Dolly-15k, with TRL's `SFTTrainer` (loss only on the answer) and LoRA from `peft`. **Use a GPU** (Kaggle T4, about 10 minutes) and turn on **Internet** in *Settings*: the model and the data are downloaded from Hugging Face.
 
-Notebook 5 takes a pretrained BERT (DistilBERT): first what it learned (filling `[MASK]`, the same word in different contexts), then IMDB with only 2 000 labeled reviews, frozen, fully fine-tuned and with LoRA, against an LSTM trained from scratch. **Use a GPU** (about 10 minutes) with **Internet** on.
+Notebook 5 takes a pretrained BERT (DistilBERT): first what it learned (filling `[MASK]`, the same word in different contexts), then IMDB with only 2 000 labeled reviews, frozen, fully fine-tuned and with LoRA, against an LSTM trained from scratch, all with the same Hugging Face `Trainer`. **Use a GPU** (about 10 minutes) with **Internet** on.
 
 Notebook 4 is **optional, at home**: CLIP on EuroSAT and Chronos on Bike Sharing, both zero-shot, against the baselines you already have. GPU and **Internet** on; on Kaggle add `apollo2506/eurosat-dataset` with **Add Input**.
 
 ## Integrating exercise
 
-Notebook 6 is yours to complete: does Qwen2.5-0.5B-Instruct need fine-tuning to answer in the Spanish of *Don Quijote*, or is asking for it in the prompt enough? Four TODOs (the chat template and the mask, the masked loss, the comparison of the three conditions, `responder_raw`), with MLflow. GPU and **Internet** on; on Kaggle add the dataset `juanmartinezv4399/si7011-s06-dolly-quijote` with **Add Input**.
+Notebook 6 is yours to complete: does Qwen2.5-0.5B-Instruct need fine-tuning to answer in the Spanish of *Don Quijote*, or is asking for it in the prompt enough? Four TODOs with TRL and peft (the rows as conversations, `LoraConfig` and `SFTConfig`, the comparison of the three conditions, `responder_raw`), logged to MLflow. GPU and **Internet** on; on Kaggle add the dataset `juanmartinezv4399/si7011-s06-dolly-quijote` with **Add Input**.
 
 | # | Notebook | The question it answers |
 |---|---|---|

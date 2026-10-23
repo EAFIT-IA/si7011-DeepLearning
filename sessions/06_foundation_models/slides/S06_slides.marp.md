@@ -1026,6 +1026,8 @@ $$
 - $B$ starts at zero, so training starts from the pretrained model exactly;
 - after training, merge $W_0 + BA_r$: inference costs nothing extra.
 
+In practice: `peft.LoraConfig(r=8, lora_alpha=16, target_modules=[...])`.
+
 (Hu et al., 2021.) $A_r$ carries a subscript: $A$ is the attention matrix.
 
 ---
@@ -1095,7 +1097,7 @@ A cross-entropy over the vocabulary at every position (Session 01).
 
 </div>
 
-<!-- Illustrative probabilities, chosen to show the pattern of a base model: the template token after the question is almost free (0.02), the question word "átomo?" is hard to guess (4.61), the styled answer is new to the model. Real templates use model-specific markers; notebook 6.3 uses plain text, "Usuario:" and "Asistente:", and prints the role of every token. -->
+<!-- Illustrative probabilities, chosen to show the pattern of a base model: the template token after the question is almost free (0.02), the question word "átomo?" is hard to guess (4.61), the styled answer is new to the model. Real templates use model-specific markers; notebook 6.3 uses plain text, "Usuario:" and "Asistente:" (a base model has no chat template), shows which tokens get a label in TRL's batches and prints this table for one real pair. -->
 ---
 
 <!-- _class: media -->
@@ -1135,7 +1137,7 @@ The largest term is "átomo?" (4.61): the model would learn to **predict the use
 
 **With the mask:** $J = (3.00 + 2.30 + 1.20)/3 = 2.17$.
 
-Only the answer counts.
+Only the answer counts. In TRL: `completion_only_loss=True`.
 
 </div>
 
@@ -1240,9 +1242,9 @@ Always with a **baseline** in the first row of the table.
 
 In class, GPU (Kaggle T4, about 15 + 10 minutes):
 
-- [6.3 · Supervised fine-tuning](../notebooks/sesion_06_3_ajuste_supervisado.ipynb): Qwen2.5-0.5B base on 2 000 Spanish pairs of Dolly-15k; chat template, masked loss and LoRA by hand; the same questions before and after
+- [6.3 · Supervised fine-tuning](../notebooks/sesion_06_3_ajuste_supervisado.ipynb): Qwen2.5-0.5B base on 2 000 Spanish pairs of Dolly-15k with TRL's `SFTTrainer` and `peft` LoRA; which tokens count; the same questions before and after
 
-- [6.5 · A pretrained BERT](../notebooks/sesion_06_5_adaptacion.ipynb): what DistilBERT learned (`[MASK]`, "bank" in context); IMDB with 2 000 reviews: LSTM from scratch, DistilBERT frozen + probe, fine-tuned, and with LoRA; accuracy, trainable parameters, time and memory
+- [6.5 · A pretrained BERT](../notebooks/sesion_06_5_adaptacion.ipynb): what DistilBERT learned (`[MASK]`, "bank" in context); IMDB with 2 000 reviews: LSTM from scratch, DistilBERT frozen + probe, fine-tuned and with LoRA (one `Trainer`); accuracy, parameters, time, memory
 
 Optional, at home:
 
@@ -1257,7 +1259,7 @@ Optional, at home:
 [6.6 · Integrating exercise](../notebooks/sesion_06_6_integrador_estilo_llm.ipynb) · a pretrained LLM that must answer in the Spanish of *Don Quijote*
 
 - a model that already converses (Qwen2.5-0.5B **Instruct**): 6.3 showed where that comes from;
-- the template, the mask $m_t$ and LoRA of 6.3, now on answers written in one style;
+- the `SFTTrainer` and LoRA of 6.3, now with the model's chat template and answers written in one style;
 - a fixed budget logged to **MLflow**; held-out NLL for base, base with the style in the prompt, and LoRA;
 - `responder_raw`: an answer from a raw question that respects the contract.
 
