@@ -348,7 +348,7 @@ Concepts S06 adds, phrased as decisions to justify:
 ## Open questions for the instructor
 
 1. **Style and base model for 6.6 (decided).** The Spanish of *Don Quijote*; Qwen2.5-0.5B-Instruct. To do: run `course/s06_generar_estilo.ipynb` on Kaggle, read the samples, publish the dataset, then run 6.6 once with the solutions to confirm time and the expected ordering of the three conditions.
-2. **Event 3 Part B.** Event 1 used the S02 integrator. Does Event 3 use the S05 integrator, the S06 one, or one combined deliverable?
+2. **Event 3 (decided).** Part A: eight short questions, four from S05 and four from S06, 45 min in class. Part B: the S06 integrator (6.6). See `evaluations/event_3/README.md`.
 3. **6.3 on a T4.** Not run here (no GPU, no Hugging Face access from this environment). To confirm on Kaggle: time (estimate 10–15 min), peak memory with batch 8 and `T_MAX = 384`, and the measured answers of V47 and V73; then draw F13 and F18 with `make_s06_figuras_notebooks.py`.
 4. **6.4 at home, 6.5 in class (decided).** Practice B is 6.3 and 6.5. 6.4 is optional homework; it was run once on Kaggle (outputs in the repository) and gives F15 and the measured answer of V59. Its Bike Sharing comparison with "your S05 LSTM" needs the S05 integrator (5.6), which is not built yet.
 5. **Project.** `evaluation_strategy.md` still asks the project for an "inference pipeline" and "deployment or executable demonstration" in S06. With deployment out of the course, should that become the `*_raw` function pattern the integrators already use?
