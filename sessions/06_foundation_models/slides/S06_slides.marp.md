@@ -1194,6 +1194,8 @@ Only compare NLL between models with the **same tokenizer**: with other tokens, 
 
 An LLM acting as judge is easier to read and harder to trust: optional.
 
+<!-- Measured in the 6.6 solution (Kaggle T4, Qwen2.5-0.5B-Instruct, 59 held-out styled answers): base J = 2.59 (perplexity 13.4); base with the style asked for in the system prompt 2.51 (12.3); LoRA 1.94 (7.0). The prompt covers only 13 % of the distance from base to LoRA: the small model knows what is asked but does not write in that style. Same tokenizer and same target answers in the three rows, so the comparison is fair; it is not comparable with the 1.90 of notebook 6.3 (other model, other template, other answers). -->
+
 ---
 
 # Comparing fairly
@@ -1264,6 +1266,8 @@ Optional, at home:
 - `responder_raw`: an answer from a raw question that respects the contract.
 
 > Is asking for the style in the prompt enough, or does the model have to be fine-tuned?
+
+<!-- Measured in the 6.6 solution (Kaggle T4): 284 training pairs, 40 for validation, 59 for test; LoRA r = 16 on the four attention matrices, 2.16 M trainable values (0.44 %); two epochs, 72 steps, 48 s. Validation J 2.35 at step 10, 2.18 at 20, 2.10 at 40, 2.09 at 70: it flattens in the second epoch and does not rise (train loss 1.78 at the end). Test J: base 2.59, style in the prompt 2.51, LoRA 1.94. -->
 
 <span class="tiny">Adapted from MIT 6.S191, Lab 3 (MIT License).</span>
 
